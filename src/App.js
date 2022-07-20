@@ -5,13 +5,12 @@ import AccountDetail from './components/AccountDetail/AccountDetail';
 
 
 function App () {
-  
+
   return (
 
     <div className={style.container}>
-      <Nav/>
+      <Nav />
       <AccountDetail />
-      Henry PF
     </div>
   );
 }
