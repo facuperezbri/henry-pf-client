@@ -1,9 +1,15 @@
 
+import style from "./App.module.css";
+import Nav from "./components/Nav/Nav"
 import AccountDetail from './components/AccountDetail/AccountDetail';
 
+
 function App () {
+  
   return (
-    <div className="App">
+
+    <div className={style.container}>
+      <Nav/>
       <AccountDetail />
       Henry PF
     </div>

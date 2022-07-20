@@ -1,0 +1,56 @@
+.container{
+    color: var(--color-letters);
+}
+.img{
+    max-width: 80%;
+    margin: 10rem auto;
+    margin-left: 2rem;
+}
+.description{
+    margin-left: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+.h3{
+    margin-top: -5px;
+    font-weight: 500;
+}
+.containerWelcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn{
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color:#c36b68;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #ff7762;
+    transition: 1s;
+}
+
+@media (min-width: 768px ){
+    .containerTwoElement{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-evenly;
+        max-width: 100%;
+    }
+    .img{
+        margin-right:10rem ;
+        height: 30rem;
+        max-width: 38rem;
+
+    }
+    .h3{
+       margin-left:1rem; 
+       font-size: 1.5rem;
+    }
+    
+   
+}

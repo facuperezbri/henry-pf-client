@@ -1,0 +1,5 @@
+.container{
+    background-color: var(--background-color-landing);
+    height: 100vh;
+    margin: 0;
+  }
