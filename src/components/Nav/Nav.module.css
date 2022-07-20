@@ -1,0 +1,21 @@
+.header{
+    background-color: var(--background-color-nav);
+    width: 15rem;
+    height: 100vh;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 2rem;
+    margin-left: -1rem;
+    margin-top: 10px;
+}
+.itemsNav{
+    display: flex;
+    flex-direction: column;
+    gap:1.5rem;
+    margin-top: 3rem;
+    font-weight:600;
+    justify-content: center;
+}

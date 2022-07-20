@@ -6,6 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:root{
+  --background-color-nav:#F7F7F9;
+  --background-color-landing:#1B1F26;
+  --color-letters:#FFFFFF;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
