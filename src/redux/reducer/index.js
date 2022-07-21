@@ -1,7 +1,8 @@
-import { GET_USER } from '../actions'
+import { GET_CATEGORY, GET_USER } from '../actions'
 
 
 const initialState = {
+  categories: [],
   userData: [],
   allCryptos: [],
   allNews: []
@@ -13,6 +14,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload
+      }
+    case GET_CATEGORY:
+      return {
+        ...state,
+        categories: action.payload
       }
     case "GET_CRYPTO":
       return {

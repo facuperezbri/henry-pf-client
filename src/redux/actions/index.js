@@ -1,20 +1,37 @@
 import axios from 'axios'
 import { GET_USER_DATA } from '../../services/GET_USER_DATA'
+import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
 
 export const GET_USER = 'GET_USER'
+export const GET_CATEGORY = 'GET_CATEGORY'
 
 export const getUser = (token) => {
   return async function (dispatch) {
     try {
       let data = await GET_USER_DATA(token)
-      return {
+      return dispatch({
         type: GET_USER,
         payload: data
-      }
+      })
     } catch (error) {
       console.log(error)
     }
   }
+}
+
+export const getCategory = () => {
+  return async function (dispatch) {
+    try {
+      let data = await GET_CATEGORY_SERVICE()
+      return dispatch({
+        type: GET_CATEGORY,
+        payload: data
+      })
+    } catch (error) {
+
+    }
+  }
+
 }
 
 export const getCrypto = () => {

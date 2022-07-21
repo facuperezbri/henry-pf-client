@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
@@ -7,20 +7,21 @@ import transport from '../../assets/icons/transport.svg'
 import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
-import { GET_USER_DATA } from '../../services/GET_USER_DATA'
-import { getUser } from '../../redux/actions'
+import { getCategory, getUser } from '../../redux/actions'
 
 
 
 export default function AccountDetail () {
-
-  const [state, setState] = useState()
+  const dispatch = useDispatch()
+  const usData = useSelector(state => state.userData)
+  const categories = useSelector(state => state.categories)
 
   useEffect(() => {
-    GET_USER_DATA(window.localStorage.getItem('token')).then(setState)
+    dispatch(getUser(window.localStorage.getItem('token')))
+    dispatch(getCategory())
   }, [])
 
-  console.log(state)
+  console.log(categories)
 
   return (
     <div className={style.detailContainer}>
@@ -30,7 +31,7 @@ export default function AccountDetail () {
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
-            <p>$12,786.76</p>
+            <p>$ {usData.length === 0 ? 0 : usData.accounts[0].balance}</p>
           </div>
         </div>
         <div className={style.categoriesContainer}>
