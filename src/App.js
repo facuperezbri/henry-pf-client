@@ -1,6 +1,4 @@
 import style from "./App.module.css";
-import Nav from "./components/Nav/Nav"
-import AccountDetail from './components/AccountDetail/AccountDetail';
 import { Route, Routes } from 'react-router-dom'
 import SignIn from "./components/account/signin";
 import Login from "./components/account/login";

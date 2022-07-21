@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
 import creditCard from '../../assets/img/creditCard.png'
@@ -7,8 +7,21 @@ import transport from '../../assets/icons/transport.svg'
 import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
+import { GET_USER_DATA } from '../../services/GET_USER_DATA'
+import { getUser } from '../../redux/actions'
+
+
 
 export default function AccountDetail () {
+
+  const [state, setState] = useState()
+
+  useEffect(() => {
+    GET_USER_DATA(window.localStorage.getItem('token')).then(setState)
+  }, [])
+
+  console.log(state)
+
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
