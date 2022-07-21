@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <div className={Style.main}>
       
-    <Link to="/detail">
+    <Link to="/perfil/detail">
       <div className={Style.container}>
           <img className={Style.img} src={profile.profilepic}/>
           <h2>{profile.username}</h2>
