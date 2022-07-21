@@ -14,7 +14,7 @@ export default function Nav () {
   return (
     <nav className={style.header}>
       <div >
-        <h3>Wallet.</h3>
+        <h3>wallet.</h3>
         <ul className={style.itemsNav}>
           <li className={style.listItem}>
             <img src={Dashboard} alt='Dashboard' /><Link to='/'>Dashboard</Link>
