@@ -9,6 +9,9 @@ export default function Profile() {
     const profile = useSelector((state) => state.dataProfile)
 
     useEffect(()=>{
+      // const objeto ={
+      //   id: "2b9c3d0f-db90-47f8-8c71-2801ed1beb94"
+      // }
     dispatch(dataProfile())
   },[])
 

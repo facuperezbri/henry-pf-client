@@ -7,6 +7,7 @@ import Profile from "./components/Profile/Profile";
 import DetailProfile from "./components/Profile/DetailProfile";
 import SignIn from "./components/account/signin";
 import Login from "./components/account/login";
+import EditProfile from "./components/Profile/EditProfile";
 function App () {
 
   return (
@@ -17,6 +18,7 @@ function App () {
         <Route path="/perfil/detail" element={<DetailProfile/>}/>
         <Route path="/account/signin" element={<SignIn />} />
         <Route path="/account/login" element={<Login />} />
+        <Route path="/perfil/detail/editProfile/:id" element={<EditProfile/>}/>
         <Route path="/home" element={
         <>
           <Nav />

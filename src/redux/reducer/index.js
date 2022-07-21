@@ -1,4 +1,4 @@
-import { GENERIC, DATAPROFILE, dataProfile } from '../actions'
+import { GENERIC, DATAPROFILE, CHANGEPROFILE } from '../actions'
 
 const initialState = {
   globalState1: [],
@@ -19,6 +19,11 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         dataProfile:action.payload
+      }
+    case CHANGEPROFILE:
+      return {
+        ...state,
+        dataProfile: action.payload
       }
     default:
       return state

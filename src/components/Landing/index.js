@@ -1,5 +1,5 @@
 import style from './Landing.module.css'
-
+import {Link} from "react-router-dom"
 export default function Landing () {
   return (
     <div className={style.container}>
@@ -10,7 +10,7 @@ export default function Landing () {
             </div>
             <div className={style.containerWelcome}>
                 <h3 className={style.h3}>tu billetera virtual</h3>
-                <button className={style.btn}>sign in</button>{/*agregar ruteo para llevar a la pagina incio de secion*/}
+               <Link to="/account/signin"><button className={style.btn}>sign in</button></Link> {/*agregar ruteo para llevar a la pagina incio de secion*/}
             </div>
         </div>
     </div>
