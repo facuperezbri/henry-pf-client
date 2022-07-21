@@ -18,3 +18,12 @@
     font-weight: 600;
     justify-content: center;
 }
+
+.listItem {
+    display: flex;
+    align-items: center;
+}
+
+.listItem a {
+    margin-left: 1rem;
+}
