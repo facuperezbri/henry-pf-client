@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
+import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 
 export const GET_USER = 'GET_USER'
 export const GET_CATEGORY = 'GET_CATEGORY'
+export const GET_MOVEMENT = 'GET_MOVEMENT'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -31,7 +33,20 @@ export const getCategory = () => {
 
     }
   }
+}
 
+export const getMovements = (cvu) => {
+  return async function (dispatch) {
+    try {
+      let data = await GET_MOVEMENT_SERVICE(cvu)
+      return dispatch({
+        type: GET_MOVEMENT,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export const getCrypto = () => {

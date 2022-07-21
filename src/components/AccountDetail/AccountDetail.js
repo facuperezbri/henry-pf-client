@@ -7,7 +7,7 @@ import transport from '../../assets/icons/transport.svg'
 import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
-import { getCategory, getUser } from '../../redux/actions'
+import { getCategory, getMovements, getUser } from '../../redux/actions'
 
 
 
@@ -15,13 +15,16 @@ export default function AccountDetail () {
   const dispatch = useDispatch()
   const usData = useSelector(state => state.userData)
   const categories = useSelector(state => state.categories)
+  const movements = useSelector(state => state.movements)
 
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token')))
+    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
   }, [])
 
-  console.log(categories)
+  console.log(movements)
+
+
 
   return (
     <div className={style.detailContainer}>
