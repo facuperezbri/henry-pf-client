@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React from 'react'
 
 const CoinRow = ({ element }) => {
@@ -6,7 +5,7 @@ const CoinRow = ({ element }) => {
     <tr>
       <td>{element.name}</td>
       <td>
-        <Image src={element.image} alt={element.name} width={50} height={50} />
+        <img src={element.image} alt={element.name} width={50} height={50} />
       </td>
       <td>{element.symbol}</td>
       <td>{element.current_price}</td>

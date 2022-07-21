@@ -4,6 +4,10 @@ import AccountDetail from './components/AccountDetail/AccountDetail';
 import { Route, Routes } from 'react-router-dom'
 import SignIn from "./components/account/signin";
 import Login from "./components/account/login";
+import CryptoMarket from './components/CryptoInfo/CryptoMarket'
+import NewsComponent from "./components/News/NewsComponent";
+
+
 function App () {
 
   return (
@@ -17,6 +21,9 @@ function App () {
           <AccountDetail />
         </>
         } />
+        <Route path="/cryptosmarket" element={<CryptoMarket />} />
+        <Route path="/news" element={<NewsComponent />} />
+
       </Routes>
     </div>
   );
