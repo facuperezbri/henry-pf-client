@@ -1,8 +1,9 @@
-import { GENERIC } from '../actions'
+import { GENERIC, DATAPROFILE, dataProfile } from '../actions'
 
 const initialState = {
   globalState1: [],
-  globalState2: []
+  globalState2: [],
+  dataProfile: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         globalState1: action.payload,
         globalState2: action.payload
+      }
+    case DATAPROFILE:
+      console.log("entrando")
+      return{
+        ...state,
+        dataProfile:action.payload
       }
     default:
       return state
