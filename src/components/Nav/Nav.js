@@ -1,21 +1,43 @@
 import React from 'react'
 import style from './Nav.module.css'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+
+import Dashboard from '../../assets/icons/Sidebar/Dashboard.svg'
+import FAQ from '../../assets/icons/Sidebar/FAQ.svg'
+import Logout from '../../assets/icons/Sidebar/Logout.svg'
+import News from '../../assets/icons/Sidebar/News.svg'
+import Settings from '../../assets/icons/Sidebar/Settings.svg'
+import Wallet from '../../assets/icons/Sidebar/Wallet.svg'
+
 export default function Nav () {
-  const itemalign = { display: 'flex', alignItems: 'center', gap:'1rem',cursor:"pointer"}
+
   return (
     <nav className={style.header}>
-        <div >
+      <div >
         <h3>Wallet.</h3>
-          <div className={style.itemsNav}>
-            <div style={itemalign}><span><img src="https://res.cloudinary.com/salta/image/upload/v1658256761/Dashboard_ckbahv.svg" alt='0'/></span><Link style={{textDecoration:"none"}} to='/disponer'>Dashboard</Link></div>
-            <div style={itemalign}><span><img src='https://res.cloudinary.com/salta/image/upload/v1658256798/Wallet_vfda4a.svg' alt='1'/></span><Link style={{textDecoration:"none"}} to='/disponer'>Wallet</Link></div>
-            <div style={itemalign}><span><img src='https://res.cloudinary.com/salta/image/upload/v1658256871/News_gvb1i2.svg' alt='2'/></span><Link style={{textDecoration:"none"}} to='/disponer'>News</Link> </div>
-            <div style={itemalign}><span><img src='https://res.cloudinary.com/salta/image/upload/v1658256900/Settings_julchm.svg' alt='3'/></span><Link  style={{textDecoration:"none"}}to='/disponer'>Settings</Link></div>
-            <div style={itemalign}><span><img src='https://res.cloudinary.com/salta/image/upload/v1658256946/FAQ_vjzmyl.svg' alt='4'/></span><Link style={{textDecoration:"none"}} to='/disponer'>F.A.Q</Link></div>
-          </div>
-        </div>
-           <div style={{marginBottom: "4rem",display: 'grid', gridTemplateColumns:'14% auto', alignItems: 'center', gap: '1rem', cursor: "pointer"}}><span style={{marginTop:"10px"}}><img src='https://res.cloudinary.com/salta/image/upload/v1658257582/logout_olueax.svg' alt='alt'/></span> Log out</div>
+        <ul className={style.itemsNav}>
+          <li className={style.listItem}>
+            <img src={Dashboard} alt='Dashboard' /><Link to='/'>Dashboard</Link>
+          </li>
+          <li className={style.listItem}>
+            <img src={Wallet} alt='Wallet' /><Link to='/wallet'>Wallet</Link>
+          </li>
+          <li className={style.listItem}>
+            <img src={News} alt='News' /><Link to='/news'>News</Link>
+          </li>
+          <li className={style.listItem}>
+            <img src={Settings} alt='Settings' /><Link to='/settings'>Settings</Link>
+          </li>
+          <li className={style.listItem}>
+            <img src={FAQ} alt='FAQ' /><Link to='/faq'>F.A.Q</Link>
+          </li>
+        </ul>
+      </div>
+      <ul className={style.itemsNav}>
+        <li className={style.listItem}>
+          <img src={Logout} alt='Log out' /><Link to="/logout">Log out</Link>
+        </li>
+      </ul>
     </nav>
   )
 }
