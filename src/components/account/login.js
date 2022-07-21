@@ -11,7 +11,7 @@ const Login = () => {
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       console.log(user)
-      LOG_IN({ googleID: user.uid }).then(console.log).catch(console.error)
+      LOG_IN({ googleID: user.uid }).then(r => window.localStorage.setItem("token", r)).catch(console.error)
     }).catch(console.error)
   }
   return (
