@@ -3,7 +3,9 @@ import { GENERIC, DATAPROFILE, CHANGEPROFILE } from '../actions'
 const initialState = {
   globalState1: [],
   globalState2: [],
-  dataProfile: []
+  dataProfile: [],
+  allCryptos: [],
+  allNews: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -15,7 +17,6 @@ const rootReducer = (state = initialState, action) => {
         globalState2: action.payload
       }
     case DATAPROFILE:
-      console.log("entrando")
       return{
         ...state,
         dataProfile:action.payload
@@ -25,6 +26,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dataProfile: action.payload
       }
+    case "GET_CRYPTO":
+      return {
+        ...state,
+        allCryptos: action.payload
+      }
+    
     default:
       return state
   };

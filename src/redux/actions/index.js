@@ -1,4 +1,5 @@
-import axios  from "axios"
+import axios from 'axios'
+
 export const GENERIC = 'GENERIC'
 export const DATAPROFILE ='DATAFROFILE'
 export const CHANGEPROFILE = 'CHANGEPROFILE'
@@ -31,3 +32,18 @@ export const changeProfile = (objeto) => {
 }
 
 
+
+export const getCrypto = () => {
+  return async function(dispatch) {
+    try {
+        let info = await axios.get("http://localhost:4000/api/currency/crypto")
+        console.log(info.data)
+        return dispatch({
+            type: "GET_CRYPTO",
+            payload: info.data
+        })
+    } catch (e) {
+        console.error(e)
+    }
+}
+}

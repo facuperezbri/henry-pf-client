@@ -8,6 +8,10 @@ import DetailProfile from "./components/Profile/DetailProfile";
 import SignIn from "./components/account/signin";
 import Login from "./components/account/login";
 import EditProfile from "./components/Profile/EditProfile";
+import CryptoMarket from './components/CryptoInfo/CryptoMarket'
+import NewsComponent from "./components/News/NewsComponent";
+
+
 function App () {
 
   return (
@@ -19,12 +23,16 @@ function App () {
         <Route path="/account/signin" element={<SignIn />} />
         <Route path="/account/login" element={<Login />} />
         <Route path="/perfil/detail/editProfile/:id" element={<EditProfile/>}/>
+        
         <Route path="/home" element={
         <>
           <Nav />
           <AccountDetail />
         </>
         } />
+        <Route path="/cryptosmarket" element={<CryptoMarket />} />
+        <Route path="/news" element={<NewsComponent />} />
+
       </Routes>
     </div>
   );

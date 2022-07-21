@@ -5,14 +5,13 @@
 
 .min_h_100vh {
     min-height: 100vh;
-    margin: 2rem auto;
 }
 
 .card {
     box-shadow: 0px 7px 31px rgba(0, 0, 0, 0.1);
     border-radius: 0 1rem;
     padding: 2rem;
-    width: 50vw;
+    width: 30vw;
 }
 
 .form {
@@ -24,7 +23,7 @@
 
 .input_text {
     border: none;
-    width: 100%;
+    /* width: 100%; */
     border-radius: .2rem;
     border-radius: .2rem;
     padding: .7rem 1rem;
@@ -102,9 +101,9 @@
     height: .5rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 890px) {
     .card {
-        width: 90vw;
+        width: 75vw;
     }
     
 }

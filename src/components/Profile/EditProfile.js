@@ -2,16 +2,16 @@ import React, { useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {useParams,useNavigate} from 'react-router-dom'
 import {changeProfile} from '../../redux/actions/index'
-
+import style from "./EditProfile.module.css"
 const verifyError =(e)=>{
   let em ={}
   // if (e.type=== "text"&&!/[^a-zA-Z\x20]/g.test(e.value)){
   //   em.error = "debes ingresar un nombre" 
   //  }
     if (e.type=== "email"&&!/\S+@\S+\.\S+/.test(e.value)){
-     em.error = "debes ingresar un corro" 
+     em.error = "debes ingresar un correo" 
     }
-    if (e.type=== "number"&&!/^[1-9][0-9]{7,8}$/g.test(e.value)){
+    if (e.type=== "number"&&!/^[1-9][0-9]{4,8}$/g.test(e.value)){
       em.error = "debes ingresar un DNI" 
      }
  
@@ -42,13 +42,13 @@ export default function EditProfile() {
   //--------------------------------------------------------
   const typeInput = ()=>{
     if(strinParams === "name" ||  strinParams === "username"){
-    return  <input  type="text" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
+    return  <input  className={style.input} type="text" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
     } 
     if(strinParams === "email"){
-     return  <input  type="email" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
+     return  <input  className={style.input} type="email" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
     }
     if(strinParams === "dni"){
-     return  <input  type="number" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
+     return  <input className={style.input}  type="number" onChange={(e)=>changeUser(e)} value={change[strinParams]}/>  
     }
 
   }
@@ -59,13 +59,13 @@ export default function EditProfile() {
     navigate("/home")
   }
   return (
-    <form onSubmit={(e)=>changeUser(e)}>
-        <div>
+    <form className={style.form} onSubmit={(e)=>changeUser(e)}>
+        <div className={style.container}>
             <h1>{id}</h1>
             {typeInput()}
             {error? <p>{error.error}</p>:null}
           
-            <button disabled={error ?false : true} onClick={(e)=>sendChange(e)}>change</button>
+            <button className={style.btn} disabled={error ?false : true} onClick={(e)=>sendChange(e)}>change</button>
         </div>
     </form>
   )

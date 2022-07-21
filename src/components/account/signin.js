@@ -5,10 +5,14 @@ import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 const SignIn = () => {
   const [userGoogle, setUserGoogle] = useState()
+
   const [FilesNames, setFilesNames] = useState({ photoDNIReverse: '', photoDNIFront: '' })
+
   const [step, setStep] = useState(1)
+
   const { register, handleSubmit, formState: { errors } } = useForm()
   const MAX_STEPS = 3
+
   const onSubmit = (data) => {
     if (data.password !== data.passwordVerify) {
       return alert('Passwords must be the same')
@@ -17,18 +21,20 @@ const SignIn = () => {
       ...data,
       email: userGoogle.email || data.email,
       profilepic: userGoogle.photoURL || '',
-      username: userGoogle?.email?.split('@')[0] || data.username
+      username: userGoogle?.email?.split('@')[0] || data.username,
+      googleID: userGoogle?.uid
     }
     console.log(dataTosend)
     SIGN_IN(dataTosend).then(res => console.log({ res }))
   }
+
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       setUserGoogle(user)
     }).catch(console.error)
   }
+
   const onInputFileOne = (e) => {
-    console.log(e)
     if (e?.target?.files) {
       const file = e?.target?.files[0]
       setFilesNames({ ...FilesNames, [e?.target?.name]: file?.name })
@@ -45,6 +51,7 @@ const SignIn = () => {
       }
     }
   }
+
   return (
     <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
       <div className={formStyles.steps_index}>
