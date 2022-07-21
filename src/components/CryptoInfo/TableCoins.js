@@ -2,6 +2,7 @@ import React from 'react'
 import CoinRow from './CoinRow'
 
 const TableCoins = ({ coins, search }) => {
+
   const filteredCoins = coins.filter((coin) => {
     return (
       coin.name.toLowerCase().includes(search.toLowerCase()) |
