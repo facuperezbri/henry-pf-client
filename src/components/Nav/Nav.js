@@ -17,37 +17,47 @@ export default function Nav () {
 
   return (
     <nav className={style.header}>
-      <div >
-        <h3>wallet.</h3>
+      <div>
+        <h3 className={style.title}>wallet.</h3>
         <ul className={style.itemsNav}>
-          <li className={style.listItem}>
-            <img src={Dashboard} alt='Dashboard' /><Link to='/profile'>Profile</Link>
-          </li>
-          <li className={style.listItem}>
-            <img src={Dashboard} alt='Dashboard' /><Link to='/home'>Dashboard</Link>
-          </li>
-          <li className={style.listItem}>
-            <img src={Wallet} alt='Wallet' /><Link to='/wallet'>Wallet</Link>
-          </li>
-          <li className={style.listItem}>
-            <img src={News} alt='News' /><Link to='/news'>News</Link>
-          </li>
-          <li className={style.listItem}>
-            <img src={Settings} alt='Settings' /><Link to='/settings'>Settings</Link>
-          </li>
-          <li className={style.listItem}>
-            <img src={FAQ} alt='FAQ' /><Link to='/faq'>F.A.Q</Link>
-          </li>
+          <Link to='/profile'>
+            <li className={style.listItem}>
+              <img src={Dashboard} alt='Dashboard' /> <span className={style.listItem_text}>Profile</span>
+            </li>
+          </Link>
+          <Link to='/home'>
+            <li className={style.listItem}>
+              <img src={Dashboard} alt='Dashboard' /> <span className={style.listItem_text}>Dashboard</span> 
+            </li>
+          </Link>
+          <Link to='/wallet'>
+            <li className={style.listItem}>
+              <img src={Wallet} alt='Wallet' /><span className={style.listItem_text}>Wallet</span>
+            </li>
+          </Link>
+          <Link to='/news'>
+            <li className={style.listItem}>
+              <img src={News} alt='News' /><span className={style.listItem_text}>News</span>
+            </li>
+          </Link>
+          <Link to='/settings'>
+            <li className={style.listItem}>
+              <img src={Settings} alt='Settings' /> <span className={style.listItem_text}>Settings</span>
+            </li>
+          </Link>
+          <Link to='/faq'>
+            <li className={style.listItem}>
+              <img src={FAQ} alt='FAQ' /><span className={style.listItem_text}>F.A.Q</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <ul className={style.itemsNav}>
-        <li className={style.listItem}>
           <Link to="/">
-            <button onClick={() => logOut()} className={style.button}>
-              <img src={Logout} alt='Log out' />Log out
-            </button>
+            <li onClick={() => logOut()} className={style.listItem}>
+                <img src={Logout} alt='Log out' /> <span className={style.listItem_text}>Log out</span>
+            </li>
           </Link>
-        </li>
       </ul>
     </nav>
   )

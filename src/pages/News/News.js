@@ -5,7 +5,7 @@ import News from '../../components/News/News'
 
 import style from './News.module.css'
 
-export default function Wallet () {
+export default function NewsPage () {
   return (
     <div className={style.container}>
       <Nav />
