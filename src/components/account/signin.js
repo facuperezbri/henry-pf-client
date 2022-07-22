@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LoginWithGoogle } from '../../firebase_/client'
+import { useNavigate } from 'react-router-dom'
 import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
+
 const SignIn = () => {
+  const navigate = useNavigate()
+
   const [userGoogle, setUserGoogle] = useState()
 
   const [FilesNames, setFilesNames] = useState({ photoDNIReverse: '', photoDNIFront: '' })
@@ -25,7 +29,7 @@ const SignIn = () => {
       googleID: userGoogle?.uid
     }
     console.log(dataTosend)
-    SIGN_IN(dataTosend).then(res => console.log({ res }))
+    SIGN_IN(dataTosend).then(res => res?.id && navigate('/account/login')).catch(console.error)
   }
 
   const login = () => {
