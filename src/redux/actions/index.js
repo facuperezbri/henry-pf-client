@@ -63,3 +63,28 @@ export const getCryptos = () => {
     }
   }
 }
+
+export function getFavorite() {
+  return async function(dispatch){
+    await axios.get('http://localhost:4000/api/favourites').then((fav)=>{return dispatch({
+      type: GET_FAVORITE,
+      payload: fav.data
+    })}).catch((error)=>{console.log(error)})
+  }
+}
+
+export function addFavorite(payload) {
+  return async function(dispatch){
+    const favouriteCreated = await axios.post('http://localhost:4000/api/favourites/createFavourites',payload)
+    return dispatch({ type: POST_FAVORITE,
+      payload: favouriteCreated})
+  }
+}
+
+export function removeFavorite(id) {
+  return async function(dispatch){
+    const favouriteRemoved = await axios.delete('http://localhost:4000/api/favourites/delete', id)
+    return dispatch({type: REMOVE_FAVORITE,
+    payload: favouriteRemoved})
+  }
+}

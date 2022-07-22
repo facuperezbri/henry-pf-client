@@ -31,6 +31,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allCryptos: action.payload
       }
+    case GET_FAVORITE:
+      return {
+        ...state,
+        favourites: state.favourites.concat(action.payload)
+      }
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        favourites: state.favourites.filter(e => {
+          return e.id !== action.payload
+        })
+      }
+    case POST_FAVORITE:
+        return {
+          ...state
+        }
 
     default:
       return state
