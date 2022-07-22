@@ -1,23 +1,25 @@
 import React from 'react'
 import styles from './RecientActivity.module.css'
+import { setFormat } from '../../hooks/setFormatDate'
 
-const setFormat = (date, locale, options) =>
-  new Intl.DateTimeFormat(locale, options).format(date)
-
-const RecientActivity = ({ activities }) => {
+const RecientActivity = ({ activities, setMovement, openDetails }) => {
+  const handlerClick = (activitie) => {
+    openDetails()
+    setMovement(activitie)
+  }
   return (
     <div className={styles.container}>
-        <span>
+        <span className={styles.title}>
           Movements
         </span>
         {
             activities.map((activitie) => (
-                <div key={activitie.id} className={styles.activitie}>
+                <div key={activitie.id} className={styles.activitie} onClick={() => handlerClick(activitie)}>
                     <div className={styles.container}>
                         <span>{activitie?.categories?.name}</span>
-                        <span>{setFormat(new Date(activitie?.date), 'es-ES', { dateStyle: 'long' })}</span>
+                        <span>{setFormat(new Date(activitie?.date), 'en-EN', { dateStyle: 'long' })}</span>
                     </div>
-                    <span> {`$${activitie?.amount}`}</span>
+                    <span className={styles.amount}> {`$${activitie?.amount}`}</span>
                 </div>
             ))
         }
