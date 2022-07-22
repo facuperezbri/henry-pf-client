@@ -1,13 +1,26 @@
 import axios from 'axios'
+import { GET_USER_DATA } from '../../services/GET_USER_DATA'
+import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
+import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 
 export const GENERIC = 'GENERIC'
 export const DATAPROFILE ='DATAFROFILE'
 export const CHANGEPROFILE = 'CHANGEPROFILE'
+export const GET_USER = 'GET_USER'
+export const GET_CATEGORY = 'GET_CATEGORY'
+export const GET_MOVEMENT = 'GET_MOVEMENT'
 
-export const genericFunction = (input) => {
-  return {
-    type: GENERIC,
-    payload: input
+export const getUser = (token) => {
+  return async function (dispatch) {
+    try {
+      let data = await GET_USER_DATA(token)
+      return dispatch({
+        type: GET_USER,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -32,18 +45,45 @@ export const changeProfile = (objeto) => {
 }
 
 
+export const getCategory = () => {
+  return async function (dispatch) {
+    try {
+      let data = await GET_CATEGORY_SERVICE()
+      return dispatch({
+        type: GET_CATEGORY,
+        payload: data
+      })
+    } catch (error) {
+
+    }
+  }
+}
+
+export const getMovements = (cvu) => {
+  return async function (dispatch) {
+    try {
+      let data = await GET_MOVEMENT_SERVICE(cvu)
+      return dispatch({
+        type: GET_MOVEMENT,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export const getCrypto = () => {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
-        let info = await axios.get("http://localhost:4000/api/currency/crypto")
-        console.log(info.data)
-        return dispatch({
-            type: "GET_CRYPTO",
-            payload: info.data
-        })
+      let info = await axios.get("http://localhost:4000/api/currency/crypto")
+      console.log(info.data)
+      return dispatch({
+        type: "GET_CRYPTO",
+        payload: info.data
+      })
     } catch (e) {
-        console.error(e)
+      console.error(e)
     }
-}
+  }
 }

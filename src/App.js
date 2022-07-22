@@ -1,5 +1,5 @@
 import style from "./App.module.css";
-import Landing from "./components/Landing";
+import Landing from "./components/Landing/Landing";
 import Nav from "./components/Nav/Nav"
 import AccountDetail from './components/AccountDetail/AccountDetail';
 import {Routes,Route} from 'react-router-dom'

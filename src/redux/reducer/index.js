@@ -1,20 +1,31 @@
-import { GENERIC, DATAPROFILE, CHANGEPROFILE } from '../actions'
+import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,CHANGEPROFILE,DATAPROFILE} from '../actions'
+
 
 const initialState = {
-  globalState1: [],
-  globalState2: [],
-  dataProfile: [],
+  categories: [],
+  movements: [],
+  userData: [],
   allCryptos: [],
-  allNews: []
+  allNews: [],
+  dataProfile: [],
 }
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GENERIC:
+    case GET_USER:
       return {
         ...state,
-        globalState1: action.payload,
-        globalState2: action.payload
+        userData: action.payload
+      }
+    case GET_CATEGORY:
+      return {
+        ...state,
+        categories: action.payload
+      }
+    case GET_MOVEMENT:
+      return {
+        ...state,
+        movements: action.payload
       }
     case DATAPROFILE:
       return{
@@ -31,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allCryptos: action.payload
       }
-    
+
     default:
       return state
   };
