@@ -16,39 +16,39 @@ function App () {
   return (
     <div className={style.container}>
       <Routes>
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/account/signin" element={<SignIn />} />
-        <Route path="/account/login" element={<Login />} />
-        <Route path="/home" element={
+        <Route exact path="/" element={<Landing/>}/>
+        <Route exact path="/profile" element={<Profile/>}/>
+        <Route exact path="/account/signin" element={<SignIn />} />
+        <Route exact path="/account/login" element={<Login />} />
+        <Route exact path="/home" element={
           <div className={style.app_container}>
             <Home />
           </div>
         } 
         />
-        <Route path="/wallet" element={
+        <Route exact path="/wallet" element={
           <div className={style.app_container}>
             <Wallet />
           </div>
         } 
         />
-        <Route path="/settings" element={
+        <Route exact path="/settings" element={
           <div className={style.app_container}>
             <Settings />
           </div>
         } 
         />
-        <Route path="/cryptosmarket" element={
+        <Route exact path="/cryptosmarket" element={
           <div className={style.app_container}>
             <Cryptos />
           </div>
         } />
-        <Route path="/news" element={
+        <Route exact path="/news" element={
           <div className={style.app_container}>
             <News />
           </div>
         } />
-        <Route path="/faq" element={
+        <Route exact path="/faq" element={
           <div className={style.app_container}>
             <Faq />
           </div>
