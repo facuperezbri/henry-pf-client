@@ -35,13 +35,13 @@ const ac = [
 export default function AccountDetail () {
   const dispatch = useDispatch()
   const usData = useSelector(state => state.userData)
-  const categories = useSelector(state => state.categories)
-  const movements = useSelector(state => state.movements)
+  // const categories = useSelector(state => state.categories)
+  // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
-  }, [])
+  }, [dispatch])
 
 
 
@@ -86,7 +86,7 @@ export default function AccountDetail () {
         </div>
       </div>
       <div>
-        recient
+        recent
         <RecientActivity activities={ac} />
       </div>
     </div>

@@ -3,13 +3,13 @@ import Style from './Profile.module.css'
 import {useDispatch,useSelector} from "react-redux"
 import {dataProfile} from "../../redux/actions/index"
 import {Link} from "react-router-dom"
-
+import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 export default function Profile() {
-    const dispatch = useDispatch()
     const profile = useSelector((state) => state.dataProfile)
 
     useEffect(()=>{
-     dispatch(dataProfile())
+ GET_USER_DATA(window.localStorage.getItem("token"))
+ .then(console.log)   
   },[])
 
   return (

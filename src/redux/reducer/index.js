@@ -27,17 +27,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         movements: action.payload
       }
-    case DATAPROFILE:
-      return{
-        ...state,
-        dataProfile:action.payload
-      }
-    case CHANGEPROFILE:
-      return {
-        ...state,
-        dataProfile: action.payload
-      }
-    case "GET_CRYPTO":
+    case 'GET_CRYPTO':
       return {
         ...state,
         allCryptos: action.payload

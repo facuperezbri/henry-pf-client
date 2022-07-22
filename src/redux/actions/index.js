@@ -24,7 +24,7 @@ export const getUser = (token) => {
   }
 }
 
-export const dataProfile = ()=>{//esto es temporal necesita mandar un json como body al server para traer el perfil del user
+export const dataProfile = (toquen)=>{//esto es temporal necesita mandar un json como body al server para traer el perfil del user
   let config = {
     headers:{
       Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhOWE1MjhkMS01MjQxLTQ5MGItYjRlNS00MGIyYjI3MDE3ZTAiLCJpYXQiOjE2NTg0MzIwOTQsImV4cCI6MTY1ODQzNTY5NH0.ZMvXvrrWccGz2RBCp_cyMPESlpECy92a1qRgTd7hApI"
@@ -73,13 +73,13 @@ export const getMovements = (cvu) => {
   }
 }
 
-export const getCrypto = () => {
+export const getCryptos = () => {
   return async function (dispatch) {
     try {
       let info = await axios.get("http://localhost:4000/api/currency/crypto")
       console.log(info.data)
       return dispatch({
-        type: "GET_CRYPTO",
+        type: 'GET_CRYPTO',
         payload: info.data
       })
     } catch (e) {

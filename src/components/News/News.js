@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import styles from './NewsComponent.module.css'
+import styles from './News.module.css'
 
 
 const NewsComponent = () => {
