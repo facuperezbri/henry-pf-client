@@ -1,4 +1,4 @@
-import React, { useEffect , lazy, Suspense} from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
@@ -10,13 +10,15 @@ import groceries from '../../assets/icons/groceries.svg'
 import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 
+import loading from '../../assets/icons/loading.svg'
+
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const usData = useSelector(state => state.userData)
   // const categories = useSelector(state => state.categories)
-  const movements = useSelector(state => state.movements)
+  // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
@@ -29,7 +31,10 @@ export default function AccountDetail () {
   // console.log(usData?.error, usData?.accounts[0]?.movements)
 
   if (!usData?.accounts) {
-    return <div>Loading</div>
+    return (
+      <div className={style.loading} >
+        <img src={loading} />
+      </div>)
   }
   return (
     <div className={style.detailContainer}>

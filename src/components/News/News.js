@@ -26,7 +26,7 @@ const NewsComponent = () => {
 
   return (
     <div className={styles.boxContainer}>
-      <h1>News</h1><h2>{riesgo.value}</h2>
+      <h1>News</h1><h2>Riesgo Pais: {riesgo.value}</h2>
       <div className={styles.columns_3_2_1}>
         {news.map((news) =>
           <a href={news.url} target="_blank">
