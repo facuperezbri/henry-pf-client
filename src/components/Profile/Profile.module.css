@@ -6,10 +6,9 @@
     align-items: center;
     border-radius: 16px;
     margin:10px 10px;
+    background-color:  #7f75e9 ;
 }
-.main{
-    margin: 0 auto;
-}
+
 .img{
     height: 5rem;
     border-radius:50%;
@@ -36,6 +35,13 @@
     margin:10px 10px;
     border-radius: 16px;
     padding: 4px;
+    background-color:  #e1d9d4;
+
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* .containerCuentas{
     display: flex;

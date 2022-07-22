@@ -10,8 +10,6 @@ const [dataProfile,setProfile] = useState("")
   
   return (
     <div className={Style.main}>
-      
- 
       { dataProfile ? <div className={Style.container}>
           <img className={Style.img} src={dataProfile.profilepic}/>
           <h2>{dataProfile.username}</h2>
@@ -29,7 +27,7 @@ const [dataProfile,setProfile] = useState("")
           <h2 style={{textAlign:"center"}}>Cuentas</h2>
         <ul style={{fontSize:"1rem",fontWeight:"700"}}>
           <li>Balance: {dataProfile.accounts[0].balance}</li>
-          <li>CVU: {dataProfile.accounts[0].balance}</li>
+          <li>CVU: {dataProfile.accounts[0].cvu}</li>
           <li>Type of Account: {dataProfile.accounts[0].typeOfAccount}</li>
         </ul>
         </div>:null
