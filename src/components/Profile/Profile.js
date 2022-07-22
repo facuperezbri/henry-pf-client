@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import Style from './Profile.module.css'
 import { GET_USER_DATA } from '../../services/GET_USER_DATA'
+import {Link} from 'react-router-dom'
 export default function Profile() {
 const [dataProfile,setProfile] = useState("")
     useEffect(()=>{
@@ -32,6 +33,7 @@ const [dataProfile,setProfile] = useState("")
         </ul>
         </div>:null
     }
+    {dataProfile?<Link to="/home"><button>Home</button></Link>:null}
     </div>
   )
 }
