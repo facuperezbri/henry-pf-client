@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , lazy, Suspense} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
@@ -8,43 +8,29 @@ import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
 import { getCategory, getMovements, getUser } from '../../redux/actions'
+import { useNavigate } from 'react-router-dom'
 
-
-
-import RecientActivity from './RecientActivity'
-const ac = [
-  {
-    id: 12,
-    name: 'Franco',
-    date: '12-21-22',
-    amount: 234
-  },
-  {
-    id: 17,
-    name: 'Franco',
-    date: '12-21-22',
-    amount: 234
-  },
-  {
-    id: 19,
-    name: 'Franco',
-    date: '12-21-22',
-    amount: 234
-  }
-]
+const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const usData = useSelector(state => state.userData)
   // const categories = useSelector(state => state.categories)
   // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
+    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
     dispatch(getCategory())
-  }, [dispatch])
+  }, [])
+  if (usData?.error) {
+    navigate('/')
+  }
 
+  // console.log(usData?.error, usData?.accounts[0]?.movements)
 
-
+  if (!usData?.accounts) {
+    return <div>Loading</div>
+  }
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
@@ -53,7 +39,7 @@ export default function AccountDetail () {
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
-            <p>$ {usData.length === 0 ? 0 : usData.accounts[0].balance}</p>
+            <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p>
           </div>
         </div>
         <div className={style.categoriesContainer}>
@@ -86,8 +72,9 @@ export default function AccountDetail () {
         </div>
       </div>
       <div>
-        recent
-        <RecientActivity activities={ac} />
+        <Suspense fallback={<div>Loading</div>}>
+          <RecientActivity activities={usData?.accounts[0]?.movements} />
+        </Suspense>
       </div>
     </div>
   )
