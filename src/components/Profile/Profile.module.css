@@ -27,3 +27,23 @@
     display: flex;
     align-items: center;
 }
+.containerDetail{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 25rem;
+    height: fit-content;
+    margin:10px 10px;
+    border-radius: 16px;
+    padding: 4px;
+}
+/* .containerCuentas{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 25rem;
+    height: fit-content;
+    margin:10px 10px;
+    border-radius: 16px;
+    padding: 4px;
+} */
