@@ -20,16 +20,18 @@ const NewsComponent = () => {
   return (
     <div className={styles.boxContainer}>
       <h1>News</h1>
+      <div className={styles.columns_3_2_1}>
       { news.map((news) => 
         
-        <div className={styles.Container} key={news.title}>
-          <h1>{news.title}</h1>
+        <div className={styles.card_news} key={news.title}>
+          <h1 className={styles.title}>{news.title}</h1>
           <h2>{news.source.name}</h2>
           <img src={news.urlToImage} alt={news.urlToImage} width={200}/>
           <p>{news.content}</p>
           </div>
         
-      )}
+        )}
+      </div>
     </div>
   )
 }
