@@ -15,7 +15,12 @@ const Login = () => {
       console.log(user)
       LOG_IN({ googleID: user.uid }).then((res) => {
         res?.token && navigate('/home')
+        if(res?.token) {
+          window.localStorage.setItem('token', res.token)
+          navigate('/home')
+        }
       }).catch(console.error)
+
     }).catch(console.error)
   }
   return (
