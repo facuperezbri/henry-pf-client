@@ -1,4 +1,5 @@
 import style from './Landing.module.css'
+import { NavLink } from 'react-router-dom'
 
 export default function Landing () {
   return (
@@ -10,7 +11,12 @@ export default function Landing () {
             </div>
             <div className={style.containerWelcome}>
                 <h3 className={style.h3}>tu billetera virtual</h3>
-                <button className={style.btn}>sign in</button>
+                <NavLink exact to="/account/signin" >
+                  <button className={style.btn}>sign in</button>
+                </NavLink> 
+                <NavLink exact to="/account/login" >
+                  <button className={style.btn}>log in</button>
+                </NavLink> 
             </div>
         </div>
     </div>
