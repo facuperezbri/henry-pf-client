@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import TableCoins from './TableCoins'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {getCryptos} from '../../redux/actions/index'
 
 
 
 const CryptosInfo = () => {
-  const [coin, setCoin] = useState([])
+  // const [coin, setCoin] = useState([])
   const allCryptos = useSelector((state) => state.allCryptos);
-
+  const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   
-  
    useEffect(() => {
-     setCoin(allCryptos)
+    dispatch(getCryptos());
+    // setCoin(allCryptos)
    }, []);
 
  
@@ -20,7 +21,7 @@ const CryptosInfo = () => {
       <div>
         <input type="text" placeholder='buscar cryptos' onChange={(e) => { setSearch(e.target.value) }}></input>
         <h1>Crypto markets</h1>
-        <TableCoins coins={coin} search={search}/>
+        <TableCoins coins={allCryptos} search={search}/>
       </div>
   )
 }
