@@ -17,7 +17,7 @@ export default function Nav () {
         <h3>wallet.</h3>
         <ul className={style.itemsNav}>
           <li className={style.listItem}>
-            <img src={Dashboard} alt='Dashboard' /><Link to='/'>Dashboard</Link>
+            <img src={Dashboard} alt='Dashboard' /><Link to='/home'>Dashboard</Link>
           </li>
           <li className={style.listItem}>
             <img src={Wallet} alt='Wallet' /><Link to='/wallet'>Wallet</Link>
