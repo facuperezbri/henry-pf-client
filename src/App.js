@@ -23,7 +23,6 @@ function App () {
         <Route path="/account/signin" element={<SignIn />} />
         <Route path="/account/login" element={<Login />} />
         <Route path="/perfil/detail/editProfile/:id" element={<EditProfile/>}/>
-        
         <Route path="/home" element={
         <>
           <Nav />

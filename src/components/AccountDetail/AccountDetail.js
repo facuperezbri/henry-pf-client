@@ -7,7 +7,27 @@ import transport from '../../assets/icons/transport.svg'
 import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
-
+import RecientActivity from './RecientActivity'
+const ac = [
+  {
+    id: 12,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  },
+  {
+    id: 17,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  },
+  {
+    id: 19,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  }
+]
 export default function AccountDetail () {
   return (
     <div className={style.detailContainer}>
@@ -49,6 +69,10 @@ export default function AccountDetail () {
           </ul>
         </div>
       </div>
+        <div>
+          recient
+          <RecientActivity activities={ac} />
+        </div>
     </div>
   )
 }
