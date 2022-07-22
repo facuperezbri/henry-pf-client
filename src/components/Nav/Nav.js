@@ -11,11 +11,18 @@ import Wallet from '../../assets/icons/Sidebar/Wallet.svg'
 
 export default function Nav () {
 
+  function logOut () {
+    window.localStorage.setItem("token", "")
+  }
+
   return (
     <nav className={style.header}>
       <div >
         <h3>wallet.</h3>
         <ul className={style.itemsNav}>
+          <li className={style.listItem}>
+            <img src={Dashboard} alt='Dashboard' /><Link to='/profile'>Profile</Link>
+          </li>
           <li className={style.listItem}>
             <img src={Dashboard} alt='Dashboard' /><Link to='/home'>Dashboard</Link>
           </li>
@@ -35,7 +42,11 @@ export default function Nav () {
       </div>
       <ul className={style.itemsNav}>
         <li className={style.listItem}>
-          <img src={Logout} alt='Log out' /><Link to="/logout">Log out</Link>
+          <Link to="/">
+            <button onClick={() => logOut()} className={style.button}>
+              <img src={Logout} alt='Log out' />Log out
+            </button>
+          </Link>
         </li>
       </ul>
     </nav>

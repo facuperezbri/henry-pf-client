@@ -17,7 +17,8 @@ const CryptosInfo = () => {
    useEffect(() => {
     dispatch(getCryptos());
     // setCoin(allCryptos)
-   }, []);
+  }, []);
+
 
    function handleSortedCryptosTitle(e) {
     e.preventDefault();

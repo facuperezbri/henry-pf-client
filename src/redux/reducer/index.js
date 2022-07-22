@@ -1,4 +1,4 @@
-import { GET_CATEGORY, GET_MOVEMENT, GET_USER } from '../actions'
+import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,CHANGEPROFILE,DATAPROFILE} from '../actions'
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
   movements: [],
   userData: [],
   allCryptos: [],
-  allNews: []
+  allNews: [],
+  dataProfile: [],
 }
 
 const rootReducer = (state = initialState, action) => {
