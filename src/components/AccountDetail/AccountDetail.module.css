@@ -57,3 +57,9 @@
 .listContainer p {
   margin: 0 1rem;
 }
+
+@media (max-width: 890px) {
+  .infoContainer {
+flex-direction: column;  }
+  
+}

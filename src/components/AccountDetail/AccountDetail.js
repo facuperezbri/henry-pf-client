@@ -11,6 +11,27 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 
 
 
+import RecientActivity from './RecientActivity'
+const ac = [
+  {
+    id: 12,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  },
+  {
+    id: 17,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  },
+  {
+    id: 19,
+    name: 'Franco',
+    date: '12-21-22',
+    amount: 234
+  }
+]
 export default function AccountDetail () {
   const dispatch = useDispatch()
   const usData = useSelector(state => state.userData)
@@ -63,6 +84,10 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
+      </div>
+      <div>
+        recient
+        <RecientActivity activities={ac} />
       </div>
     </div>
   )

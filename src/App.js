@@ -5,6 +5,7 @@ import Login from "./components/account/login";
 import CryptoMarket from './components/CryptoInfo/CryptoMarket'
 import NewsComponent from "./components/News/NewsComponent";
 import Home from './pages/Home/Home';
+import Nav from './components/Nav/Nav';
 
 
 function App () {
@@ -15,10 +16,17 @@ function App () {
         <Route path="/account/signin" element={<SignIn />} />
         <Route path="/account/login" element={<Login />} />
         <Route path="/" element={
-          <Home />
+          <div className={style.app_container}>
+            <Home />
+          </div>
         } />
         <Route path="/cryptosmarket" element={<CryptoMarket />} />
-        <Route path="/news" element={<NewsComponent />} />
+        <Route path="/news" element={
+          <div className={style.app_container}>
+            <Nav />
+            <NewsComponent />
+          </div>
+        } />
 
       </Routes>
     </div>
