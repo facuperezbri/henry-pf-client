@@ -36,18 +36,23 @@ export default function AccountDetail () {
   const dispatch = useDispatch()
   const usData = useSelector(state => state.userData)
   // const categories = useSelector(state => state.categories)
-  // const movements = useSelector(state => state.movements)
+  const movements = useSelector(state => state.movements)
 
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
+    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu))).then(console.log)
     dispatch(getCategory())
-  }, [dispatch])
+  }, [])
+
+  console.log(movements)
 
 
 
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
+      <select>
+        <option>{usData.accounts[0].cvu}</option>
+      </select>
       <div className={style.infoContainer}>
         <div className={style.cardContainer}>
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>

@@ -8,17 +8,18 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import Nav from '../../components/Nav/Nav'
 
 import style from './Wallet.module.css'
+import { set } from 'react-hook-form'
 
 
 export default function Wallet () {
   const dispatch = useDispatch()
   const userData = useSelector(state => state.userData)
   // const movements = useSelector(state => state.movements)
+  const [amount, setAmount] = useState(0)
   const [state, setState] = useState({
     cvuMain: userData.length === 0 ? 0 : userData.accounts[0].cvu,
     currency: "pesos",
     operation: "Debit",
-    amount: 100
   })
 
   useEffect(() => {
@@ -29,18 +30,21 @@ export default function Wallet () {
 
   function handleChange (e) {
     e.preventDefault()
-    setState({
-      ...state, [e.target.name]: e.target.value
-    })
+    if (e.target.name !== 'amount') {
+      setState({
+        ...state, [e.target.name]: e.target.value
+      })
+    }
 
+    if (e.target.name === 'amount') {
+      setAmount(parseInt(e.target.value, 10))
+    }
   }
 
   function handleSubmit (e) {
     e.preventDefault()
-    axios.post('http://localhost:4000/api/movement/make_a_movement/', state)
+    axios.post('http://localhost:4000/api/movement/make_a_movement/', { ...state, amount: amount })
   }
-
-  console.log(state)
   return (
     <div className={style.container}>
       <Nav />
@@ -56,7 +60,7 @@ export default function Wallet () {
           <label htmlFor="cvuD">Destiny CVU: </label>
           <input name='cvuD' type="text" onChange={handleChange} />
           <label htmlFor="amount">Amount: </label>
-          {/* <input name='amount' type='number' onChange={handleChange} /> */}
+          <input name='amount' type='number' onChange={handleChange} />
           <label htmlFor="category">Category: </label>
           <input name='category' type='text' onChange={handleChange} />
           {/* <select>
