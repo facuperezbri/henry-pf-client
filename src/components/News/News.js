@@ -11,22 +11,24 @@ const NewsComponent = () => {
     const data = info.data.articles
     setNews(data)
   }
-  
+
   useEffect(() => {
     getNews()
   }, []);
   console.log(news)
-  
+
   return (
     <div className={styles.boxContainer}>
       <h1>News</h1>
       <div className={styles.columns_3_2_1}>
-      { news.map((news) => 
-        <div className={styles.card_news} key={news.title}>
-          <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200}/>
-          <h1 className={styles.title}>{news.title}</h1>
-          <p>{news.content}</p>
-        </div>
+        {news.map((news) =>
+          <a href={news.url} target="_blank">
+            <div className={styles.card_news} key={news.title}>
+              <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
+              <h1 className={styles.title}>{news.title}</h1>
+              <p>{news.content}</p>
+            </div>
+          </a>
         )}
       </div>
     </div>
