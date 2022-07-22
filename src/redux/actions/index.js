@@ -91,9 +91,11 @@ export const getCryptos = () => {
   }
 }
 
-export function getFavorite() {
+export function getFavorite(id) {
   return async function(dispatch){
-    await axios.get('http://localhost:4000/api/favourites').then((fav)=>{return dispatch({
+    await axios.get(`http://localhost:4000/api/favourites/${id}`).then((fav)=>{
+      console.log(fav.data)
+      return dispatch({
       type: GET_FAVORITE,
       payload: fav.data
     })}).catch((error)=>{console.log(error)})

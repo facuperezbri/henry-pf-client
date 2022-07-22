@@ -8,6 +8,7 @@ const initialState = {
   allCryptos: [],
   allNews: [],
   dataProfile: [],
+  favourites: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -35,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_FAVORITE:
       return {
         ...state,
-        favourites: state.favourites.concat(action.payload)
+        favourites: action.payload
       }
     case REMOVE_FAVORITE:
       return {

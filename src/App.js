@@ -10,7 +10,7 @@ import Settings from "./pages/Settings/Settings";
 import News from "./pages/News/News";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
-
+import Favorites from "./components/Favourites/Favourites"
 
 function App () {
 
@@ -59,6 +59,12 @@ function App () {
             <Faq />
           </div>
         } />
+        <Route exact path="/fav" element={
+          <div>
+            <Favorites />
+          </div>
+          
+        }/>
 
       </Routes>
     </div>
