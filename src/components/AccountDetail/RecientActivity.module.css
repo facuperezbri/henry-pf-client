@@ -4,10 +4,24 @@
     flex-direction: column;
     gap: 1rem;
 }
-
+.title {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    border-bottom: .1rem black solid;
+    padding-bottom: 1rem;
+}
+.amount {
+    display: grid;
+    place-content: center;
+}
 .activitie {
     display: flex;
     justify-content: space-between;
     border-bottom: .1rem gray solid;
     padding-bottom: 1rem;
+    padding: 1rem;
+}
+
+.activitie:hover {
+    background-color: aliceblue;
 }
