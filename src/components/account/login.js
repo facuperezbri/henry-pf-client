@@ -4,6 +4,8 @@ import formStyles from './form.module.css'
 import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
+import logoGoogle from '../../assets/icons/googleLogo.svg'
+
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
@@ -15,7 +17,7 @@ const Login = () => {
       console.log(user)
       LOG_IN({ googleID: user.uid }).then((res) => {
         res?.token && navigate('/home')
-        if(res?.token) {
+        if (res?.token) {
           window.localStorage.setItem('token', res.token)
           navigate('/home')
         }
@@ -41,7 +43,7 @@ const Login = () => {
           </div>
         </form>
         <div className={formStyles.center}>
-          <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with Google</button>
+          <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with <img src={logoGoogle} alt='Google logo' /></button>
         </div>
       </div>
 
