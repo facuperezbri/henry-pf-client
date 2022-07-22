@@ -2,16 +2,20 @@ import { useForm } from 'react-hook-form'
 import { LOG_IN } from '../../services/LOG_IN'
 import formStyles from './form.module.css'
 import { LoginWithGoogle } from '../../firebase_/client'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const navigate = useNavigate()
   const onSubmit = async ({ email, password }) => {
     LOG_IN({ email, password }).then(console.log).catch(console.error)
   }
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       console.log(user)
-      LOG_IN({ googleID: user.uid }).then(console.log).catch(console.error)
+      LOG_IN({ googleID: user.uid }).then((res) => {
+        res?.token && navigate('/home')
+      }).catch(console.error)
     }).catch(console.error)
   }
   return (
