@@ -7,9 +7,11 @@ import style from './Cryptos.module.css'
 
 export default function Wallet () {
   return (
+    <>
+    <Nav />
     <div className={style.container}>
-      <Nav />
       <CryptoMarket />
     </div>
+    </>
   )
 }
