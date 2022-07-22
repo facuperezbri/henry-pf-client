@@ -8,21 +8,26 @@ import CryptoMarket from './components/CryptoInfo/CryptoMarket'
 import NewsComponent from "./components/News/NewsComponent";
 
 
-function App () {
+function App() {
 
   return (
     <div className={style.container}>
       <Routes>
-      <Route path="/account/signin" element={<SignIn />} />
-      <Route path="/account/login" element={<Login />} />
+        <Route path="/account/signin" element={<SignIn />} />
+        <Route path="/account/login" element={<Login />} />
         <Route path="/" element={
-        <>
-          <Nav />
-          <AccountDetail />
-        </>
+          <div className={style.app_container}>
+            <Nav />
+            <AccountDetail />
+          </div>
         } />
         <Route path="/cryptosmarket" element={<CryptoMarket />} />
-        <Route path="/news" element={<NewsComponent />} />
+        <Route path="/news" element={
+          <div className={style.app_container}>
+            <Nav />
+            <NewsComponent />
+        </div>
+        } />
 
       </Routes>
     </div>

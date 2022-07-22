@@ -1,11 +1,39 @@
 .boxContainer {
-    display: flex;
-    width: 100%;
-    flex-wrap: nowrap;
-    justify-content: space-around;
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-direction: column;
 }
-.Container {
-    border: 1px solid black;
-    border-radius: 13px;
-    width: 1000px;
+.title {
+    font-size: 1rem;
+    white-space: no-wrap;
+    overflow: hidden;
+}
+.card_news {
+    border: .1rem black solid;
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: .3rem;
+}
+
+.columns_3_2_1 {
+  columns: 3 auto;
+  margin: 5rem auto;
+}
+
+@media (max-width: 780px) {
+  .columns_3_2_1 {
+    columns: 2 auto;
+  }
+  .columns-2-1 {
+    columns: 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .columns_3_2_1 {
+    columns: 1 auto;
+  }
 }
