@@ -32,29 +32,29 @@ function App () {
           </div>
         } 
         />
-        <Route path="/wallet" element={
+        <Route exact path="/wallet" element={
           <div className={style.app_container}>
             <Wallet />
           </div>
         } 
         />
-        <Route path="/settings" element={
+        <Route exact path="/settings" element={
           <div className={style.app_container}>
             <Settings />
           </div>
         } 
         />
-        <Route path="/cryptosmarket" element={
+        <Route exact path="/cryptosmarket" element={
           <div className={style.app_container}>
             <Cryptos />
           </div>
         } />
-        <Route path="/news" element={
+        <Route exact path="/news" element={
           <div className={style.app_container}>
             <News />
           </div>
         } />
-        <Route path="/faq" element={
+        <Route exact path="/faq" element={
           <div className={style.app_container}>
             <Faq />
           </div>
