@@ -15,7 +15,10 @@ const TableCoins = ({ coins, search }) => {
       <thead>
         <tr>
           <td>
-            <h1>Name</h1>
+            <h2>Name</h2>
+          </td>
+          <td>
+            <h2>Symbol</h2>
           </td>
           <td>
             <h2>Logo</h2>
