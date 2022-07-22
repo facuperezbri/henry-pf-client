@@ -1,7 +1,16 @@
-.buttonToCrypto {
+.container {
+    display: flex;
+}
+
+.transactionsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .buttonToCrypto {
     position: fixed;
     top: 0px;
     right: 0px;
     height: 500px;
     width: 500px;
-}
+} */
