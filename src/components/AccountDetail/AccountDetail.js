@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
 
+import loading from '../../assets/icons/loading.svg'
+
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
@@ -20,7 +22,7 @@ export default function AccountDetail () {
   const [movement, setMovement] = useState({})
   const [showMovementDetails, setshowMovementDetails] = useState(false)
   // const categories = useSelector(state => state.categories)
-  const movements = useSelector(state => state.movements)
+  // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
@@ -32,7 +34,10 @@ export default function AccountDetail () {
 
 
   if (!usData?.accounts) {
-    return <div>Loading</div>
+    return (
+      <div className={style.loading} >
+        <img src={loading} />
+      </div>)
   }
   const closeDetails = () => {
     setshowMovementDetails(false)

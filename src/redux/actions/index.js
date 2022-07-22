@@ -87,3 +87,17 @@ export const getCryptos = () => {
     }
   }
 }
+
+export function orderCryptoABC(payload) {
+  return {
+      type: "ORDER_CRYPTO_ABC",
+      payload: payload
+  }
+}
+
+export function orderCryptoPrice(payload) {
+  return {
+      type: "ORDER_CRYPTO_PRICE",
+      payload: payload
+  }
+}
