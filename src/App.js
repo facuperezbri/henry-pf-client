@@ -6,6 +6,7 @@ import CryptoMarket from './components/CryptoInfo/CryptoMarket'
 import NewsComponent from "./components/News/NewsComponent";
 import Home from './pages/Home/Home';
 import Nav from './components/Nav/Nav';
+import Landing from "./components/Landing/Landing";
 
 
 function App () {
@@ -15,7 +16,8 @@ function App () {
       <Routes>
         <Route path="/account/signin" element={<SignIn />} />
         <Route path="/account/login" element={<Login />} />
-        <Route path="/" element={
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={
           <div className={style.app_container}>
             <Home />
           </div>
