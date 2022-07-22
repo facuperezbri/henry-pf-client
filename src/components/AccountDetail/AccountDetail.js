@@ -22,8 +22,6 @@ export default function AccountDetail () {
     dispatch(getCategory())
   }, [])
 
-  console.log(movements)
-
 
 
   return (
