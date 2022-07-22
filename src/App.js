@@ -11,9 +11,6 @@ import Settings from "./pages/Settings/Settings";
 import News from "./pages/News/News";
 import Faq from "./pages/Faq/Faq";
 
-
-
-
 function App () {
 
   return (
