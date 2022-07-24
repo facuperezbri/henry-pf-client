@@ -3,12 +3,15 @@ import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
 import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 
+
+
 export const GENERIC = 'GENERIC'
 export const DATAPROFILE ='DATAFROFILE'
 export const CHANGEPROFILE = 'CHANGEPROFILE'
 export const GET_USER = 'GET_USER'
 export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_MOVEMENT = 'GET_MOVEMENT'
+export const POST_MOVEMENT ='POST_MOVEMENT'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -115,4 +118,14 @@ export function orderCryptoPrice(payload) {
       type: "ORDER_CRYPTO_PRICE",
       payload: payload
   }
+}
+
+
+
+export const sendMovement =  (obj)=>{
+  return async function(dispatch){
+      const response = await axios.post("http://localhost:4000/api/movement/make_a_movement",obj)
+      return dispatch({type:POST_MOVEMENT, payload:response.data})
+  }   
+
 }

@@ -33,7 +33,7 @@ export default function Details(){
                     <h1>{detailCrypto.symbol}</h1>
                 </div>
                    
-            <Link to="/home">
+            <Link to="/cryptosmarket">
                 <button>Volver</button>
             </Link>
             </>

@@ -1,4 +1,4 @@
-import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,CHANGEPROFILE,DATAPROFILE} from '../actions'
+import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT} from '../actions'
 
 
 const initialState = {
@@ -8,7 +8,11 @@ const initialState = {
   allCryptos: [],
   allNews: [],
   dataProfile: [],
+<<<<<<< HEAD
   detailsCrypto: []
+=======
+  infoMovement:""
+>>>>>>> 5c619c8691fde79add25bd6a536473bf4fc455be
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +74,11 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state,
             allCryptos: sortedCryptosPrice
+        }
+      case POST_MOVEMENT:
+        return {
+          ...state,
+          infoMovement: action.payload
         }
     default:
       return state

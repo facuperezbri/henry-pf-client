@@ -1,4 +1,4 @@
-import React, { useEffect , lazy, Suspense} from 'react'
+import React, { useEffect , lazy, Suspense, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
@@ -9,28 +9,43 @@ import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
 import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import CreditCard from './CreditCard'
+import MovementDeatail from './MovementDeatail'
+
+import loading from '../../assets/icons/loading.svg'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const usData = useSelector(state => state.userData)
+  const [movement, setMovement] = useState({})
+  const [showMovementDetails, setshowMovementDetails] = useState(false)
   // const categories = useSelector(state => state.categories)
-  const movements = useSelector(state => state.movements)
+  // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
     dispatch(getCategory())
+    if (usData?.error) {
+      navigate('/')
+    }
   }, [])
-  if (usData?.error) {
-    navigate('/')
-  }
 
-  // console.log(usData?.error, usData?.accounts[0]?.movements)
 
   if (!usData?.accounts) {
-    return <div>Loading</div>
+    return (
+      <div className={style.loading} >
+        <img src={loading} />
+      </div>)
   }
+  const closeDetails = () => {
+    setshowMovementDetails(false)
+  }
+  const openDetails = () => {
+    setshowMovementDetails(true)
+  }
+
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
@@ -38,14 +53,19 @@ export default function AccountDetail () {
         <option>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        <div className={style.cardContainer}>
+        {/* <div className={style.cardContainer}>
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
             {/* <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p> */}
           </div>
+<<<<<<< HEAD
 
         </div>
+=======
+        </div> */}
+        <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname}/>
+>>>>>>> 5c619c8691fde79add25bd6a536473bf4fc455be
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />
@@ -77,9 +97,13 @@ export default function AccountDetail () {
       </div>
       <div>
         <Suspense fallback={<div>Loading</div>}>
-          <RecientActivity activities={usData?.accounts[0]?.movements} />
+          <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
         </Suspense>
       </div>
+      {
+        showMovementDetails &&
+          <MovementDeatail movement={movement} closeDetails={closeDetails} />
+      }
     </div>
   )
 }
