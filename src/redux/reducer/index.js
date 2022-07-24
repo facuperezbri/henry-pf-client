@@ -8,6 +8,7 @@ const initialState = {
   allCryptos: [],
   allNews: [],
   dataProfile: [],
+  detailsCrypto: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -50,11 +51,16 @@ const rootReducer = (state = initialState, action) => {
                 return 1
             }
             return 0
-        })
+        }) 
         return {
           ...state,
           allCryptos: sortedCryptosABC
       }
+      case "GET_DETAILS_CRYPTO":
+            return {
+                ...state,
+                detailsCrypto: action.payload
+            }
       case "ORDER_CRYPTO_PRICE":
         const sortedCryptosPrice = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
           return parseFloat(b.currentPrice) - parseFloat(a.currentPrice)

@@ -42,8 +42,9 @@ export default function AccountDetail () {
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
-            <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p>
+            {/* <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p> */}
           </div>
+
         </div>
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>

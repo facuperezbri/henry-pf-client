@@ -88,6 +88,21 @@ export const getCryptos = () => {
   }
 }
 
+export function getDetailsCrypto(id) {
+  return async function(dispatch){
+      try{
+          let info = await axios.get(`http://localhost:4000/api/currency/${id}`)
+          console.log(info)
+          return dispatch({
+              type: "GET_DETAILS_CRYPTO",
+              payload: info.data
+          })
+      } catch (e){
+          console.error(e)
+          alert("Error no carga los detalles")
+      }
+  }
+}
 export function orderCryptoABC(payload) {
   return {
       type: "ORDER_CRYPTO_ABC",
