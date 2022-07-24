@@ -10,6 +10,7 @@ import Settings from "./pages/Settings/Settings";
 import News from "./pages/News/News";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
+import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 
 
 function App () {
@@ -59,6 +60,11 @@ function App () {
             <Faq />
           </div>
         } />
+        <Route exact path="/cryptomarket/:id" element={
+          <div className={style.app_container}>
+          <CryptoDetails />
+        </div>
+        }/>
 
       </Routes>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import CoinRow from './CoinRow'
+import { Link } from "react-router-dom"
 
 const TableCoins = ({ coins, search }) => {
 
@@ -33,7 +34,9 @@ const TableCoins = ({ coins, search }) => {
       </thead>
       <tbody>
         {filteredCoins.map((element) => (
+          <Link key={element.id} to={`/cryptomarket/${element.id}`}>
           <CoinRow element={element} key={element.name} />
+          </Link>
         ))}
       </tbody>
     </table>
