@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
+import Favorites from '../../components/Favourites/Favourites'
 
 import { getCategory, getMovements, getUser } from '../../redux/actions'
 
@@ -72,6 +73,9 @@ export default function Wallet () {
           </select> */}
           <button>Send transference</button>
         </form>
+      </div>
+      <div>
+        <Favorites/>
       </div>
     </div >
   )
