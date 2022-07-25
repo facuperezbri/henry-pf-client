@@ -45,7 +45,7 @@ export default function AccountDetail () {
   const openDetails = () => {
     setshowMovementDetails(true)
   }
-
+  console.log(usData)
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
@@ -58,14 +58,9 @@ export default function AccountDetail () {
           <div className={style.textContainer}>
             <h3>Balance</h3>
             {/* <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p> */}
-          </div>
-<<<<<<< HEAD
-
-        </div>
-=======
-        </div> */}
+          {/* </div> */}
+        {/* </div> */}
         <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname}/>
->>>>>>> 5c619c8691fde79add25bd6a536473bf4fc455be
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />

@@ -12,7 +12,7 @@ const [dataProfile,setProfile] = useState("")
   return (
     <div className={Style.main}>
       { dataProfile ? <div className={Style.container}>
-          <img className={Style.img} src={dataProfile.profilepic}/>
+          <img className={Style.img} src={dataProfile?.profilepic}/>
           <h2>{dataProfile.username}</h2>
       </div>: null
      }
