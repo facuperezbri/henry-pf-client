@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 const CoinRow = ({ element }) => {
   return (
+    <Link key={element.id} to={`/cryptomarket/${element.id}`}>
     <tr>
       <td>{element.name}</td>
       <td>{element.symbol}</td>
@@ -11,6 +13,7 @@ const CoinRow = ({ element }) => {
       <td>${element.currentPrice}</td>
       <td>% {element.dailyRateChange}</td>
     </tr>
+     </Link>
   )
 }
 
