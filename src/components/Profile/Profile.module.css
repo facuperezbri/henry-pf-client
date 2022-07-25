@@ -1,12 +1,12 @@
 .container{
     display: flex;
     border: solid 2px black;
-    width: 25rem;
     height:7rem;
     align-items: center;
+    justify-content: center;
     border-radius: 16px;
-    margin:10px 10px;
-    background-color:  #7f75e9 ;
+    padding-right: 2rem;
+    background-image: radial-gradient(circle at 44.63% -11.39%, #ff3ed6 0, #ff35e8 10%, #ff33f4 20%, #ff36fb 30%, #ff3afa 40%, #f23cf2 50%, #bf3de6 60%, #8e3eda 70%, #5d3ecf 80%, #0d3fc6 90%, #0040be 100%);
 }
 
 .img{
@@ -30,18 +30,31 @@
     display: flex;
     flex-direction: column;
     border: 2px solid black;
-    width: 25rem;
+    width: 20rem;
     height: fit-content;
     margin:10px 10px;
     border-radius: 16px;
     padding: 4px;
-    background-color:  #e1d9d4;
+    background-image: radial-gradient(circle at 43.84% -20.44%, #ffb790 0, #ffac96 8.33%, #ffa19b 16.67%, #ff949d 25%, #ff879c 33.33%, #f67a97 41.67%, #d86c8f 50%, #ba5f85 58.33%, #a0547b 66.67%, #894b72 75%, #75446a 83.33%, #653e64 91.67%, #583b5f 100%);
+    text-align: center;
+    align-items: center;
 
+}
+.containerDetail span{
+    color:white
 }
 .main{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 5rem auto;
+  border: solid 2px black;
+  padding: 3rem;
+  height: fit-content;
+  border-bottom-left-radius: 8rem;
+  border-top-right-radius: 8rem;
+  background-image: radial-gradient(circle at 50.79% 48.3%, #f6f000 0, #ffe200 8.33%, #ffd200 16.67%, #ffbf00 25%, #ffaa00 33.33%, #ff9314 41.67%, #f37b1f 50%, #e26426 58.33%, #d3502c 66.67%, #c53f30 75%, #b93035 83.33%, #ae233b 91.67%, #a61841 100%);
+
 }
 .main button{
     padding: 0.5rem 1rem;
@@ -55,5 +68,28 @@
     background-color: black;
     color: white;
     transition: 0.5s;
-
+}
+@media (min-width: 480px){
+    .container{
+        display: flex;
+        border: solid 2px black;
+        width: 100%;
+        height:7rem;
+        align-items: center;
+        border-radius: 16px;
+        margin:10px 10px;
+        background-color:  #7f75e9 ;
+    }
+    .containerDetail{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid black;
+        width: 25rem;
+        height: fit-content;
+        margin:10px 10px;
+        border-radius: 16px;
+        padding: 4px;
+        background-color:  #e1d9d4;
+    
+    }
 }
