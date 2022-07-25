@@ -11,13 +11,10 @@ export const CHANGEPROFILE = 'CHANGEPROFILE'
 export const GET_USER = 'GET_USER'
 export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_MOVEMENT = 'GET_MOVEMENT'
-<<<<<<< HEAD
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
-=======
 export const POST_MOVEMENT ='POST_MOVEMENT'
->>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -97,7 +94,6 @@ export const getCryptos = () => {
   }
 }
 
-<<<<<<< HEAD
 export function getFavorite(id) {
   return async function(dispatch){
     await axios.get(`http://localhost:4000/api/favourites/${id}`).then((fav)=>{
@@ -123,7 +119,6 @@ export function removeFavorite(id) {
     return dispatch({type: REMOVE_FAVORITE,
     payload: favouriteRemoved})}}
     
-=======
 export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
@@ -139,7 +134,6 @@ export function getDetailsCrypto(id) {
       }
   }
 }
->>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
 export function orderCryptoABC(payload) {
   return {
       type: "ORDER_CRYPTO_ABC",
