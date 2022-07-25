@@ -47,7 +47,7 @@ function App () {
         } 
         />
         <Route exact path="/cryptosmarket" element={
-          <div className={style.app_container}>
+          <div className={style.appcontainer}>
             <Cryptos />
           </div>
         } />
@@ -67,7 +67,7 @@ function App () {
           </div>
         }/>
         <Route exact path="/cryptomarket/:id" element={
-          <div className={style.app_container}>
+          <div className={style.appcontainer}>
           <CryptoDetails />
         </div>
         }/>

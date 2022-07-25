@@ -31,6 +31,11 @@ export default function Details(){
                 : <><div>
                     <h1>{detailCrypto.name}</h1>
                     <h1>{detailCrypto.symbol}</h1>
+                    
+                    <h1>${detailCrypto.market_data.current_price.usd}</h1>
+                    <h1>%{detailCrypto.market_data.ath_change_percentage.usd}</h1>
+                    <a href={detailCrypto.links.homepage}>link to {detailCrypto.name}</a>
+                    <p>{detailCrypto.description.en}</p>
                 </div>
                    
             <Link to="/cryptosmarket">
