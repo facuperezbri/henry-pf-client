@@ -1,22 +1,86 @@
-
-
 .credit_card {
-    width: max(80%, 200px);
-    height: auto;
-    /* width: max-content; */
-    background: #8E2DE2;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
-    border-radius: 1rem;
-    box-shadow: 0 1rem 2rem #8d2de2bb;
-    color: whitesmoke;
-}
-
-.balance {
+    position: relative;
+    max-width: 520px;
+    min-width: 520px;
+    margin: 50px auto;
+    min-height: 300px;
+    border-radius: 20px;
     display: flex;
-    gap: .5rem
+    flex-direction: column;
+    padding: 24px;
+    box-sizing: border-box;
+    background: #FF5F6D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    justify-content: space-between;
+    overflow: hidden;
+     transition: .3s ;
+     box-shadow: 0 1rem 1.5rem #ff5f6c78;
+}
+.credit_card:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    color: rgb(249 249 249 / 10%);
+    background: linear-gradient(135deg, currentColor 25%, transparent 25%) -100px 0,
+      linear-gradient(225deg, currentColor 25%, transparent 25%) -100px 0,
+      linear-gradient(315deg, currentColor 25%, transparent 25%),
+      linear-gradient(45deg, currentColor 25%, transparent 25%);
+    background-size: calc(2 * 100px) calc(2 * 100px);
+  }
+.title {
+    font-size: 3rem;
 }
 
 .number {
-    filter: blur(2rem);
+    font-size: 2rem;
+    text-align: center;
+}
+.balance_name_container {
+    display: flex;
+    justify-content: space-between;
+}
+.name {
+    font-size: 1rem;
+}
+
+.balance {
+    font-size: 1rem;
+}
+@media (max-width: 668px ){
+    .credit_card {
+        max-width: 100%;
+        min-width: 220px;
+        min-height: 270px;
+
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .number {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .name {
+        font-size: .7rem;
+    }
+    
+    .balance {
+        font-size: .7rem;
+    }
+}
+
+@media (max-width: 490px ){
+    .credit_card {
+        min-height: 170px;
+    }
+    .number {
+        font-size: 1rem;
+        text-align: center;
+    }
 }
