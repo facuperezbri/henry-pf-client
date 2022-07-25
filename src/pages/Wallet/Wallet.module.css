@@ -12,6 +12,14 @@
     flex-direction: column;
 }
 
+.formContainer input {
+    text-align: center;
+    margin: 1rem 0;
+    width: 12rem;
+    height: 1.5rem;
+    border-radius: 5px;
+}
+
 .formContainer button {
     padding: 15px 25px;
     border: unset;
