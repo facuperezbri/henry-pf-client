@@ -73,8 +73,9 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state,
             allCryptos: sortedCryptosPrice
-      }
-    case POST_MOVEMENT:
+        }
+      case POST_MOVEMENT:
+        console.log("entrandooooo")
         return {
           ...state,
           infoMovement: action.payload
