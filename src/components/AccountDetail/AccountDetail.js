@@ -82,7 +82,7 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
-      </div>
+      
       <div>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
@@ -92,6 +92,7 @@ export default function AccountDetail () {
         showMovementDetails &&
           <MovementDeatail movement={movement} closeDetails={closeDetails} />
       }
+    </div>
     </div>
   )
 }
