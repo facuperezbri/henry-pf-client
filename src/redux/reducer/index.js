@@ -8,11 +8,8 @@ const initialState = {
   allCryptos: [],
   allNews: [],
   dataProfile: [],
-<<<<<<< HEAD
-  detailsCrypto: []
-=======
+  detailsCrypto: [],
   infoMovement:""
->>>>>>> 5c619c8691fde79add25bd6a536473bf4fc455be
 }
 
 const rootReducer = (state = initialState, action) => {

@@ -53,12 +53,11 @@ export default function AccountDetail () {
         <option>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        {/* < className={style.cardContainer}>
+        {/* <div className={style.cardContainer}>
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
             {/* <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p> */}
-          </div>
         
         <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname}/>
         <div className={style.categoriesContainer}>
@@ -99,6 +98,7 @@ export default function AccountDetail () {
         showMovementDetails &&
           <MovementDeatail movement={movement} closeDetails={closeDetails} />
       }
+    </div>
     </div>
   )
 }

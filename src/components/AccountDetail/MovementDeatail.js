@@ -7,7 +7,7 @@ const MovementDeatail = ({movement, closeDetails}) => {
     const dispatch = useDispatch()
     const [comment, setComment] = useState(false)
     const [info, setInfo] = useState({
-            cvuMain:"456456776363751528987",
+            cvuMain:movement.accounts.cvu,
             amount:movement.amount,
             cvuD: "456456776363751528987",
             currency:movement.accounts.currencies.name,
@@ -15,7 +15,7 @@ const MovementDeatail = ({movement, closeDetails}) => {
             category:movement.categories.name,
             comment: ""     
     })
-    
+    console.log(movement)
     const sendDetailInfoMovement= (e)=>{
         e.preventDefault()
         setInfo({...info,[e.target.name]:e.target.value})
