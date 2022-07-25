@@ -21,6 +21,7 @@ export default function Wallet () {
     cvuMain: userData.length === 0 ? 0 : userData.accounts[0].cvu,
     currency: "pesos",
     operation: "Debit",
+    comment:""
   })
 
   useEffect(() => {
@@ -41,6 +42,7 @@ export default function Wallet () {
       setAmount(parseInt(e.target.value, 10))
     }
   }
+ 
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -71,7 +73,9 @@ export default function Wallet () {
               )
             })}
           </select> */}
-          <button>Send transference</button>
+          <label htmlFor='comment'>Comment:</label>
+          <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
+          <button onClick={handleSubmit}>Send transference</button>
         </form>
       </div>
       <div>
