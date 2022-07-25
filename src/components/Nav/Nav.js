@@ -8,6 +8,8 @@ import Logout from '../../assets/icons/Sidebar/Logout.svg'
 import News from '../../assets/icons/Sidebar/News.svg'
 import Settings from '../../assets/icons/Sidebar/Settings.svg'
 import Wallet from '../../assets/icons/Sidebar/Wallet.svg'
+import Profile from '../../assets/icons/Sidebar/Profile.svg'
+
 
 export default function Nav () {
 
@@ -22,7 +24,7 @@ export default function Nav () {
         <ul className={style.itemsNav}>
           <Link to='/profile'>
             <li className={style.listItem}>
-              <img src={Dashboard} alt='Dashboard' /> <span className={style.listItem_text}>Profile</span>
+              <img src={Profile} alt='Profile' /> <span className={style.listItem_text}>Profile</span>
             </li>
           </Link>
           <Link to='/home'>
