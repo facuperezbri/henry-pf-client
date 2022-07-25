@@ -1,0 +1,22 @@
+.main{
+    background: rgba(223, 223, 223, 0.603);
+    border:solid 1px black;
+    margin-left: 5em;
+    padding:25px;
+    margin-top:30px;
+    border-radius: 20px;
+
+}
+
+.select{
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-color: black;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.title{
+    text-align:center;
+}
