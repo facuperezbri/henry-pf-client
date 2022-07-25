@@ -22,14 +22,64 @@ const NewsComponent = () => {
     getNews()
     getRP()
   }, []);
-  console.log(news)
+
+  const [local, setLocal] = useState(1)
+
+  useEffect(() =>{
+      setLocal(1)
+  }, [news])
+  function changeState (e) {
+      setLocal(Number(e.target.id))
+  }
+
+  let firstPage = [];
+  let elemsByPage = 8
+  for (let i=1; i <= Math.ceil(news.length/elemsByPage); i++) {
+      firstPage.push(i)
+  }
+  const sliceEnd = elemsByPage*local 
+  const sliceBegin = sliceEnd - elemsByPage 
+  const newsByPage = news.slice(sliceBegin,sliceEnd)
+  
+  const pages = firstPage.map((elem) => {
+      return <li
+      className={styles.pageNumber}
+      key={elem}
+      id={elem} 
+      onClick={changeState} 
+      >
+          {elem}
+          {/* <img
+          className={style.imagen}
+          id={elem}
+          src={local === elem ? abierta : cerrada}
+          alt="what?"
+          >
+          </img> */}
+      </li>
+  })
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className={styles.boxContainer}>
-      <h1>News</h1><h2>Riesgo Pais: {riesgo.value}</h2>
+        <ul className={styles.paginas}>
+          {pages}
+        </ul>
+
+      {/* <h1>News</h1><h2>Riesgo Pais: {riesgo.value}</h2> */}
       <div className={styles.columns_3_2_1}>
-        {news.map((news) =>
-          <a href={news.url} target="_blank">
+        {newsByPage.map((news) =>
+          <a href={news.url} target="_blank" rel="noreferrer">
             <div className={styles.card_news} key={news.title}>
               <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
               <h1 className={styles.title}>{news.title}</h1>
