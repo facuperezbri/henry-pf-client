@@ -55,7 +55,7 @@ export default function Wallet () {
         <NavLink exact to="/cryptosmarket" >
           <button className={style.buttonToCrypto}>Cryptos Market</button>
         </NavLink>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={style.formContainer}>
           <label htmlFor="cvuMain">Your CVU: </label>
           <input name='cvuMain' value={userData.length === 0 ? 0 : userData.accounts[0].cvu} disabled />
           <label htmlFor="cvuD">Destiny CVU: </label>
@@ -75,7 +75,7 @@ export default function Wallet () {
         </form>
       </div>
       <div>
-        <Favorites/>
+        <Favorites />
       </div>
     </div >
   )
