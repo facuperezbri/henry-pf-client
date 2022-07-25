@@ -3,15 +3,21 @@ import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
 import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 
+
+
 export const GENERIC = 'GENERIC'
 export const DATAPROFILE ='DATAFROFILE'
 export const CHANGEPROFILE = 'CHANGEPROFILE'
 export const GET_USER = 'GET_USER'
 export const GET_CATEGORY = 'GET_CATEGORY'
 export const GET_MOVEMENT = 'GET_MOVEMENT'
+<<<<<<< HEAD
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
+=======
+export const POST_MOVEMENT ='POST_MOVEMENT'
+>>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -91,6 +97,7 @@ export const getCryptos = () => {
   }
 }
 
+<<<<<<< HEAD
 export function getFavorite(id) {
   return async function(dispatch){
     await axios.get(`http://localhost:4000/api/favourites/${id}`).then((fav)=>{
@@ -116,6 +123,23 @@ export function removeFavorite(id) {
     return dispatch({type: REMOVE_FAVORITE,
     payload: favouriteRemoved})}}
     
+=======
+export function getDetailsCrypto(id) {
+  return async function(dispatch){
+      try{
+          let info = await axios.get(`http://localhost:4000/api/currency/${id}`)
+          console.log(info)
+          return dispatch({
+              type: "GET_DETAILS_CRYPTO",
+              payload: info.data
+          })
+      } catch (e){
+          console.error(e)
+          alert("Error no carga los detalles")
+      }
+  }
+}
+>>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
 export function orderCryptoABC(payload) {
   return {
       type: "ORDER_CRYPTO_ABC",
@@ -128,4 +152,14 @@ export function orderCryptoPrice(payload) {
       type: "ORDER_CRYPTO_PRICE",
       payload: payload
   }
+}
+
+
+
+export const sendMovement =  (obj)=>{
+  return async function(dispatch){
+      const response = await axios.post("http://localhost:4000/api/movement/make_a_movement",obj)
+      return dispatch({type:POST_MOVEMENT, payload:response.data})
+  }   
+
 }
