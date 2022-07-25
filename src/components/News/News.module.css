@@ -13,7 +13,20 @@
   justify-content: center;
 }
 
-.pageNumber {
+.pageSelected {
+  width: 3rem;
+    border: solid 2px gray;
+    background-color: rgb(113, 111, 111);
+    color: whitesmoke;
+    cursor: pointer;
+    list-Style: none;
+    display: grid;
+    place-content: center;
+    border-radius: 10px;
+    margin: 15px 5px;
+}
+
+.pageUnselected {
   width: 3rem;
     border: solid 2px gray;
     background-color: whitesmoke;
@@ -22,10 +35,11 @@
     display: grid;
     place-content: center;
     border-radius: 10px;
+    margin: 15px 5px;
 }
 
 .columns_3_2_1 {
-  columns: 4 auto;
+  columns: 5 auto;
   margin: 5rem auto;
 }
 
