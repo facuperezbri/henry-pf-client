@@ -53,19 +53,14 @@ export default function AccountDetail () {
         <option>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        {/* <div className={style.cardContainer}>
+        {/* < className={style.cardContainer}>
           <div className={style.creditCardImage}><img src={creditCard} alt="Credit card background" /></div>
           <div className={style.textContainer}>
             <h3>Balance</h3>
             {/* <p>$ {usData?.length === 0 ? 0 : usData?.accounts[0]?.balance}</p> */}
           </div>
-<<<<<<< HEAD
-
-        </div>
-=======
-        </div> */}
+        
         <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname}/>
->>>>>>> 5c619c8691fde79add25bd6a536473bf4fc455be
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />
@@ -94,7 +89,7 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
-      </div>
+      
       <div>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
