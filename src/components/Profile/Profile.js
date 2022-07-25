@@ -14,18 +14,18 @@ const [dataProfile,setProfile] = useState("")
       { dataProfile ? <div className={Style.container}>
           <img className={Style.img} src={dataProfile?.profilepic}/>
           <h2>{dataProfile.username}</h2>
-      </div>: null
+      </div>: <h1>Cargando...</h1>
      }
 
      {dataProfile ? <div className={Style.containerDetail}>
-          <h2>Nombre: {dataProfile.name}</h2>
-          <h2>Last Name: {dataProfile.lastname}</h2>
-          <h2>DNI: {dataProfile.dni}</h2>
-          <h2>Email: {dataProfile.email}</h2>
+          <h2><span>Nombre:</span> {dataProfile.name}</h2>
+          <h2><span>Last Name: </span> {dataProfile.lastname}</h2>
+          <h2><span>DNI:</span> {dataProfile.dni}</h2>
+          <h2><span>Email:</span> {dataProfile.email}</h2>
       </div>:null
     }
     {dataProfile? <div className={Style.containerDetail}>
-          <h2 style={{textAlign:"center"}}>Cuentas</h2>
+          <h2 style={{textAlign:"center", color:"white"}}>Cuentas</h2>
         <ul style={{fontSize:"1rem",fontWeight:"700"}}>
           <li>Balance: {dataProfile.accounts[0].balance}</li>
           <li>CVU: {dataProfile.accounts[0].cvu}</li>

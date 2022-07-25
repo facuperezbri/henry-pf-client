@@ -3,19 +3,21 @@ import style from './MovementDeatail.module.css'
 import { setFormat } from '../../hooks/setFormatDate'
 import { useDispatch} from 'react-redux'
 import {sendMovement} from "../../redux/actions/index"
+
 const MovementDeatail = ({movement, closeDetails}) => {
     const dispatch = useDispatch()
     const [comment, setComment] = useState(false)
     const [info, setInfo] = useState({
             cvuMain:movement.accounts.cvu,
             amount:movement.amount,
-            cvuD: "456456776363751528987",
+            cvuD: movement.accounts.cvu,
             currency:movement.accounts.currencies.name,
             operation:movement.operations.name,
             category:movement.categories.name,
             comment: ""     
     })
-    console.log(movement)
+
+   
     const sendDetailInfoMovement= (e)=>{
         e.preventDefault()
         setInfo({...info,[e.target.name]:e.target.value})
@@ -25,6 +27,7 @@ const MovementDeatail = ({movement, closeDetails}) => {
         dispatch(sendMovement(info))
         setInfo({...info,comment:""})
         setComment(false)
+        alert("los datos fueron enviados con exito")
     }
   return (
     <>
