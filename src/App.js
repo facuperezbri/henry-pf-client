@@ -10,12 +10,9 @@ import Settings from "./pages/Settings/Settings";
 import News from "./pages/News/News";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
-<<<<<<< HEAD
 import Favorites from "./components/Favourites/Favourites"
-=======
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 
->>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
 
 function App () {
 
@@ -64,21 +61,18 @@ function App () {
             <Faq />
           </div>
         } />
-<<<<<<< HEAD
         <Route exact path="/fav" element={
           <div>
             <Favorites />
           </div>
-          
-=======
+        }/>
         <Route exact path="/cryptomarket/:id" element={
           <div className={style.app_container}>
           <CryptoDetails />
         </div>
->>>>>>> a6690d7afa5a29da9832d2c3330e1e46fb04bafb
         }/>
 
-      </Routes>
+        </Routes>
     </div>
   );
 }
