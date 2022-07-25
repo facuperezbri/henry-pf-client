@@ -23,11 +23,11 @@ export default function Favorites(){
     // let favourites = [{id:'998he9dh238947dbh38', friendID:'98e743hfdndkfsdj39787', userID:'sdfadfk394234234435'}]
     return(
         <div className={style.main}>
-            <h1>My Friends</h1>
-            <select value={input.favourites} onChange={e=>handleSelect(e)}>
+            <h1 className={style.title}>My Friends</h1>
+            <select className={style.select} value={input.favourites} onChange={e=>handleSelect(e)}>
                 {favourites.map(fav=> 
                 <option  key={fav.id}>
-                {fav.username} {fav.accounts[0].cvu}   
+                Name: {fav.username} CVU: {fav.accounts[0].cvu}   
                 </option>
                   )
                 }
