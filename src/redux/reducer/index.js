@@ -1,4 +1,4 @@
-import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT} from '../actions'
+import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE} from '../actions'
 
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
   allNews: [],
   dataProfile: [],
   detailsCrypto: [],
-  infoMovement:""
+  infoMovement:"",
+  favourites: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -34,7 +35,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allCryptos: action.payload
       }
-      case "ORDER_CRYPTO_ABC":
+    case "ORDER_CRYPTO_ABC":
 
         const sortedCryptosABC = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
             if(a.name.toLowerCase() > b.name.toLowerCase()){
@@ -56,13 +57,14 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           allCryptos: sortedCryptosABC
-      }
-      case "GET_DETAILS_CRYPTO":
+    }
+    case "GET_DETAILS_CRYPTO":
             return {
                 ...state,
                 detailsCrypto: action.payload
-            }
-      case "ORDER_CRYPTO_PRICE":
+          }
+
+    case "ORDER_CRYPTO_PRICE":
         const sortedCryptosPrice = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
           return parseFloat(b.currentPrice) - parseFloat(a.currentPrice)
         }) : state.allCryptos.sort((a, b) => {
@@ -78,9 +80,24 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           infoMovement: action.payload
         }
+    case GET_FAVORITE:
+      return {
+        ...state,
+        favourites: action.payload
+      }
+    case REMOVE_FAVORITE:
+      return {
+        ...state,
+        favourites: state.favourites.filter(e => {
+          return e.id !== action.payload})
+        }
+    case POST_FAVORITE:
+      return {
+        ...state
+      }
     default:
-      return state
-  };
-}
-
-export default rootReducer
+            return state
+        };
+      }
+      
+      export default rootReducer

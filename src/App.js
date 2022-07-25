@@ -10,6 +10,7 @@ import Settings from "./pages/Settings/Settings";
 import News from "./pages/News/News";
 import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
+import Favorites from "./components/Favourites/Favourites"
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 
 
@@ -60,13 +61,18 @@ function App () {
             <Faq />
           </div>
         } />
+        <Route exact path="/fav" element={
+          <div>
+            <Favorites />
+          </div>
+        }/>
         <Route exact path="/cryptomarket/:id" element={
           <div className={style.app_container}>
           <CryptoDetails />
         </div>
         }/>
 
-      </Routes>
+        </Routes>
     </div>
   );
 }
