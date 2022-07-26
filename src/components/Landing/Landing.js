@@ -1,7 +1,7 @@
 import style from './Landing.module.css'
 import { NavLink } from 'react-router-dom'
 
-import { MdSecurity } from 'react-icons/md'
+import Typewriter from 'typewriter-effect';
 
 export default function Landing () {
   return (
@@ -10,7 +10,13 @@ export default function Landing () {
       <nav className={style.nav}>wallet.</nav>
       <main className={style.main}>
         <div>
-          <h1>Your payments, your <span>wallet.</span></h1>
+          <h1>Your <Typewriter
+            options={{
+              strings: ['money,', 'payments,', 'crypto,'],
+              autoStart: true,
+              loop: true,
+            }}
+          />your <span>wallet.</span></h1>
           <h3>The definitive wallet.</h3>
           <NavLink to="account/login">
             <button className={style.btn}>Let's go</button>

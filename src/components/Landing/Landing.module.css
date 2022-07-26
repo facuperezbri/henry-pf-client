@@ -19,7 +19,8 @@
 
 .main h1 {
     font-size: 4rem;
-    width: 70%;
+    width: 80%;
+    display: inline;
 }
 
 .main h1 span {
@@ -73,8 +74,9 @@ button:hover:after {
 }
 
 .cardContainer {
-    width: 663px;
-    height: 412px;
+    width: 40rem;
+    height: 25rem;
+    margin-right: 10rem;
     left: 1157px;
     top: 300px;
     background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.4) 0.76%, rgba(255, 255, 255, 0) 100%);
@@ -90,10 +92,6 @@ button:hover:after {
     justify-content: center;
     width: 100%;
     text-align: center;
-}
-
-.offerContainer h2 {
-    margin: 1rem;
 }
 
 .offersListContainer {
