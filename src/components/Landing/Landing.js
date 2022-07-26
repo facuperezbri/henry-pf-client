@@ -6,16 +6,18 @@ export default function Landing () {
 
     <div className={style.container}>
       <nav className={style.nav}>wallet.</nav>
-      <main>
+      <main className={style.main}>
         <div>
-          <h1>Your payments, your wallet.</h1>
+          <h1>Your payments, your <span>wallet.</span></h1>
           <h3>The definitive wallet.</h3>
-          <button>Let's go</button>
+          <NavLink to="account/login">
+            <button className={style.btn}>Let's go</button>
+          </NavLink>
         </div>
-        <div>
+        <div className={style.creditCard}>
           Card Image
         </div>
-      </main>
+      </main >
       <div className={style.offerContainer}>
         <h2>What do we offer?</h2>
         <ul>
@@ -37,7 +39,7 @@ export default function Landing () {
         </ul>
       </div>
 
-    </div>
+    </div >
     // <div className={style.container}>
     //   <div className={style.containerTwoElement}>
     //   <h2 className={style.description}>wallet.</h2>
