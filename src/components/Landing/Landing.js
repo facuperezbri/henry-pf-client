@@ -3,6 +3,10 @@ import { NavLink } from 'react-router-dom'
 
 import Typewriter from 'typewriter-effect';
 
+import { MdSecurity } from "react-icons/md"
+import { AiOutlineShopping } from "react-icons/ai"
+import { GiTwoCoins } from 'react-icons/gi'
+
 export default function Landing () {
   return (
 
@@ -39,18 +43,21 @@ export default function Landing () {
         <h2>What do we offer?</h2>
         <ul className={style.offersListContainer}>
           <li>
+            <MdSecurity size={40} />
             <div>
               <h6>Security Guarantee</h6>
               <p>Your data and funds will be securely protected.</p>
             </div>
           </li>
           <li>
+            <AiOutlineShopping size={40} />
             <div>
               <h6>Keep Track</h6>
               <p>You can keep a track on all your expenses.</p>
             </div>
           </li>
           <li>
+            <GiTwoCoins size={40} />
             <div>
               <h6>Crypto</h6>
               <p>Buy and sell crypto with 0% fee.</p>

@@ -1,7 +1,7 @@
 .container {
     color: #fff;
     background: var(--main-bg);
-    /* height: 100vh; */
+    min-height: 100vh;
     max-height: fit-content;
     padding: 3rem 5rem;
 }
@@ -39,7 +39,7 @@
 .btn {
     width: 8rem;
     height: 3rem;
-    background: #222222;
+    background: #FF5F6D;
     color: white;
     border: none;
     border-radius: 0.625em;
@@ -53,7 +53,7 @@
 
 
 .btn:hover {
-    color: black;
+    color: #FF5F6D
 }
 
 .btn:after {
@@ -261,11 +261,17 @@
 }
 
 .offersListContainer li {
+    align-items: center;
     display: flex;
-    max-width: 200px;
     text-align: left;
     margin: 0 2rem;
 }
+
+
+.offersListContainer li div {
+    margin-left: 2rem;
+}
+
 
 .offersListContainer h6 {
     font-weight: 800;
