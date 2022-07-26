@@ -13,6 +13,7 @@ import Profile from "./pages/Profile/Profile";
 import Favorites from "./components/Favourites/Favourites"
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
+import Admin from "./pages/Admin/Admin";
 
 
 function App () {
@@ -69,11 +70,16 @@ function App () {
           </div>
         } />
         <Route exact path="/cryptomarket/:id" element={
-          <div className={style.appcontainer}>
+          <div className={style.app_container}>
             <CryptoDetails />
           </div>
         } />
 
+        <Route exact path="/dashboard/admin" element={
+          <div className={style.app_container}>
+            <Admin />
+          </div>
+        } />
       </Routes>
     </div>
   );
