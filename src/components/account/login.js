@@ -5,10 +5,12 @@ import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
 import logoGoogle from '../../assets/icons/googleLogo.svg'
+import { useToken } from '../../hooks/useToken'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
     LOG_IN({ email, password }).then(console.log).catch(console.error)
   }
@@ -16,9 +18,13 @@ const Login = () => {
     LoginWithGoogle().then(({ user }) => {
       console.log(user)
       LOG_IN({ googleID: user.uid }).then((res) => {
-        res?.token && navigate('/home')
+        if (res?.token && res?.isAdmin) {
+          setToken(res?.token)
+          navigate('/dashboard/admin')
+          return
+        }
         if (res?.token) {
-          window.localStorage.setItem('token', res.token)
+          setToken(res?.token)
           navigate('/home')
         }
       }).catch(console.error)
