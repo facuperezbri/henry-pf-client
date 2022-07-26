@@ -16,6 +16,9 @@ export default function Landing () {
             <button className={style.btn}>Let's go</button>
           </NavLink>
         </div>
+        <div className={style.cardContainer}>
+
+        </div>
       </main >
       <div className={style.offerContainer}>
         <h2>What do we offer?</h2>

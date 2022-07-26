@@ -72,6 +72,16 @@ button:hover:after {
     transition: all 0.5s;
 }
 
+.cardContainer {
+    width: 663px;
+    height: 412px;
+    left: 1157px;
+    top: 300px;
+    background: linear-gradient(111.29deg, rgba(255, 255, 255, 0.4) 0.76%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(42px);
+    border-radius: 40px;
+}
+
 /* Offer Container */
 
 .offerContainer {
@@ -101,5 +111,5 @@ button:hover:after {
 .offersListContainer h6 {
     font-weight: 800;
     font-size: 1rem;
-    margin: 1rem;
+    margin: 1rem 0;
 }
