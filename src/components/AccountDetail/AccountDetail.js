@@ -13,6 +13,7 @@ import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
 
 import loading from '../../assets/icons/loading.svg'
+// import BalanceChart from './BalanceChart'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
@@ -92,6 +93,7 @@ export default function AccountDetail () {
         showMovementDetails &&
           <MovementDeatail movement={movement} closeDetails={closeDetails} />
       }
+    {/* <BalanceChart/> */}
     </div>
     </div>
   )
