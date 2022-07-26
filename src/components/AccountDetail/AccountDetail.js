@@ -14,6 +14,7 @@ import MovementDeatail from './MovementDeatail'
 
 import loading from '../../assets/icons/loading.svg'
 // import BalanceChart from './BalanceChart'
+// xxx
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
