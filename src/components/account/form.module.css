@@ -3,10 +3,6 @@
     place-content: center;
 }
 
-.min_h_100vh {
-    min-height: 100vh;
-}
-
 .card {
     box-shadow: 0px 7px 31px rgba(0, 0, 0, 0.1);
     border-radius: 0 1rem;
@@ -48,10 +44,6 @@
     transition: .3s;
     font-size: 1rem;
     cursor: pointer;
-}
-
-.button:hover {
-    background-color: #808894ea;
 }
 
 .button_google {

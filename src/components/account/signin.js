@@ -169,7 +169,7 @@ const SignIn = () => {
         <div className={formStyles.center}>
           <div className={formStyles.button_prev_next_container}>
             {
-              step > 1 && <button className={formStyles.button} onClick={() => step !== 1 && setStep((prevStep) => prevStep - 1)}>Previus</button>
+              step > 1 && <button className={formStyles.button} onClick={() => step !== 1 && setStep((prevStep) => prevStep - 1)}>Previous</button>
             }
             {
               step !== MAX_STEPS && <button className={formStyles.button} onClick={() => step <= MAX_STEPS && setStep((prevStep) => prevStep + 1)}>Next</button>

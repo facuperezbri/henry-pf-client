@@ -1,6 +1,6 @@
 .container {
     color: #fff;
-    background: linear-gradient(180deg, #222222 0%, #3A495D 100%);
+    background: var(--main-bg);
     height: 100vh;
     padding: 3rem 5rem;
 }
@@ -50,11 +50,12 @@
     overflow: hidden;
 }
 
-button:hover {
+
+.btn:hover {
     color: black;
 }
 
-button:after {
+.btn:after {
     content: "";
     background: white;
     position: absolute;
@@ -67,7 +68,7 @@ button:after {
     transition: all 0.5s;
 }
 
-button:hover:after {
+.btn:hover:after {
     transform: skewX(-45deg) scale(1, 1);
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
