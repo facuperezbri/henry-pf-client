@@ -8,7 +8,7 @@ import style from './loginSignin.module.css'
 const LoginSignIn = () => {
   return (
     <div className={style.mainContainer}>
-      <nav><NavLink to='/'>wallet.</NavLink></nav>
+      <nav className={style.nav}><NavLink to='/'>wallet.</NavLink></nav>
       <main className={style.container}>
         <SignIn />
         <Login />
