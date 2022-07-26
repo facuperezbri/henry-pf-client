@@ -1,27 +1,54 @@
 import style from './Landing.module.css'
 import { NavLink } from 'react-router-dom'
 
+import Typewriter from 'typewriter-effect';
+
 export default function Landing () {
   return (
+
     <div className={style.container}>
-      <div className={style.containerTwoElement}>
-      <h2 className={style.description}>wallet.</h2>
-        <div className={style.img__container}>
-          <img className={style.img} alt="nope" src="https://res.cloudinary.com/da76mkk4h/image/upload/v1658264046/landing_bi2wmp.png" />
+      <nav className={style.nav}>wallet.</nav>
+      <main className={style.main}>
+        <div>
+          <h1>Your <Typewriter
+            options={{
+              strings: ['money,', 'payments,', 'crypto,'],
+              autoStart: true,
+              loop: true,
+            }}
+          />your <span>wallet.</span></h1>
+          <h3>The definitive wallet.</h3>
+          <NavLink to="account/login">
+            <button className={style.btn}>Let's go</button>
+          </NavLink>
         </div>
-        <div className={style.containerWelcome}>
-          <h3 className={style.h3}>Your money, your wallet.</h3>
-          <h4>Make your life simpler with everything just a click away.</h4>
-          <div className={style.button_container}>
-            <NavLink exact to="/account/signin" >
-              <button className={style.btn}>Sign in</button>
-            </NavLink>
-            <NavLink exact to="/account/login" >
-              <button className={style.btn}>Log in</button>
-            </NavLink>
-          </div>
+        <div className={style.cardContainer}>
+
         </div>
+      </main >
+      <div className={style.offerContainer}>
+        <h2>What do we offer?</h2>
+        <ul className={style.offersListContainer}>
+          <li>
+            <div>
+              <h6>Security Guarantee</h6>
+              <p>Your data and funds will be securely protected.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h6>Keep Track</h6>
+              <p>You can keep a track on all your expenses.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h6>Crypto</h6>
+              <p>Buy and sell crypto with 0% fee.</p>
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>
+    </div >
   )
 }
