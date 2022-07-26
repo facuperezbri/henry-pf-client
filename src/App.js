@@ -28,8 +28,8 @@ function App () {
         }
         />
         <Route path='/account/newSign' element={<LoginSignIn />} />
-        <Route path="/account/signin" element={<SignIn />} />
-        <Route path="/account/login" element={<Login />} />
+        {/* <Route path="/account/signin" element={<SignIn />} />
+        <Route path="/account/login" element={<Login />} /> */}
         <Route path="/home" element={
           <div className={style.app_container}>
             <Home />

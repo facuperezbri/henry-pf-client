@@ -60,122 +60,126 @@ const SignIn = () => {
   }
 
   return (
-    <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
-      <div className={formStyles.steps_index}>
-        <div style={{ backgroundColor: step >= 1 && 'greenyellow' }}></div>
-        <div style={{ backgroundColor: step >= 2 && 'greenyellow' }}></div>
-        <div style={{ backgroundColor: step >= 3 && 'greenyellow' }}></div>
-      </div>
-      <div className={formStyles.card}>
-        <div>
-          {
-            userGoogle && <button className={formStyles.button} onClick={() => setUserGoogle()}>X</button>
-          }
-          {
-            !userGoogle && step === 1 &&
-            <div className={formStyles.center}>
-              <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with Google</button>
-            </div>
-          }
-          {
-            userGoogle?.photoURL &&
-            <div className={formStyles.center}>
-              <img className={formStyles.profilepic} src={userGoogle?.photoURL} alt={userGoogle?.displayName} />
-            </div>
-          }
+    <div className={formStyles.mainContainer}>
+      <h4 className={formStyles.createStart}>Start for free.</h4>
+      <h2>Create your account<span>.</span></h2>
+      <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
+        <div className={formStyles.steps_index}>
+          <div style={{ backgroundColor: step >= 1 && 'greenyellow' }}></div>
+          <div style={{ backgroundColor: step >= 2 && 'greenyellow' }}></div>
+          <div style={{ backgroundColor: step >= 3 && 'greenyellow' }}></div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
-          {
-            step === 1 &&
-            <>
-              {
-                !userGoogle?.email &&
-                <div className={formStyles.input_container}>
-                  <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
-                  {errors.email && <span className={formStyles.input_error}>This field is required</span>}
-                </div>
-              }
-              {
-                userGoogle?.email && <span> {userGoogle.email} </span>
-              }
-
-              <div className={formStyles.input_container}>
-                <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
-                {errors.password && <span className={formStyles.input_error}>his field is required</span>}
-              </div>
-              <div className={formStyles.input_container}>
-                <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('passwordVerify', { required: true, minLength: 8 })} />
-                {errors.passwordVerify && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-            </>
-          }
-
-          {
-            step === 2 &&
-            <>
-              {
-                userGoogle?.email.split('@')[0] && <span> {userGoogle.email.split('@')[0]} </span>
-              }
-
-              {
-                !userGoogle?.displayName &&
-                <div className={formStyles.input_container}>
-                  <input className={formStyles.input_text} defaultValue="" placeholder='username' {...register('username', { required: true, minLength: 6 })} />
-                  {errors.name && <span className={formStyles.input_error}>This field is required</span>}
-                </div>
-              }
-
-              <div className={formStyles.input_container}>
-                <input className={formStyles.input_text} defaultValue="" placeholder='your name' {...register('name', { required: true, minLength: 3 })} />
-                {errors.name && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-
-              <div className={formStyles.input_container}>
-                <input className={formStyles.input_text} defaultValue="" placeholder='your lastname' {...register('lastname', { required: true, minLength: 1 })} />
-                {errors.lastname && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-            </>
-          }
-
-          {
-            step === 3 &&
-            <>
-              <div className={formStyles.input_container}>
-                <input className={formStyles.input_text} defaultValue="" type="number" placeholder='Your DNI' {...register('DNI', { required: true, minLength: 7, maxLength: 9 })} />
-                {errors.lastname && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-
-              <div className={formStyles.input_container}>
-                <input type="file" onInput={onInputFileOne} {...register('photoDNIFront', { required: true })} />
-                {errors.photoDNIFront && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-              <div id='preview_img_photoDNIFront' className={formStyles.image_preview}>
-              </div>
-
-              <div className={formStyles.input_container}>
-                <input type="file" name='file-1' onInput={onInputFileOne} className={formStyles.input_file} {...register('photoDNIReverse', { required: true })} />
-                {errors.photoDNIReverse && <span className={formStyles.input_error}>This field is required</span>}
-              </div>
-              <div id='preview_img_photoDNIReverse' className={formStyles.image_preview}>
-              </div>
-
-              <div className={formStyles.center}>
-                <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Submit</button>
-              </div>
-            </>
-          }
-
-        </form>
-        <div className={formStyles.center}>
-          <div className={formStyles.button_prev_next_container}>
+        <div className={formStyles.card}>
+          <div>
             {
-              step > 1 && <button className={formStyles.button} onClick={() => step !== 1 && setStep((prevStep) => prevStep - 1)}>Previous</button>
+              userGoogle && <button className={formStyles.button} onClick={() => setUserGoogle()}>X</button>
             }
             {
-              step !== MAX_STEPS && <button className={formStyles.button} onClick={() => step <= MAX_STEPS && setStep((prevStep) => prevStep + 1)}>Next</button>
+              !userGoogle && step === 1 &&
+              <div className={formStyles.center}>
+                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with Google</button>
+              </div>
+            }
+            {
+              userGoogle?.photoURL &&
+              <div className={formStyles.center}>
+                <img className={formStyles.profilepic} src={userGoogle?.photoURL} alt={userGoogle?.displayName} />
+              </div>
             }
           </div>
+          <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
+            {
+              step === 1 &&
+              <>
+                {
+                  !userGoogle?.email &&
+                  <div className={formStyles.input_container}>
+                    <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
+                    {errors.email && <span className={formStyles.input_error}>This field is required</span>}
+                  </div>
+                }
+                {
+                  userGoogle?.email && <span> {userGoogle.email} </span>
+                }
 
+                <div className={formStyles.input_container}>
+                  <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
+                  {errors.password && <span className={formStyles.input_error}>his field is required</span>}
+                </div>
+                <div className={formStyles.input_container}>
+                  <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('passwordVerify', { required: true, minLength: 8 })} />
+                  {errors.passwordVerify && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+              </>
+            }
+
+            {
+              step === 2 &&
+              <>
+                {
+                  userGoogle?.email.split('@')[0] && <span> {userGoogle.email.split('@')[0]} </span>
+                }
+
+                {
+                  !userGoogle?.displayName &&
+                  <div className={formStyles.input_container}>
+                    <input className={formStyles.input_text} defaultValue="" placeholder='username' {...register('username', { required: true, minLength: 6 })} />
+                    {errors.name && <span className={formStyles.input_error}>This field is required</span>}
+                  </div>
+                }
+
+                <div className={formStyles.input_container}>
+                  <input className={formStyles.input_text} defaultValue="" placeholder='your name' {...register('name', { required: true, minLength: 3 })} />
+                  {errors.name && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+
+                <div className={formStyles.input_container}>
+                  <input className={formStyles.input_text} defaultValue="" placeholder='your lastname' {...register('lastname', { required: true, minLength: 1 })} />
+                  {errors.lastname && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+              </>
+            }
+
+            {
+              step === 3 &&
+              <>
+                <div className={formStyles.input_container}>
+                  <input className={formStyles.input_text} defaultValue="" type="number" placeholder='Your DNI' {...register('DNI', { required: true, minLength: 7, maxLength: 9 })} />
+                  {errors.lastname && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+
+                <div className={formStyles.input_container}>
+                  <input type="file" onInput={onInputFileOne} {...register('photoDNIFront', { required: true })} />
+                  {errors.photoDNIFront && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+                <div id='preview_img_photoDNIFront' className={formStyles.image_preview}>
+                </div>
+
+                <div className={formStyles.input_container}>
+                  <input type="file" name='file-1' onInput={onInputFileOne} className={formStyles.input_file} {...register('photoDNIReverse', { required: true })} />
+                  {errors.photoDNIReverse && <span className={formStyles.input_error}>This field is required</span>}
+                </div>
+                <div id='preview_img_photoDNIReverse' className={formStyles.image_preview}>
+                </div>
+
+                <div className={formStyles.center}>
+                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Submit</button>
+                </div>
+              </>
+            }
+
+          </form>
+          <div className={formStyles.center}>
+            <div className={formStyles.button_prev_next_container}>
+              {
+                step > 1 && <button className={formStyles.button} onClick={() => step !== 1 && setStep((prevStep) => prevStep - 1)}>Previous</button>
+              }
+              {
+                step !== MAX_STEPS && <button className={formStyles.button} onClick={() => step <= MAX_STEPS && setStep((prevStep) => prevStep + 1)}>Next</button>
+              }
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,15 @@
+.mainContainer {
+    height: 50vh;
+}
+
 .center {
     display: grid;
     place-content: center;
+}
+
+.createStart {
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .card {
