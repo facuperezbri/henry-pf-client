@@ -3,21 +3,31 @@ export const SIGN_IN = async (data) => {
     const {
       photoDNIFront,
       photoDNIReverse,
-      ...dataForm
+      email,
+      password,
+      name,
+      lastname,
+      DNI,
+      username,
+      profilepic,
+      googleID
     } = data
+    console.log(Array.isArray(photoDNIFront), Array.isArray(photoDNIReverse), [photoDNIFront[0], Object.values(photoDNIReverse)[0]], photoDNIFront[0], photoDNIReverse[0])
+    const body = new FormData()
+    body.append('email', email)
+    body.append('password', password)
+    body.append('name', name)
+    body.append('lastname', lastname)
+    body.append('DNI', DNI)
+    body.append('username', username)
+    body.append('profilepic', profilepic)
+    body.append('googleID', googleID)
+    body.append('imagesOne', photoDNIFront[0])
+    body.append('imageTwo', photoDNIReverse[0])
 
-    const form = new FormData()
-    form.append('data', JSON.stringify(dataForm))
-    form.append('images', [...photoDNIFront, ...photoDNIReverse])
-
-    console.log({ dataForm })
-
-    const res = await fetch('http://localhost:4000/api/user/signin', {
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      },
+    const res = await fetch('http://localhost:4000/api/user/new', {
       method: 'POST',
-      body: JSON.stringify(dataForm)
+      body
     })
     const resJSON = await res.json()
 

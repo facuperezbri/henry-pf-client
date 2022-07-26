@@ -5,30 +5,8 @@ import { useDispatch} from 'react-redux'
 import {sendMovement} from "../../redux/actions/index"
 
 const MovementDeatail = ({movement, closeDetails}) => {
-    const dispatch = useDispatch()
-    const [comment, setComment] = useState(false)
-    const [info, setInfo] = useState({
-            cvuMain:movement.accounts.cvu,
-            amount:movement.amount,
-            cvuD: movement.accounts.cvu,
-            currency:movement.accounts.currencies.name,
-            operation:movement.operations.name,
-            category:movement.categories.name,
-            comment: ""     
-    })
+  
 
-   
-    const sendDetailInfoMovement= (e)=>{
-        e.preventDefault()
-        setInfo({...info,[e.target.name]:e.target.value})
-    }
-    const send=(e)=>{
-        e.preventDefault()
-        dispatch(sendMovement(info))
-        setInfo({...info,comment:""})
-        setComment(false)
-        alert("los datos fueron enviados con exito")
-    }
   return (
     <>
         <div className={style.movement_container} onClick={closeDetails} />  
@@ -71,17 +49,7 @@ const MovementDeatail = ({movement, closeDetails}) => {
                 <div className={style.detail}>
                     <span>Date</span>
                     <span>{setFormat(new Date(movement?.date), 'en-EN', { dateStyle: 'long' })}</span>
-                </div>
-                {!comment ?<div className={style.containerbtn} onClick={()=>setComment(true)} >
-                    <button>add comment</button>
-                </div> :
-                 <div className={style.comment}>
-                 <textarea onChange={ (e) => sendDetailInfoMovement(e) } value={info.comment} name="comment"/>
-                 <button onClick={(e) => send(e)}>send</button>
-             </div>
-                }
-               
-
+                </div>           
             </div>
         </div>
     </>

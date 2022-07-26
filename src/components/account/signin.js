@@ -21,15 +21,18 @@ const SignIn = () => {
     if (data.password !== data.passwordVerify) {
       return alert('Passwords must be the same')
     }
+    console.log(data)
     const dataTosend = {
       ...data,
-      email: userGoogle.email || data.email,
-      profilepic: userGoogle.photoURL || '',
+      email: userGoogle?.email || data?.email,
+      profilepic: userGoogle?.photoURL || '',
       username: userGoogle?.email?.split('@')[0] || data.username,
-      googleID: userGoogle?.uid
+      googleID: userGoogle?.uid || ''
     }
-    console.log(dataTosend)
+    // console.log(dataTosend)
     SIGN_IN(dataTosend).then(res => res?.id && navigate('/account/login')).catch(console.error)
+    // SIGN_IN(dataTosend).then(res => console.log({res})).catch(console.error)
+
   }
 
   const login = () => {
