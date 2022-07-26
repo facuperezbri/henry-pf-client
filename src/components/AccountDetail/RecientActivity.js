@@ -10,6 +10,8 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
     setMovement(activitie)
   }
 
+  console.log(activities)
+
   const arrNew = activities.map(e=>{
     return {
       name:e.categories.name,
@@ -17,27 +19,19 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
       amount:e.amount
     }
   })
-  console.log(arrNew)
-
-
-
-  function loadAgain(){
-		window.location.reload()
-	}
 
   const onSelectCategory = (e) => {
     setFilter(e.target.value)
   }
+
   const categoriesRaw = activities.map((abc) => (
     abc?.categories?.name 
   ))
   const categoriesUnique = [...new Set(categoriesRaw)]
-  console.log(categoriesUnique)
+
   useEffect(() => {
   setFilter("")
   },[])
-
-
 
   return (
     <div className={styles.container}>
@@ -55,7 +49,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
           ))}
         </select>
 
-        <button className={styles.botonResetear} onClick={()=>loadAgain()}>Reset Filter</button>
+        <button className={styles.botonResetear} onClick={()=>setFilter("")}>Reset Filter</button>
 
 
 
