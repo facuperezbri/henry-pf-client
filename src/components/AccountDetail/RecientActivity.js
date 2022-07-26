@@ -51,6 +51,14 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
   setOrderDate(arrNew)
   },[])
 
+  const resetFilterYresetSort =()=>{
+    setFilter("")
+    arrNew.sort((a,b)=>{
+      return b.date.substring(0, b.date.length - 1)- a.date.substring(0, a.date.length - 1)
+     })
+  setOrderDate(arrNew)
+  }
+
   return (
     <div className={styles.container}>
         <span className={styles.title}>
@@ -67,7 +75,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
           ))}
         </select>
 
-        <button className={styles.botonResetear} onClick={()=>setFilter("")}>Reset Filter</button>
+        <button className={styles.botonResetear} onClick={()=>resetFilterYresetSort()}>Reset</button>
 
 
 
