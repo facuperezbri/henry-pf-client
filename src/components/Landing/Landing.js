@@ -22,9 +22,18 @@ export default function Landing () {
             <button className={style.btn}>Let's go</button>
           </NavLink>
         </div>
-        <div className={style.cardContainer}>
-
+        <div className={style.credit_card_container}>
+          <div className={style.credit_card}>
+            <span className={style.title}>w.</span>
+            <span className={style.number}>4503 4456 0000 1234</span>
+            <div className={style.balance_name_container}>
+              <span className={style.name}>JOHN DOE</span>
+            </div>
+          </div>
         </div>
+        {/* <div className={style.cardContainer}>
+
+        </div> */}
       </main >
       <div className={style.offerContainer}>
         <h2>What do we offer?</h2>
