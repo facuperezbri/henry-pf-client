@@ -5,10 +5,13 @@ import { filterByCreated } from '../../redux/actions'
 import style from './FilterByCategory.module.css'
 
 export default function FilterByCategory() {
+
     const dispatch = useDispatch()
+
     function onSelectChangeCategory(e) {
         dispatch(filterByCreated(e.target.value))
     }
+    
     return (
         <div>
             <div>
