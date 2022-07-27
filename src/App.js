@@ -15,6 +15,7 @@ import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import Admin from "./pages/Admin/Admin";
 
 
+
 function App () {
 
   return (
