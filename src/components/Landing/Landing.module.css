@@ -87,6 +87,7 @@
 } */
 
 .credit_card {
+    transform: rotate(5deg);
     position: relative;
     margin: 2rem;
     max-width: 520px;
