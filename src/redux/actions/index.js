@@ -97,7 +97,7 @@ export const getCryptos = () => {
 export function getFavorite(id) {
   return async function(dispatch){
     await axios.get(`http://localhost:4000/api/favourites/${id}`).then((fav)=>{
-      console.log(fav.data)
+      // console.log(fav.data)
       return dispatch({
       type: GET_FAVORITE,
       payload: fav.data
@@ -107,17 +107,18 @@ export function getFavorite(id) {
 
 export function addFavorite(payload) {
   return async function(dispatch){
-    const favouriteCreated = await axios.post('http://localhost:4000/api/favourites/createFavourites',payload)
+    const favouriteCreated = await axios.post('http://localhost:4000/api/favourites/createFavourites',{id: payload.userId, cvu: payload.fav, username: payload.fav})
     return dispatch({ type: POST_FAVORITE,
-      payload: favouriteCreated})
+      payload: favouriteCreated.data
+      })
   }
 }
 
 export function removeFavorite(id) {
   return async function(dispatch){
-    const favouriteRemoved = await axios.delete('http://localhost:4000/api/favourites/delete', id)
+    const favouriteRemoved = await axios.delete('http://localhost:4000/api/favourites/delete',id)
     return dispatch({type: REMOVE_FAVORITE,
-    payload: favouriteRemoved})}}
+    payload: id})}}
     
 export function getDetailsCrypto(id) {
   return async function(dispatch){

@@ -61,7 +61,7 @@ export default function Wallet () {
           <label htmlFor="cvuMain">Your CVU: </label>
           <input name='cvuMain' value={userData.length === 0 ? 0 : userData.accounts[0].cvu} disabled />
           <label htmlFor="cvuD">Destiny CVU: </label>
-          <input name='cvuD' type="text" onChange={handleChange} />
+          <input name='cvuD' type="text" value={state.cvuD} onChange={handleChange} />
           <label htmlFor="amount">Amount: </label>
           <input name='amount' type='number' onChange={handleChange} />
           <label htmlFor="category">Category: </label>
@@ -79,7 +79,7 @@ export default function Wallet () {
         </form>
       </div>
       <div>
-        <Favorites />
+        <Favorites setState={setState} state={state} />
       </div>
     </div >
   )
