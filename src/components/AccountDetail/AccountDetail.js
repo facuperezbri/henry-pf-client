@@ -1,4 +1,4 @@
-import React, { useEffect , lazy, Suspense, useState } from 'react'
+import React, { useEffect, lazy, Suspense, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
@@ -32,7 +32,7 @@ export default function AccountDetail () {
     if (usData?.error) {
       navigate('/')
     }
-  }, [])
+  }, [usData])
 
 
   if (!usData?.accounts) {
@@ -55,7 +55,7 @@ export default function AccountDetail () {
         <option>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname}/>
+        <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname} />
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />
@@ -84,18 +84,18 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
-      
-      <div>
-        <Suspense fallback={<div>Loading</div>}>
-          <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
-        </Suspense>
-      </div>
-      {
-        showMovementDetails &&
+
+        <div>
+          <Suspense fallback={<div>Loading</div>}>
+            <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
+          </Suspense>
+        </div>
+        {
+          showMovementDetails &&
           <MovementDeatail movement={movement} closeDetails={closeDetails} />
-      }
-    {/* <BalanceChart/> */}
-    </div>
+        }
+        {/* <BalanceChart/> */}
+      </div>
     </div>
   )
 }
