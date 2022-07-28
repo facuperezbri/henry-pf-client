@@ -16,23 +16,28 @@ export default function Details(){
     
     useEffect(() => {
         dispatch(getDetailsCrypto(cryptoId.id))
-    },[])
+    }, [])
 
-    console.log(detailCrypto[0].name)
+
+    if(detailCrypto?.data?.length === 0){
+        return (<div>..loading</div>)
+    }
     return (
-        
+            
             <div>
-                {/* <CryptoChart date={detailCrypto[1]} name={detailCrypto[0].name}/>  */}
+                 <CryptoChart date={detailCrypto.data2} name={detailCrypto.data?.name}/>
               <>
-               <div>
-                    <h1>{detailCrypto[0].name}</h1>
-                    <h1>{detailCrypto[0].symbol}</h1>
+                <div>
+                    <h1>{detailCrypto.data?.name}</h1>
+                    <h1>{detailCrypto.data?.symbol}</h1>
                     
-                   <h1>${detailCrypto[0].market_data.current_price.usd}</h1>
-                    <h1>%{detailCrypto[0].market_data.ath_change_percentage.usd}</h1>
-                     <a href={detailCrypto[0].links.homepage}>link to {detailCrypto[0].name}</a>
-                    <p>{detailCrypto[0].description.en}</p>
-                </div>       
+                   <h1>${detailCrypto.data?.market_data.current_price.usd}</h1>
+                    <h1>%{detailCrypto.data?.market_data.ath_change_percentage.usd}</h1>
+                     <a href={detailCrypto.data?.links.homepage}>link to {detailCrypto.data?.name}</a>
+                    <p>{detailCrypto.data?.description.en}</p>
+                </div> 
+                    
+              
              <Link to="/cryptosmarket">
                 <button>Volver</button>
              </Link>

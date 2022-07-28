@@ -28,11 +28,11 @@ function App () {
         <Route
           path="/profile"
           element={
-            <AuthProvider>
+            
               <div className={style.app_container}>
                 <Profile />
               </div>
-            </AuthProvider>
+           
           }
         />
         <Route
@@ -71,11 +71,11 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-            <AuthProvider>
+            
               <div className={style.appcontainer}>
                 <Cryptos />
               </div>
-            </AuthProvider>
+           
           }
         />
         <Route
@@ -113,13 +113,13 @@ function App () {
         />
         <Route
           exact
-          path="/cryptomarket/:id"
+          path="/cryptosmarket/:id"
           element={
-            <AuthProvider>
-              <div className={style.app_container}>
+            
+              <div className={style.appcontainer}>
                 <CryptoDetails />
               </div>
-            </AuthProvider>
+            
           }
         />
 

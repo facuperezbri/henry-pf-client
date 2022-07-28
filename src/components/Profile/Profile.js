@@ -1,39 +1,64 @@
-import React,{useEffect, useState} from 'react'
-import Style from './Profile.module.css'
-import { GET_USER_DATA } from '../../services/GET_USER_DATA'
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import Style from "./Profile.module.css";
+import { GET_USER_DATA } from "../../services/GET_USER_DATA";
+import { Link } from "react-router-dom";
+import image from "../../assets/img/image.jpg";
+import pen from '../../assets/icons/pen.svg'
 export default function Profile() {
-const [dataProfile,setProfile] = useState("")
-    useEffect(()=>{
- GET_USER_DATA(window.localStorage.getItem("token"))
- .then(data => setProfile(data))   
-  },[])
-  
+  // const [dataProfile,setProfile] = useState("")
+  //     useEffect(()=>{
+  //  GET_USER_DATA(window.localStorage.getItem("token"))
+  //  .then(data => setProfile(data))
+  //   },[])
+
   return (
     <div className={Style.main}>
-      { dataProfile ? <div className={Style.container}>
-          <img className={Style.img} src={dataProfile?.profilepic}/>
-          <h2>{dataProfile.username}</h2>
-      </div>: <h1>Cargando...</h1>
-     }
+      <div className={Style.container}>
+        <img className={Style.img} src={image} />
+        <button><img src={pen} alt="pen edit" className={Style.pen}/></button>
 
-     {dataProfile ? <div className={Style.containerDetail}>
-          <h2><span>Nombre:</span> {dataProfile.name}</h2>
-          <h2><span>Last Name: </span> {dataProfile.lastname}</h2>
-          <h2><span>DNI:</span> {dataProfile.dni}</h2>
-          <h2><span>Email:</span> {dataProfile.email}</h2>
-      </div>:null
-    }
-    {dataProfile? <div className={Style.containerDetail}>
-          <h2 style={{textAlign:"center", color:"white"}}>Cuentas</h2>
-        <ul style={{fontSize:"1rem",fontWeight:"700"}}>
-          <li>Balance: {dataProfile.accounts[0].balance}</li>
-          <li>CVU: {dataProfile.accounts[0].cvu}</li>
-          <li>Type of Account: {dataProfile.accounts[0].typeOfAccount}</li>
-        </ul>
-        </div>:null
-    }
-    {dataProfile?<Link to="/home"><button>Home</button></Link>:null}
+      </div>
+      <div className={Style.containerDetail}>
+        <div className={Style.containerName}>
+          <div>
+          <label>
+            First name
+            <input type="text" value="matt" readonly className={Style.input} />
+          </label>
+          </div>
+          <div>
+          <label>
+            Last name
+            <input
+              type="text"
+              value="britez"
+              readonly
+              className={Style.input}
+            />
+          </label>
+          </div>
+        </div>
+        <div> <label>
+            Email
+            <input
+              type="text"
+              value="britez.maty@gmail.com"
+              readonly
+              className={Style.input}
+            />
+          </label></div> <div> <label>
+            UserName
+            <input
+              type="text"
+              value="britezmatt"
+              readonly
+              className={Style.input}
+            />
+          </label><button><img src={pen} alt="pen edit" className={Style.pen}/></button></div>
+      </div>
+     
+        <button>Change password</button>
+      
     </div>
-  )
+  );
 }

@@ -124,7 +124,7 @@ export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
           let info = await axios.get(`http://localhost:4000/api/currency/${id}`)
-          console.log(info)
+          console.log('entre')
           return dispatch({
               type: "GET_DETAILS_CRYPTO",
               payload: info.data

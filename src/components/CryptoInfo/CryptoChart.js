@@ -4,7 +4,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 export default function CryptoChart({date, name}){
-        console.log(date[0])
+        console.log(date)
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
@@ -21,13 +21,13 @@ export default function CryptoChart({date, name}){
 				type: "line",
 				toolTipContent: "Mounth {x}: {y}",
 				dataPoints: [
-                    { x: 1, y: date[0] },
-					{ x: 2, y: date[1] },
-					{ x: 3, y: date[2] },
-					{ x: 4, y: date[3] },
-					{ x: 5, y: date[4] },
-					{ x: 6, y: date[5] },
-					{ x: 7, y: date[6] },
+                    { x: 1, y: date?.data },
+					{ x: 2, y: date?.data1 },
+					{ x: 3, y: date?.data2 },
+					{ x: 4, y: date?.data3 },
+					{ x: 5, y: date?.data4 },
+					{ x: 6, y: date?.data5 },
+					{ x: 7, y: date?.data6 },
 				]
 			}]
 		}
