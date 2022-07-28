@@ -12,6 +12,7 @@ import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
 import Favorites from "./components/Favourites/Favourites"
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
+import BalanceChart from "./components/AccountDetail/BalanceChart";
 
 
 function App () {
@@ -19,6 +20,7 @@ function App () {
   return (
     <div className={style.container}>
       <Routes>
+        <Route path="/prov" element={<BalanceChart/>}/>
         <Route path="/" element={<Landing/>}/>
         <Route path="/profile" element={
           <div className={style.app_container}>

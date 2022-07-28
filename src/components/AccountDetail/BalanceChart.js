@@ -1,45 +1,92 @@
-import React from 'react'
-import { Chart } from 'chart.js'
+// import React from 'react'
+// import { Bar } from 'react-chartjs-2'
 
-export default function BalanceChart() {
+// const BalanceChart = () => {
 
-    const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-    ];
+//     return (
+//         <div>
+//             <Bar 
+//                 data={{
+//                     labels: ['a', 'b', 'c'],
+//                 }}
+//                 height={100}
+//                 width={150}
+//             />
+//         </div>
+//     )
+// }
 
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }]
-    };
+// export default BalanceChart
 
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
+import { Doughnut } from "react-chartjs-2";
+import React, { useState } from "react";
 
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
+const GraficoDona = () => {
+  const [datos, setDatos] = useState({
+    fechIni: "",
+    fechFin: ""
+  });
 
+  const handleInputChange = (event) => {
+    setDatos({
+      ...datos,
+      [event.target.name]: event.target.value
+    });
+  };
+  const enviarDatos = (e) => {
+    e.preventDefault(e);
+    console.log(datos.fechIni);
+    console.log(datos.fechFin);
+    //cambiar estado  de redux para despachar una acción que traiga datos
+    //filtrados por la búsqueda
+  };
+
+  const data = {
+    labels: ["Primaria", "Secundaria", "Terciaria"],
+    datasets: [
+      {
+        borderColor: "black",
+        borderWidth: 1,
+        backgroundColor: ["#FFFF00", "#f72a5d", "#6cebe8"],
+        //data: datos que deberían venir de Redux
+        //previa consulta a la bd
+        data: [100, 50, 30]
+      }
+    ]
+  };
+  const options = {
+    maintAspectRatio: false,
+    responsive: true
+  };
+
+  let fecha = new Date();
+  var opciones = { month: "long" };
+  let mes = fecha.toLocaleDateString("es-ES", opciones);
   return (
-    <div>
-        <div>
-            <canvas id="myChart"></canvas>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        {myChart}
+    <div style={{ width: `40%`, height: `10%` }}>
+      <h3>Apoyo escolar mes de {mes}</h3>
+      <form onSubmit={enviarDatos}>
+        <div className="col-md-3">
+          <input
+            type="date"
+            className="form-control"
+            onChange={handleInputChange}
+            name="fechIni"
+          ></input>
+
+          <input
+            type="date"
+            className="form-control"
+            onChange={handleInputChange}
+            name="fechFin"
+          ></input>
+
+          <button type="submit">Buscar</button>
         </div>
+      </form>
+
+      <Doughnut data={data} options={options} />
     </div>
-  )
-}
+  );
+};
+export default GraficoDona;
