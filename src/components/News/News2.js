@@ -21,6 +21,8 @@ const News2 = () => {
     }
   })
 
+  const news = data?.pages.reduce((prevNews, pages) => prevNews.concat(pages)) ?? []
+
   if (isLoading) {
     return (
       <div>Loading...</div>
@@ -29,12 +31,12 @@ const News2 = () => {
 
   return (
     <InfiniteScroll
-      dataLength={100}
-      hasMore={hasNextPage}
-      next={fetchNextPage}>
+      dataLength={news.length}
+      hasMore={true}
+      next={() => fetchNextPage()}>
 
       <ul>
-        {data.pages.map(n => n.map(t => <li>
+        {news.pages.map(n => n.map(t => <li>
           {t.title}
           {t.content}
           {t.content}
