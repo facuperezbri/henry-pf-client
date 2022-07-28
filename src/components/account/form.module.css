@@ -2,6 +2,10 @@
     margin-bottom: 2rem;
 }
 
+.mainContainer h2 {
+    margin-bottom: 2rem;
+}
+
 .center {
     display: grid;
     place-content: center;
