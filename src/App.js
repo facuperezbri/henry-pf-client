@@ -13,6 +13,7 @@ import Profile from "./pages/Profile/Profile";
 import Favorites from "./components/Favourites/Favourites"
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import Admin from "./pages/Admin/Admin";
+import Charge from "./pages/Charge/Charge";
 
 
 function App () {
@@ -60,6 +61,11 @@ function App () {
         <Route exact path="/faq" element={
           <div className={style.app_container}>
             <Faq />
+          </div>
+        } />
+        <Route exact path="/charge" element={
+          <div className={style.app_container}>
+            <Charge />
           </div>
         } />
         <Route exact path="/fav" element={
