@@ -37,7 +37,7 @@ export default function AccountDetail () {
   if (!usData?.accounts) {
     return (
       <div className={style.loading} >
-        <img src={loading} />
+        <img src={loading} alt="not found"/>
       </div>)
   }
   const closeDetails = () => {
