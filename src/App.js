@@ -15,7 +15,10 @@ import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import Admin from "./pages/Admin/Admin";
 import AuthProvider from "./components/auth/AuthProvider";
 
-function App() {
+
+
+function App () {
+
   return (
     <div className={style.container}>
       <Routes>
