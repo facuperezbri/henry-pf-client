@@ -12,6 +12,7 @@ import Faq from "./pages/Faq/Faq";
 import Profile from "./pages/Profile/Profile";
 import Favorites from "./components/Favourites/Favourites";
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
+import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
 import AuthProvider from "./components/auth/AuthProvider";
 
