@@ -93,7 +93,8 @@ const rootReducer = (state = initialState, action) => {
         }
     case POST_FAVORITE:
       return {
-        ...state
+        ...state,
+        favourites: action.payload
       }
     default:
             return state
