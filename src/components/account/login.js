@@ -7,26 +7,31 @@ import { useNavigate } from 'react-router-dom'
 import logoGoogle from '../../assets/icons/googleLogo.svg'
 import { useToken } from '../../hooks/useToken'
 
+
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const loginResponseHandler = (res) => {
+    if (res?.token && res?.isAdmin) {
+      setToken(res?.token)
+      navigate('/dashboard/admin')
+      return
+    }
+    if (res?.token) {
+      setToken(res?.token)
+      navigate('/home')
+    }
+  }
   const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
-    LOG_IN({ email, password }).then(console.log).catch(console.error)
+    LOG_IN({ email, password }).then((res) => {
+      loginResponseHandler(res)
+    }).catch(console.error)
   }
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
-      console.log(user)
       LOG_IN({ googleID: user.uid }).then((res) => {
-        if (res?.token && res?.isAdmin) {
-          setToken(res?.token)
-          navigate('/dashboard/admin')
-          return
-        }
-        if (res?.token) {
-          setToken(res?.token)
-          navigate('/home')
-        }
+        loginResponseHandler(res)
       }).catch(console.error)
 
     }).catch(console.error)
