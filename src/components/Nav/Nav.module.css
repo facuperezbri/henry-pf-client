@@ -1,6 +1,7 @@
 .header {
     background-color: var(--background-color-nav);
-    width: 20vh;
+    width: 10vw;
+    min-width: 10vw;
     height: 100vh;
     border-bottom-right-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -12,6 +13,7 @@
     left: 0;
     top: 0;
 }
+
 .title {
     padding: 1rem;
     display: grid;
@@ -56,10 +58,12 @@
     .listItem_text {
         display: none;
     }
+
     .header {
         width: 7vh;
         padding: .5rem .5rem .5rem 0rem;
     }
+
     .title {
         margin-left: .5rem;
     }
