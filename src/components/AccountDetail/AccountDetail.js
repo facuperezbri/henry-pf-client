@@ -45,7 +45,6 @@ export default function AccountDetail () {
         <img src={loading} />
       </div>)
   }
-  
   return ( 
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
@@ -90,7 +89,7 @@ export default function AccountDetail () {
         </div>
         {
           showMovementDetails &&
-          <MovementDeatail movement={movement} closeDetails={closeDetails} />
+          <MovementDeatail movement={movement}  closeDetails={closeDetails} />
         }
         <BalanceChart/>
       </div>
