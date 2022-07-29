@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from './RecientActivity.module.css'
 import { setFormat } from '../../hooks/setFormatDate'
+// import { useDispatch } from 'react-redux'
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
+  // const dispatch = useDispatch();
   const [orderDate, setOrderDate] = useState([])
   const [interruptor,setInterruptor] = useState(false)
   const [filter, setFilter] = useState("")
@@ -20,6 +22,11 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
       date: setFormat(new Date(e.date), 'en-EN', { dateStyle: 'long' }).split(" ")[1]
     }
   })
+
+  function last3mov() {
+    const order = orderDate.slice(0, 3)     
+    setOrderDate(order) 
+  }
 
  const sortByDate = ()=>{
   if(!interruptor){
@@ -65,8 +72,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
           Movements
         <button onClick={sortByDate}>order by fecha {interruptor?<span>DESC</span>:<span>ASC</span>}</button>
 
-
-
+        <button onClick={(e) => last3mov(e)}>Last 3 movements</button>
 
         <select name="filterCategory" onChange={onSelectCategory}>
           <option selected="true" disabled="disabled">Category...</option>
@@ -76,10 +82,6 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
         </select>
 
         <button className={styles.botonResetear} onClick={()=>resetFilterYresetSort()}>Reset</button>
-
-
-
-
 
         </span>
         { filter === "" ?
@@ -102,8 +104,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
                   <span className={styles.amount}> {`$${ddd?.amount}`}</span>
               </div>
           ))
-        }
-        
+        }  
     </div>
   )
 }

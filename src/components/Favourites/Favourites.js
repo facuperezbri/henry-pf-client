@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import style from './Favourites.module.css'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {getFavorite, removeFavorite, addFavorite, getUser} from '../../redux/actions/index'
 import Modal from 'react-modal'
@@ -18,19 +18,20 @@ export default function Favorites({setState, state}){
     const favourites = useSelector((state)=> state.favourites)
     const userId = useSelector((state)=> state.userData.id)
     const dispatch = useDispatch()
-    const [input,setInput] = useState({favourites:[]})
+    // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
     const [selected, setSelected] = useState('')
-    const [errors, setErrors] = useState({})
-    // const [cvu, setCvu] = useState("")
+    const [favAccs, setFavAccs] = useState([])
+    // const [errors, setErrors] = useState({})
+    const [cvu, setCvu] = useState("")
 
-    function validation(input){
-        let errors = {}
-        if(input.cvu || typeof input.cvu !== 'string'){
-            errors.cvu = 'Ingrese un cvu/username válido'
-        }
-    }
+    // function validation(input){
+    //     let errors = {}
+    //     if(input.cvu || typeof input.cvu !== 'string'){
+    //         errors.cvu = 'Ingrese un cvu/username válido'
+    //     }
+    // }
 
     function handleModel(){
         setIsOpen(true)    
@@ -57,6 +58,10 @@ export default function Favorites({setState, state}){
     }
 
     function handleSelected(e){
+        const fav = favourites.find(el=>{
+            return el.id === e.target.value
+        })
+        setFavAccs(fav.accounts)
         setSelected(e.target.value)
     }
 
@@ -64,15 +69,19 @@ export default function Favorites({setState, state}){
         dispatch(removeFavorite(selected))
     }
 
+    const handleCvuChange = e => {
+        setCvu(e.target.value)
+    }
+    
     function handleCvu () {
-        const fav = favourites.find(e=>{
-            return e.id === selected
-        })
+        // const fav = favourites.find(e=>{
+        //     return e.id === selected
+        // })
         setState({
-            ...state, cvuD: fav.accounts[0].cvu
+            ...state, cvuD: cvu
         })
     } 
-
+    console.log(favAccs)
     useEffect(()=>{
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
     }, [dispatch])
@@ -95,6 +104,12 @@ export default function Favorites({setState, state}){
                 </option>
                   )
                 }
+            </select>
+            <select className={style.select} onChange={handleCvuChange}>
+                <option selected disabled>Fav Account</option>
+                {favAccs.map(acc=>{
+                    return <option value={acc.cvu}>{acc.currencies.name} Acc</option>
+                })}
             </select>
             <input onClick={deleteFav} value={'delete'} type="button"/>
             <button onClick={handleModel}>Add fav</button>
