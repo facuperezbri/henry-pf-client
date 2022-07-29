@@ -1,0 +1,23 @@
+.container{
+    background-color: red;
+    width: 100%;
+    height: fit-content;
+    margin: 6rem auto;
+}
+.subContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.subsubContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+}
+.btn{
+    border:2px solid black;
+    width: 30%;
+    margin: 1rem auto;
+    cursor: pointer;
+}
