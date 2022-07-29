@@ -31,7 +31,7 @@ export default function AccountDetail () {
     if (usData?.error) {
       navigate('/')
     }
-  }, [usData])
+  }, [])
 
 
   if (!usData?.accounts) {
@@ -46,7 +46,7 @@ export default function AccountDetail () {
   const openDetails = () => {
     setshowMovementDetails(true)
   }
-  console.log(usData)
+  // console.log(usData)
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
