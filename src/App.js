@@ -23,23 +23,23 @@ function App () {
   return (
     <div className={style.container}>
       <Routes>
-        <Route path="/account/signin" element={<SignIn />} />
-        <Route path="/account/login" element={<Login />} />
+        {/* <Route path="/account/signin" element={<SignIn />} /> */}
         <Route path="/" element={<Landing />} />
+        <Route path="/account/login" element={<LoginSignIn />} />
         <Route
           path="/profile"
           element={
-            
-              <div className={style.app_container}>
-                <Profile />
-              </div>
-           
+
+            <div className={style.app_container}>
+              <Profile />
+            </div>
+
           }
         />
         <Route
           path="/home"
           element={
-            <AuthProvider>       
+            <AuthProvider>
               <div className={style.app_container}>
                 <Home />
               </div>
@@ -72,11 +72,11 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-            
-              <div className={style.appcontainer}>
-                <Cryptos />
-              </div>
-           
+
+            <div className={style.appcontainer}>
+              <Cryptos />
+            </div>
+
           }
         />
         <Route
@@ -116,11 +116,11 @@ function App () {
           exact
           path="/cryptosmarket/:id"
           element={
-            
-              <div className={style.appcontainer}>
-                <CryptoDetails />
-              </div>
-            
+
+            <div className={style.appcontainer}>
+              <CryptoDetails />
+            </div>
+
           }
         />
 
