@@ -1,4 +1,4 @@
-import { GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE} from '../actions'
+import { GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE} from '../actions'
 
 
 const initialState = {
@@ -10,7 +10,8 @@ const initialState = {
   dataProfile: [],
   detailsCrypto: [],
   infoMovement:"",
-  favourites: []
+  favourites: [],
+  ratings: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movements: action.payload
+      }
+    case GET_RATINGS:
+      return {
+        ...state,
+        ratings: action.payload
       }
     case 'GET_CRYPTO':
       return {

@@ -21,7 +21,6 @@ import Charge from "./pages/Charge/Charge";
 import AuthProvider from "./components/auth/AuthProvider";
 
 
-
 function App () {
 
   return (

@@ -26,7 +26,7 @@ const MovementDeatail = ({ movement, closeDetails }) => {
 
                     <div className={style.detail}>
                         <span>Receipt</span>
-                        <span>{movement?.receipt.toString()}</span>
+                        <span>{movement?.receipt?.toString()}</span>
                     </div>
 
                     <div className={style.detail}>
