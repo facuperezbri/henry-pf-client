@@ -14,11 +14,11 @@ import Favorites from "./components/Favourites/Favourites";
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
+import News2 from './components/News/News2';
 
 import Charge from "./pages/Charge/Charge";
 
 import AuthProvider from "./components/auth/AuthProvider";
-
 
 
 function App () {
@@ -135,6 +135,11 @@ function App () {
         <Route exact path="/news" element={
           <div className={style.app_container}>
             <News />
+          </div>
+        } />
+        <Route exact path="/news2" element={
+          <div className={style.app_container}>
+            <News2 />
           </div>
         } />
         <Route exact path="/faq" element={
