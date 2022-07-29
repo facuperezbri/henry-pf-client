@@ -11,7 +11,7 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
-
+import {useToken} from '../../hooks/useToken'
 import loading from '../../assets/icons/loading.svg'
 // import BalanceChart from './BalanceChart'
 // xxx
@@ -20,6 +20,7 @@ const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { setToken, token } = useToken()
   const usData = useSelector(state => state.userData)
   const [movement, setMovement] = useState({})
   const [showMovementDetails, setshowMovementDetails] = useState(false)
@@ -27,28 +28,26 @@ export default function AccountDetail () {
   // const movements = useSelector(state => state.movements)
 
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
+    dispatch(getUser(token)).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
     dispatch(getCategory())
-    if (usData?.error) {
-      navigate('/')
-    }
-  }, [usData])
+  }, [])
 
-
-  if (!usData?.accounts) {
-    return (
-      <div className={style.loading} >
-        <img src={loading} />
-      </div>)
-  }
   const closeDetails = () => {
     setshowMovementDetails(false)
   }
   const openDetails = () => {
     setshowMovementDetails(true)
   }
-  console.log(usData)
-  return (
+
+
+  if (!usData?.accounts || !token) {
+    return (
+      <div className={style.loading} >
+        <img src={loading} />
+      </div>)
+  }
+  
+  return ( 
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
       <select>
