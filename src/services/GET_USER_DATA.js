@@ -1,6 +1,7 @@
+import { API_URL } from "./API"
 export const GET_USER_DATA = async (token) => {
   try {
-    const res = await fetch('http://localhost:4000/api/user', {
+    const res = await fetch(`${API_URL}/api/user`, {
       headers: {
         authorization: `Bearer ${token}`
       }

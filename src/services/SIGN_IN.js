@@ -1,3 +1,4 @@
+import { API_URL } from "./API"
 export const SIGN_IN = async (data) => {
   try {
     const {
@@ -25,7 +26,7 @@ export const SIGN_IN = async (data) => {
     body.append('imagesOne', photoDNIFront[0])
     body.append('imageTwo', photoDNIReverse[0])
 
-    const res = await fetch('http://localhost:4000/api/user/new', {
+    const res = await fetch(`${API_URL}/api/user/new`, {
       method: 'POST',
       body
     })
