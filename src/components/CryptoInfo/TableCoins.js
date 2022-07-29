@@ -3,10 +3,10 @@ import CoinRow from './CoinRow'
 
 const TableCoins = ({ coins, search }) => {
 
-  const filteredCoins = coins.filter((coin) => {
+  const filteredCoins = coins?.filter((coin) => {
     return (
-      coin.name.toLowerCase().includes(search.toLowerCase()) |
-      coin.symbol.toLowerCase().includes(search.toLowerCase())
+      coin?.name?.toLowerCase().includes(search.toLowerCase()) |
+      coin?.symbol?.toLowerCase().includes(search.toLowerCase())
     )
   })
 
@@ -32,7 +32,7 @@ const TableCoins = ({ coins, search }) => {
         </tr>
       </thead>
       <tbody>
-        {filteredCoins.map((element) => (   
+        {filteredCoins?.map((element) => (   
           <CoinRow element={element} key={element.name} />
         ))}
       </tbody>
