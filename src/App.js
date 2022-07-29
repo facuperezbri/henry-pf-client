@@ -14,6 +14,9 @@ import Favorites from "./components/Favourites/Favourites";
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
+
+import Charge from "./pages/Charge/Charge";
+
 import AuthProvider from "./components/auth/AuthProvider";
 
 
@@ -23,23 +26,23 @@ function App () {
   return (
     <div className={style.container}>
       <Routes>
-        <Route path="/account/signin" element={<SignIn />} />
-        <Route path="/account/login" element={<Login />} />
+        {/* <Route path="/account/signin" element={<SignIn />} /> */}
         <Route path="/" element={<Landing />} />
+        <Route path="/account/login" element={<LoginSignIn />} />
         <Route
           path="/profile"
           element={
-            
-              <div className={style.app_container}>
-                <Profile />
-              </div>
-           
+
+            <div className={style.app_container}>
+              <Profile />
+            </div>
+
           }
         />
         <Route
           path="/home"
           element={
-            <AuthProvider>       
+            <AuthProvider>
               <div className={style.app_container}>
                 <Home />
               </div>
@@ -72,11 +75,11 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-            
-              <div className={style.appcontainer}>
-                <Cryptos />
-              </div>
-           
+
+            <div className={style.appcontainer}>
+              <Cryptos />
+            </div>
+
           }
         />
         <Route
@@ -116,13 +119,45 @@ function App () {
           exact
           path="/cryptosmarket/:id"
           element={
-            
-              <div className={style.appcontainer}>
-                <CryptoDetails />
-              </div>
-            
+
+            <div className={style.appcontainer}>
+              <CryptoDetails />
+            </div>
+
           }
         />
+
+        <Route exact path="/cryptosmarket" element={
+          <div className={style.appcontainer}>
+            <Cryptos />
+          </div>
+        } />
+        <Route exact path="/news" element={
+          <div className={style.app_container}>
+            <News />
+          </div>
+        } />
+        <Route exact path="/faq" element={
+          <div className={style.app_container}>
+            <Faq />
+          </div>
+        } />
+        <Route exact path="/charge" element={
+          <div className={style.app_container}>
+            <Charge />
+          </div>
+        } />
+        <Route exact path="/fav" element={
+          <div>
+            <Favorites />
+          </div>
+        }/>
+        <Route exact path="/cryptomarket/:id" element={
+          <div className={style.app_container}>
+            <CryptoDetails />   
+          </div>
+        }/>
+
 
         <Route
           exact
