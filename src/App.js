@@ -14,7 +14,7 @@ import Favorites from "./components/Favourites/Favourites"
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
-
+import EditProfile from "./components/Profile/EditProfile";
 
 
 function App () {
@@ -27,6 +27,12 @@ function App () {
           <div className={style.app_container}>
             <Profile />
           </div>
+        }
+        />
+        <Route path="/profile/editProfile" element={
+            <div>
+              <EditProfile/>
+            </div>
         }
         />
         <Route path='/account/newSign' element={<LoginSignIn />} />

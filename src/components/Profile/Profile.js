@@ -21,7 +21,7 @@ export default function Profile () {
   return (
     <div className={Style.main}>
       {dataProfile ? <div className={Style.container}>
-        <img className={Style.img} src={dataProfile?.profilepic} />
+        <img className={Style.img} src={dataProfile.profilepic} />
         <h2>{dataProfile.username}</h2>
       </div> : <h1>Loading...</h1>
       }
@@ -43,6 +43,8 @@ export default function Profile () {
       </div> : null
       }
       {dataProfile ? <Link to="/home"><button>Home</button></Link> : null}
+      {dataProfile ? <Link to="/profile/editProfile"><button>edit</button></Link> : null}
+
     </div>
   )
 }
