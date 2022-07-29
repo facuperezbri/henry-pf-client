@@ -5,15 +5,17 @@ import { setFormat } from '../../hooks/setFormatDate'
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
   // const dispatch = useDispatch();
+  // eslint-disable-next-line no-use-before-define
   const [orderDate, setOrderDate] = useState([])
   const [interruptor,setInterruptor] = useState(false)
+  const [interruptor2,setInterruptor2] = useState(false)
   const [filter, setFilter] = useState("")
   const handlerClick = (activitie) => {
     openDetails()
     setMovement(activitie)
   }
 
-  const arrNew = activities.map(e=>{
+  let arrNew = activities.map(e=>{
     return {
       categories:e.categories.name,
       fecha:setFormat(new Date(e.date), 'en-EN', { dateStyle: 'long' }),
@@ -23,9 +25,22 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
     }
   })
 
-  function last3mov() {
-    const order = orderDate.slice(0, 3)     
-    setOrderDate(order) 
+  const newArray = arrNew
+
+  function dasda() {
+    if(!interruptor2){
+      arrNew = arrNew.slice(0, 3)
+    }
+  }
+
+  function allmov() {
+    const arrNew = newArray     
+    setOrderDate(arrNew)
+    if(!interruptor2){
+      const arrNew = newArray     
+    setOrderDate(arrNew)
+    setInterruptor2(true)
+    }
   }
 
  const sortByDate = ()=>{
@@ -54,6 +69,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
   const categoriesUnique = [...new Set(categoriesRaw)]
 
   useEffect(() => {
+  dasda()
   setFilter("")
   setOrderDate(arrNew)
   },[])
@@ -63,6 +79,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
     arrNew.sort((a,b)=>{
       return b.date.substring(0, b.date.length - 1)- a.date.substring(0, a.date.length - 1)
      })
+    arrNew = arrNew.slice(0, 3) 
   setOrderDate(arrNew)
   }
 
@@ -72,7 +89,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
           Movements
         <button onClick={sortByDate}>order by fecha {interruptor?<span>DESC</span>:<span>ASC</span>}</button>
 
-        <button onClick={(e) => last3mov(e)}>Last 3 movements</button>
+        <button onClick={(e) => allmov(e)}>Show movements</button>
 
         <select name="filterCategory" onChange={onSelectCategory}>
           <option selected="true" disabled="disabled">Category...</option>
