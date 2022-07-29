@@ -32,26 +32,17 @@ const News2 = () => {
   return (
     <InfiniteScroll
       dataLength={news.length}
-      hasMore={true}
+      hasMore={hasNextPage}
       next={() => fetchNextPage()}>
 
       <ul>
-        {news.pages.map(n => n.map(t => <li>
-          {t.title}
-          {t.content}
-          {t.content}
-          {t.content}
-        </li>))}
+        {news.map((n) => {
+          return (
+            <li>{n.title}</li>
+          )
+        })}
       </ul>
-      <button disabled={!hasNextPage} onClick={fetchNextPage}>Load more</button>
     </InfiniteScroll >
-    // <main>
-    //   <h1>{console.log(data.pages)}</h1>
-    //   <ul>{data.pages.map(n => n.map(t => <li>{t.title}</li>))}</ul>
-
-    //   <div>{isFetching && !isFetchingNextPage ? "Fetching" : null}</div>
-
-    // </main>
   )
 }
 
