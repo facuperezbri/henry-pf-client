@@ -5,6 +5,9 @@ export const GET_USER_DATA = async (token) => {
         authorization: `Bearer ${token}`
       }
     })
+    if(res.status === 401) {
+      return {error: res.status}
+    }
     const data = res.json()
     return data
 
