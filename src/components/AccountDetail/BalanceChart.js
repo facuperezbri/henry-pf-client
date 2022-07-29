@@ -49,9 +49,9 @@ export default function LineChart () {
     }
     if(singleDigitMonth.includes(month)) {
       // console.log(month)
-      console.log("entré al 2do")
+      // console.log("entré al 2do")
       for (let i=1; i<=monthDays; i++) {
-        console.log("entre al for")
+        // console.log("entre al for")
         if (i===1) {
           let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5,7) === `0${month}` && elem.date?.slice(8) === `01`)
         // let previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+1].balance
@@ -60,19 +60,19 @@ export default function LineChart () {
         //   previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+searching].balance
         //   searching++
         // }
-        if (movesOfTheDay.length>0) {
-          console.log("entré a la vaina")
+        if (movesOfTheDay?.length>0) {
+          // console.log("entré a la vaina")
           aux.push({x: i, y: movesOfTheDay[0].balance})
         } else {
-          console.log("entre al false")
+          // console.log("entre al false")
         aux.push({x: i, y: 0})
         }
-        console.log(aux)
+        // console.log(aux)
       }
       if (i>1 && i<=9) {
         let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5,7) === `0${month}` && elem.date?.slice(8) === `0${i}`)
         let previousBalance = aux[aux.length-1].y
-        if (movesOfTheDay.length>0) {
+        if (movesOfTheDay?.length>0) {
           aux.push({x: i, y: movesOfTheDay[0].balance})
         } else {
         aux.push({x: i, y: previousBalance})
@@ -81,7 +81,7 @@ export default function LineChart () {
       if (i>=10) {
         let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5,7) === `0${month}` && elem.date?.slice(8) === `${i}`)
         let previousBalance = aux[aux.length-1].y
-        if (movesOfTheDay.length>0) {
+        if (movesOfTheDay?.length>0) {
           aux.push({x: i, y: movesOfTheDay[0].balance})
         } else {
         aux.push({x: i, y: previousBalance})
@@ -101,7 +101,7 @@ export default function LineChart () {
       //   previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+searching].balance
       //   searching++
       // }
-      if (movesOfTheDay.length>0) {
+      if (movesOfTheDay?.length>0) {
         aux.push({x: i, y: movesOfTheDay[0].balance})
       } else {
       aux.push({x: i, y: 0})
@@ -110,7 +110,7 @@ export default function LineChart () {
       if (i>1 && i<=9) {
       let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5,7) === `${month}` && elem.date?.slice(8) === `0${i}`)
       let previousBalance = aux[aux.length-1].y
-      if (movesOfTheDay.length>0) {
+      if (movesOfTheDay?.length>0) {
         aux.push({x: i, y: movesOfTheDay[0].balance})
       } else {
       aux.push({x: i, y: previousBalance})
@@ -119,7 +119,7 @@ export default function LineChart () {
       if (i>=10) {
       let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5,7) === `${month}` && elem.date?.slice(8) === `${i}`)
       let previousBalance = aux[aux.length-1].y
-      if (movesOfTheDay.length>0) {
+      if (movesOfTheDay?.length>0) {
         aux.push({x: i, y: movesOfTheDay[0].balance})
       } else {
       aux.push({x: i, y: previousBalance})

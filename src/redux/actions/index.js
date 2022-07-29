@@ -15,6 +15,7 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
 export const POST_MOVEMENT ='POST_MOVEMENT'
+export const GET_RATINGS ='GET_RATINGS'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -43,7 +44,7 @@ export const dataProfile = (toquen)=>{//esto es temporal necesita mandar un json
 }
 
 export const changeProfile = (objeto) => {
-   return async function(dispatch){
+  return async function(dispatch){
     const response = await axios.put('http://localhost:4000/api/user/useredit',objeto)
     dispatch({type:CHANGEPROFILE , payload: response.data})
   } 
@@ -120,6 +121,26 @@ export function removeFavorite(id) {
     return dispatch({type: REMOVE_FAVORITE,
     payload: id})}}
     
+
+export function getRatings() {
+  return async function (dispatch) {
+    try {
+      let ratings = await axios.get("http://localhost:4000/api/ratings")
+      return dispatch({
+        type: GET_RATINGS,
+        payload: ratings.data
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
+export function postRating(payload) {
+  return axios.post("http://localhost:4000/api/ratings",payload)
+}
+
+
 export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
