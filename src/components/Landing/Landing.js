@@ -22,7 +22,7 @@ export default function Landing () {
             }}
           />your <span>wallet.</span></h1>
           <h3>The definitive wallet.</h3>
-          <NavLink to="account/newsign">
+          <NavLink to="/account/login">
             <button className={style.btn}>Let's go</button>
           </NavLink>
         </div>

@@ -31,7 +31,9 @@ const CryptosInfo = () => {
     dispatch(orderCryptoPrice(e.target.value));
     setPrice(e.target.value);
   }
- 
+  if(allCryptos?.length === 0){
+    return (<div>..loading</div>)
+}
 
   return (
       <div className={styles.container}>

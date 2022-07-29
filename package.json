@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@tanstack/react-query": "^4.0.10",
+=======
+    "@stripe/react-stripe-js": "^1.9.0",
+    "@stripe/stripe-js": "^1.34.0",
+>>>>>>> 974d722db7c12a61b487eedd5c23b64cc17dfbd1
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
