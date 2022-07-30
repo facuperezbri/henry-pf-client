@@ -9,7 +9,7 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import Nav from '../../components/Nav/Nav'
 
 import style from './Wallet.module.css'
-import { set } from 'react-hook-form'
+import { TRANSFER_MONEY } from '../../services/TRANSFER_MONEY'
 
 
 export default function Wallet () {
@@ -29,7 +29,6 @@ export default function Wallet () {
     dispatch(getCategory())
   }, [])
 
-
   function handleChange (e) {
     e.preventDefault()
     if (e.target.name !== 'amount') {
@@ -42,11 +41,12 @@ export default function Wallet () {
       setAmount(parseInt(e.target.value, 10))
     }
   }
- 
 
   function handleSubmit (e) {
     e.preventDefault()
-    axios.post('http://localhost:4000/api/movement/make_a_movement/', { ...state, amount: amount })
+    TRANSFER_MONEY({ ...state, amount: amount }).then((res) => {
+      console.log(res)
+    }).catch(console.error)
   }
   return (
     <div className={style.container}>
