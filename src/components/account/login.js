@@ -8,6 +8,9 @@ import logoGoogle from '../../assets/icons/googleLogo.svg'
 import { useToken } from '../../hooks/useToken'
 
 
+import { AiOutlineGoogle } from 'react-icons/ai'
+
+
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
@@ -54,7 +57,7 @@ const Login = () => {
           </div>
         </form>
         <div className={formStyles.center}>
-          <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with <img src={logoGoogle} alt='Google logo' /></button>
+          <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Log in with Google</button>
         </div>
       </div>
 
