@@ -1,5 +1,4 @@
 export const LOG_IN = async ({ email, password, googleID }) => {
-    console.log({ email, password })
     try {  
       const res = await fetch('http://localhost:4000/api/user/login', {
         headers: {

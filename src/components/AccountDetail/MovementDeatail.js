@@ -6,7 +6,6 @@ import { setFormat } from '../../hooks/setFormatDate'
 
 const MovementDeatail = ({ movement, closeDetails }) => {
 
-
     return (
         <>
             <div className={style.movement_container} onClick={closeDetails} />
@@ -26,7 +25,7 @@ const MovementDeatail = ({ movement, closeDetails }) => {
 
                     <div className={style.detail}>
                         <span>Receipt</span>
-                        <span>{movement?.receipt.toString()}</span>
+                        <span>{movement?.receipt?.toString()}</span>
                     </div>
 
                     <div className={style.detail}>
@@ -48,7 +47,7 @@ const MovementDeatail = ({ movement, closeDetails }) => {
 
                     <div className={style.detail}>
                         <span>Date</span>
-                        <span>{setFormat(new Date(movement?.date), 'en-EN', { dateStyle: 'long' })}</span>
+                        <span>{setFormat(new Date(movement?.fecha), 'en-EN', { dateStyle: 'long' })}</span>
                     </div>
                 </div>
             </div>

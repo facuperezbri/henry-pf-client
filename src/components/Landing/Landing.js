@@ -6,6 +6,7 @@ import Typewriter from 'typewriter-effect';
 import { MdSecurity } from "react-icons/md"
 import { AiOutlineShopping } from "react-icons/ai"
 import { GiTwoCoins } from 'react-icons/gi'
+import Ratings from './Ratings';
 
 export default function Landing () {
   return (
@@ -65,6 +66,9 @@ export default function Landing () {
           </li>
         </ul>
       </div>
+      {/* <div>
+        <Ratings />
+      </div> */}
     </div >
   )
 }

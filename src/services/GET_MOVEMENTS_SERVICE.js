@@ -1,7 +1,7 @@
-
+import { API_URL } from "./API"
 export const GET_MOVEMENT_SERVICE = async (cvu) => {
   try {
-    let movements = await fetch('http://localhost:4000/api/movement', {
+    let movements = await fetch(`${API_URL}/api/movement`, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       },

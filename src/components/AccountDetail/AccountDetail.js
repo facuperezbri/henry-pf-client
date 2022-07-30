@@ -11,10 +11,9 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
-import {useToken} from '../../hooks/useToken'
+import { useToken } from '../../hooks/useToken'
 import loading from '../../assets/icons/loading.svg'
-// import BalanceChart from './BalanceChart'
-// xxx
+import BalanceChart from './BalanceChart'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
@@ -46,8 +45,7 @@ export default function AccountDetail () {
         <img src={loading} />
       </div>)
   }
-  
-  return ( 
+  return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
       <select>
@@ -83,18 +81,20 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
-
-        <div>
-          <Suspense fallback={<div>Loading</div>}>
-            <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
-          </Suspense>
-        </div>
-        {
-          showMovementDetails &&
-          <MovementDeatail movement={movement} closeDetails={closeDetails} />
-        }
-        {/* <BalanceChart/> */}
+        <BalanceChart />
       </div>
+
+      <div>
+        <Suspense fallback={<div>Loading</div>}>
+          <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
+        </Suspense>
+      </div>
+      {
+        showMovementDetails &&
+        <MovementDeatail movement={movement} closeDetails={closeDetails} />
+      }
+
+
     </div>
   )
 }

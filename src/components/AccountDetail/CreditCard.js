@@ -3,7 +3,7 @@ import styles from './CreditCard.module.css'
 
 
 const CreditCard = ({ balance, number, name, lastname }) => {
-  console.log(number, balance)
+  // console.log(number, balance)
   //--------------------------------------HOCKS-----------------------------------------------------------------
   const [infoSensity, setInfoSensity] = useState({
     targetNumber: number,

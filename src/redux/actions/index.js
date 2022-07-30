@@ -2,7 +2,7 @@ import axios from 'axios'
 import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
 import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
-
+import { API_URL } from '../../services/API'
 
 
 export const GENERIC = 'GENERIC'
@@ -15,6 +15,7 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
 export const POST_MOVEMENT ='POST_MOVEMENT'
+export const GET_RATINGS ='GET_RATINGS'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -43,7 +44,7 @@ export const dataProfile = (toquen)=>{//esto es temporal necesita mandar un json
 }
 
 export const changeProfile = (objeto) => {
-   return async function(dispatch){
+  return async function(dispatch){
     const response = await axios.put('http://localhost:4000/api/user/useredit',objeto)
     dispatch({type:CHANGEPROFILE , payload: response.data})
   } 
@@ -82,7 +83,7 @@ export const getMovements = (cvu) => {
 export const getCryptos = () => {
   return async function (dispatch) {
     try {
-      let info = await axios.get("http://localhost:4000/api/currency/crypto")
+      let info = await axios.get(`${API_URL}/api/currency/crypto`)
       console.log(info.data)
       return dispatch({
         type: 'GET_CRYPTO',
@@ -96,7 +97,7 @@ export const getCryptos = () => {
 
 export function getFavorite(id) {
   return async function(dispatch){
-    await axios.get(`http://localhost:4000/api/favourites/${id}`).then((fav)=>{
+    await axios.get(`${API_URL}/api/favourites/${id}`).then((fav)=>{
       // console.log(fav.data)
       return dispatch({
       type: GET_FAVORITE,
@@ -107,7 +108,7 @@ export function getFavorite(id) {
 
 export function addFavorite(payload) {
   return async function(dispatch){
-    const favouriteCreated = await axios.post('http://localhost:4000/api/favourites/createFavourites',{id: payload.userId, cvu: payload.fav, username: payload.fav})
+    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/createFavourites`,{id: payload.userId, cvu: payload.fav, username: payload.fav})
     return dispatch({ type: POST_FAVORITE,
       payload: favouriteCreated.data
       })
@@ -116,14 +117,34 @@ export function addFavorite(payload) {
 
 export function removeFavorite(id) {
   return async function(dispatch){
-    const favouriteRemoved = await axios.delete('http://localhost:4000/api/favourites/delete',id)
+    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/delete`,id)
     return dispatch({type: REMOVE_FAVORITE,
     payload: id})}}
     
+
+export function getRatings() {
+  return async function (dispatch) {
+    try {
+      let ratings = await axios.get(`${API_URL}/api/ratings`)
+      return dispatch({
+        type: GET_RATINGS,
+        payload: ratings.data
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
+export function postRating(payload) {
+  return axios.post(`${API_URL}/api/ratings`,payload)
+}
+
+
 export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
-          let info = await axios.get(`http://localhost:4000/api/currency/${id}`)
+          let info = await axios.get(`${API_URL}/api/currency/${id}`)
           console.log('entre')
           return dispatch({
               type: "GET_DETAILS_CRYPTO",
@@ -153,7 +174,7 @@ export function orderCryptoPrice(payload) {
 
 export const sendMovement =  (obj)=>{
   return async function(dispatch){
-      const response = await axios.post("http://localhost:4000/api/movement/make_a_movement",obj)
+      const response = await axios.post(`${API_URL}/api/movement/make_a_movement`,obj)
       return dispatch({type:POST_MOVEMENT, payload:response.data})
   }   
 
