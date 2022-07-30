@@ -26,7 +26,7 @@ const handleChange = (e)=>{
 }
 const sendPutUser = async()=>{
   await axios.put("http://localhost:4000/api/user/useredit",putUserm)
-  const element = document.querySelector()
+  // const element = document.querySelector()
 }
 //_---------------------------------------------------------------------------------------------------------------------------------------
   return (

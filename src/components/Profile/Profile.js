@@ -3,7 +3,7 @@ import Style from "./Profile.module.css";
 import { GET_USER_DATA } from "../../services/GET_USER_DATA";
 import pen from '../../assets/icons/pen.svg'
 import EditProfile from "./EditProfile";
-
+import EditImg from "./EditImg";
 
 export default function Profile() {
   const [visible, setVisible] = useState(false)
@@ -75,7 +75,7 @@ const interruptorUser = ()=>{
       <div className={Style.container}>
         <img className={Style.img} src={dataProfile.profilepic} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen}/></div>
-        {visibleImg?<EditProfile  dataInput={dataInput} dataProfile={dataProfile}/>:null}
+        {visibleImg?<EditImg  dataInput={dataInput} dataProfile={dataProfile}/>:null}
       </div>
         
       <div className={Style.containerDetail}>
