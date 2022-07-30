@@ -1,14 +1,14 @@
 .mainContainer h4 {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .mainContainer h2 {
+    font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-.center {
-    display: grid;
-    place-content: center;
+.mainContainer h2 span {
+    color: var(--red-color);
 }
 
 .createStart {
@@ -27,14 +27,13 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin: 1rem auto;
+    margin: 2rem 0;
 }
 
 .input_text {
     border: none;
-    /* width: 100%; */
-    border-radius: .2rem;
-    border-radius: .2rem;
+    width: 100%;
+    border-radius: 7px;
     padding: .7rem 1rem;
     font-size: 1rem;
     border: .1rem gainsboro solid;
@@ -51,6 +50,7 @@
 
 .button {
     background-color: whitesmoke;
+    width: 100%;
     border-radius: 7px;
     padding: .5rem 1rem;
     border: none;
@@ -61,19 +61,17 @@
 
 .button_google {
     display: flex;
+    justify-content: center;
     background-color: whitesmoke;
-    margin: 1rem;
     align-items: center;
     cursor: pointer;
+    gap: 1rem;
+    color: gray;
 }
 
 .button_google img {
     margin-left: 0.5rem;
-    height: 25px;
-}
-
-.button_submit {
-    width: 8rem;
+    height: 50px;
 }
 
 .button_prev_next_container {
@@ -87,10 +85,6 @@
     border-radius: .3rem;
     width: 100%;
     padding: .5rem 1rem;
-}
-
-.input_file {
-    /* display: contents; */
 }
 
 .image_preview img {

@@ -62,12 +62,12 @@ export default function Wallet () {
               <label htmlFor="cvuD">Destiny CVU: </label>
               <input name='cvuD' type="number" value={state.cvuD} onChange={handleChange} placeholder="Where do yo want to transfer to?" />
               <label htmlFor="amount">Amount: </label>
-              <input name='amount' type='number' onChange={handleChange} />
+              <input name='amount' type='number' onChange={handleChange} placeholder="How much do you want to send?" />
               <label htmlFor="category">Category: </label>
               <input name='category' type='text' onChange={handleChange} />
               <label htmlFor='comment'>Comment:</label>
               <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
-              <button onClick={handleSubmit}>Send transference</button>
+              <button className={style.btn} onClick={handleSubmit}>Send transference</button>
             </form>
           </div>
         </div>

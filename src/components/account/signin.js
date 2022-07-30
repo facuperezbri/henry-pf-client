@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 
+import { FcGoogle } from 'react-icons/fc'
+
 const SignIn = () => {
   const navigate = useNavigate()
 
@@ -63,11 +65,11 @@ const SignIn = () => {
     <div className={formStyles.mainContainer}>
       <h4 className={formStyles.createStart}>Start for free.</h4>
       <h2>Create your account<span>.</span></h2>
-      <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
+      <div>
         <div className={formStyles.steps_index}>
-          <div style={{ backgroundColor: step >= 1 && 'greenyellow' }}></div>
-          <div style={{ backgroundColor: step >= 2 && 'greenyellow' }}></div>
-          <div style={{ backgroundColor: step >= 3 && 'greenyellow' }}></div>
+          <div style={{ backgroundColor: step >= 1 && '#FF5F6D' }}></div>
+          <div style={{ backgroundColor: step >= 2 && '#FF5F6D' }}></div>
+          <div style={{ backgroundColor: step >= 3 && '#FF5F6D' }}></div>
         </div>
         <div className={formStyles.card}>
           <div>
@@ -77,7 +79,7 @@ const SignIn = () => {
             {
               !userGoogle && step === 1 &&
               <div className={formStyles.center}>
-                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with Google</button>
+                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><FcGoogle size={35} classname={`${formStyles.button_google}`} /> Sign up with Google</button>
               </div>
             }
             {
