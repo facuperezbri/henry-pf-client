@@ -30,6 +30,12 @@
     margin: 2rem 0;
 }
 
+.or {
+    margin: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
 .input_text {
     border: none;
     width: 100%;
@@ -66,7 +72,9 @@
     align-items: center;
     cursor: pointer;
     gap: 1rem;
-    color: gray;
+    background: var(--red-color);
+    color: white;
+    font-weight: 600;
 }
 
 .button_google img {
@@ -78,6 +86,12 @@
     display: flex;
     gap: 2rem;
     margin-top: 2rem;
+}
+
+.button_submit {
+    background: var(--red-color);
+    color: white;
+    font-weight: 600;
 }
 
 .input_error {

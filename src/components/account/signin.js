@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 
-import { FcGoogle } from 'react-icons/fc'
+import { AiOutlineGoogle } from 'react-icons/ai'
 
 const SignIn = () => {
   const navigate = useNavigate()
@@ -79,9 +79,10 @@ const SignIn = () => {
             {
               !userGoogle && step === 1 &&
               <div className={formStyles.center}>
-                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><FcGoogle size={35} classname={`${formStyles.button_google}`} /> Sign up with Google</button>
+                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Sign up with Google</button>
               </div>
             }
+            <div className={formStyles.or}>or</div>
             {
               userGoogle?.photoURL &&
               <div className={formStyles.center}>
@@ -96,7 +97,7 @@ const SignIn = () => {
                 {
                   !userGoogle?.email &&
                   <div className={formStyles.input_container}>
-                    <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
+                    <input className={formStyles.input_text} defaultValue="" type="email" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
                     {errors.email && <span className={formStyles.input_error}>This field is required</span>}
                   </div>
                 }
@@ -165,7 +166,7 @@ const SignIn = () => {
                 </div>
 
                 <div className={formStyles.center}>
-                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Submit</button>
+                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Create your wallet.</button>
                 </div>
               </>
             }
