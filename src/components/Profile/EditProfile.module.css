@@ -1,8 +1,16 @@
 .container{
-    background-color: red;
-    width: 100%;
-    height: fit-content;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 1rem;
+    width: 35rem;
+    height: 25rem;
     margin: 6rem auto;
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 .subContainer{
     display: flex;
@@ -19,5 +27,23 @@
     border:2px solid black;
     width: 30%;
     margin: 1rem auto;
+    cursor: pointer;
+}
+.input{
+    width:50% ;
+    height: 2rem;
+}
+.containerX{
+    width: 80%;
+    display: flex;
+    justify-content: end;
+}
+.X{
+    border: solid 1px black;
+    background-color: red;
+    width: 5%;
+    text-align: center;
+    border-radius: 50%;
+    margin-bottom: 5rem;
     cursor: pointer;
 }
