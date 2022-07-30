@@ -106,3 +106,12 @@
     margin-left: 30rem;
     margin-top: -1rem;
 }
+.btn{
+    border:solid 1px black;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: #FF5F6D;
+    cursor: pointer;
+}
