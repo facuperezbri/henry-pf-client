@@ -16,6 +16,9 @@ export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
 export const POST_MOVEMENT ='POST_MOVEMENT'
 export const GET_RATINGS ='GET_RATINGS'
+export const OPEN_RATE ='OPEN_RATE'
+export const CLOSE_RATE ='CLOSE_RATE'
+
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -140,6 +143,19 @@ export function postRating(payload) {
   return axios.post(`${API_URL}/api/ratings`,payload)
 }
 
+export function openRate() {
+  return {
+    type: OPEN_RATE,
+    payload: true
+  }
+}
+
+export function closeRate() {
+  return {
+    type: CLOSE_RATE,
+    payload: false
+  }
+}
 
 export function getDetailsCrypto(id) {
   return async function(dispatch){
