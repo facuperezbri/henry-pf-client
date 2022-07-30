@@ -9,8 +9,6 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import Nav from '../../components/Nav/Nav'
 
 import style from './Wallet.module.css'
-import { set } from 'react-hook-form'
-
 
 export default function Wallet () {
   const dispatch = useDispatch()
@@ -21,7 +19,7 @@ export default function Wallet () {
     cvuMain: userData.length === 0 ? 0 : userData.accounts[0].cvu,
     currency: "pesos",
     operation: "Debit",
-    comment:""
+    comment: ""
   })
 
   useEffect(() => {
@@ -42,7 +40,7 @@ export default function Wallet () {
       setAmount(parseInt(e.target.value, 10))
     }
   }
- 
+
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -51,35 +49,29 @@ export default function Wallet () {
   return (
     <div className={style.container}>
       <Nav />
-
-      <div className={style.transactionsContainer}>
-        <h2>Transaction</h2>
-        <NavLink exact to="/cryptosmarket" >
+      <div className={style.elementsContainer}>
+        <div className={style.transactionsContainer}>
+          <h2>Transaction</h2>
+          {/* <NavLink exact to="/cryptosmarket" >
           <button className={style.buttonToCrypto}>Cryptos Market</button>
-        </NavLink>
-        <form onSubmit={handleSubmit} className={style.formContainer}>
-          <label htmlFor="cvuMain">Your CVU: </label>
-          <input name='cvuMain' value={userData.length === 0 ? 0 : userData.accounts[0].cvu} disabled />
-          <label htmlFor="cvuD">Destiny CVU: </label>
-          <input name='cvuD' type="text" value={state.cvuD} onChange={handleChange} />
-          <label htmlFor="amount">Amount: </label>
-          <input name='amount' type='number' onChange={handleChange} />
-          <label htmlFor="category">Category: </label>
-          <input name='category' type='text' onChange={handleChange} />
-          {/* <select>
-            {movements?.map((m, index) => {
-              return (
-                <option key={index} value={m}>{m}</option>
-              )
-            })}
-          </select> */}
-          <label htmlFor='comment'>Comment:</label>
-          <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
-          <button onClick={handleSubmit}>Send transference</button>
-        </form>
-      </div>
-      <div>
-        <Favorites setState={setState} state={state} />
+        </NavLink> */}
+          <form onSubmit={handleSubmit} className={style.formContainer}>
+            <label htmlFor="cvuMain">Your CVU: </label>
+            <input name='cvuMain' value={userData.length === 0 ? 0 : userData.accounts[0].cvu} disabled />
+            <label htmlFor="cvuD">Destiny CVU: </label>
+            <input name='cvuD' type="text" value={state.cvuD} onChange={handleChange} />
+            <label htmlFor="amount">Amount: </label>
+            <input name='amount' type='number' onChange={handleChange} />
+            <label htmlFor="category">Category: </label>
+            <input name='category' type='text' onChange={handleChange} />
+            <label htmlFor='comment'>Comment:</label>
+            <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
+            <button onClick={handleSubmit}>Send transference</button>
+          </form>
+        </div>
+        <div>
+          <Favorites setState={setState} state={state} />
+        </div>
       </div>
     </div >
   )
