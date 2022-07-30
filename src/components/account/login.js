@@ -40,9 +40,13 @@ const Login = () => {
     }).catch(console.error)
   }
   return (
-    <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
+    <div className={formStyles.mainContainer}>
+      <h4 className={formStyles.createStart}>Welcome back.</h4>
+      <h2>Already a member<span>?</span></h2>
 
       <div className={formStyles.card}>
+        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Log in with Google</button>
+        <div className={formStyles.or}>or</div>
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
           <div className={formStyles.input_container}>
             <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
@@ -52,14 +56,11 @@ const Login = () => {
             <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
             {errors.password && <span className={formStyles.input_error}>his field is required</span>}
           </div>
-          <div className={formStyles.center}>
-            <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
-          </div>
+          <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
         </form>
-        <div className={formStyles.center}>
-          <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Log in with Google</button>
-        </div>
+
       </div>
+
 
     </div>
   )
