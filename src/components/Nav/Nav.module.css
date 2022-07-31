@@ -1,7 +1,7 @@
 .header {
     background-color: var(--background-color-nav);
     width: 10vw;
-    min-width: fit-content;
+    min-width: 200px;
     height: 100vh;
     border-bottom-right-radius: 1rem;
     border-top-right-radius: 1rem;
