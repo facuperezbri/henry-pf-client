@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './Nav.module.css'
 import { Link } from "react-router-dom"
 
@@ -19,11 +19,24 @@ export default function Nav () {
 
   const dispatch = useDispatch()
   const showRate = useSelector(state => state.showRate)
+  const movements = useSelector(state => state.movements)
+  console.log(movements.movements?.length)
+
+  const [perilla, setPerilla] = useState(false)
+
+  useEffect(()=>{
+    if ( movements.movements?.length === 1 ) {
+      setPerilla(true)
+    }
+  },[])
+
   function logOut () {
     window.localStorage.setItem("token", "")
   }
   function openRateclick() {
-    dispatch(openRate(true))
+    // dispatch(openRate(true))
+    setPerilla(!perilla)
+    // alert("entrando")
   }
   return (
     <nav className={style.header}>
@@ -61,11 +74,19 @@ export default function Nav () {
             </li>
           </Link>
           <li onClick={openRateclick} className={style.listItem}>
-            <img src={full} alt='FAQ' className={style.icon}/><span className={style.listItem_text}>Rate us!</span>
+            <img src={full} alt='Rate' className={style.icon}/><span className={style.listItem_text}>Rate us!</span>
           </li>
+          {/* {
+            (function show () {
+            if ( movements.movements?.length === 25 || showRate ) {
+              dispatch(openRate(true))
+              return <RateForm/>
+            }})()
+          } */}
           {
-            showRate &&
-            <RateForm/>
+            perilla ?
+            <RateForm setPerilla={setPerilla}/> :
+            null
           }
         </ul>
       </div>

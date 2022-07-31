@@ -87,7 +87,7 @@ export const getCryptos = () => {
   return async function (dispatch) {
     try {
       let info = await axios.get(`${API_URL}/api/currency/crypto`)
-      console.log(info.data)
+      // console.log(info.data)
       return dispatch({
         type: 'GET_CRYPTO',
         payload: info.data
@@ -161,7 +161,7 @@ export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
           let info = await axios.get(`${API_URL}/api/currency/${id}`)
-          console.log('entre')
+          // console.log('entre')
           return dispatch({
               type: "GET_DETAILS_CRYPTO",
               payload: info.data
