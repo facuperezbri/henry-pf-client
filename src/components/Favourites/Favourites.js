@@ -84,7 +84,7 @@ export default function Favorites ({ setState, state }) {
             ...state, cvuD: cvu
         })
     }
-    console.log(favAccs)
+    // console.log(favAccs)
     useEffect(() => {
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
     }, [dispatch])

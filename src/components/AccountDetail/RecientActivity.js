@@ -4,7 +4,6 @@ import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
-  // const dispatch = useDispatch();
   // eslint-disable-next-line no-use-before-define
   const [orderDate, setOrderDate] = useState([])
   const [interruptor,setInterruptor] = useState(false)

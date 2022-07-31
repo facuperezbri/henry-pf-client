@@ -12,7 +12,7 @@ export default function Profile () {
   const [dataProfile, setProfile] = useState("")
   const [dataInput, setDataInput] = useState({})  
   //---------------------------------------------------------------------------------------------------
-  console.log(dataProfile)
+  // console.log(dataProfile)
   const interruptor = () => {
     if (visible) setVisible(false)
     if (!visible) setVisible(true)

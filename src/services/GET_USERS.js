@@ -9,7 +9,7 @@ export const GET_USERS = async () => {
             }
         })
         const users = await data.json()
-        console.log({users})
+        // console.log({users})
         return users
     } catch (error) {
         console.error(error)

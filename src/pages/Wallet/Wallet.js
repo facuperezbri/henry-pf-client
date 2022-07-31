@@ -4,12 +4,13 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import Favorites from '../../components/Favourites/Favourites'
 
-import { getCategory, getMovements, getUser } from '../../redux/actions'
+import { getCategory, getMovements, getUser, openRate } from '../../redux/actions'
 
 import Nav from '../../components/Nav/Nav'
 
 import style from './Wallet.module.css'
 import { TRANSFER_MONEY } from '../../services/TRANSFER_MONEY'
+import RateForm from '../../components/Nav/RateForm'
 
 
 export default function Wallet () {
@@ -23,6 +24,14 @@ export default function Wallet () {
     operation: "Debit",
     comment: ""
   })
+
+  // const showRate = useSelector(state => state.showRate)
+
+
+  // const movements = useSelector(state => state.movements)
+  // let ifMoves = movements.movements?.length
+
+  
 
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
@@ -42,13 +51,13 @@ export default function Wallet () {
     }
   }
 
-
   function handleSubmit (e) {
     e.preventDefault()
     TRANSFER_MONEY({ ...state, amount: amount }).then((res) => {
       console.log(res)
     }).catch(console.error)
   }
+
   return (
     <div className={style.container}>
       <Nav />
@@ -76,6 +85,16 @@ export default function Wallet () {
         </div>
         <div>
           <Favorites setState={setState} state={state} />
+          {/* {
+            (function abc ()  {
+              if (ifMoves === 25) {
+              dispatch(openRate(true))
+              return <RateForm abc={abc}/>
+              } else {
+              return null
+              }
+            })()
+          } */}
         </div>
       </div>
     </div >
