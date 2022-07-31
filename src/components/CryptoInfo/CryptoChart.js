@@ -4,7 +4,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 export default function CryptoChart({date, name}){
-        console.log(date)
+        // console.log(date)
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,

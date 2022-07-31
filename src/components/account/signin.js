@@ -23,7 +23,7 @@ const SignIn = () => {
     if (data.password !== data.passwordVerify) {
       return alert('Passwords must be the same')
     }
-    console.log(data)
+    // console.log(data)
     const dataTosend = {
       ...data,
       email: userGoogle?.email || data?.email,

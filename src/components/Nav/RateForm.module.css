@@ -1,0 +1,54 @@
+.container {
+    border: 1px solid gray;
+    background-color: rgb(232, 227, 227);
+    padding: 25px;
+    position: fixed;
+    top: 35%;
+    left: 44%;
+    border-radius: 10px;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.fullStar {
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.emptyStar {
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+
+    background: #f9fafc;
+}
+
+.botonCerrar {
+    margin: 20px;
+}
+

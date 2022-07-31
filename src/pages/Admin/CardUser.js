@@ -15,7 +15,7 @@ const CardUser = ({ id, name, lastname, username, dni, imgURL, imgURLRev, users,
     }
     const handlerReject = (username, id) => {
         if (window.confirm(`Seguro que quieres rechazar al usuario ${username}?`)) {
-            console.log(id)
+            // console.log(id)
             REJECT_USER(id).then(res => {
                 const newList = users.filter((user) => user.id !== id)
                 setUsers(newList)

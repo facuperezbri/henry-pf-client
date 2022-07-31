@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import axios from 'axios';
 import style from './EditImg.module.css'
 export default function EditImg({setVisibleImg}) {
-  console.log(setVisibleImg)
+  // console.log(setVisibleImg)
   const [image, setImage] = useState();
   const [loading, setLoading] = useState(false);
   const { setToken, token } = useToken();
