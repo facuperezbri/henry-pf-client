@@ -3,6 +3,7 @@
   background: var(--main-bg);
   height: 100vh;
   padding: 3rem 5rem;
+  height: 100vh;
 }
 
 .nav {
@@ -15,4 +16,14 @@
   justify-content: center;
   gap: 10rem;
   margin: 5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .mainContainer {
+    height: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
 }
