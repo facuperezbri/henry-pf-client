@@ -1,0 +1,19 @@
+.img{
+    height: 40px; 
+}
+.container{
+    height: 60px;
+    width: 73px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.conect{
+  height: 15px;
+  border-radius: 50%;
+  position: sticky;
+  margin-left: 40px;  
+}
