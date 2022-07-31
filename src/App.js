@@ -28,18 +28,15 @@ function App () {
         <Route
           path="/profile"
           element={
-
-            <Profile />
-
-          }
+            <AuthProvider>
+              <Profile />
+            </AuthProvider>}
         />
         <Route
           path="/home"
           element={
             <AuthProvider>
-
               <Home />
-
             </AuthProvider>
           }
         />
@@ -48,9 +45,7 @@ function App () {
           path="/wallet"
           element={
             <AuthProvider>
-
               <Wallet />
-
             </AuthProvider>
           }
         />
@@ -59,9 +54,7 @@ function App () {
           path="/settings"
           element={
             <AuthProvider>
-
               <Settings />
-
             </AuthProvider>
           }
         />
@@ -69,11 +62,9 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-
-            <div className={style.appcontainer}>
+            <AuthProvider>
               <Cryptos />
-            </div>
-
+            </AuthProvider>
           }
         />
         <Route
@@ -81,9 +72,7 @@ function App () {
           path="/news"
           element={
             <AuthProvider>
-
               <News />
-
             </AuthProvider>
           }
         />
@@ -92,9 +81,7 @@ function App () {
           path="/faq"
           element={
             <AuthProvider>
-
               <Faq />
-
             </AuthProvider>
           }
         />
@@ -103,9 +90,7 @@ function App () {
           path="/fav"
           element={
             <AuthProvider>
-
               <Favorites />
-
             </AuthProvider>
           }
         />
@@ -113,11 +98,9 @@ function App () {
           exact
           path="/cryptosmarket/:id"
           element={
-
-
-            <CryptoDetails />
-
-
+            <AuthProvider>
+              <CryptoDetails />
+            </AuthProvider>
           }
         />
         <Route
@@ -125,9 +108,7 @@ function App () {
           path="/dashboard/admin"
           element={
             <AuthProvider>
-
               <Admin />
-
             </AuthProvider>
           }
         />
