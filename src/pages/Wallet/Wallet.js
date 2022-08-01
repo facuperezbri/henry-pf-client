@@ -81,7 +81,7 @@ export default function Wallet () {
               <input name='cvuMain' value={userData.length === 0 ? 0 : userData?.accounts[0]?.cvu} disabled />
 
               <label htmlFor="cvuD">Destiny CVU: </label>
-              <input name='cvuD' type="number" value={state.cvuD} onChange={handleChange} placeholder="Where do yo want to transfer to?" />
+              <input name='cvuD' type="text" value={state.cvuD} onChange={handleChange} placeholder="Where do yo want to transfer to?" />
 
               <label htmlFor="amount">Amount: </label>
               <input name='amount' type='number' onChange={handleChange} placeholder="How much do you want to send?" />

@@ -113,7 +113,7 @@ export default function Favorites ({ setState, state }) {
             <select className={style.select} value={cvu} onChange={handleCvuChange}>
                 <option selected value="">Fav Accounts</option>
                 {favAccs?.map(acc => {
-                    return <option value={acc?.cvu}>{acc?.currencies.name} Acc</option>
+                    return <option value={acc?.cvu}>{acc?.currencies?.name} Acc</option>
                 })}
             </select>
             <button onClick={deleteFav} >Delete</button>
