@@ -20,20 +20,19 @@ export default function Nav () {
   const dispatch = useDispatch()
   const showRate = useSelector(state => state.showRate)
   const movements = useSelector(state => state.movements)
-  console.log(movements.movements?.length)
 
   const [perilla, setPerilla] = useState(false)
 
-  useEffect(()=>{
-    if ( movements.movements?.length === 1 ) {
+  useEffect(() => {
+    if (movements.movements?.length === 1) {
       setPerilla(true)
     }
-  },[])
+  }, [])
 
   function logOut () {
     window.localStorage.setItem("token", "")
   }
-  function openRateclick() {
+  function openRateclick () {
     // dispatch(openRate(true))
     setPerilla(!perilla)
     // alert("entrando")
@@ -74,7 +73,7 @@ export default function Nav () {
             </li>
           </Link>
           <li onClick={openRateclick} className={style.listItem}>
-            <img src={full} alt='Rate' className={style.icon}/><span className={style.listItem_text}>Rate us!</span>
+            <img src={full} alt='Rate' className={style.icon} /><span className={style.listItem_text}>Rate us!</span>
           </li>
           {/* {
             (function show () {
@@ -85,8 +84,8 @@ export default function Nav () {
           } */}
           {
             perilla ?
-            <RateForm setPerilla={setPerilla}/> :
-            null
+              <RateForm setPerilla={setPerilla} /> :
+              null
           }
         </ul>
       </div>
