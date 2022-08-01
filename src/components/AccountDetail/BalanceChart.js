@@ -156,7 +156,7 @@ export default function LineChart () {
     axisX: {
       title: "Date",
       // prefix: "W",
-      interval: 1
+      interval: 7
     },
     data: [{
       type: "line",
