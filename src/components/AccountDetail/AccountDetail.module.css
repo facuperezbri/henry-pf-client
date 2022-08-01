@@ -71,6 +71,12 @@
 
 }
 
+.recentActivity {
+  width: 40%;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 @media (max-width: 890px) {
   .infoContainer {
     flex-direction: column;

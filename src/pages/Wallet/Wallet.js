@@ -30,13 +30,12 @@ export default function Wallet () {
     dispatch(getCategory())
   }, [])
 
+
   // console.log(userData?.accounts[0]?.movements)
 
-  // const theMoves = userData?.accounts[0]?.movements?.map((abc) => (
-  //   abc?.categories?.name
-  // ))
-  // console.log(theMoves)
-
+  const theMoves = userData.accounts[0]?.movements?.map((abc) => (
+    abc?.categories?.name
+  ))
 
   // const catUnique = [...new Set(theMoves)]
   // console.log(catUnique)
@@ -87,14 +86,17 @@ export default function Wallet () {
               <label htmlFor="category">Category: </label>
               {/* <input name='category' type='text' onChange={handleChange} /> */}
 
-              {/* <select name='category' onChange={handleChange}>
-                <option selected="true" disabled="disabled">Choose a category...</option>
-                {
-                  catUnique.map((abc, i) => (
-                    <option key={i} value={abc}>{abc}</option>
-                  ))
-                }
-              </select> */}
+              {/* {
+                theMoves &&
+                (<select name='category' onChange={handleChange}>
+                  <option selected="true" disabled="disabled">Choose a category...</option>
+                  {
+                    catUnique?.map((abc, i) => (
+                      <option key={i} value={abc}>{abc}</option>
+                    ))
+                  }
+                </select>)
+              } */}
 
               <label htmlFor='comment'>Comment:</label>
               <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
