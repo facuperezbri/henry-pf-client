@@ -11,8 +11,8 @@ import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
-import {useToken} from '../../hooks/useToken'
-import loading from '../../assets/icons/loading.svg'
+import { useToken } from '../../hooks/useToken'
+import loading from '../../assets/spinner/spinner.svg'
 import BalanceChart from './BalanceChart'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
@@ -41,19 +41,24 @@ export default function AccountDetail () {
 
   if (!usData?.accounts || !token) {
     return (
-      <div className={style.loading} >
-        <img src={loading} />
+      <div className={style.detailContainer}>
+        <div className={style.loading} >
+          <img src={loading} alt="Loading" />
+        </div>
       </div>)
   }
-  
-  return ( 
+  return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
       <select>
-        <option>{usData.accounts[0].cvu}</option>
+        <option selected={true}>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname} />
+        <CreditCard
+          balance={usData?.accounts[0]?.balance || 0}
+          number={usData?.accounts[0]?.cvu}
+          name={usData?.name}
+          lastname={usData?.lastname} />
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />
@@ -82,18 +87,25 @@ export default function AccountDetail () {
             </li>
           </ul>
         </div>
-
-        <div>
-          <Suspense fallback={<div>Loading</div>}>
-            <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
-          </Suspense>
-        </div>
-        {
-          showMovementDetails &&
-          <MovementDeatail movement={movement} closeDetails={closeDetails} />
-        }
-        <BalanceChart/>
+        <BalanceChart />
       </div>
+
+      <div className={style.recentActivity}>
+        <Suspense fallback={<div>Loading</div>}>
+          <RecientActivity
+            activities={usData?.accounts[0]?.movements}
+            setMovement={setMovement}
+            openDetails={openDetails} />
+        </Suspense>
+      </div>
+      {
+        showMovementDetails &&
+        <MovementDeatail
+          movement={movement}
+          closeDetails={closeDetails} />
+      }
+
+
     </div>
   )
 }

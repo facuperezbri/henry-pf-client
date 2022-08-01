@@ -20,6 +20,7 @@ body {
   --background-color-nav: #F7F7F9;
   --background-color-landing: #1B1F26;
   --color-letters: #FFFFFF;
+  --red-color: #FF5F6D;
 }
 
 code {
@@ -36,6 +37,46 @@ li {
   list-style: none;
 }
 
+button {
+  width: fit-content;
+  height: 3rem;
+  background: #FF5F6D;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+
+button:hover {
+  color: #FF5F6D
+}
+
+button:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.canvasjs-chart-canvas {
+  z-index: -1;
+}
 
 
 

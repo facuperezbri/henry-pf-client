@@ -9,7 +9,7 @@ export default function Quiz(props) {
     const currentQuestion = props.questions[questionIndex];
 
     if(!currentQuestion){
-        return <p>No hay mas preguntas</p>
+        return <div style={{display:"flex", justifyContent:"center", fontWeight:"700",fontSize:"1.5rem"}}><p>no more questions</p></div> 
     }
   return (
     <div>

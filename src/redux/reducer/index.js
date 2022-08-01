@@ -1,4 +1,4 @@
-import { GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE} from '../actions'
+import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT} from '../actions'
 
 
 const initialState = {
@@ -11,7 +11,9 @@ const initialState = {
   detailsCrypto: [],
   infoMovement:"",
   favourites: [],
-  ratings: []
+  ratings: [],
+  showRate: false,
+  chatBot : false,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -35,6 +37,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ratings: action.payload
+      }
+    case OPEN_RATE:
+        return {
+          ...state,
+          showRate: action.payload
+        }
+    case CLOSE_RATE:
+      return {
+        ...state,
+        showRate: action.payload
       }
     case 'GET_CRYPTO':
       return {
@@ -69,7 +81,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 detailsCrypto: action.payload
           }
-
     case "ORDER_CRYPTO_PRICE":
         const sortedCryptosPrice = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
           return parseFloat(b.currentPrice) - parseFloat(a.currentPrice)
@@ -80,8 +91,8 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             allCryptos: sortedCryptosPrice
         }
-      case POST_MOVEMENT:
-        console.log("entrandooooo")
+    case POST_MOVEMENT:
+        // console.log("entrandooooo")
         return {
           ...state,
           infoMovement: action.payload
@@ -101,6 +112,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         favourites: action.payload
+      }
+    case CLOSE_CHATBOT:
+      return {
+        ...state,
+        chatBot: !state.chatBot
       }
     default:
             return state

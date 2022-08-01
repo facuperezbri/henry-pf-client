@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 
+import { AiOutlineGoogle } from 'react-icons/ai'
+
 const SignIn = () => {
   const navigate = useNavigate()
 
@@ -21,7 +23,7 @@ const SignIn = () => {
     if (data.password !== data.passwordVerify) {
       return alert('Passwords must be the same')
     }
-    console.log(data)
+    // console.log(data)
     const dataTosend = {
       ...data,
       email: userGoogle?.email || data?.email,
@@ -63,11 +65,11 @@ const SignIn = () => {
     <div className={formStyles.mainContainer}>
       <h4 className={formStyles.createStart}>Start for free.</h4>
       <h2>Create your account<span>.</span></h2>
-      <div className={`${formStyles.center} ${formStyles.min_h_100vh}`}>
+      <div>
         <div className={formStyles.steps_index}>
-          <div style={{ backgroundColor: step >= 1 && 'greenyellow' }}></div>
-          <div style={{ backgroundColor: step >= 2 && 'greenyellow' }}></div>
-          <div style={{ backgroundColor: step >= 3 && 'greenyellow' }}></div>
+          <div style={{ backgroundColor: step >= 1 && '#FF5F6D' }}></div>
+          <div style={{ backgroundColor: step >= 2 && '#FF5F6D' }}></div>
+          <div style={{ backgroundColor: step >= 3 && '#FF5F6D' }}></div>
         </div>
         <div className={formStyles.card}>
           <div>
@@ -77,9 +79,10 @@ const SignIn = () => {
             {
               !userGoogle && step === 1 &&
               <div className={formStyles.center}>
-                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}>Login with Google</button>
+                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
               </div>
             }
+            <div className={formStyles.or}>or</div>
             {
               userGoogle?.photoURL &&
               <div className={formStyles.center}>
@@ -94,7 +97,7 @@ const SignIn = () => {
                 {
                   !userGoogle?.email &&
                   <div className={formStyles.input_container}>
-                    <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
+                    <input className={formStyles.input_text} defaultValue="" type="email" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
                     {errors.email && <span className={formStyles.input_error}>This field is required</span>}
                   </div>
                 }
@@ -163,7 +166,7 @@ const SignIn = () => {
                 </div>
 
                 <div className={formStyles.center}>
-                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Submit</button>
+                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Create your wallet.</button>
                 </div>
               </>
             }
