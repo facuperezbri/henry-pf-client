@@ -28,3 +28,11 @@
 .activitie:hover {
     background-color: aliceblue;
 }
+
+.btn {
+    color: white;
+    font-size: 15px;
+    padding: 0.5rem;
+    height: fit-content;
+    margin: 0 0.5rem;
+}

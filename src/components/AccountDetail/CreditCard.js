@@ -31,7 +31,7 @@ const CreditCard = ({ balance, number, name, lastname }) => {
   return (
     <div onMouseDown={interruptorClick} className={styles.credit_card_container}>
       <div className={styles.credit_card}>
-        <span className={styles.title}>wallet.</span>
+        <span className={styles.title}>w.</span>
         <span className={styles.number}>{interruptor ? infoSensity.targetNumberCifrado : infoSensity.targetNumber}</span>
         <div className={styles.balance_name_container}>
           <span className={styles.name}>{`${name} ${lastname}`.toLocaleUpperCase()}</span>
