@@ -49,7 +49,6 @@ export default function Ratings() {
 
         <div className={styles.carr}>
             <Slideshow ratings={ratings}/>
-            {/* hola */}
         </div>
 
     </div>

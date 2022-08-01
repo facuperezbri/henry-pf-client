@@ -3,17 +3,20 @@ import React from 'react';
 const MessageParser = ({ children, actions }) => {
   
   const parse = (message) => {
-    if(message.includes('hola')){
-        actions.handleHola();
+    if(message.toLowerCase().includes('hello')){
+        return actions.handleHola();
     }
-    if(message.includes('saldo')){
-      actions.handleSaldo();
+    if(message.includes('balance')){
+      return actions.handleSaldo();
     }
-    if(message.includes('transacciones')){
-      actions.handleTransaccion();
+    if(message.toLowerCase().includes('transactions')){
+      return actions.handleTransaccion();
     }
-    if(message.includes('servicios')){
-      actions.handleServicio();
+    if(message.toLowerCase().includes('services')){
+      return actions.handleServicio();
+    }
+    if(message !== "saldo"||"hola"||"transacciones"||"servicios"){
+    return  actions.handleBot()
     }
   };
 

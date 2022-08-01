@@ -2,7 +2,7 @@ import React from 'react';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 const handleHola = ()=>{
-    const botMessage = createChatBotMessage('Hola mucho gusto en que puedo ayudarte my nombre es andres y soy tu asistente virtual.',{
+    const botMessage = createChatBotMessage('Hello, I am your virtual assistant, I can help you with these issues..',{
       widget: "options"
     })
 
@@ -12,7 +12,7 @@ const handleHola = ()=>{
     }));
 };
 const handleSaldo = ()=>{
-  const botMessage = createChatBotMessage('fantastico ahora le muestro informacion sobre el tema de Saldos',{
+  const botMessage = createChatBotMessage('fantastic now I show you information on the subject of Balances, click on the question',{
     widget: "saldo"
   })
 
@@ -23,7 +23,7 @@ const handleSaldo = ()=>{
 }
 
 const handleServicio = ()=>{
-  const botMessage = createChatBotMessage('fantastico ahora le muestro informacion sobre el tema de Servicios',{
+  const botMessage = createChatBotMessage('fantastic now I show you information on the subject of Services, click on the question',{
     widget: "servicio"
   })
 
@@ -34,8 +34,21 @@ const handleServicio = ()=>{
 }
 
 const handleTransaccion = ()=>{
-  const botMessage = createChatBotMessage('fantastico ahora le muestro informacion sobre el tema de Transacciones',{
+  const botMessage = createChatBotMessage('fantastic now I show you information on the topic of Transactions, click on the question',{
     widget: "transaccion"
+  })
+
+  
+  setState((prev)=>({
+    ...prev,
+    messages:[...prev.messages,botMessage]
+  }));
+}
+
+const handleBot = ()=>{
+  const botMessage = createChatBotMessage("I'm sorry I'm not understanding your question, these are the issues I can help you with",{
+      widget: "options"
+    
   })
 
   setState((prev)=>({
@@ -44,7 +57,6 @@ const handleTransaccion = ()=>{
 }));
 }
 
- 
  
  
 
@@ -56,7 +68,8 @@ const handleTransaccion = ()=>{
             handleHola,
             handleSaldo,
             handleServicio,
-            handleTransaccion
+            handleTransaccion,
+            handleBot
           },
         });
       })}

@@ -1,20 +1,20 @@
 import React from 'react'
 
 export default function Option(props) {
-   console.log(props)
+
   const options = [
     {
-        Text:"saldo",
+        Text:"balance",
         handler:props.actionProvider.handleSaldo,
         id:1,
     },
     {
-        Text:"transacciones",
+        Text:"transactions",
         handler:props.actionProvider.handleTransaccion,
         id:2,
     },
     {
-        Text:"servicios",
+        Text:"services",
         handler:props.actionProvider.handleServicio,
         id:3,
     }

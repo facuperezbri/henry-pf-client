@@ -52,7 +52,11 @@ export default function AccountDetail () {
         <option>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
-        <CreditCard balance={usData?.accounts[0]?.balance || 0} number={usData?.accounts[0]?.cvu} name={usData?.name} lastname={usData?.lastname} />
+        <CreditCard 
+        balance={usData?.accounts[0]?.balance || 0} 
+        number={usData?.accounts[0]?.cvu} 
+        name={usData?.name} 
+        lastname={usData?.lastname} />
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
             <li><img src={transport} alt="Transport icon" />
@@ -86,12 +90,17 @@ export default function AccountDetail () {
 
       <div>
         <Suspense fallback={<div>Loading</div>}>
-          <RecientActivity activities={usData?.accounts[0]?.movements} setMovement={setMovement} openDetails={openDetails} />
+          <RecientActivity 
+          activities={usData?.accounts[0]?.movements} 
+          setMovement={setMovement} 
+          openDetails={openDetails} />
         </Suspense>
       </div>
       {
         showMovementDetails &&
-        <MovementDeatail movement={movement} closeDetails={closeDetails} />
+        <MovementDeatail 
+        movement={movement} 
+        closeDetails={closeDetails} />
       }
 
 

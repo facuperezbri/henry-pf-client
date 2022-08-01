@@ -1,12 +1,13 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Options from './actionComponents/Option'
 import Quiz from './response/Quiz';
-import Avatar from "./response/Avatar"
+import FlightBotAvatar from './response/Avatar'
+import MyUserAvatar    from './response/MyAvatar'
 
-const botName = 'andres'
+const botName = 'wallet Bot'
 
 const config = {
-  initialMessages: [createChatBotMessage(`Hola mi nombre es ${botName}, que deseas saber ?`,{
+  initialMessages: [createChatBotMessage(`Hi mi name is ${botName}, how can i help you ?`,{
     widget: 'options',
   })],
   botName: botName,
@@ -22,14 +23,19 @@ const config = {
         props:{
             questions: [
                 {
-                    question: "como realizo una transferencia ?",
-                    answer:"para hacer una transferencia dirijase a la opcion de transferir",
+                    question: "how do i make a transfer?",
+                    answer:"to make a transfer go to the wallet section and fill in the requested fields selecting the destination cvu to deposit",
                     id:1
                 },
                 {
-                    question: "cuanto demora la transferencia?",
-                    answer:"la transferencia puede demorar hasta 1hs",
+                    question: "how long does a transfer take?",
+                    answer:"la transferencia puede tener un plazo de demora maximo de 2hs, pero comunmente se hace al instante",
                     id:2
+                },
+                {
+                    question: "can i cancel my transfer?",
+                    answer:"To cancel your transfer you have a period of 3 hours, after this limit the action will be deposited",
+                    id:3
                 }
             ]
 
@@ -41,10 +47,15 @@ const config = {
         props:{
             questions: [
                 {
-                    question: "que servicios ofrecemos?",
-                    answer:"ofrecemos la seguridad de tu dinero",
+                    question: "what services do we offer?",
+                    answer:"have your money virtually on any device, be able to transfer quickly and without delay",
                     id:1
                 },
+                {
+                    question: "my money will be safe?",
+                    answer:"you should not worry your money is protected",
+                    id:2
+                }
             ]
 
         }
@@ -56,13 +67,13 @@ const config = {
         props:{
             questions: [
                 {
-                    question: "como cargar saldo en mi villetera ?",
-                    answer:"para cargar salgo dirajase a la barra de navegacion inconos cargas",
+                    question: "how to load balance in my wallet ?",
+                    answer:"To load the balance in your wallet, you will need to load in the load section with the fast payment or easy payment option.",
                     id:1
                 },
                 {
-                    question: "cuanto tarda en hacerme la recarga ?",
-                    answer:"la recarga puede demorar hasta 1hs",
+                    question: "how long does it take to recharge ?",
+                    answer:"Normally the loads are instantaneous, but it can happen that it takes 2 hours",
                     id:2
                 }
             ]
@@ -72,16 +83,17 @@ const config = {
   ],
   customStyles:{
     botMessageBox: {
-        backgroundColor:'red',
+        backgroundColor:'#48cae4',
     },
     chatButton: {
-        backgroundColor:'green',
+        backgroundColor:'#0077b6',
     }
   },
   customComponents: {
     // Replaces the default header
-   header: () => <div style={{ backgroundColor: 'green', padding: "5px", borderRadius: "3px" }}>This is the header</div>,
-   
+   header: () => <div style={{ backgroundColor: '#1d3557', padding: "5px", borderRadius: "3px",color:"white",fontWeight:"600",textAlign:"center"}}>chat online with bot</div>,
+   botAvatar: (props) => <FlightBotAvatar {...props} />,
+   userAvatar: (props) => <MyUserAvatar {...props} />,
  },
 };
 
