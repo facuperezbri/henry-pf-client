@@ -49,7 +49,7 @@ export default function AccountDetail () {
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
       <select>
-        <option>{usData.accounts[0].cvu}</option>
+        <option selected={true}>{usData.accounts[0].cvu}</option>
       </select>
       <div className={style.infoContainer}>
         <CreditCard 

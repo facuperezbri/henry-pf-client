@@ -4,7 +4,6 @@ import formStyles from './form.module.css'
 import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
-import logoGoogle from '../../assets/icons/googleLogo.svg'
 import { useToken } from '../../hooks/useToken'
 
 
@@ -50,16 +49,16 @@ const Login = () => {
       <h2>Already a member<span>?</span></h2>
 
       <div className={formStyles.card}>
-        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Log in with Google</button>
+        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
         <div className={formStyles.or}>or</div>
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
           <div className={formStyles.input_container}>
             <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
-            {errors.email && <span className={formStyles.input_error}>This field is required</span>}
+            {errors.email && <span className={formStyles.input_error}>This field is required.</span>}
           </div>
           <div className={formStyles.input_container}>
             <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
-            {errors.password && <span className={formStyles.input_error}>his field is required</span>}
+            {errors.password && <span className={formStyles.input_error}>This field is required.</span>}
           </div>
           <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
         </form>

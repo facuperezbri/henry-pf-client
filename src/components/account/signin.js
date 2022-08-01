@@ -79,7 +79,7 @@ const SignIn = () => {
             {
               !userGoogle && step === 1 &&
               <div className={formStyles.center}>
-                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} classname={`${formStyles.button_google}`} /> Sign up with Google</button>
+                <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
               </div>
             }
             <div className={formStyles.or}>or</div>

@@ -50,7 +50,7 @@ export default function Nav () {
           </Link>
           <Link to='/home'>
             <li className={style.listItem}>
-              <img src={Dashboard} alt='Dashboard' /> <span className={style.listItem_text}>Dashboard</span> 
+              <img src={Dashboard} alt='Dashboard' /> <span className={style.listItem_text}>Dashboard</span>
             </li>
           </Link>
           <Link to='/wallet'>
@@ -91,11 +91,11 @@ export default function Nav () {
         </ul>
       </div>
       <ul className={style.itemsNav}>
-          <Link to="/">
-            <li onClick={() => logOut()} className={style.listItem}>
-                <img src={Logout} alt='Log out' /> <span className={style.listItem_text}>Log out</span>
-            </li>
-          </Link>
+        <Link to="/">
+          <li onClick={() => logOut()} className={style.listItem}>
+            <img src={Logout} alt='Log out' /> <span className={style.listItem_text}>Log out</span>
+          </li>
+        </Link>
       </ul>
     </nav>
   )

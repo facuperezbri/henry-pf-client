@@ -55,7 +55,8 @@
 }
 
 .button {
-    background-color: whitesmoke;
+    background-color: gray;
+    color: white;
     width: 100%;
     border-radius: 7px;
     padding: .5rem 1rem;
@@ -95,10 +96,10 @@
 }
 
 .input_error {
-    background-color: rgba(255, 0, 0, 0.7);
     border-radius: .3rem;
     width: 100%;
     padding: .5rem 1rem;
+    color: var(--red-color);
 }
 
 .image_preview img {
@@ -126,9 +127,9 @@
     height: .5rem;
 }
 
-@media (max-width: 890px) {
-    .card {
-        width: 75vw;
-    }
 
+@media screen and (max-width: 900px) {
+    .card {
+        width: 100%;
+    }
 }
