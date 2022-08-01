@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
 import MovementDeatail from './MovementDeatail'
 import { useToken } from '../../hooks/useToken'
-import loading from '../../assets/icons/loading.svg'
+import loading from '../../assets/spinner/spinner.svg'
 import BalanceChart from './BalanceChart'
 import CategoryExpense from './CategoryExpense'
 
@@ -38,8 +38,10 @@ export default function AccountDetail () {
 
   if (!usData?.accounts || !token) {
     return (
-      <div className={style.loading} >
-        <img src={loading} />
+      <div className={style.detailContainer}>
+        <div className={style.loading} >
+          <img src={loading} alt="Loading" />
+        </div>
       </div>)
   }
   return (
@@ -58,19 +60,19 @@ export default function AccountDetail () {
         <BalanceChart />
       </div>
 
-      <div>
+      <div className={style.recentActivity}>
         <Suspense fallback={<div>Loading</div>}>
-          <RecientActivity 
-          activities={usData?.accounts[0]?.movements} 
-          setMovement={setMovement} 
-          openDetails={openDetails} />
+          <RecientActivity
+            activities={usData?.accounts[0]?.movements}
+            setMovement={setMovement}
+            openDetails={openDetails} />
         </Suspense>
       </div>
       {
         showMovementDetails &&
-        <MovementDeatail 
-        movement={movement} 
-        closeDetails={closeDetails} />
+        <MovementDeatail
+          movement={movement}
+          closeDetails={closeDetails} />
       }
 
 
