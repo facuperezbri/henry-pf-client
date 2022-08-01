@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from './AccountDetail.module.css'
 
 import creditCard from '../../assets/img/creditCard.png'
-import transport from '../../assets/icons/transport.svg'
-import shopping from '../../assets/icons/shopping.svg'
-import subscriptions from '../../assets/icons/subscriptions.svg'
-import groceries from '../../assets/icons/groceries.svg'
 import { getCategory, getMovements, getUser } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
 import CreditCard from './CreditCard'
@@ -14,6 +10,7 @@ import MovementDeatail from './MovementDeatail'
 import { useToken } from '../../hooks/useToken'
 import loading from '../../assets/icons/loading.svg'
 import BalanceChart from './BalanceChart'
+import CategoryExpense from './CategoryExpense'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
@@ -57,34 +54,7 @@ export default function AccountDetail () {
         number={usData?.accounts[0]?.cvu} 
         name={usData?.name} 
         lastname={usData?.lastname} />
-        <div className={style.categoriesContainer}>
-          <ul className={style.listContainer}>
-            <li><img src={transport} alt="Transport icon" />
-              <div>
-                <h4>Transport</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={shopping} alt="Shopping icon" />
-              <div>
-                <h4>Shopping</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={subscriptions} alt="Subscriptions icon" />
-              <div>
-                <h4>Subscriptions</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={groceries} alt="Groceries icon" />
-              <div>
-                <h4>Groceries</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <CategoryExpense activities={usData?.accounts[0]?.movements}/>
         <BalanceChart />
       </div>
 
