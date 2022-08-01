@@ -5,6 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSearchParams } from 'react-router-dom'
 import styles from './News.module.css'
 
+import loading from '../../assets/spinner/spinner.svg'
+
 const News2 = () => {
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -37,13 +39,15 @@ const News2 = () => {
 
   if (isLoading) {
     return (
-      <div>Loading...</div>
-    )
+      <div className={styles.detailContainer}>
+        <div className={styles.loading} >
+          <img src={loading} alt="Loading" />
+        </div>
+      </div>)
   }
 
-
   return (
-    <div>
+    <div className={styles.detailContainer}>
       <div className={styles.input}>
         <input value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
