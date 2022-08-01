@@ -31,6 +31,9 @@ const Login = () => {
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
+        if (res.message) {
+          alert(res.message)
+        }
         loginResponseHandler(res)
       }).catch(console.error)
 
