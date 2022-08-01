@@ -51,7 +51,6 @@ export const changeProfile = (objeto) => {
   
 }
 
-
 export const getCategory = () => {
   return async function (dispatch) {
     try {
@@ -178,4 +177,11 @@ export const sendMovement =  (obj)=>{
       return dispatch({type:POST_MOVEMENT, payload:response.data})
   }   
 
+}
+
+
+export const resetCrypto = ()=>{
+  return {
+    type: "RESET_CRYPTO",
+  }  
 }
