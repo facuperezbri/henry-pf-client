@@ -6,6 +6,7 @@
     top: 35%;
     left: 44%;
     border-radius: 10px;
+    z-index: 100;
 }
 
 .stars {
@@ -51,4 +52,3 @@
 .botonCerrar {
     margin: 20px;
 }
-
