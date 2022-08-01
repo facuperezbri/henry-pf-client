@@ -3,8 +3,10 @@ import Options from './actionComponents/Option'
 import Quiz from './response/Quiz';
 import FlightBotAvatar from './response/Avatar'
 import MyUserAvatar    from './response/MyAvatar'
+import Header from './response/Header'
 
 const botName = 'wallet Bot'
+
 
 const config = {
   initialMessages: [createChatBotMessage(`Hi mi name is ${botName}, how can i help you ?`,{
@@ -91,7 +93,7 @@ const config = {
   },
   customComponents: {
     // Replaces the default header
-   header: () => <div style={{ backgroundColor: '#1d3557', padding: "5px", borderRadius: "3px",color:"white",fontWeight:"600",textAlign:"center"}}>chat online with bot</div>,
+   header: () => (props)=><Header {...props}/>,
    botAvatar: (props) => <FlightBotAvatar {...props} />,
    userAvatar: (props) => <MyUserAvatar {...props} />,
  },
