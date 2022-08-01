@@ -45,7 +45,7 @@ const sendPutUser = async()=>{
           <input 
             type="file"
             name="file"
-            palceholder="sube tu imagen aqui"
+            palceholder="upload your image"
             onChange={uploadImage}
           />
         </form>
