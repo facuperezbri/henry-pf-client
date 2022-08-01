@@ -33,12 +33,14 @@ export default function Wallet () {
 
   // console.log(userData?.accounts[0]?.movements)
 
-  const theMoves = userData.accounts[0]?.movements?.map((abc) => (
-    abc?.categories?.name
-  ))
+  // const theMoves = userData?.accounts[0]?.movements?.map((abc) => (
+  //   abc?.categories?.name
+  // ))
+  // // console.log(theMoves)
+
 
   // const catUnique = [...new Set(theMoves)]
-  // console.log(catUnique)
+  // // console.log(catUnique)
 
 
 
@@ -86,17 +88,23 @@ export default function Wallet () {
               <label htmlFor="category">Category: </label>
               {/* <input name='category' type='text' onChange={handleChange} /> */}
 
-              {/* {
-                theMoves &&
-                (<select name='category' onChange={handleChange}>
-                  <option selected="true" disabled="disabled">Choose a category...</option>
-                  {
-                    catUnique?.map((abc, i) => (
-                      <option key={i} value={abc}>{abc}</option>
+              <select name='category' onChange={handleChange}>
+                <option selected="true" disabled="disabled">Choose a category...</option>
+                {/* {
+                  catUnique.map((abc, i) => (
+                    <option key={i} value={abc}>{abc}</option>
                     ))
-                  }
-                </select>)
-              } */}
+                } */}
+                <option key={1} value='Transport'>Transport</option>
+                <option key={2} value='Shopping'>Shopping</option>
+                <option key={3} value='Subscriptions'>Subscriptions</option>
+                <option key={4} value='Groceries'>Groceries</option>
+                <option key={5} value='Travels'>Travels</option>
+                <option key={6} value='Services'>Services</option>
+                <option key={7} value='Entertainment'>Entertainment</option>
+                <option key={8} value='Charge'>Charge</option>
+                <option key={9} value='Selfcare'>Selfcare</option>
+              </select>
 
               <label htmlFor='comment'>Comment:</label>
               <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
