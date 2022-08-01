@@ -143,7 +143,7 @@ export default function LineChart () {
 
   const options = {
     animationEnabled: true,
-    exportEnabled: true,
+    exportEnabled: false,
     theme: "light2", // "light1", "dark1", "dark2"
     title: {
       text: "Daily Balance"
@@ -168,7 +168,7 @@ export default function LineChart () {
   return (
     <div className={style.container}>
 
-      <select name="filterMonth" onChange={onSelectMonth}>
+      <select name="filterMonth" onChange={onSelectMonth} id="filterMonth">
         <option selected={true} disabled="disabled">Month...</option>
         <option value={7}>July</option>
         <option value={8}>August</option>
