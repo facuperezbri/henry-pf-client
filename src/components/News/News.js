@@ -2,11 +2,18 @@ import React from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
+import { useSearchParams } from 'react-router-dom'
 import styles from './News.module.css'
 
 const News2 = () => {
 
+  const [searchParams, setSearchParams] = useSearchParams()
+  const filter = searchParams.get("filter") ?? ""
+
+  const handleFilter=(e)=>{
+    setSearchParams({ filter:e.target.value })
+  }
+//---------------------------------------------------------------------------------------------------------------
   const getNews = async ({ pageParam = 1 }) => {
     const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=66b54c0b1d0444a48de1291d57f5e137&pageSize=10&page=${pageParam}`)
     const data = info.data.articles
@@ -31,14 +38,23 @@ const News2 = () => {
     )
   }
 
+
   return (
+    <div>
+      <div className={styles.input}>
+        <input value={filter} onChange={handleFilter} type="text" placeholder="Search News"/>
+      </div>
     <InfiniteScroll
       dataLength={news.length}
       hasMore={hasNextPage}
       next={() => fetchNextPage()}>
       <div className={styles.boxContainer}>
         <div className={styles.columns_3_2_1}>
-          {news.map((news) =>
+          {news.filter(e=>{
+            if(!filter) return true
+            const title = e.title.toLowerCase()
+            return title.includes(filter.toLowerCase())
+          }).map((news) =>
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className={styles.card_news} key={news.title}>
                 <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
@@ -50,6 +66,7 @@ const News2 = () => {
         </div>
       </div>
     </InfiniteScroll >
+    </div>
   )
 }
 
