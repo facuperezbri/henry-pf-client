@@ -5,14 +5,18 @@ import pen from '../../assets/icons/pen.svg'
 import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../redux/actions';
 export default function Profile () {
+  const dispatch = useDispatch()
+
   const [visible, setVisible] = useState(false)
   const [visibleImg, setVisibleImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
-  const [dataProfile, setProfile] = useState("")
+  const dataProfile = useSelector(state => state.userData)
   //---------------------------------------------------------------------------------------------------
   const interruptor = () => {
-      setVisible(!visible)
+    setVisible(!visible)
   }
   const interruptorImg = () => {
     if (visibleImg) setVisibleImg(false)
@@ -28,8 +32,7 @@ export default function Profile () {
 
 
   useEffect(() => {
-    GET_USER_DATA(window.localStorage.getItem("token"))
-      .then(data => setProfile(data))
+    dispatch(getUser((window.localStorage.getItem("token"))))
   }, [visibleImg, visibleUser, visible])
 
   return (
@@ -37,8 +40,8 @@ export default function Profile () {
 
       <div className={Style.container}>
         <img className={Style.img} src={dataProfile.profilepic} />
-        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen}/></div>
-        {visibleImg?<EditImg setVisibleImg={setVisibleImg}  dataProfile={dataProfile}/>:null}
+        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
+        {visibleImg ? <EditImg setVisibleImg={setVisibleImg} dataProfile={dataProfile} /> : null}
         {/* <img className={Style.img} src={dataProfile.profilepic} alt={"Profile"} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         {visibleImg ? <EditProfile dataInput={dataInput} dataProfile={dataProfile} /> : null} */}
@@ -90,10 +93,10 @@ export default function Profile () {
         </div>
 
       </div>
-      {visibleUser ? <EditUser setVisibleUser={setVisibleUser}   dataProfile={dataProfile} /> : null}
-      {visible ? <EditPassword setVisible={setVisible}  dataProfile={dataProfile} /> : null}
+      {visibleUser ? <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} /> : null}
+      {visible ? <EditPassword setVisible={setVisible} dataProfile={dataProfile} /> : null}
       <div className={Style.btn} onClick={interruptor}>Change password</div>
-      
+
     </div>
   );
 }

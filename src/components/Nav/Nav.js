@@ -9,6 +9,7 @@ import { IoNewspaperOutline, IoSettingsOutline } from 'react-icons/io5'
 import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
+import { BiCoinStack } from 'react-icons/bi'
 import RateForm from './RateForm'
 import { openRate } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -59,6 +60,11 @@ export default function Nav () {
           <Link to='/news'>
             <li className={style.listItem}>
               <IoNewspaperOutline className={style.icon} /> <span className={style.listItem_text}>News</span>
+            </li>
+          </Link>
+          <Link to='/cryptosmarket'>
+            <li className={style.listItem}>
+              <BiCoinStack className={style.icon} /><span className={style.listItem_text}>Cryptos</span>
             </li>
           </Link>
           <Link to='/settings'>
