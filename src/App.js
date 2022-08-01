@@ -13,9 +13,8 @@ import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
 
-import Charge from "./pages/Charge/Charge";
-
 import AuthProvider from "./components/auth/AuthProvider";
+import Charge from "./pages/Charge/Charge";
 
 
 function App () {
@@ -94,6 +93,15 @@ function App () {
             </AuthProvider>
           }
         />
+        <Route 
+          exact 
+          path="/charge" 
+          element={
+            <AuthProvider>  
+              <Charge /> 
+            </AuthProvider>
+            }
+          />
         <Route
           exact
           path="/cryptosmarket/:id"
