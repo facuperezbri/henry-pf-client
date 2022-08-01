@@ -10,12 +10,15 @@ const News2 = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get("filter") ?? ""
 
-  const handleFilter=(e)=>{
-    setSearchParams({ filter:e.target.value })
+  const handleFilter = (e) => {
+    setSearchParams({ filter: e.target.value })
   }
-//---------------------------------------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------------------------------------
   const getNews = async ({ pageParam = 1 }) => {
-    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=66b54c0b1d0444a48de1291d57f5e137&pageSize=10&page=${pageParam}`)
+    const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
+    const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
+    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
+    console.log(info)
     const data = info.data.articles
     return data
   }
@@ -42,30 +45,30 @@ const News2 = () => {
   return (
     <div>
       <div className={styles.input}>
-        <input value={filter} onChange={handleFilter} type="text" placeholder="Search News"/>
+        <input value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
-    <InfiniteScroll
-      dataLength={news.length}
-      hasMore={hasNextPage}
-      next={() => fetchNextPage()}>
-      <div className={styles.boxContainer}>
-        <div className={styles.columns_3_2_1}>
-          {news.filter(e=>{
-            if(!filter) return true
-            const title = e.title.toLowerCase()
-            return title.includes(filter.toLowerCase())
-          }).map((news) =>
-            <a href={news.url} target="_blank" rel="noreferrer">
-              <div className={styles.card_news} key={news.title}>
-                <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
-                <h1 className={styles.title}>{news.title}</h1>
-                <p>{news.content}</p>
-              </div>
-            </a>
-          )}
+      <InfiniteScroll
+        dataLength={news.length}
+        hasMore={hasNextPage}
+        next={() => fetchNextPage()}>
+        <div className={styles.boxContainer}>
+          <div className={styles.columns_3_2_1}>
+            {news.filter(e => {
+              if (!filter) return true
+              const title = e.title.toLowerCase()
+              return title.includes(filter.toLowerCase())
+            }).map((news) =>
+              <a href={news.url} target="_blank" rel="noreferrer">
+                <div className={styles.card_news} key={news.title}>
+                  <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
+                  <h1 className={styles.title}>{news.title}</h1>
+                  <p>{news.content}</p>
+                </div>
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </InfiniteScroll >
+      </InfiniteScroll >
     </div>
   )
 }

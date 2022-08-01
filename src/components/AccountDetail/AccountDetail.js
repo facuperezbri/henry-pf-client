@@ -90,7 +90,7 @@ export default function AccountDetail () {
         <BalanceChart />
       </div>
 
-      <div>
+      <div className={style.recentActivity}>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity
             activities={usData?.accounts[0]?.movements}
