@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Favorites from '../../components/Favourites/Favourites'
 
@@ -16,6 +16,7 @@ import RateForm from '../../components/Nav/RateForm'
 export default function Wallet () {
   const dispatch = useDispatch()
   const userData = useSelector(state => state.userData)
+  const navigate = useNavigate()
   // const movements = useSelector(state => state.movements)
   const [amount, setAmount] = useState(0)
   const [state, setState] = useState({
@@ -111,11 +112,19 @@ export default function Wallet () {
 
               <button className={style.btn} onClick={handleSubmit}>Send transference</button>
             </form>
-          </div>
+            <div>
+
+
+            </div>
+            <button onClick={() => navigate('/charge')}>
+              Charge Account
+            </button></div>
         </div>
-        <div>
-          <Favorites setState={setState} state={state} />
-          {/* {
+      </div>
+
+      <div>
+        <Favorites setState={setState} state={state} />
+        {/* {
             (function abc ()  {
               if (ifMoves === 25) {
               dispatch(openRate(true))
@@ -125,8 +134,9 @@ export default function Wallet () {
               }
             })()
           } */}
-        </div>
+
+
       </div>
-    </div >
+    </div>
   )
 }
