@@ -95,15 +95,15 @@ export default function Wallet () {
                     <option key={i} value={abc}>{abc}</option>
                     ))
                 } */}
-                <option key={1} value='Transport'>Transport</option>
+                <option key={8} value='Charge'>Charge</option>
+                <option key={7} value='Entertainment'>Entertainment</option>
+                <option key={4} value='Groceries'>Groceries</option>
+                <option key={9} value='Selfcare'>Selfcare</option>
+                <option key={6} value='Services'>Services</option>
                 <option key={2} value='Shopping'>Shopping</option>
                 <option key={3} value='Subscriptions'>Subscriptions</option>
-                <option key={4} value='Groceries'>Groceries</option>
+                <option key={1} value='Transport'>Transport</option>
                 <option key={5} value='Travels'>Travels</option>
-                <option key={6} value='Services'>Services</option>
-                <option key={7} value='Entertainment'>Entertainment</option>
-                <option key={8} value='Charge'>Charge</option>
-                <option key={9} value='Selfcare'>Selfcare</option>
               </select>
 
               <label htmlFor='comment'>Comment:</label>
