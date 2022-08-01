@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     height: 100%;
     width: 100%;
@@ -9,42 +9,45 @@
     position: relative;
 }
 
-
-.img{
+.img {
     height: 150px;
     width: 150px;
-    border-radius:100%;
-    
+    border-radius: 100%;
+
     margin-right: 1rem;
     margin-left: 2rem;
 }
-.detail{
+
+.detail {
     border: solid 2px black;
     width: 25rem;
     height: 3rem;
     align-items: center;
     border-radius: 16px;
-    margin:10px 10px;
+    margin: 10px 10px;
     display: flex;
     align-items: center;
 }
-.containerDetail{
+
+.containerDetail {
     display: flex;
     flex-direction: column;
     width: 20rem;
     height: fit-content;
-    margin:10px 10px;
+    margin: 10px 10px;
     border-radius: 16px;
     padding: 4px;
     gap: 15px;
     text-align: left;
     align-items: center;
-    
+
 }
-.containerDetail span{
-    color:white
+
+.containerDetail span {
+    color: white
 }
-.main{
+
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,28 +56,33 @@
     height: fit-content;
     width: 700px;
 }
+
 .pen {
     height: 30px;
     background-color: #FF5F6D;
     border-radius: 50%;
-    
+
 
 }
+
 .input {
     width: 500px;
     height: 45px;
     border-radius: 5px;
     padding-left: 0.5rem;
 }
-.containerName{
+
+.containerName {
     display: flex;
-    gap:35px;
+    gap: 35px;
 }
-.containerName input{
+
+.containerName input {
     width: 230px;
     padding-left: 0.5rem;
 }
-.main button{
+
+.main button {
     padding: 0.5rem 1rem;
     border-radius: 8px;
     columns: white;
@@ -83,14 +91,13 @@
     cursor: pointer;
     margin-top: 10px;
 }
-.main button:hover{
-    background-color: black;
-    color: white;
+
+.main button:hover {
     transition: 0.5s;
 }
-.btnImg{
+
+.btnImg {
     border-radius: 50%;
-    border: 2px solid black;
     height: 34px;
     position: absolute;
     display: flex;
@@ -98,7 +105,7 @@
     margin-top: 7rem;
 }
 
-.btnUserImg{
+.btnUserImg {
     position: fixed;
     border: 2px solid black;
     border-radius: 50%;
@@ -106,8 +113,9 @@
     margin-left: 30rem;
     margin-top: -1rem;
 }
-.btn{
-    border:solid 1px black;
+
+.btn {
+    color: white;
     padding: 0.5rem;
     border-radius: 10px;
     font-size: 1rem;

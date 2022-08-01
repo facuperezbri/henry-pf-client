@@ -10,7 +10,7 @@ export default function Profile () {
   const [visibleImg, setVisibleImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
   const [dataProfile, setProfile] = useState("")
-  const [dataInput, setDataInput] = useState({})  
+  const [dataInput, setDataInput] = useState({})
   //---------------------------------------------------------------------------------------------------
   // console.log(dataProfile)
   const interruptor = () => {
@@ -54,15 +54,15 @@ export default function Profile () {
   useEffect(() => {
     GET_USER_DATA(window.localStorage.getItem("token"))
       .then(data => setProfile(data))
-  }, [visibleImg,visibleUser,visible])
+  }, [visibleImg, visibleUser, visible])
 
   return (
     <div className={Style.main}>
 
       <div className={Style.container}>
         <img className={Style.img} src={dataProfile.profilepic} />
-        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen}/></div>
-        {visibleImg?<EditImg setVisibleImg={setVisibleImg} dataInput={dataInput} dataProfile={dataProfile}/>:null}
+        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
+        {visibleImg ? <EditImg setVisibleImg={setVisibleImg} dataInput={dataInput} dataProfile={dataProfile} /> : null}
         {/* <img className={Style.img} src={dataProfile.profilepic} alt={"Profile"} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         {visibleImg ? <EditProfile dataInput={dataInput} dataProfile={dataProfile} /> : null} */}
@@ -73,7 +73,7 @@ export default function Profile () {
           <div>
             <label>
               First name
-              <input type="text" value={dataProfile.name} readonly className={Style.input} />
+              <input type="text" value={dataProfile.name} readonly className={Style.input} disabled />
             </label>
           </div>
           <div>
@@ -84,6 +84,7 @@ export default function Profile () {
                 value={dataProfile.lastname}
                 readonly
                 className={Style.input}
+                disabled
               />
             </label>
           </div>
@@ -95,6 +96,7 @@ export default function Profile () {
             value={dataProfile.email}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
         </div>
@@ -105,14 +107,15 @@ export default function Profile () {
             value={dataProfile.username}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
           <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         </div>
 
       </div>
-      <div className={Style.btn} onClick={interruptor}>Change password</div>
-      {visibleUser ? <EditProfile setVisibleUser={setVisibleUser}  dataInput={dataInput} dataProfile={dataProfile} /> : null}
+      <button className={Style.btn} onClick={interruptor}>Change password</button>
+      {visibleUser ? <EditProfile setVisibleUser={setVisibleUser} dataInput={dataInput} dataProfile={dataProfile} /> : null}
       {visible ? <EditProfile setVisible={setVisible} dataInput={dataInput} dataProfile={dataProfile} /> : null}
     </div>
   );
