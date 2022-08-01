@@ -18,6 +18,7 @@ export const POST_MOVEMENT ='POST_MOVEMENT'
 export const GET_RATINGS ='GET_RATINGS'
 export const OPEN_RATE ='OPEN_RATE'
 export const CLOSE_RATE ='CLOSE_RATE'
+export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
 
 
 export const getUser = (token) => {
@@ -195,4 +196,9 @@ export const sendMovement =  (obj)=>{
       return dispatch({type:POST_MOVEMENT, payload:response.data})
   }   
 
+}
+export const closeChatBot = ()=>{
+  return {
+      type: CLOSE_CHATBOT,
+  }
 }
