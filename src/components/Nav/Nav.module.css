@@ -1,5 +1,6 @@
 .header {
-    background-color: var(--background-color-nav);
+    background: var(--main-bg);
+    color: white;
     width: 10vw;
     min-width: 200px;
     height: 100vh;
@@ -42,8 +43,6 @@
     flex: 70%;
 }
 
-
-
 .listItem:hover {
     background-color: rgb(203, 205, 207);
 }
@@ -76,5 +75,6 @@
 }
 
 .icon {
-    width: 30px;
+    height: 35px;
+    width: 35px;
 }
