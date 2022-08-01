@@ -90,10 +90,10 @@ export default function Profile () {
         </div>
 
       </div>
-      <div className={Style.btn} onClick={interruptor}>Change password</div>
       {visibleUser ? <EditUser setVisibleUser={setVisibleUser}   dataProfile={dataProfile} /> : null}
       {visible ? <EditPassword setVisible={setVisible}  dataProfile={dataProfile} /> : null}
-      <button className={Style.btn} onClick={interruptor}>Change password</button>
+      <div className={Style.btn} onClick={interruptor}>Change password</div>
+      
     </div>
   );
 }

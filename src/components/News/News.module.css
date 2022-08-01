@@ -81,6 +81,17 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+.input{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.input input{
+  width: 16rem;
+  height: 2rem;
+  border-radius: 1rem;
+  
+}
 
 @media (max-width: 980px) {
   .columns_3_2_1 {
