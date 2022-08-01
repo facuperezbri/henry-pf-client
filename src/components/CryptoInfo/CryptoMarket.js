@@ -18,7 +18,7 @@ const CryptosInfo = () => {
     dispatch(getCryptos());
     // setCoin(allCryptos)
   }, []);
-
+ 
 
    function handleSortedCryptosTitle(e) {
     e.preventDefault();

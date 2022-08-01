@@ -1,8 +1,8 @@
 import React from "react";
 import { Link , useParams} from "react-router-dom"
 import { useDispatch , useSelector } from "react-redux"
-import { useEffect } from "react";
-import { getDetailsCrypto } from "../../redux/actions/index";
+import { useEffect, useState } from "react";
+import { getDetailsCrypto, resetCrypto } from "../../redux/actions/index";
 import CryptoChart  from "./CryptoChart"
 
 // import styles from "../details/details.module.css"
@@ -12,14 +12,16 @@ export default function Details(){
     const dispatch = useDispatch()
     const cryptoId = useParams()
     const detailCrypto = useSelector((state) => state.detailsCrypto) 
-    
+   
     
     useEffect(() => {
         dispatch(getDetailsCrypto(cryptoId.id))
     }, [])
 
-
-    if(detailCrypto?.data?.length === 0){
+    const reset = () => {
+        dispatch(resetCrypto())
+    }
+    if(detailCrypto.length === 0){
         return (<div>..loading</div>)
     }
     return (
@@ -39,7 +41,7 @@ export default function Details(){
                     
               
              <Link to="/cryptosmarket">
-                <button>Volver</button>
+                <button onClick={reset}>Volver</button>
              </Link>
             </>
             </div>

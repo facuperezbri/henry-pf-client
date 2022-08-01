@@ -113,6 +113,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourites: action.payload
       }
+      case 'RESET_CRYPTO':
+      return {
+        ...state,
+        detailsCrypto: []}
     case CLOSE_CHATBOT:
       return {
         ...state,
