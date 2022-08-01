@@ -119,8 +119,9 @@ export function addFavorite(payload) {
 }
 
 export function removeFavorite(id) {
+  console.log(id)
   return async function(dispatch){
-    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/delete`,id)
+    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/${id}`)
     return dispatch({type: REMOVE_FAVORITE,
     payload: id})}}
     
