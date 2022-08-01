@@ -1,14 +1,17 @@
 .container {
   display: flex;
   position: relative;
-  
+
 }
-.bot{
-  position:fixed;
+
+.bot {
+  position: fixed;
   right: 20px;
   bottom: 20px;
+  cursor: pointer;
 }
-.img{
+
+.img {
   height: 4rem;
   border-radius: 50%;
 }
