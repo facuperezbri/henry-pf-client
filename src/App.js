@@ -19,6 +19,8 @@ import News2 from './components/News/News2';
 import Charge from "./pages/Charge/Charge";
 
 import AuthProvider from "./components/auth/AuthProvider";
+import ResetPassword from "./components/account/ResetPassword";
+import SendMail from "./components/account/SendMail";
 
 
 function App () {
@@ -28,6 +30,9 @@ function App () {
       <Routes>
         {/* <Route path="/account/signin" element={<SignIn />} /> */}
         <Route path="/" element={<Landing />} />
+        {/* <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/sendMail" element={<SendMail />} /> */}
+
         <Route path="/account/login" element={<LoginSignIn />} />
         <Route
           path="/profile"
