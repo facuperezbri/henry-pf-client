@@ -74,6 +74,9 @@ button:hover:after {
   transition: all 0.5s;
 }
 
+.canvasjs-chart-canvas {
+  z-index: -1;
+}
 
 
 

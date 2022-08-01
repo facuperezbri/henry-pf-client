@@ -1,4 +1,4 @@
-import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE} from '../actions'
+import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT} from '../actions'
 
 
 const initialState = {
@@ -12,7 +12,8 @@ const initialState = {
   infoMovement:"",
   favourites: [],
   ratings: [],
-  showRate: false
+  showRate: false,
+  chatBot : false,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -115,7 +116,11 @@ const rootReducer = (state = initialState, action) => {
       case 'RESET_CRYPTO':
       return {
         ...state,
-        detailsCrypto: []
+        detailsCrypto: []}
+    case CLOSE_CHATBOT:
+      return {
+        ...state,
+        chatBot: !state.chatBot
       }
     default:
             return state

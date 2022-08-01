@@ -19,24 +19,30 @@ export default function Wallet () {
   // const movements = useSelector(state => state.movements)
   const [amount, setAmount] = useState(0)
   const [state, setState] = useState({
-    cvuMain: userData.length === 0 ? 0 : userData.accounts[0].cvu,
+    cvuMain: userData.length === 0 ? 0 : userData?.accounts[0]?.cvu,
     currency: "pesos",
     operation: "Debit",
     comment: ""
   })
 
-  // const showRate = useSelector(state => state.showRate)
-
-
-  // const movements = useSelector(state => state.movements)
-  // let ifMoves = movements.movements?.length
-
-  
-
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
   }, [])
+
+
+  // console.log(userData?.accounts[0]?.movements)
+
+  // const theMoves = userData?.accounts[0]?.movements?.map((abc) => (
+  //   abc?.categories?.name
+  // ))
+  // // console.log(theMoves)
+
+
+  // const catUnique = [...new Set(theMoves)]
+  // // console.log(catUnique)
+
+
 
   function handleChange (e) {
     e.preventDefault()
@@ -69,16 +75,40 @@ export default function Wallet () {
           <button className={style.buttonToCrypto}>Cryptos Market</button>
         </NavLink> */}
             <form onSubmit={handleSubmit} className={style.formContainer}>
+
               <label htmlFor="cvuMain">Your CVU: </label>
-              <input name='cvuMain' value={userData.length === 0 ? 0 : userData.accounts[0].cvu} disabled />
+              <input name='cvuMain' value={userData.length === 0 ? 0 : userData?.accounts[0]?.cvu} disabled />
+
               <label htmlFor="cvuD">Destiny CVU: </label>
               <input name='cvuD' type="number" value={state.cvuD} onChange={handleChange} placeholder="Where do yo want to transfer to?" />
+
               <label htmlFor="amount">Amount: </label>
               <input name='amount' type='number' onChange={handleChange} placeholder="How much do you want to send?" />
+
               <label htmlFor="category">Category: </label>
-              <input name='category' type='text' onChange={handleChange} />
+              {/* <input name='category' type='text' onChange={handleChange} /> */}
+
+              <select name='category' onChange={handleChange}>
+                <option selected="true" disabled="disabled">Choose a category...</option>
+                {/* {
+                  catUnique.map((abc, i) => (
+                    <option key={i} value={abc}>{abc}</option>
+                    ))
+                } */}
+                <option key={1} value='Transport'>Transport</option>
+                <option key={2} value='Shopping'>Shopping</option>
+                <option key={3} value='Subscriptions'>Subscriptions</option>
+                <option key={4} value='Groceries'>Groceries</option>
+                <option key={5} value='Travels'>Travels</option>
+                <option key={6} value='Services'>Services</option>
+                <option key={7} value='Entertainment'>Entertainment</option>
+                <option key={8} value='Charge'>Charge</option>
+                <option key={9} value='Selfcare'>Selfcare</option>
+              </select>
+
               <label htmlFor='comment'>Comment:</label>
               <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
+
               <button className={style.btn} onClick={handleSubmit}>Send transference</button>
             </form>
           </div>

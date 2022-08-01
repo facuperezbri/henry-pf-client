@@ -47,3 +47,10 @@
     margin-bottom: 5rem;
     cursor: pointer;
 }
+.inputError{
+    width:50% ;
+    height: 2rem;
+    border: solid 2px red;
+    color: white;
+    background-color: red;
+}

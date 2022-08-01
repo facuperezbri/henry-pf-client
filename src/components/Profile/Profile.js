@@ -2,49 +2,25 @@ import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
 import { GET_USER_DATA } from "../../services/GET_USER_DATA";
 import pen from '../../assets/icons/pen.svg'
-import EditProfile from "./EditProfile";
-import EditImg from "./EditImg";
-
+import EditUser from "./EditUser"
+import EditImg from "./EditImg"
+import EditPassword from "./EditPassword"
 export default function Profile () {
   const [visible, setVisible] = useState(false)
   const [visibleImg, setVisibleImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
   const [dataProfile, setProfile] = useState("")
-  const [dataInput, setDataInput] = useState({})  
   //---------------------------------------------------------------------------------------------------
-  // console.log(dataProfile)
   const interruptor = () => {
-    if (visible) setVisible(false)
-    if (!visible) setVisible(true)
-    setDataInput(
-      {
-        name: "password",
-        type: "password",
-        placeholder: "new Password"
-      }
-    )
+      setVisible(!visible)
   }
   const interruptorImg = () => {
     if (visibleImg) setVisibleImg(false)
     if (!visibleImg) setVisibleImg(true)
-    setDataInput(
-      {
-        name: "profilepic",
-        type: "text",
-        placeholder: "url img"
-      }
-    )
   }
   const interruptorUser = () => {
     if (visibleUser) setVisibleUser(false)
     if (!visibleUser) setVisibleUser(true)
-    setDataInput(
-      {
-        name: "username",
-        type: "text",
-        placeholder: "new username"
-      }
-    )
   }
 
   //---------------------------------------------------------------------------------------------------
@@ -54,7 +30,7 @@ export default function Profile () {
   useEffect(() => {
     GET_USER_DATA(window.localStorage.getItem("token"))
       .then(data => setProfile(data))
-  }, [visibleImg,visibleUser,visible])
+  }, [visibleImg, visibleUser, visible])
 
   return (
     <div className={Style.main}>
@@ -62,7 +38,7 @@ export default function Profile () {
       <div className={Style.container}>
         <img className={Style.img} src={dataProfile.profilepic} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen}/></div>
-        {visibleImg?<EditImg setVisibleImg={setVisibleImg} dataInput={dataInput} dataProfile={dataProfile}/>:null}
+        {visibleImg?<EditImg setVisibleImg={setVisibleImg}  dataProfile={dataProfile}/>:null}
         {/* <img className={Style.img} src={dataProfile.profilepic} alt={"Profile"} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         {visibleImg ? <EditProfile dataInput={dataInput} dataProfile={dataProfile} /> : null} */}
@@ -73,7 +49,7 @@ export default function Profile () {
           <div>
             <label>
               First name
-              <input type="text" value={dataProfile.name} readonly className={Style.input} />
+              <input type="text" value={dataProfile.name} readonly className={Style.input} disabled />
             </label>
           </div>
           <div>
@@ -84,6 +60,7 @@ export default function Profile () {
                 value={dataProfile.lastname}
                 readonly
                 className={Style.input}
+                disabled
               />
             </label>
           </div>
@@ -95,25 +72,28 @@ export default function Profile () {
             value={dataProfile.email}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
         </div>
         <div className={Style.user}> <label>
-          UserName
+          Username
           <input
             type="text"
             value={dataProfile.username}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
           <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         </div>
 
       </div>
+      {visibleUser ? <EditUser setVisibleUser={setVisibleUser}   dataProfile={dataProfile} /> : null}
+      {visible ? <EditPassword setVisible={setVisible}  dataProfile={dataProfile} /> : null}
       <div className={Style.btn} onClick={interruptor}>Change password</div>
-      {visibleUser ? <EditProfile setVisibleUser={setVisibleUser}  dataInput={dataInput} dataProfile={dataProfile} /> : null}
-      {visible ? <EditProfile setVisible={setVisible} dataInput={dataInput} dataProfile={dataProfile} /> : null}
+      
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Nav from '../../components/Nav/Nav'
 import AccountDetail from '../../components/AccountDetail/AccountDetail'
 import style from './Home.module.css'
@@ -7,28 +7,34 @@ import 'react-chatbot-kit/build/main.css'
 import config from '../../chatbot/config';
 import MessageParser from '../../chatbot/MessageParser';
 import ActionProvider from '../../chatbot/ActionProvider';
-
+import {useDispatch,useSelector} from 'react-redux'
+import{closeChatBot} from '../../redux/actions/index'
 
 export default function Home () {
-  const[interruptor,setInterruptor] = useState(false)
-
-
+  const windowChatBot = useSelector((state)=> state.chatBot)
+  const dispatch = useDispatch()
+  const sendBotchangeState = ()=>{
+    dispatch(closeChatBot())
+  }
   
+
+
+
+
   return (
     <div className={style.container}>
       <Nav />
       <AccountDetail />
       <div  className={style.bot}>
-        {!interruptor?<img className={style.img} onClick={()=>setInterruptor(!interruptor)} src= "https://w7.pngwing.com/pngs/34/887/png-transparent-online-chat-computer-icons-livechat-conversation-others-logo-online-chat-conversation.png"/>
+        {!windowChatBot?<img className={style.img} onClick={sendBotchangeState} src= "https://w7.pngwing.com/pngs/34/887/png-transparent-online-chat-computer-icons-livechat-conversation-others-logo-online-chat-conversation.png"/>
         :  <Chatbot
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
         disableScrollToBottom={false}
       />
-      }
-      
-      </div>
+      }    
+       </div>
     </div>
   )
 }
