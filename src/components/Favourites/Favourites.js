@@ -50,6 +50,7 @@ export default function Favorites ({ setState, state }) {
         dispatch(addFavorite({ userId, fav }))
         setIsOpen(false)
         setFav("")
+        alert("You added your new favourite successfully")
     }
 
     function handleInput (e) {
@@ -70,6 +71,7 @@ export default function Favorites ({ setState, state }) {
 
     function deleteFav () {
         dispatch(removeFavorite(selected))
+        alert("Your contact was removed successfully")
     }
 
     const handleCvuChange = e => {
@@ -98,20 +100,20 @@ export default function Favorites ({ setState, state }) {
     return (
         <div className={style.main}>
             <h1 className={style.title}>My Friends</h1>
-            <select className={style.select} onChange={e => handleSelected(e)}>
+            <select className={style.select} value={selected} onChange={e => handleSelected(e)}>
 
                 <option selected disabled value="">Favourites</option>
-                {favourites.map(fav =>
+                {favourites?.map(fav =>
                     <option value={fav.id} key={fav.id}>
-                        Name: {fav.username} CVU: {fav.accounts[0].cvu}
+                        {fav.username}
                     </option>
                 )
                 }
             </select>
-            <select className={style.select} onChange={handleCvuChange}>
-                <option selected disabled>Fav Account</option>
-                {favAccs.map(acc => {
-                    return <option value={acc.cvu}>{acc.currencies.name} Acc</option>
+            <select className={style.select} value={cvu} onChange={handleCvuChange}>
+                <option selected value="">Fav Accounts</option>
+                {favAccs?.map(acc => {
+                    return <option value={acc?.cvu}>{acc?.currencies.name} Acc</option>
                 })}
             </select>
             <button onClick={deleteFav} >Delete</button>

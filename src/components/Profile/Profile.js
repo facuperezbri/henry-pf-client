@@ -30,7 +30,7 @@ export default function Profile () {
   useEffect(() => {
     GET_USER_DATA(window.localStorage.getItem("token"))
       .then(data => setProfile(data))
-  }, [visibleImg,visibleUser,visible])
+  }, [visibleImg, visibleUser, visible])
 
   return (
     <div className={Style.main}>
@@ -49,7 +49,7 @@ export default function Profile () {
           <div>
             <label>
               First name
-              <input type="text" value={dataProfile.name} readonly className={Style.input} />
+              <input type="text" value={dataProfile.name} readonly className={Style.input} disabled />
             </label>
           </div>
           <div>
@@ -60,6 +60,7 @@ export default function Profile () {
                 value={dataProfile.lastname}
                 readonly
                 className={Style.input}
+                disabled
               />
             </label>
           </div>
@@ -71,16 +72,18 @@ export default function Profile () {
             value={dataProfile.email}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
         </div>
         <div className={Style.user}> <label>
-          UserName
+          Username
           <input
             type="text"
             value={dataProfile.username}
             readonly
             className={Style.input}
+            disabled
           />
         </label>
           <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div>
@@ -90,6 +93,7 @@ export default function Profile () {
       <div className={Style.btn} onClick={interruptor}>Change password</div>
       {visibleUser ? <EditUser setVisibleUser={setVisibleUser}   dataProfile={dataProfile} /> : null}
       {visible ? <EditPassword setVisible={setVisible}  dataProfile={dataProfile} /> : null}
+      <button className={Style.btn} onClick={interruptor}>Change password</button>
     </div>
   );
 }

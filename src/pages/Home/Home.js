@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Nav from '../../components/Nav/Nav'
 import AccountDetail from '../../components/AccountDetail/AccountDetail'
 import style from './Home.module.css'
@@ -17,6 +17,10 @@ export default function Home () {
     dispatch(closeChatBot())
   }
   
+
+
+
+
   return (
     <div className={style.container}>
       <Nav />
@@ -29,9 +33,8 @@ export default function Home () {
         actionProvider={ActionProvider}
         disableScrollToBottom={false}
       />
-      }
-      
-      </div>
+      }    
+       </div>
     </div>
   )
 }
