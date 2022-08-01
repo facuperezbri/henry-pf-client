@@ -1,0 +1,13 @@
+.listContainer {
+    margin: 0 1rem;
+  }
+  
+  .listContainer li {
+    display: flex;
+    margin: 2rem 0;
+  }
+  
+  .listContainer h4,
+  .listContainer p {
+    margin: 0 1rem;
+  }
