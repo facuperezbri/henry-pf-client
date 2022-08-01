@@ -94,7 +94,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
         <select name="filterCategory" onChange={onSelectCategory}>
           <option selected="true" disabled="disabled">Category...</option>
-          {categoriesUnique.map((abc) => (
+          {categoriesUnique?.map((abc) => (
             <option key={abc} value={abc}>{abc}</option>
           ))}
         </select>
