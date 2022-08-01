@@ -5,6 +5,8 @@ import pen from '../../assets/icons/pen.svg'
 import EditProfile from "./EditProfile";
 import EditImg from "./EditImg";
 
+import { FiEdit2 } from 'react-icons/fi'
+
 export default function Profile () {
   const [visible, setVisible] = useState(false)
   const [visibleImg, setVisibleImg] = useState(false)
@@ -101,7 +103,7 @@ export default function Profile () {
         </label>
         </div>
         <div className={Style.user}> <label>
-          UserName
+          Username
           <input
             type="text"
             value={dataProfile.username}
