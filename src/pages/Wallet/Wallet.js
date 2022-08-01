@@ -9,6 +9,8 @@ import { getCategory, getMovements, getUser, openRate } from '../../redux/action
 import Nav from '../../components/Nav/Nav'
 
 import style from './Wallet.module.css'
+
+import loading from '../../assets/spinner/spinner.svg'
 import { TRANSFER_MONEY } from '../../services/TRANSFER_MONEY'
 import RateForm from '../../components/Nav/RateForm'
 
@@ -30,6 +32,8 @@ export default function Wallet () {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
   }, [])
+
+
 
 
   // console.log(userData?.accounts[0]?.movements)
@@ -65,6 +69,15 @@ export default function Wallet () {
     }).catch(console.error)
   }
 
+  if (!userData?.accounts) {
+    return (
+      <div className={style.detailContainer}>
+        <div className={style.loading} >
+          <img src={loading} alt="Loading" />
+        </div>
+      </div>)
+  }
+
   return (
     <div className={style.container}>
       <Nav />
@@ -87,15 +100,11 @@ export default function Wallet () {
               <input name='amount' type='number' onChange={handleChange} placeholder="How much do you want to send?" />
 
               <label htmlFor="category">Category: </label>
-              {/* <input name='category' type='text' onChange={handleChange} /> */}
+              <input name='category' type='text' onChange={handleChange} />
 
-              <select name='category' onChange={handleChange}>
+              {/* <select name='category' onChange={handleChange}>
                 <option selected="true" disabled="disabled">Choose a category...</option>
-                {/* {
-                  catUnique.map((abc, i) => (
-                    <option key={i} value={abc}>{abc}</option>
-                    ))
-                } */}
+    
                 <option key={8} value='Charge'>Charge</option>
                 <option key={7} value='Entertainment'>Entertainment</option>
                 <option key={4} value='Groceries'>Groceries</option>
@@ -105,7 +114,7 @@ export default function Wallet () {
                 <option key={3} value='Subscriptions'>Subscriptions</option>
                 <option key={1} value='Transport'>Transport</option>
                 <option key={5} value='Travels'>Travels</option>
-              </select>
+              </select> */}
 
               <label htmlFor='comment'>Comment:</label>
               <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
