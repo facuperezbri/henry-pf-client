@@ -15,7 +15,7 @@ export default function CategoryExpense({activities}) { // los movimientos, con 
         dispatch(getCategory())
     }, [])
     const categories = useSelector(state => state.categories)
-    console.log(categories)
+    // console.log(categories)
 
     let sumPorCat = 0
     let totalByCat = []

@@ -17,13 +17,13 @@ const Login = () => {
     if (res?.token && res?.isAdmin) {
       setToken(res?.token)
       navigate('/dashboard/admin')
-      console.log(res.token)
+      // console.log(res.token)
       return
     }
     if (res?.token) {
       setToken(res?.token)
       navigate('/home')
-      console.log(res.token)
+      // console.log(res.token)
     }
   }
   const { setToken } = useToken()

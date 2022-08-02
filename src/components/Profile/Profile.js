@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
 import pen from '../../assets/icons/pen.svg'
-import EditUser from "./EditUser"
+// import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,10 +21,10 @@ export default function Profile () {
     if (visibleImg) setVisibleImg(false)
     if (!visibleImg) setVisibleImg(true)
   }
-  const interruptorUser = () => {
-    if (visibleUser) setVisibleUser(false)
-    if (!visibleUser) setVisibleUser(true)
-  }
+  // const interruptorUser = () => {
+  //   if (visibleUser) setVisibleUser(false)
+  //   if (!visibleUser) setVisibleUser(true)
+  // }
 
   //---------------------------------------------------------------------------------------------------
 
@@ -89,11 +88,11 @@ export default function Profile () {
             disabled
           />
         </label>
-          <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div>
+          {/* <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div> */}
         </div>
 
       </div>
-      {visibleUser ? <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} /> : null}
+      {/* {visibleUser ? <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} /> : null} */}
       {visible ? <EditPassword setVisible={setVisible} dataProfile={dataProfile} /> : null}
       <div className={Style.btn} onClick={interruptor}>Change password</div>
 

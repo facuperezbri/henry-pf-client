@@ -20,7 +20,7 @@ const News2 = () => {
     const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
     const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
     const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
-    console.log(info)
+    // console.log(info)
     const data = info.data.articles
     return data
   }
@@ -45,6 +45,12 @@ const News2 = () => {
         </div>
       </div>)
   }
+  const filterNews = news.filter(e=>{
+    if (!filter) return true
+              const title = e.title.toLowerCase()
+    if(title.includes(filter.toLowerCase()))return title.includes(filter.toLowerCase())
+    if(!title.includes(filter.toLowerCase()))return       
+  })
 
   return (
     <div className={styles.detailContainer}>
@@ -56,12 +62,8 @@ const News2 = () => {
         hasMore={hasNextPage}
         next={() => fetchNextPage()}>
         <div className={styles.boxContainer}>
-          <div className={styles.columns_3_2_1}>
-            {news.filter(e => {
-              if (!filter) return true
-              const title = e.title.toLowerCase()
-              return title.includes(filter.toLowerCase())
-            }).map((news) =>
+          <div className={filterNews.length>1 ?styles.columns_3_2_1:styles.columns_1_1_1}>
+            {filterNews.length>0 ?filterNews.map((news) =>
               <a href={news.url} target="_blank" rel="noreferrer">
                 <div className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
@@ -69,7 +71,7 @@ const News2 = () => {
                   <p>{news.content}</p>
                 </div>
               </a>
-            )}
+            ):<h2>No search results found!</h2>}
           </div>
         </div>
       </InfiniteScroll >
