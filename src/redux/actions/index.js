@@ -73,9 +73,10 @@ export const getMovements = (cvu) => {
   return async function (dispatch) {
     try {
       let data = await GET_MOVEMENT_SERVICE(cvu)
+      console.log(data)
       return dispatch({
         type: GET_MOVEMENT,
-        payload: data
+        payload: data.movements
       })
     } catch (error) {
       console.log(error)
