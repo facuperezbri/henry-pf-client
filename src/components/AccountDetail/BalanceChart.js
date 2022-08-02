@@ -9,7 +9,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function LineChart () {
 
-  const [month, setMonth] = useState(7)
+  const [month, setMonth] = useState(8)
   const [year, setYear] = useState(2022)
 
   const movements = useSelector(state => state.movements)
