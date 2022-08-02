@@ -3,14 +3,18 @@ import { CREATE_PAYMENT_INTENT } from '../../services/CREATE_PAYMENT_INTENT'
 const METHODS = ['PAGO RAPIDO', 'FACIL PAGO']
 
 
-const FormOfCharge = ({ setDataOfCharge, setClientSecret }) => {
+const FormOfCharge = ({ setDataOfCharge, setClientSecret, setUserToCharge }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onPaymentIntent = (data) => {
         if (data.amount.includes(',')) {
             return alert('Incorrect format amount')
         }
-        CREATE_PAYMENT_INTENT(data.amount).then((res) => {
+        CREATE_PAYMENT_INTENT(data.amount, data.cvu).then((res) => {
+            if (res?.msg) {
+                return alert(res?.msg)
+            }
+            setUserToCharge(res?.account?.users)
             setClientSecret(res.clientSecret)
             setDataOfCharge({ ...data, paymentIntentID: res?.paymentIntentID })
         })
