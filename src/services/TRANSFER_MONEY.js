@@ -13,7 +13,7 @@ export const TRANSFER_MONEY = async ({ amount, cvuMain, currency, operation, com
             body: JSON.stringify({ amount, cvuMain, currency, operation, comment, cvuD, category })
         })
         if (res.status === 200) {   
-            const resJson = await (await res).json()
+            const resJson = await res.json()
             return resJson
         }
     } catch (error) {
