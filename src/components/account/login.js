@@ -9,6 +9,8 @@ import { useToken } from '../../hooks/useToken'
 
 import { AiOutlineGoogle } from 'react-icons/ai'
 
+import { InputComponent } from './InputComponent'
+
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -35,7 +37,7 @@ const Login = () => {
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
-        if (res.message) {
+        if (res?.message) {
           alert(res.message)
         }
         loginResponseHandler(res)
@@ -49,17 +51,17 @@ const Login = () => {
       <h2>Already a member<span>?</span></h2>
 
       <div className={formStyles.card}>
+
         <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
+
         <div className={formStyles.or}>or</div>
+
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
-            {errors.email && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
-            {errors.password && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
+
+          <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='text' config={{ required: true, minLength: 8 }} />
+
+          <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
+
           <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
         </form>
 
