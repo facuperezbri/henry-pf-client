@@ -19,7 +19,7 @@ const modalStyles = {
 
 export default function Favorites ({ setState, state }) {
     const favourites = useSelector((state) => state.favourites)
-    const userId = useSelector((state) => state.userData.id)
+    const userId = useSelector((state) => state.userData?.id)
     const dispatch = useDispatch()
     // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)

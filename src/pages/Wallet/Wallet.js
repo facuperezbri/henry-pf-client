@@ -19,17 +19,18 @@ export default function Wallet () {
   const navigate = useNavigate()
   // const movements = useSelector(state => state.movements)
   const [amount, setAmount] = useState(0)
+  // userData?.length > 0 ? userData.accounts[0].cvu : ""
   const [state, setState] = useState({
-    cvuMain: userData.length === 0 ? 0 : userData?.accounts[0]?.cvu,
-    currency: "pesos",
+    cvuMain: userData.accounts?.[0].cvu || "",
+    currency: "Pesos",
     operation: "Debit",
     comment: ""
   })
-
+  console.log(state.cvuMain)
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
-  }, [])
+  }, [dispatch])
 
 
   // console.log(userData?.accounts[0]?.movements)
@@ -47,6 +48,7 @@ export default function Wallet () {
 
   function handleChange (e) {
     e.preventDefault()
+    setState({...state, cvuMain: userData.accounts?.[0].cvu})
     if (e.target.name !== 'amount') {
       setState({
         ...state, [e.target.name]: e.target.value
@@ -62,7 +64,17 @@ export default function Wallet () {
     e.preventDefault()
     TRANSFER_MONEY({ ...state, amount: amount }).then((res) => {
       console.log(res)
+      dispatch(getMovements(userData.accounts[0].cvu))
     }).catch(console.error)
+    setState({
+      cvuMain: userData?.accounts?.[0].cvu || "",
+      currency: "Pesos",
+      operation: "Debit",
+      comment: "",
+      cvuD: ""
+    })
+    setAmount(0)
+    
   }
 
   return (
@@ -78,13 +90,13 @@ export default function Wallet () {
             <form onSubmit={handleSubmit} className={style.formContainer}>
 
               <label htmlFor="cvuMain">Your CVU: </label>
-              <input name='cvuMain' value={userData.length === 0 ? 0 : userData?.accounts[0]?.cvu} disabled />
+              <input name='cvuMain' value={state.cvuMain} disabled />
 
               <label htmlFor="cvuD">Destiny CVU: </label>
               <input name='cvuD' type="text" value={state.cvuD} onChange={handleChange} placeholder="Where do yo want to transfer to?" />
 
               <label htmlFor="amount">Amount: </label>
-              <input name='amount' type='number' onChange={handleChange} placeholder="How much do you want to send?" />
+              <input name='amount' type='number' min={0} value={amount} onChange={handleChange} placeholder="How much do you want to send?" />
 
               <label htmlFor="category">Category: </label>
               {/* <input name='category' type='text' onChange={handleChange} /> */}
