@@ -23,6 +23,9 @@ function App () {
     <div className={style.container}>
       <Routes>
         <Route path="/" element={<Landing />} />
+        {/* <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/sendMail" element={<SendMail />} /> */}
+
         <Route path="/account/login" element={<LoginSignIn />} />
         <Route
           path="/profile"

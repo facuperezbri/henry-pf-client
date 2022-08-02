@@ -10,7 +10,7 @@
 .transactionsContainer {
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 30rem;
     height: fit-content;
 }
 
