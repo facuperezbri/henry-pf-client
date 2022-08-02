@@ -13,7 +13,6 @@ export const SIGN_IN = async (data) => {
       profilepic,
       googleID
     } = data
-    console.log(Array.isArray(photoDNIFront), Array.isArray(photoDNIReverse), [photoDNIFront[0], Object.values(photoDNIReverse)[0]], photoDNIFront[0], photoDNIReverse[0])
     const body = new FormData()
     body.append('email', email)
     body.append('password', password)
