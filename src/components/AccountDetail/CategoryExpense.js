@@ -1,94 +1,81 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import transport from '../../assets/icons/transport.svg'
 import shopping from '../../assets/icons/shopping.svg'
 import subscriptions from '../../assets/icons/subscriptions.svg'
 import groceries from '../../assets/icons/groceries.svg'
+import charge from '../../assets/icons/groceries.svg'
+import entertainment from '../../assets/icons/groceries.svg'
+import selfcare from '../../assets/icons/groceries.svg'
+import services from '../../assets/icons/groceries.svg'
+import travels from '../../assets/icons/groceries.svg'
 import style from './CategoryExpense.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCategory } from '../../redux/actions'
 
 
 export default function CategoryExpense({activities}) { // los movimientos, con su categoria y monto
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getCategory())
-    }, [])
-    const categories = useSelector(state => state.categories)
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(getCategory())
+    // }, [])
+    // const categories = useSelector(state => state.categories)
     // console.log(categories)
+    let categoriesSum = [
+        {name: "Charge", sum: 0, icon: charge},       
+        {name: "Entertainment", sum: 0, icon: entertainment},              
+        {name: "Groceries", sum: 0, icon: groceries},
+        {name: "Selfcare", sum: 0, icon: selfcare},            
+        {name: "Services", sum: 0, icon: services},           
+        {name: "Shopping", sum: 0, icon: shopping},          
+        {name: "Subscriptions", sum: 0, icon: subscriptions},                
+        {name: "Transport", sum: 0, icon: transport},
+        {name: "Travels", sum: 0, icon: travels}
+    ]
 
-    let sumPorCat = 0
-    let totalByCat = []
+    let provSum = 0
 
-    for (let i=0; i<categories?.length; i++) {
+    for (let i=0; i<categoriesSum.length; i++) {
         for (let j=0; j<activities?.length; j++) {
-            if (categories[i] === activities[j].categories?.name) {
-                sumPorCat = activities[j].amount
+            if (activities?.[j].categories?.name === categoriesSum[i].name) {
+                provSum += activities?.[j].amount
             }
         }
-        // console.log(sumPorCat)
-        if (sumPorCat === 0) {
-            totalByCat.push(0)
-        }
-        totalByCat.push(sumPorCat)
-        sumPorCat = 0
+        categoriesSum[i].sum = provSum
+        provSum = 0
     }
+
+    console.log(categoriesSum.filter((abc) => abc.sum !== 0))
 
   return (
     <div>
-
         <div className={style.categoriesContainer}>
           <ul className={style.listContainer}>
-
-            {/* {
+            {
             <li>
+                {/* ESTA PRIMERA OPCION ES PARA QUE APAREZCAN SOLO LAS CATEGORIAS UTILIZADAS*/}
                 {
-                    categories?.map((xxx) => (
+                    categoriesSum.filter((abc) => abc.sum !== 0).map((xxx) => (
                         <div>
-                            <img src={xxx.name} alt={`${xxx.name}`}/>
+                            <img src={xxx.icon} alt={`${xxx.name} NF`}/>
+                            <div>{xxx.sum}</div>
+                            <div>{xxx.name}</div>
                         </div>
                     ))
                 }
-                {
-                    totalByCat?.map((yyy) => (
+
+                {/* ESTA SEGUNDA OPCION ES PARA QUE APAREZCAN TODAS LAS CATEGORIAS AUN SI TIENEN CERO*/}
+                {/* {
+                    categoriesSum.map((xxx) => (
                         <div>
-                            <p>{yyy}</p>
+                            <img src={xxx.icon} alt={`${xxx.name} NF`}/>
+                            <div>{xxx.sum}</div>
+                            <div>{xxx.name}</div>
                         </div>
-                    ))  
-                }
+                    ))
+                } */}
             </li>
-            } */}
-
-
-
-
-            <li><img src={transport} alt="Transport icon" />
-              <div>
-                <h4>Transport</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={shopping} alt="Shopping icon" />
-              <div>
-                <h4>Shopping</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={subscriptions} alt="Subscriptions icon" />
-              <div>
-                <h4>Subscriptions</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={groceries} alt="Groceries icon" />
-              <div>
-                <h4>Groceries</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
+            }
           </ul>
         </div>
-
     </div>
   )
 }
