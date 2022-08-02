@@ -102,8 +102,7 @@ export default function Wallet () {
                 <option key={5} value='Travels'>Travels</option>
                 <option key={6} value='Services'>Services</option>
                 <option key={7} value='Entertainment'>Entertainment</option>
-                <option key={8} value='Charge'>Charge</option>
-                <option key={9} value='Selfcare'>Selfcare</option>
+                <option key={8} value='Selfcare'>Selfcare</option>
               </select>
 
               <label htmlFor='comment'>Comment:</label>
