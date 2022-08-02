@@ -33,7 +33,7 @@ export default function Profile () {
 
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
-  }, [visibleImg, visibleUser, visible])
+  }, [dispatch])
 
   return (
     <div className={Style.main}>
@@ -41,7 +41,7 @@ export default function Profile () {
       <div className={Style.container}>
         <img className={Style.img} src={dataProfile.profilepic} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
-        {visibleImg ? <EditImg setVisibleImg={setVisibleImg} dataProfile={dataProfile} /> : null}
+        {visibleImg && <EditImg setVisibleImg={setVisibleImg} dataProfile={dataProfile} /> }
         {/* <img className={Style.img} src={dataProfile.profilepic} alt={"Profile"} />
         <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
         {visibleImg ? <EditProfile dataInput={dataInput} dataProfile={dataProfile} /> : null} */}
