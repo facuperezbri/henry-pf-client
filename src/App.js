@@ -29,7 +29,7 @@ function App () {
          <Route path="/reset/:id" element={<ResetPassword />} />
         <Route path="/sendMail" element={<SendMail />} />
 
-        <Route path="/account/login" element={<LoginSignIn />} />
+        <Route path="/account" element={<LoginSignIn />} />
         <Route
           path="/profile"
           element={

@@ -1,11 +1,13 @@
 import {useToken} from '../hooks/useToken'
+import { API_URL } from "./API"
+
 
 export const UPDATE_PROFILE_IMG = async (img)=>{
     const {token} = useToken()
     const body = new FormData()
     body.append("image",img)
     try {
-        const res = await fetch("http://localhost:4000/api/user/useredit",{
+        const res = await fetch(`${API_URL}/api/user/useredit`,{
             headers:{ 
                 authorization: `Bearer ${token}`,
             },

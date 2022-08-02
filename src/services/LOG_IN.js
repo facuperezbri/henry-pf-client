@@ -1,6 +1,8 @@
+import { API_URL } from "./API"
+
 export const LOG_IN = async ({ email, password, googleID }) => {
     try {  
-      const res = await fetch('http://localhost:4000/api/user/login', {
+      const res = await fetch(`${API_URL}/api/user/login`, {
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
         },
