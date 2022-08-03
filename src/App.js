@@ -27,8 +27,6 @@ function App () {
       <Routes>
         <Route path="/" element={<Landing />} />
          <Route path="/reset/:id" element={<ResetPassword />} />
-        <Route path="/sendMail" element={<SendMail />} />
-
         <Route path="/account" element={<LoginSignIn />} />
         <Route
           path="/profile"
@@ -67,9 +65,9 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-           
+            <AuthProvider>
               <Cryptos />
-           
+            </AuthProvider>
           }
         />
         <Route
@@ -112,9 +110,9 @@ function App () {
           exact
           path="/cryptosmarket/:id"
           element={
-          
+            <AuthProvider>
               <CryptoDetails />
-           
+            </AuthProvider>
           }
         />
         <Route

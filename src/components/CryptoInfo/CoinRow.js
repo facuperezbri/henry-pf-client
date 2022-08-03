@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const CoinRow = ({ element }) => {
   return (
     <Link key={element?.id} to={`/cryptosmarket/${element?.id}`}>
-    <tr>
+    <div>
       <td>{element?.name}</td>
       <td>{element?.symbol}</td>
       <td>
@@ -12,7 +12,7 @@ const CoinRow = ({ element }) => {
       </td>
       <td>${element?.currentPrice}</td>
       <td>% {element?.dailyRateChange}</td>
-    </tr>
+      </div>
      </Link>
   )
 }

@@ -65,7 +65,7 @@ const Login = () => {
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
           <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
-          <a onClick={(e) => change(e)}>Did you forget your password? get it back</a>
+          <a onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</a>
           { open ? <SendMail/> : null}
         </form>
 
