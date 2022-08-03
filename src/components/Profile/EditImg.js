@@ -1,43 +1,29 @@
-import { useToken } from '../../hooks/useToken'
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import style from './EditImg.module.css'
-export default function EditImg({setVisibleImg}) {
-  // console.log(setVisibleImg)
-  const [image, setImage] = useState();
-  const [loading, setLoading] = useState(false);
-  const { setToken, token } = useToken();
+import { UPDATE_PROFILE_IMAGE } from '../../services/UPDATE_PROFILE_IMAGE';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../redux/actions'
+import { useToken } from '../../hooks/useToken'
 
-  const uploadImage = async (e)=>{
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset","images");
-    setLoading(true);
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/da76mkk4h/image/upload",{
-        method:"POST",
-        body:data,
-      }
-    )
-    const file = await res.json()
-    setImage({
-      profilepic: file.secure_url
-    })
-    setLoading(false)
+export default function EditImg({ setVisibleImg, dataProfile }) {
+  const dispatch = useDispatch()
+  const { token } = useToken()
+  // console.log(setVisibleImg)
+  const [image, setImage] = useState()
+
+  const handlerImageChange = (e) => {
+    setImage(e.target.files[0])
   }
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
-};
-const sendPutUser = async()=>{
-  const user = await axios.put("http://localhost:4000/api/user/useredit",image,config)
-  setVisibleImg(false)
-  alert("data uploaded successfully")
-}
+  const sendPutUser = () => {
+    UPDATE_PROFILE_IMAGE(image, dataProfile?.profilepicID).then((res) => {
+      dispatch(getUser(token))
+    }).catch(console.error)
+  }
   return (
     <div className={style.container}>
       <div className={style.containerBtn}>
-          <div onClick={()=>setVisibleImg(false)} className={style.btn}>X</div>
+        <div onClick={() => setVisibleImg(false)} className={style.btn}>X</div>
       </div>
      
         <h2>insert profile picture</h2>
@@ -46,7 +32,7 @@ const sendPutUser = async()=>{
             type="file"
             name="file"
             palceholder="upload your image"
-            onChange={uploadImage}
+            onChange={handlerImageChange}
           />
         </form>
         <button onClick={sendPutUser}>send</button>
