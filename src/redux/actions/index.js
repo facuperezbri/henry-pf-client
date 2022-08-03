@@ -73,7 +73,7 @@ export const getMovements = (cvu) => {
   return async function (dispatch) {
     try {
       let data = await GET_MOVEMENT_SERVICE(cvu)
-      console.log(data)
+      // console.log(data)
       return dispatch({
         type: GET_MOVEMENT,
         payload: data.movements
@@ -139,10 +139,6 @@ export function getRatings() {
       console.error(e)
     }
   }
-}
-
-export function postRating(payload) {
-  return axios.post(`${API_URL}/api/ratings`,payload)
 }
 
 export function openRate() {

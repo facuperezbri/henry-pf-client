@@ -93,7 +93,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
         <button className={styles.btn} onClick={() => resetFilterYresetSort()}>Hide movements</button>
 
         <select name="filterCategory" onChange={onSelectCategory}>
-          <option selected="true" disabled="disabled">Category...</option>
+          <option selected={true} disabled="disabled">Category...</option>
           {categoriesUnique?.map((abc) => (
             <option key={abc} value={abc}>{abc}</option>
           ))}
@@ -104,8 +104,8 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
       </span>
       {
         !filter &&
-        orderDate.map((activitie) => (
-          <div key={activitie.id} className={styles.activitie} onClick={() => handlerClick(activitie)}>
+        orderDate.map((activitie, i) => (
+          <div key={i} className={styles.activitie} onClick={() => handlerClick(activitie)}>
             <div className={styles.container}>
               <span>{activitie?.categories}</span>
               <span>{activitie?.fecha}</span>
