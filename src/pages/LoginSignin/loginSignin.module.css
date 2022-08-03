@@ -1,9 +1,9 @@
 .mainContainer {
   color: #fff;
   background: var(--main-bg);
-  height: 100vh;
   padding: 3rem 5rem;
   height: 100vh;
+  max-height: max-content;
 }
 
 .nav {
