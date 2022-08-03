@@ -1,2 +1,2 @@
-export const setFormat = (date, locale, options) =>
-new Intl.DateTimeFormat(locale, options).format(date)
+export const setFormat = (date, locale, option) =>
+new Intl.DateTimeFormat(locale, { dateStyle: option }).format(new Date(date))

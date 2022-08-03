@@ -5,7 +5,7 @@ import { setFormat } from '../../hooks/setFormatDate'
 // import { sendMovement } from "../../redux/actions/index"
 
 const MovementDeatail = ({ movement, closeDetails }) => {
-
+    console.log(movement)
     return (
         <>
             <div className={style.movement_container} onClick={closeDetails} />
