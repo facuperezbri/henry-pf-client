@@ -21,7 +21,7 @@ export default function LineChart () {
     }
   })
 
-  // console.log(movements)
+  console.log(movements)
 
   var aux = []
   const startBalance = 0
