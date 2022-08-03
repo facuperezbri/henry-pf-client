@@ -47,6 +47,7 @@ export default function RateForm ({ setPerilla }) {
 
     function handleSubmit (e) {
         e.preventDefault();
+        console.log(input)
         postRating(input);
         alert('Thank you for your rate!');
         setInput({
@@ -54,6 +55,7 @@ export default function RateForm ({ setPerilla }) {
             comment: undefined,
         })
     }
+    console.log(input)
 
     // console.log(input)
 

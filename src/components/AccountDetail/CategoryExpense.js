@@ -37,7 +37,7 @@ export default function CategoryExpense({activities}) { // los movimientos, con 
         provSum = 0
     }
 
-    console.log(categoriesSum.filter((abc) => abc.sum !== 0))
+    // console.log(categoriesSum.filter((abc) => abc.sum !== 0))
 
   return (
     <div>
@@ -47,8 +47,8 @@ export default function CategoryExpense({activities}) { // los movimientos, con 
             <li>
                 {/* ESTA PRIMERA OPCION ES PARA QUE APAREZCAN SOLO LAS CATEGORIAS UTILIZADAS*/}
                 {
-                    categoriesSum.filter((abc) => abc.sum !== 0).map((xxx) => (
-                        <div>
+                    categoriesSum.filter((abc) => abc.sum !== 0).map((xxx, i) => (
+                        <div key={i}>
                             <img src={xxx.icon} alt={`${xxx.name} NF`}/>
                             <div>{xxx.sum}</div>
                             <div>{xxx.name}</div>
