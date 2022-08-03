@@ -141,10 +141,6 @@ export function getRatings() {
   }
 }
 
-export function postRating(payload) {
-  return axios.post(`${API_URL}/api/ratings`,payload)
-}
-
 export function openRate() {
   return {
     type: OPEN_RATE,

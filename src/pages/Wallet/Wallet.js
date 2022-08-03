@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import Favorites from '../../components/Favourites/Favourites'
-
-import { getCategory, getMovements, getUser, openRate } from '../../redux/actions'
-
+import { getCategory, getMovements, getUser } from '../../redux/actions'
 import Nav from '../../components/Nav/Nav'
-
 import style from './Wallet.module.css'
 import { TRANSFER_MONEY } from '../../services/TRANSFER_MONEY'
-import RateForm from '../../components/Nav/RateForm'
 
 
 export default function Wallet () {
   const dispatch = useDispatch()
   const userData = useSelector(state => state.userData)
   const navigate = useNavigate()
-  // const movements = useSelector(state => state.movements)
   const [amount, setAmount] = useState(0)
-  // userData?.length > 0 ? userData.accounts[0].cvu : ""
   const [state, setState] = useState({
     cvuMain: userData.accounts?.[0].cvu || "",
     currency: "Pesos",
@@ -27,27 +20,15 @@ export default function Wallet () {
     comment: ""
   })
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
+    dispatch(getUser(window.localStorage.getItem('token'))).then(r => {
+      dispatch(getMovements(r.payload.accounts[0].cvu))
+      setState({...state, cvuMain: r.payload.accounts[0].cvu})
+    })
     dispatch(getCategory())
-  }, [dispatch])
-
-
-  // console.log(userData?.accounts[0]?.movements)
-
-  // const theMoves = userData?.accounts[0]?.movements?.map((abc) => (
-  //   abc?.categories?.name
-  // ))
-  // // console.log(theMoves)
-
-
-  // const catUnique = [...new Set(theMoves)]
-  // // console.log(catUnique)
-
-
+  }, [])
 
   function handleChange (e) {
     e.preventDefault()
-    setState({...state, cvuMain: userData.accounts?.[0].cvu})
     if (e.target.name !== 'amount') {
       setState({
         ...state, [e.target.name]: e.target.value
