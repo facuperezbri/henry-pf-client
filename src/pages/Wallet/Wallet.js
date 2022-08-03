@@ -26,7 +26,6 @@ export default function Wallet () {
     operation: "Debit",
     comment: ""
   })
-  console.log(state.cvuMain)
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
     dispatch(getCategory())
