@@ -58,7 +58,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
 
-          <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='text' config={{ required: true, minLength: 8 }} />
+          <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='email' config={{ required: true, minLength: 8 }} />
 
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
