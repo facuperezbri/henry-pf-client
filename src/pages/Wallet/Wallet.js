@@ -98,15 +98,8 @@ export default function Wallet () {
               <input name='amount' type='number' min={0} value={amount} onChange={handleChange} placeholder="How much do you want to send?" />
 
               <label htmlFor="category">Category: </label>
-              {/* <input name='category' type='text' onChange={handleChange} /> */}
-
               <select name='category' onChange={handleChange}>
                 <option selected="true" disabled="disabled">Choose a category...</option>
-                {/* {
-                  catUnique.map((abc, i) => (
-                    <option key={i} value={abc}>{abc}</option>
-                    ))
-                } */}
                 <option value='Charge'>Charge</option>
                 <option value='Entertainment'>Entertainment</option>
                 <option value='Groceries'>Groceries</option>
