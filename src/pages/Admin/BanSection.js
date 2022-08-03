@@ -78,7 +78,7 @@ const BanSection = () => {
         <div>
             {
                 users?.map(user => (
-                    <div id={user.id}>
+                    <div key={user.id}>
                         <img src={user?.profilepic} alt={user.username} />
                         <span>
                             {user.email}
