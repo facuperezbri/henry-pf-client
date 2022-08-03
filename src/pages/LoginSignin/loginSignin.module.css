@@ -2,8 +2,6 @@
   color: #fff;
   background: var(--main-bg);
   padding: 3rem 5rem;
-  height: 100vh;
-  max-height: max-content;
 }
 
 .nav {

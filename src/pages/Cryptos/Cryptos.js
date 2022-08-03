@@ -8,10 +8,10 @@ import style from './Cryptos.module.css'
 export default function Wallet () {
   return (
     <>
-    <div className={style.container}>
-    <Nav />
-      <CryptoMarket />
-    </div>
+      <div className={style.container}>
+        <Nav />
+        <CryptoMarket />
+      </div>
     </>
   )
 }
