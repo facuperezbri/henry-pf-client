@@ -24,10 +24,15 @@ export default function Wallet () {
     cvuMain: userData.accounts?.[0].cvu || "",
     currency: "Pesos",
     operation: "Debit",
-    comment: ""
+    comment: "",
+    cvuD: ''
   })
   useEffect(() => {
-    dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getMovements(r.payload.accounts[0].cvu)))
+    dispatch(getUser(window.localStorage.getItem('token'))).then(r => {
+      setState({...state, cvuMain: r.payload.accounts[0].cvu})
+      // console.log({r})
+      dispatch(getMovements(r.payload.accounts[0].cvu))
+    })
     dispatch(getCategory())
   }, [dispatch])
 
@@ -47,7 +52,6 @@ export default function Wallet () {
 
   function handleChange (e) {
     e.preventDefault()
-    setState({...state, cvuMain: userData.accounts?.[0].cvu})
     if (e.target.name !== 'amount') {
       setState({
         ...state, [e.target.name]: e.target.value
@@ -75,6 +79,8 @@ export default function Wallet () {
     setAmount(0)
     
   }
+
+  console.log(state)
 
   return (
     <div className={style.container}>
