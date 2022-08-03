@@ -4,6 +4,8 @@ import { useDispatch , useSelector } from "react-redux"
 import { useEffect, useState } from "react";
 import { getDetailsCrypto, resetCrypto } from "../../redux/actions/index";
 import CryptoChart  from "./CryptoChart"
+import styles from './DetailsCrypto.module.css'
+import loading from '../../assets/spinner/spinner.svg'
 
 // import styles from "../details/details.module.css"
 
@@ -22,11 +24,13 @@ export default function Details(){
         dispatch(resetCrypto())
     }
     if(detailCrypto.length === 0){
-        return (<div>..loading</div>)
+        return  <div className={styles.loading} >
+        <img src={loading} alt="Loading" />
+      </div>
     }
     return (
             
-            <div>
+            <div className={styles.container}>
                  <CryptoChart date={detailCrypto.data2} name={detailCrypto.data?.name}/>
               <>
                 <div>
@@ -36,7 +40,6 @@ export default function Details(){
                    <h1>${detailCrypto.data?.market_data.current_price.usd}</h1>
                     <h1>%{detailCrypto.data?.market_data.ath_change_percentage.usd}</h1>
                      <a href={detailCrypto.data?.links.homepage}>link to {detailCrypto.data?.name}</a>
-                    <p>{detailCrypto.data?.description.en}</p>
                 </div> 
                     
               

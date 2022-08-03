@@ -10,7 +10,9 @@ export default function Wallet () {
     <>
       <div className={style.container}>
         <Nav />
+        <div className={style.cryptocontainer}>
         <CryptoMarket />
+        </div>
       </div>
     </>
   )

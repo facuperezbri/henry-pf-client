@@ -6,8 +6,8 @@ import Details from '../../components/CryptoInfo/DetailsCrypto'
 export default function CryptoDetails () {
   return (
     <>
-    <Nav />
     <div className={style.container}>
+    <Nav />
       <Details />
     </div>
     </>

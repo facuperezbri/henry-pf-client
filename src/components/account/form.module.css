@@ -35,7 +35,9 @@
     text-align: center;
     font-size: 2rem;
 }
-
+.a {
+    cursor: pointer;
+}
 .input_text {
     border: none;
     width: 100%;
