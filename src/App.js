@@ -67,9 +67,9 @@ function App () {
           exact
           path="/cryptosmarket"
           element={
-            <AuthProvider>
+           
               <Cryptos />
-            </AuthProvider>
+           
           }
         />
         <Route
@@ -112,9 +112,9 @@ function App () {
           exact
           path="/cryptosmarket/:id"
           element={
-            <AuthProvider>
+          
               <CryptoDetails />
-            </AuthProvider>
+           
           }
         />
         <Route
