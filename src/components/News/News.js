@@ -20,7 +20,6 @@ const News2 = () => {
     const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
     const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
     const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
-    console.log(info)
     const data = info.data.articles
     return data
   }
@@ -62,7 +61,7 @@ const News2 = () => {
               const title = e.title.toLowerCase()
               return title.includes(filter.toLowerCase())
             }).map((news) =>
-              <a href={news.url} target="_blank" rel="noreferrer">
+              <a key={news.url} href={news.url} target="_blank" rel="noreferrer">
                 <div className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
                   <h1 className={styles.title}>{news.title}</h1>
