@@ -66,9 +66,9 @@ export default function Landing () {
           </li>
         </ul>
       </div>
-      {/* <div>
+      <div>
         <Ratings />
-      </div> */}
+      </div>
     </div >
   )
 }
