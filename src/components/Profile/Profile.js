@@ -44,32 +44,32 @@ export default function Profile () {
   return (
     <div className={Style.main}>
 
-      <div className="w-40 h-40 md:w-72 md:h-72 rounded-full overflow-hidden">
-        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg}/>
+      <div className="rounded-full items-center" >
+        <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
 
       <div className="bg-slate-100 p-4 w-full rounded-b-md shadow-xl my-4 rounded-md flex flex-col gap-2">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <CardText>
-              <span>
-                {dataProfile?.name}
-              </span>
-            </CardText>
+          <CardText>
+            <span>
+              {dataProfile?.name}
+            </span>
+          </CardText>
 
-            <CardText>
-              <span>
-                {dataProfile?.lastname}
-              </span>
-            </CardText>
+          <CardText>
+            <span>
+              {dataProfile?.lastname}
+            </span>
+          </CardText>
         </div>
         <CardText>
           <span>
-          {dataProfile?.username}
+            {dataProfile?.username}
           </span>
         </CardText>
         <CardText>
           <span>
-          {dataProfile?.email}
+            {dataProfile?.email}
           </span>
         </CardText>
       </div>

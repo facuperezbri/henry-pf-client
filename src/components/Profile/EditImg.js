@@ -6,10 +6,10 @@ import { UPDATE_PROFILE_IMAGE } from '../../services/UPDATE_PROFILE_IMAGE';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../../redux/actions'
 import { useToken } from '../../hooks/useToken'
-import InputComponent from '../uiComponents/Input';
+import InputComponent from '../uiComponents/InputComponent';
 import Button from '../uiComponents/Button';
 
-export default function EditImg({ dataProfile, handlerCloseModalImg }) {
+export default function EditImg ({ dataProfile, handlerCloseModalImg }) {
   const dispatch = useDispatch()
   const { token } = useToken()
   const { register, handleSubmit, formState: { errors } } = useForm()

@@ -47,18 +47,18 @@ button {
   font-size: 20px;
   cursor: pointer;
   position: relative;
+  z-index: 1;
   overflow: hidden;
-  color: white;
-  border: .1rem #FF5F6D solid;
 }
 
+
 button:hover {
-  color: #FF5F6D;
-  background: white;
+  color: #FF5F6D
 }
 
 button:after {
   content: "";
+  background: white;
   position: absolute;
   z-index: -1;
   left: -20%;
