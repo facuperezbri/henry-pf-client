@@ -6,7 +6,7 @@ import formStyles from './form.module.css'
 
 import { AiOutlineGoogle } from 'react-icons/ai'
 
-import { InputComponent } from './InputComponent'
+import InputComponent from './../uiComponents/InputComponent'
 
 
 const SignIn = () => {
@@ -36,18 +36,18 @@ const SignIn = () => {
         email: userGoogle?.email || data?.email,
         profilepic: userGoogle?.photoURL || '',
         username: userGoogle?.email?.split('@')[0] || data.username,
-        googleID: userGoogle?.uid || ''  
+        googleID: userGoogle?.uid || ''
       }
       SIGN_IN(dataTosend).then(res => {
         if (res?.message) {
           return alert(res?.message)
         }
-  
+
         if (res?.id) {
           reset()
           return alert(`The user ${res?.username} is registered. Wait for the validation of your account.`)
         }
-  
+
       }).catch(console.error)
     }
   }
@@ -84,24 +84,24 @@ const SignIn = () => {
             {
               step === 1 &&
               <>
-              {
-                userGoogle && <button className={formStyles.button} onClick={() => setUserGoogle()}>X</button>
-              }
-              {
-                !userGoogle && step === 1 &&
-                <>
+                {
+                  userGoogle && <button className={formStyles.button} onClick={() => setUserGoogle()}>X</button>
+                }
+                {
+                  !userGoogle && step === 1 &&
+                  <>
+                    <div className={formStyles.center}>
+                      <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
+                    </div>
+                    <div className={formStyles.or}>or</div>
+                  </>
+                }
+                {
+                  userGoogle?.photoURL &&
                   <div className={formStyles.center}>
-                    <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
+                    <img className={formStyles.profilepic} src={userGoogle?.photoURL} alt={userGoogle?.displayName} />
                   </div>
-                  <div className={formStyles.or}>or</div>
-                </>
-              }
-              {
-                userGoogle?.photoURL &&
-                <div className={formStyles.center}>
-                  <img className={formStyles.profilepic} src={userGoogle?.photoURL} alt={userGoogle?.displayName} />
-                </div>
-              }
+                }
                 {
                   !userGoogle?.email && <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='text' config={{ required: true, minLength: 8 }} />
                 }
@@ -135,7 +135,7 @@ const SignIn = () => {
                 <InputComponent register={register} errors={errors} name='lastname' placeholder='Your lastname' type='text' config={{ required: true, minLength: 2 }} />
 
                 <div className={formStyles.button_prev_next_container}>
-                  <button className={formStyles.button} type='button'onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
+                  <button className={formStyles.button} type='button' onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
                   <button className={formStyles.button} type='submit'>Next</button>
                 </div>
 
@@ -164,7 +164,7 @@ const SignIn = () => {
                 {/* <div id='preview_img_photoDNIReverse' className={formStyles.image_preview}>
                 </div> */}
                 <div className={formStyles.center}>
-                <button className={formStyles.button} type='button'onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
+                  <button className={formStyles.button} type='button' onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
 
                 </div>
 

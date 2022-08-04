@@ -5,12 +5,13 @@ import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
 import { useToken } from '../../hooks/useToken'
-import {useState} from 'react'
+import { useState } from 'react'
 
 import { AiOutlineGoogle } from 'react-icons/ai'
 
-import { InputComponent } from './InputComponent'
+import InputComponent from './../uiComponents/InputComponent'
 import SendMail from './SendMail'
+import Button from '../uiComponents/Button'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -29,7 +30,7 @@ const Login = () => {
   const change = (e) => {
     e.preventDefault()
     setOpen(!open)
-  }  
+  }
   const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
     LOG_IN({ email, password }).then((res) => {
@@ -65,11 +66,13 @@ const Login = () => {
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
           <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
-          <a onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</a>
-          { open ? <SendMail/> : null}
+          <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
+          {open ? <SendMail /> : null}
         </form>
 
       </div>
+
+      <Button children="Prueba" />
 
 
     </div>

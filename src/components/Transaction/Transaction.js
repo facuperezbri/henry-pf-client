@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -91,7 +92,7 @@ export default function Transaction () {
               </select>
 
               <label htmlFor='comment'>Comment:</label>
-              <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>
+              <textarea name='comment' value={state.comment} onChange={handleChange}></textarea>∫
 
               <button className={style.btn} onClick={handleSubmit}>Send transference</button>
             </form>
@@ -103,5 +104,7 @@ export default function Transaction () {
         </div>
       </div>
     </div>
+
+
   )
 }
