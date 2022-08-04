@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Button = ({ children }) => {
+const ButtonComponent = ({ children, onClick, className, type }) => {
   return (
-    <button className="bg-primary-red">
+    <button onClick={onClick} className={className} type={type}>
         {children}
     </button>
   )
 }
 
-export default Button
+export default ButtonComponent

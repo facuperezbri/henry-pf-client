@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+input::-webkit-file-upload-button {
+  visibility: hidden;
+  display: contents;
+}
+
 
 
 body {
@@ -49,18 +54,19 @@ button {
   font-size: 20px;
   cursor: pointer;
   position: relative;
-  z-index: 1;
   overflow: hidden;
+  color: white;
+  border: .1rem #FF5F6D solid;
 }
 
 
 button:hover {
-  color: #FF5F6D
+  color: #FF5F6D;
+  background: white;
 }
 
 button:after {
   content: "";
-  background: white;
   position: absolute;
   z-index: -1;
   left: -20%;
