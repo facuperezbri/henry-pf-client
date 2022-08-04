@@ -3,15 +3,15 @@ import style from './MovementDeatail.module.css'
 import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
 // import { sendMovement } from "../../redux/actions/index"
+import Button from '../uiComponents/Button'
 
 const MovementDeatail = ({ movement, closeDetails }) => {
-    console.log(movement)
     return (
         <>
-            <div className={style.movement_container} onClick={closeDetails} />
-            <div className={style.movement}>
-                <div>
-                    <button className={style.button} onClick={closeDetails}>Close</button>
+            <div className="fixed w-screen h-screen bg-gray-200 opacity-50 backdrop-blur-lg z-10 inset-0" onClick={closeDetails} />
+            <div className="h-2/3 w-2/3 fixed p-4 bg-gray-200 z-20 bottom-0 rounded-t-md">
+                <div className='flex justify-end'>
+                    <Button onClick={closeDetails}>Close</Button>
                 </div>
                 <div className={style.details}>
                     <div className={style.amount_container}>
@@ -47,7 +47,7 @@ const MovementDeatail = ({ movement, closeDetails }) => {
 
                     <div className={style.detail}>
                         <span>Date</span>
-                        <span>{setFormat(new Date(movement?.fecha), 'en-EN', { dateStyle: 'long' })}</span>
+                        <span>{setFormat(movement?.date, 'en-EN', 'long' )}</span>
                     </div>
                 </div>
             </div>

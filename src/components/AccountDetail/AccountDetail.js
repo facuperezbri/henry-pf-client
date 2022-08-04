@@ -11,6 +11,7 @@ import { useToken } from '../../hooks/useToken'
 import loading from '../../assets/spinner/spinner.svg'
 import BalanceChart from './BalanceChart'
 import CategoryExpense from './CategoryExpense'
+// import Modal from '../uiComponents/modal'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
@@ -68,6 +69,7 @@ export default function AccountDetail () {
             openDetails={openDetails} />
         </Suspense>
       </div>
+
       {
         showMovementDetails &&
         <MovementDeatail

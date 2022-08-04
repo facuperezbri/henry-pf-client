@@ -10,7 +10,7 @@ import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 
-const CardText = ({ children }) => (
+export const CardText = ({ children }) => (
   <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
 )
 export default function Profile () {
@@ -87,6 +87,10 @@ export default function Profile () {
       <Button onClick={handlerShowModal}>
         Change password
       </Button>
+
+      <button onClick={() => document.documentElement.classList.add('dark')}>
+        Dark
+      </button>
 
     </div>
   );
