@@ -39,7 +39,7 @@ const CryptosInfo = () => {
       <div className={styles.container}>
         <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
         <h1>Crypto markets</h1>
-        <div> <select
+        <div className={styles.containerselect}> <select
             className={styles.select}
             onChange={(e) => handleSortedCryptosTitle(e)}
           >

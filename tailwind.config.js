@@ -9,7 +9,7 @@ module.exports = {
         'primary-red': '#FF5F6D',
         'primary-white': '#FFFFFF',
         'main-bg': 'var(--main-bg)'
-      }
+      },
     },
   },
   plugins: [],

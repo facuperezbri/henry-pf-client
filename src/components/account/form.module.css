@@ -31,9 +31,12 @@
 }
 
 .or {
-    margin: 2rem;
     text-align: center;
     font-size: 2rem;
+}
+
+.a {
+    cursor: pointer;
 }
 
 .input_text {

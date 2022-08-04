@@ -82,13 +82,11 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
   //   setOrderDate(arrNew)
   // }
 
-  console.log(activities)
-
   return (
     <div className={styles.container}>
       Movements
       <span className={styles.title}>
-{/* 
+        {/* 
         <button className={styles.btn} onClick={sortByDate}>Order by date {interruptor ? <span>DESC</span> : <span>ASC</span>}</button>
 
         <button className={styles.btn} onClick={(e) => allmov(e)}>Show movements</button>
