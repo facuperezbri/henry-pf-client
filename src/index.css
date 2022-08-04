@@ -6,9 +6,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }
-
-
 
 body {
   margin: 0;
@@ -27,20 +27,9 @@ body {
   --red-color: #FF5F6D;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 a {
-  text-decoration: none;
   color: inherit;
 }
-
-li {
-  list-style: none;
-}
-
 
 button {
   width: fit-content;
@@ -54,7 +43,6 @@ button {
   z-index: 1;
   overflow: hidden;
 }
-
 
 button:hover {
   color: #FF5F6D
@@ -82,9 +70,3 @@ button:hover:after {
 .canvasjs-chart-canvas {
   z-index: -1;
 }
-
-
-
-
-
-/* Credit card font */
