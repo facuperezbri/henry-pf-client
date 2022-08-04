@@ -9,7 +9,7 @@ import { useToken } from '../../hooks/useToken'
 import InputComponent from '../uiComponents/Input';
 import Button from '../uiComponents/Button';
 
-export default function EditImg({ dataProfile }) {
+export default function EditImg({ dataProfile, handlerCloseModalImg }) {
   const dispatch = useDispatch()
   const { token } = useToken()
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -18,6 +18,7 @@ export default function EditImg({ dataProfile }) {
   const onSubmit = (data) => {
     UPDATE_PROFILE_IMAGE(data.image[0], dataProfile?.profilepicID).then((res) => {
       dispatch(getUser(token))
+      handlerCloseModalImg()
     }).catch(console.error)
   }
   return (
@@ -26,7 +27,9 @@ export default function EditImg({ dataProfile }) {
         <InputComponent register={register} errors={errors} msgerror='This field is rquired.' name='image' type='file' config={{ required: true }} />
         <div className='grid place-content-center'>
           <Button type='submit'>
-            Send
+            <span className='text-primary-red'>
+              Send
+            </span>
           </Button>
         </div>
       </form>

@@ -81,7 +81,7 @@ export default function Profile () {
         <EditPassword />
       </Modal>
       <Modal onClose={handlerShowModalImg} modal={showModalImg}>
-        <EditImg setVisibleImg={handlerShowModalImg} dataProfile={dataProfile} />
+        <EditImg handlerCloseModalImg={() => setShowModalImg(false)} dataProfile={dataProfile} />
       </Modal>
 
       <Button onClick={handlerShowModal}>
