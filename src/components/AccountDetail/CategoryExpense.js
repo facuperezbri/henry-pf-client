@@ -13,6 +13,12 @@ import style from './CategoryExpense.module.css'
 
 export default function CategoryExpense ({ activities }) { // los movimientos, con su categoria y monto
 
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(getCategory())
+    // }, [])
+    // const categories = useSelector(state => state.categories)
+    // console.log(categories)
     let categoriesSum = [
         { name: "Charge", sum: 0, icon: charge },
         { name: "Entertainment", sum: 0, icon: entertainment },

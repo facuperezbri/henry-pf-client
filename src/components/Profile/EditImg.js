@@ -25,17 +25,17 @@ export default function EditImg({ setVisibleImg, dataProfile }) {
       <div className={style.containerBtn}>
         <div onClick={() => setVisibleImg(false)} className={style.btn}>X</div>
       </div>
-
-      <h2>subiendo imagenes</h2>
-      <form>
-        <input
-          type="file"
-          name="file"
-          palceholder="upload your image"
-          onChange={handlerImageChange}
-        />
-      </form>
-      <button onClick={sendPutUser}>send</button>
+     
+        <h2>insert profile picture</h2>
+        <form>
+          <input 
+            type="file"
+            name="file"
+            palceholder="upload your image"
+            onChange={handlerImageChange}
+          />
+        </form>
+        <button onClick={sendPutUser}>send</button>
     </div>
   )
 }
