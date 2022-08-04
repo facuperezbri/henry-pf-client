@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Favorites from '../../components/Favourites/Favourites'
 import Nav from '../../components/Nav/Nav'
 import Transaction from '../../components/Transaction/Transaction'
 
 
 export default function Wallet () {
+  const [cvu, setCvu] = useState()
+
 
   return (
     <div className='flex'>
       <Nav />
-      <div className='flex-col p-10'>
-        <h2 className='font-semibold'>Wallet</h2>
-        <section className='flex'>
-          <Transaction />
-          <Favorites />
+      <div className='grid p-10 w-full place-content-center'>
+        <section className='flex gap-5'>
+          <Transaction cvuFav={cvu} />
+          <Favorites setCvuFav={setCvu} />
         </section>
       </div>
     </div>
