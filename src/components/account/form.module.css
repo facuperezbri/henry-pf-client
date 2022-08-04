@@ -31,13 +31,14 @@
 }
 
 .or {
-    margin: 2rem;
     text-align: center;
     font-size: 2rem;
 }
+
 .a {
     cursor: pointer;
 }
+
 .input_text {
     border: none;
     width: 100%;
@@ -45,6 +46,7 @@
     padding: .7rem 1rem;
     font-size: 1rem;
     border: .1rem gainsboro solid;
+    color: black;
 }
 
 .input_text::selection {
