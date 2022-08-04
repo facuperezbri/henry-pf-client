@@ -91,6 +91,9 @@ export default function Profile () {
       <button onClick={() => document.documentElement.classList.add('dark')}>
         Dark
       </button>
+      <button onClick={() => document.documentElement.classList.remove('dark')}>
+        White
+      </button>
 
     </div>
   );
