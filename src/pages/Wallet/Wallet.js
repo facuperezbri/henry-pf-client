@@ -9,10 +9,12 @@ export default function Wallet () {
   return (
     <div className='flex'>
       <Nav />
-      <div className='flex'>
-        <h2>Wallet</h2>
-        <Transaction />
-        <Favorites />
+      <div className='flex-col p-10'>
+        <h2 className='font-semibold'>Wallet</h2>
+        <section className='flex'>
+          <Transaction />
+          <Favorites />
+        </section>
       </div>
     </div>
   )
