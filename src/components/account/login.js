@@ -69,12 +69,7 @@ const Login = () => {
           <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
           {open ? <SendMail /> : null}
         </form>
-
       </div>
-
-      <Button children="Prueba" />
-
-
     </div>
   )
 }
