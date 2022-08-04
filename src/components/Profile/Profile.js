@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
 import pen from '../../assets/icons/pen.svg'
-import EditUser from "./EditUser"
+// import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,7 +73,7 @@ export default function Profile () {
           </span>
         </CardText>
       </div>
-      {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />}
+      {/* {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />} */}
       {/* {visible && <EditPassword setVisible={setVisible} dataProfile={dataProfile} />} */}
 
       <Modal onClose={handlerShowModal} modal={showModal}>
@@ -87,6 +86,13 @@ export default function Profile () {
       <Button onClick={handlerShowModal}>
         Change password
       </Button>
+
+      <button onClick={() => document.documentElement.classList.add('dark')}>
+        Dark
+      </button>
+      <button onClick={() => document.documentElement.classList.remove('dark')}>
+        White
+      </button>
 
     </div>
   );

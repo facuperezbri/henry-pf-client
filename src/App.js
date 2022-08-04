@@ -23,7 +23,7 @@ import SendMail from "./components/account/SendMail";
 function App () {
 
   return (
-    <div className={style.container}>
+    <div className='flex dark:bg-slate-900'>
       <Routes>
         <Route path="/" element={<Landing />} />
          <Route path="/reset/:id" element={<ResetPassword />} />

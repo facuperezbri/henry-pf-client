@@ -12,7 +12,7 @@ export default function MyAvatar() {
     useEffect(() => {
       dispatch(getUser(token))
       }, [])
-      console.log("perfil",dataProfile)
+     
   return (
     <div className={style.container}>
         <img src={dataProfile.profilepic}/>
