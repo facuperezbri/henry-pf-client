@@ -17,10 +17,12 @@ export default function Wallet () {
     cvuMain: userData.accounts?.[0].cvu || "",
     currency: "Pesos",
     operation: "Debit",
-    comment: ""
+    comment: "",
+    cvuD: ''
   })
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(r => {
+
       dispatch(getMovements(r.payload.accounts[0].cvu))
       setState({...state, cvuMain: r.payload.accounts[0].cvu})
     })
@@ -56,6 +58,8 @@ export default function Wallet () {
     setAmount(0)
     
   }
+
+  console.log(state)
 
   return (
     <div className={style.container}>

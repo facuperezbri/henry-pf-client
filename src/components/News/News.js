@@ -62,16 +62,20 @@ const News2 = () => {
         hasMore={hasNextPage}
         next={() => fetchNextPage()}>
         <div className={styles.boxContainer}>
-          <div className={filterNews.length>1 ?styles.columns_3_2_1:styles.columns_1_1_1}>
-            {filterNews.length>0 ?filterNews.map((news) =>
-              <a href={news.url} target="_blank" rel="noreferrer">
+          <div className={styles.columns_3_2_1}>
+            {news.filter(e => {
+              if (!filter) return true
+              const title = e.title.toLowerCase()
+              return title.includes(filter.toLowerCase())
+            }).map((news) =>
+              <a key={news.url} href={news.url} target="_blank" rel="noreferrer">
                 <div className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
                   <h1 className={styles.title}>{news.title}</h1>
                   <p>{news.content}</p>
                 </div>
               </a>
-            ):<h2>No search results found!</h2>}
+            )}
           </div>
         </div>
       </InfiniteScroll >
