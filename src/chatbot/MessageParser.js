@@ -6,13 +6,14 @@ const MessageParser = ({ children, actions }) => {
     if(message.toLowerCase().includes('hello')){
         return actions.handleHola();
     }
-    if(message.includes('balance')){
+    if(message.toLowerCase().includes('balance')){
       return actions.handleSaldo();
     }
     if(message.toLowerCase().includes('transactions')){
       return actions.handleTransaccion();
     }
     if(message.toLowerCase().includes('services')){
+
       return actions.handleServicio();
     }
     if(message !== "saldo"||"hola"||"transacciones"||"servicios"){

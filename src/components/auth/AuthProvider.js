@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     }
   })
 
+
   return children;
 }
 

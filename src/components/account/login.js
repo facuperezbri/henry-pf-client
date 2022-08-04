@@ -20,11 +20,14 @@ const Login = () => {
   const loginResponseHandler = (res) => {
     if (res?.token && res?.isAdmin) {
       setToken(res?.token)
-      return navigate('/dashboard/admin')
+      navigate('/dashboard/admin')
+      // console.log(res.token)
+      return
     }
     if (res?.token) {
       setToken(res?.token)
       navigate('/home')
+      // console.log(res.token)
     }
   }
   const change = (e) => {

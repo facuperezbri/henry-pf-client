@@ -20,6 +20,7 @@ const News2 = () => {
     const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
     const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
     const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
+    // console.log(info)
     const data = info.data.articles
     return data
   }
@@ -44,6 +45,12 @@ const News2 = () => {
         </div>
       </div>)
   }
+  const filterNews = news.filter(e=>{
+    if (!filter) return true
+              const title = e.title.toLowerCase()
+    if(title.includes(filter.toLowerCase()))return title.includes(filter.toLowerCase())
+    if(!title.includes(filter.toLowerCase()))return       
+  })
 
   return (
     <div className={styles.detailContainer}>

@@ -8,7 +8,7 @@ export default function CryptoDetails () {
     <>
     <div className={style.container}>
     <Nav />
-      <Details />
+    <Details />
     </div>
     </>
   )
