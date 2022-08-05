@@ -61,14 +61,6 @@ export default function Favorites ({ setCvuFav }) {
         setFav('')
     }
 
-    function handleSelected (e) {
-        const fav = favourites.find(el => {
-            return el.id === e.target.value
-        })
-        setFavAccs(fav.accounts)
-        setSelected(e.target.value)
-    }
-
     function deleteFav () {
         dispatch(removeFavorite(selected))
         alert("Your contact was removed successfully")
@@ -78,12 +70,6 @@ export default function Favorites ({ setCvuFav }) {
         setCvu(e.target.value)
     }
 
-    function handleCvu () {
-        // setState({
-        //     ...state, cvuD: cvu
-        // })
-    }
-
     useEffect(() => {
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
     }, [dispatch])
@@ -91,25 +77,11 @@ export default function Favorites ({ setCvuFav }) {
     return (
         <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4">
             <h1 className={style.title}>My Friends</h1>
-            <select className={style.select} value={selected} onChange={e => handleSelected(e)}>
-                <option selected disabled value="">Favourites</option>
-                {favourites?.map(fav =>
-                    <option value={fav.id} key={fav.id}>
-                        {fav.username}
-                    </option>)
-                }
-            </select>
-            <select className={style.select} value={cvu} onChange={handleCvuChange}>
-                <option selected value="">Fav Accounts</option>
-                {favAccs?.map(acc => {
-                    return <option value={acc?.cvu}>{acc?.currencies?.name} Acc</option>
-                })}
-            </select>
             <div>
                 {favourites.map((f) => {
                     return (
-                        <section style={{ cursor: 'pointer' }} onClick={() => setCvuFav(f.accounts[0].cvu)} className='flex'>
-                            <img className='rounded-full w-12' src={f.profilepic} alt={f.username} />
+                        <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                            <img className='rounded-full w-12 h-12 mr-6' src={f.profilepic} alt={f.username} />
                             <p>{f.username}</p>
                         </section>
                     )
@@ -118,7 +90,6 @@ export default function Favorites ({ setCvuFav }) {
             </div>
             <Button onClick={handleModel}>Add</Button>
             <Button onClick={deleteFav} >Delete</Button>
-            <Button onClick={handleCvu}>Add CVU</Button>
             <Modal
                 isOpen={isOpen}
                 style={modalStyles}

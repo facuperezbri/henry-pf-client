@@ -10,8 +10,13 @@ import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 
-export const CardText = ({ children }) => (
-  <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+export const CardText = ({ children, onClick, labeltext }) => (
+  <div className='mb-6'>
+    {labeltext && <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{labeltext}</label>}
+    <div onClick={onClick} className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+  </div>
+
+
 )
 export default function Profile () {
   const dispatch = useDispatch()

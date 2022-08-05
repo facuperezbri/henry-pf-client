@@ -10,6 +10,9 @@ module.exports = {
         'primary-white': '#FFFFFF',
         'main-bg': 'var(--main-bg)'
       },
+      width: {
+        'fullscreen': '800px'
+      }
     },
   },
   plugins: [],
