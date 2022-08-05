@@ -12,7 +12,7 @@ import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
 
 export const CardText = ({ children }) => (
-  <div className="text-slate-700 p-2 bg-slate-300 dark:bg-slate-800 dark:text-gray-50 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+  <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
 )
 export default function Profile () {
   const dispatch = useDispatch()

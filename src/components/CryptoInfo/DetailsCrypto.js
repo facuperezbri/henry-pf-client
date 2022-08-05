@@ -30,9 +30,10 @@ export default function Details(){
     }
     return (
             
-            <div className={styles.container}>
-                 <CryptoChart date={detailCrypto.data2} name={detailCrypto.data?.name}/>
-              <>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+        <CryptoChart amount={detailCrypto.data2} dates={detailCrypto?.data}/>
+            <>
+
                 <div>
                     <h1>{detailCrypto.data?.name}</h1>
                     <h1>{detailCrypto.data?.symbol}</h1>
