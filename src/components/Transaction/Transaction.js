@@ -40,6 +40,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
       if (res?.newMovement) {
         alert('The transaction was successful')
         dispatch(getMovements(userData.accounts[0].cvu))
+        setCvuFav(null)
         reset()
       }
     }).catch(console.error)
