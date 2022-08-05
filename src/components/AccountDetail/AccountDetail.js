@@ -11,13 +11,13 @@ import { useToken } from '../../hooks/useToken'
 import loading from '../../assets/spinner/spinner.svg'
 import BalanceChart from './BalanceChart'
 import CategoryExpense from './CategoryExpense'
+import { PieGraph } from './PieGraph'
 // import Modal from '../uiComponents/modal'
 
 const RecientActivity = lazy(() => import('./RecientActivity'))
 export default function AccountDetail () {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { setToken, token } = useToken()
+  const { token } = useToken()
   const usData = useSelector(state => state.userData)
   const [movement, setMovement] = useState({})
   const [showMovementDetails, setshowMovementDetails] = useState(false)
@@ -27,7 +27,7 @@ export default function AccountDetail () {
   useEffect(() => {
     dispatch(getUser(token)).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
     dispatch(getCategory())
-  }, [usData])
+  }, [])
 
   const closeDetails = () => {
     setshowMovementDetails(false)
@@ -58,7 +58,10 @@ export default function AccountDetail () {
         name={usData?.name} 
         lastname={usData?.lastname} />
         <CategoryExpense activities={usData?.accounts[0]?.movements}/>
-        <BalanceChart />
+        {/* <BalanceChart /> */}
+        <div className='w-full max-h-72 grid place-content-center'>
+          <PieGraph movements={usData?.accounts[0]?.movements} />
+        </div>
       </div>
 
       <div className={style.recentActivity}>
