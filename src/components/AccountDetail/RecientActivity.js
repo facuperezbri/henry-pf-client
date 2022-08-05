@@ -19,14 +19,14 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
     openDetails()
     setMovement(activitie)
   }
-  
   useEffect(() => {
     const categoriesRaw = activities.map((abc) => (
       abc?.categories?.name
     ))
     const categoriesUnique = [...new Set(categoriesRaw)]
     setCategories(categoriesUnique)
-  }, [activities])
+    setActivitiesState(activities)
+  },[activities])
 
 
   const handlerSortByDate = () => {

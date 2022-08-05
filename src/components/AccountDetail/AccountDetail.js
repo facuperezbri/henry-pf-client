@@ -27,7 +27,7 @@ export default function AccountDetail () {
   useEffect(() => {
     dispatch(getUser(token)).then(r => dispatch(getMovements(r.payload?.accounts[0]?.cvu)))
     dispatch(getCategory())
-  }, [])
+  }, [usData])
 
   const closeDetails = () => {
     setshowMovementDetails(false)
