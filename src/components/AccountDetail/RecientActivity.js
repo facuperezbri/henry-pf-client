@@ -2,129 +2,100 @@ import React, { useEffect, useState } from 'react'
 import styles from './RecientActivity.module.css'
 import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
+import Button from '../uiComponents/Button'
+import { CardText } from '../Profile/Profile'
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
   // eslint-disable-next-line no-use-before-define
-  const [orderDate, setOrderDate] = useState([])
-  const [interruptor, setInterruptor] = useState(false)
-  const [interruptor2, setInterruptor2] = useState(false)
-  const [filter, setFilter] = useState("")
+  const [activitiesState, setActivitiesState] = useState(activities)
+  const [categories, setCategories] = useState([])
+  const [isAcendantByDate, setIsAcendantByDate] = useState(true)
+
+  const [isShowAllMovements, setIsShowAllMovements] = useState(false)
+
+  
+  const [filterByCategoryName, setFilterByCategoryName] = useState("")
   const handlerClick = (activitie) => {
     openDetails()
     setMovement(activitie)
   }
-
-  let arrNew = activities.map(e => {
-    return {
-      categories: e.categories.name,
-      fecha: setFormat(new Date(e.date), 'en-EN', { dateStyle: 'long' }),
-      amount: e.amount,
-      year: setFormat(new Date(e.date), 'en-EN', { dateStyle: 'long' }).split(" ")[2],
-      date: setFormat(new Date(e.date), 'en-EN', { dateStyle: 'long' }).split(" ")[1]
-    }
-  })
-
-  const newArray = arrNew
-
-  function dasda () {
-    if (!interruptor2) {
-      arrNew = arrNew.slice(0, 3)
-    }
-  }
-
-  function allmov () {
-    const arrNew = newArray
-    setOrderDate(arrNew)
-    if (!interruptor2) {
-      const arrNew = newArray
-      setOrderDate(arrNew)
-      setInterruptor2(true)
-    }
-  }
-
-  const sortByDate = () => {
-    if (!interruptor) {
-      arrNew.sort((a, b) => {
-        return a.date.substring(0, a.date.length - 1) - b.date.substring(0, b.date.length - 1)
-      })
-      setInterruptor(true)
-    }
-    if (interruptor) {
-      arrNew.sort((a, b) => {
-        return b.date.substring(0, b.date.length - 1) - a.date.substring(0, a.date.length - 1)
-      })
-      setInterruptor(false)
-    }
-    setOrderDate(arrNew)
-  }
-
-  const onSelectCategory = (e) => {
-    setFilter(e.target.value)
-  }
-
-  const categoriesRaw = activities.map((abc) => (
-    abc?.categories?.name
-  ))
-  const categoriesUnique = [...new Set(categoriesRaw)]
-
+  
   useEffect(() => {
-    dasda()
-    setFilter("")
-    setOrderDate(arrNew)
-  }, [])
+    const categoriesRaw = activities.map((abc) => (
+      abc?.categories?.name
+    ))
+    const categoriesUnique = [...new Set(categoriesRaw)]
+    setCategories(categoriesUnique)
+  }, [activities])
 
-  const resetFilterYresetSort = () => {
-    setFilter("")
-    arrNew.sort((a, b) => {
-      return b.date.substring(0, b.date.length - 1) - a.date.substring(0, a.date.length - 1)
-    })
-    arrNew = arrNew.slice(0, 3)
-    setOrderDate(arrNew)
+
+  const handlerSortByDate = () => {
+    setIsAcendantByDate(!isAcendantByDate)
   }
+
+  const handlerFilterByCategoryName = (e) => {
+    setFilterByCategoryName(e.target.value)
+  }
+
+  const sortByDate = (movementOne, movementTwo) => {
+    if (new Date(movementOne.date).getTime() > new Date(movementTwo.date).getTime()) {
+      return isAcendantByDate ? -1 : 1
+    }
+    if (new Date(movementOne.date).getTime() < new Date(movementTwo.date).getTime()) {
+      return isAcendantByDate ? 1 : -1
+    }
+    return 0
+  }
+  const filterByCategory = (activitie) => {
+    if (!filterByCategoryName) {
+      return true
+    }
+    return activitie.categories.name === filterByCategoryName
+  }
+
+
+  const handlerShowAllMovements = () => {
+    setIsShowAllMovements(!isShowAllMovements)
+  }
+
 
   return (
-    <div className={styles.container}>
-      Movements
-      <span className={styles.title}>
+    <div className='flex flex-col gap-2'>
+      <div className='mt-4'>
+        <CardText>
+          <span>
+            Movements
+          </span>
+        </CardText>
+      </div>
+      <span>
+        
+        <Button onClick={handlerSortByDate}>Order by date {isAcendantByDate ? <span>ASC</span> : <span>DESC</span>}</Button>
 
-        <button className={styles.btn} onClick={sortByDate}>Order by date {interruptor ? <span>DESC</span> : <span>ASC</span>}</button>
+        <Button onClick={handlerShowAllMovements}>{ isShowAllMovements ? 'Hide movements' : 'Show all movements' }</Button>
 
-        <button className={styles.btn} onClick={(e) => allmov(e)}>Show movements</button>
-        <button className={styles.btn} onClick={() => resetFilterYresetSort()}>Hide movements</button>
-
-        <select name="filterCategory" onChange={onSelectCategory}>
-          <option selected="true" disabled="disabled">Category...</option>
-          {categoriesUnique?.map((abc) => (
-            <option key={abc} value={abc}>{abc}</option>
+        <select name="filterCategory" onChange={handlerFilterByCategoryName}>
+          <option selected={true} disabled="disabled">Category...</option>
+          <option value="" selected>All</option>
+          {categories?.map((CategoryName) => (
+            <option key={CategoryName} value={CategoryName}>{CategoryName}</option>
           ))}
         </select>
 
 
 
       </span>
+
       {
-        !filter &&
-        orderDate.map((activitie) => (
-          <div key={activitie.id} className={styles.activitie} onClick={() => handlerClick(activitie)}>
+        activitiesState?.sort(sortByDate)?.filter(filterByCategory)?.map((activitie) => (
+          <div key={activitie?.id} className={styles.activitie} onClick={() => handlerClick(activitie)}>
             <div className={styles.container}>
-              <span>{activitie?.categories}</span>
-              <span>{activitie?.fecha}</span>
+              <span>{activitie?.categories?.name}</span>
+              <span>{setFormat(activitie?.date, 'en-EN', 'long')}</span>
             </div>
             <span className={styles.amount}> {`$${activitie?.amount}`}</span>
           </div>
-        ))
-      }
-      {
-        filter &&
-        orderDate.filter((xxx) => xxx?.categories === filter).map((ddd) => (
-          <div key={ddd.id} className={styles.activitie} onClick={() => handlerClick(ddd)}>
-            <div className={styles.container}>
-              <span>{ddd?.categories}</span>
-              <span>{ddd?.fecha}</span>
-            </div>
-            <span className={styles.amount}> {`$${ddd?.amount}`}</span>
-          </div>
-        ))
+        )).slice(0, isShowAllMovements ? activitiesState.length : 3)
       }
 
     </div>

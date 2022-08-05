@@ -1,55 +1,38 @@
-import { useToken } from '../../hooks/useToken'
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import style from './EditImg.module.css'
-export default function EditImg({setVisibleImg}) {
-  // console.log(setVisibleImg)
-  const [image, setImage] = useState();
-  const [loading, setLoading] = useState(false);
-  const { setToken, token } = useToken();
+import { useForm } from 'react-hook-form'
+import { UPDATE_PROFILE_IMAGE } from '../../services/UPDATE_PROFILE_IMAGE';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../../redux/actions'
+import { useToken } from '../../hooks/useToken'
+import InputComponent from '../uiComponents/InputComponent';
+import Button from '../uiComponents/Button';
 
-  const uploadImage = async (e)=>{
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset","images");
-    setLoading(true);
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/da76mkk4h/image/upload",{
-        method:"POST",
-        body:data,
-      }
-    )
-    const file = await res.json()
-    setImage({
-      profilepic: file.secure_url
-    })
-    setLoading(false)
+export default function EditImg ({ dataProfile, handlerCloseModalImg }) {
+  const dispatch = useDispatch()
+  const { token } = useToken()
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  // console.log(setVisibleImg)
+
+  const onSubmit = (data) => {
+    UPDATE_PROFILE_IMAGE(data.image[0], dataProfile?.profilepicID).then((res) => {
+      dispatch(getUser(token))
+      handlerCloseModalImg()
+    }).catch(console.error)
   }
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
-};
-const sendPutUser = async()=>{
-  const user = await axios.put("http://localhost:4000/api/user/useredit",image,config)
-  setVisibleImg(false)
-  alert("data uploaded successfully")
-}
   return (
-    <div className={style.container}>
-      <div className={style.containerBtn}>
-          <div onClick={()=>setVisibleImg(false)} className={style.btn}>X</div>
-      </div>
-     
-        <h2>subiendo imagenes</h2>
-        <form>
-          <input 
-            type="file"
-            name="file"
-            palceholder="upload your image"
-            onChange={uploadImage}
-          />
-        </form>
-        <button onClick={sendPutUser}>send</button>
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputComponent register={register} errors={errors} msgerror='This field is rquired.' name='image' type='file' config={{ required: true }} />
+        <div className='grid place-content-center'>
+          <Button type='submit'>
+            <span className='text-primary-red'>
+              Send
+            </span>
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }

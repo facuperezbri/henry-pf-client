@@ -1,7 +1,7 @@
 import { API_URL } from "./API"
 import { useToken } from "../hooks/useToken"
 
-export const CREATE_PAYMENT_INTENT = async (amount) => {
+export const CREATE_PAYMENT_INTENT = async (amount, cvu) => {
     const { token } = useToken()
     try {
         const res = await fetch(`${API_URL}/api/movement/create_payment_intent`, {
@@ -10,7 +10,7 @@ export const CREATE_PAYMENT_INTENT = async (amount) => {
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({ amount }),
+            body: JSON.stringify({ amount, cvu }),
         })
         const resJson = await res.json()
         return resJson
