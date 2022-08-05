@@ -21,20 +21,8 @@ export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
     const userId = useSelector((state) => state.userData?.id)
     const dispatch = useDispatch()
-    // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const [selected, setSelected] = useState('')
-    const [favAccs, setFavAccs] = useState([])
-    // const [errors, setErrors] = useState({})
-    const [cvu, setCvu] = useState("")
-
-    // function validation(input){
-    //     let errors = {}
-    //     if(input.cvu || typeof input.cvu !== 'string'){
-    //         errors.cvu = 'Ingrese un cvu/username válido'
-    //     }
-    // }
 
     function handleModel () {
         setIsOpen(true)
@@ -61,13 +49,8 @@ export default function Favorites ({ setCvuFav }) {
         setFav('')
     }
 
-    function deleteFav () {
-        dispatch(removeFavorite(selected))
-        alert("Your contact was removed successfully")
-    }
-
-    const handleCvuChange = e => {
-        setCvu(e.target.value)
+    function deleteFav (e) {
+        dispatch(removeFavorite(e.target.id))
     }
 
     useEffect(() => {
@@ -80,16 +63,20 @@ export default function Favorites ({ setCvuFav }) {
             <div>
                 {favourites.map((f) => {
                     return (
-                        <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
-                            <img className='rounded-full w-12 h-12 mr-6' src={f.profilepic} alt={f.username} />
-                            <p>{f.username}</p>
-                        </section>
+                        <div className='flex'>
+                            <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                                <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                                <p>{f.username}</p>
+                            </section>
+                            <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                        </div>
+
                     )
                 }
                 )}
             </div>
             <Button onClick={handleModel}>Add</Button>
-            <Button onClick={deleteFav} >Delete</Button>
+
             <Modal
                 isOpen={isOpen}
                 style={modalStyles}
