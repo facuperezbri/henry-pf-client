@@ -14,7 +14,7 @@ export default function Wallet () {
       <Nav />
       <div className='grid p-10 w-full place-content-center'>
         <section className='flex gap-5'>
-          <Transaction cvuFav={cvu} />
+          <Transaction cvuFav={cvu} setCvuFav={setCvu} />
           <Favorites setCvuFav={setCvu} />
         </section>
       </div>
