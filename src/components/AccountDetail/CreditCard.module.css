@@ -46,7 +46,6 @@
 .number {
     font-size: 2rem;
     text-align: center;
-    font-family: 'ocr_a_std';
 }
 
 .balance_name_container {
@@ -56,12 +55,10 @@
 
 .name {
     font-size: 1rem;
-    font-family: 'ocr_a_std';
 }
 
 .balance {
     font-size: 1rem;
-    font-family: 'ocr_a_std';
 }
 
 @media (max-width: 668px) {

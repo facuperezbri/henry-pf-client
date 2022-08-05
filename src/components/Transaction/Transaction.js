@@ -11,7 +11,7 @@ import { CardText } from '../Profile/Profile'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
-export default function Transaction ({ cvuFav }) {
+export default function Transaction ({ cvuFav, setCvuFav }) {
   const dispatch = useDispatch()
   const userData = useSelector(state => state.userData)
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -45,12 +45,16 @@ export default function Transaction ({ cvuFav }) {
     }).catch(console.error)
   }
 
+  function cleanFav () {
+    setCvuFav(null)
+  }
+
   return (
     <>
-      <form class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
+      <form class="bg-white w-fullscreen shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
         {/* <InputComponent labeltext='Destiny CVU' errors={errors} register={register} msgerror="This field is required and must have a length of at least 8 characters." placeholder='Where do yo want to transfer to?' type='number' name='cvuD' min={0} config={{ required: true, minLength: 8 }} /> */}
         {
-          cvuFav && <CardText>{cvuFav}</CardText>
+          cvuFav && <CardText onClick={() => cleanFav()} labeltext='Destiny CVU' >{cvuFav}</CardText>
         }
 
         {
