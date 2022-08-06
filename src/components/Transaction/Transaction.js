@@ -8,6 +8,8 @@ import InputComponent from '../uiComponents/InputComponent'
 import { useForm } from 'react-hook-form'
 import { CardText } from '../Profile/Profile'
 import { useNavigate } from 'react-router-dom'
+import { Input } from 'postcss'
+import Card from '../uiComponents/Card'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
@@ -54,6 +56,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   return (
     <>
       <form class="bg-white w-fullscreen shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900" onSubmit={handleSubmit(onSubmit)}>
+        <CardText labeltext='Your CVU' >{userData?.accounts?.[0]?.cvu}</CardText>
         {
           cvuFav && <CardText onClick={() => cleanFav()} labeltext='Destiny CVU' >{cvuFav}</CardText>
         }
@@ -71,7 +74,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
           }
         </select>
         <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
-        <div className='flex gap-6'>
+        <div className='grid place-items-center gap-6'>
           {userData?.accounts?.[0]?.cvu && <Button type='submit'>Send your transference</Button>}
           <Button onClick={() => navigate('/charge')}>
             Charge Account
