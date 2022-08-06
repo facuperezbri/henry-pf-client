@@ -58,7 +58,7 @@ export default function Favorites ({ setCvuFav }) {
     }, [dispatch])
 
     return (
-        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4">
+        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
             <h1 className={style.title}>My Friends</h1>
             <div>
                 {favourites.length === 0 && <p>Loading</p>}
