@@ -92,13 +92,15 @@ export default function Profile () {
       <Button onClick={handlerShowModal}>
         Change password
       </Button>
+      <div className='flex gap-6'>
+        <Button onClick={() => document.documentElement.classList.add('dark')}>
+          Dark
+        </Button>
+        <Button onClick={() => document.documentElement.classList.remove('dark')}>
+          White
+        </Button>
+      </div>
 
-      <button onClick={() => document.documentElement.classList.add('dark')}>
-        Dark
-      </button>
-      <button onClick={() => document.documentElement.classList.remove('dark')}>
-        White
-      </button>
 
     </div>
   );
