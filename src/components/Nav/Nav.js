@@ -78,7 +78,7 @@ export default function Nav () {
             </li>
           </Link>
           <li onClick={openRateclick} className={style.listItem}>
-            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate us!</span>
+            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate us</span>
           </li>
           {/* {
             (function show () {

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
-import pen from '../../assets/icons/pen.svg'
 import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
@@ -11,8 +9,13 @@ import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
 
-export const CardText = ({ children }) => (
-  <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+export const CardText = ({ children, onClick, labeltext }) => (
+  <div className='mb-6'>
+    {labeltext && <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{labeltext}</label>}
+    <div onClick={onClick} className="text-slate-700 py-3 px-4 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+  </div>
+
+
 )
 export default function Profile () {
   const dispatch = useDispatch()
@@ -42,7 +45,7 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  console.log(dataProfile)
+
   return (
     <div className={Style.main}>
 
@@ -56,7 +59,7 @@ export default function Profile () {
               <span>
                 {dataProfile?.name}
               </span>
-            </CardText>   
+            </CardText>
 
             <CardText>
               <span>
