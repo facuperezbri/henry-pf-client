@@ -63,7 +63,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
         }
         <InputComponent labeltext='Amount' errors={errors} register={register} msgerror="This field is required." placeholder='How much do you want to send?' type='number' name='amount' min={0} config={{ required: true, min: 1 }} />
         <label className="flex flex-wrap w-full uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='category'>Category</label>
-        <select className="flex flex-wrap mb-6 w-full border rounded-md" name="category" {...register("category", { require: true })}>
+        <select className="flex flex-wrap mb-6 w-full border rounded-md dark:text-slate-800" name="category" {...register("category", { require: true })}>
           {
             categoryArray?.map(categoryName => (
               <option value={categoryName}>{categoryName}</option>
@@ -71,10 +71,12 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
           }
         </select>
         <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
-        {userData?.accounts?.[0]?.cvu && <Button type='submit'>Send your transference</Button>}
-        <Button onClick={() => navigate('/charge')}>
-          Charge Account
-        </Button>
+        <div className='flex gap-6'>
+          {userData?.accounts?.[0]?.cvu && <Button type='submit'>Send your transference</Button>}
+          <Button onClick={() => navigate('/charge')}>
+            Charge Account
+          </Button>
+        </div>
       </form>
       <div>
 
