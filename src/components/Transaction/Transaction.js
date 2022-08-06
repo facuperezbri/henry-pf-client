@@ -8,7 +8,6 @@ import InputComponent from '../uiComponents/InputComponent'
 import { useForm } from 'react-hook-form'
 import { CardText } from '../Profile/Profile'
 
-
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
 export default function Transaction ({ cvuFav, setCvuFav }) {
