@@ -14,31 +14,31 @@ const CryptosInfo = () => {
   const [order, setOrder] = useState('')
   const [price, setPrice] = useState('')
 
-  
-   useEffect(() => {
+
+  useEffect(() => {
     dispatch(getCryptos());
     // setCoin(allCryptos)
   }, []);
- 
 
-   function handleSortedCryptosTitle(e) {
+
+  function handleSortedCryptosTitle (e) {
     e.preventDefault();
     dispatch(orderCryptoABC(e.target.value));
     setOrder(e.target.value);
   }
 
-  function handleSortedPrice(e) {
+  function handleSortedPrice (e) {
     e.preventDefault();
     dispatch(orderCryptoPrice(e.target.value));
     setPrice(e.target.value);
   }
-  if(allCryptos?.length === 0){
+  if (allCryptos?.length === 0) {
     return (<div className={styles.detailContainer}>
-              <div className={styles.loading}> 
-                  <img src={loading} alt="Loading" />
-               </div>
-              </div>)
-}
+      <div className={styles.loading}>
+        <img src={loading} alt="Loading" />
+      </div>
+    </div>)
+  }
 
   return (
       <div className={styles.container}>
