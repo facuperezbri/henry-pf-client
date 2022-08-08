@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import axios from 'axios'
 import styles from './SendMail.module.css'
+import InputComponent from './../uiComponents/InputComponent'
 
 
 const SendMail = () => {
@@ -21,7 +22,7 @@ const SendMail = () => {
   }
 
   return (
-    <div className={styles.container}><input placeholder="Enter your email for reset" onChange={(e) => handleOnChange(e)} className={styles.input}/><button onClick={send} className={styles.btn}>Send</button></div>
+    <div className={styles.container}><InputComponent placeholder="Enter your email for reset" name={'Reset'}onChange={(e) => handleOnChange(e)} /><button onClick={send} className={styles.btn}>Send</button></div>
   )
 }
 
