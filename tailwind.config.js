@@ -11,7 +11,7 @@ module.exports = {
         'main-bg': 'var(--main-bg)'
       },
       width: {
-        'fullscreen': '800px'
+        'fullscreen': '900px'
       }
     },
   },
