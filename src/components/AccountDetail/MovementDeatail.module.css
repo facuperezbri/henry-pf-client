@@ -18,7 +18,7 @@
     bottom: 0;
     border-radius: 1rem 1rem 0 0;
     margin: auto;
-    z-index: 8;
+    z-index: 20;
     padding: 1rem;
     animation: appear_2 .3s alternate;
 }

@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { closeRate, postRating } from '../../redux/actions'
+import { closeRate } from '../../redux/actions'
 import empty from '../../assets/img/estrellaVacia.png'
 import full from '../../assets/img/estrellaLlena.png'
 import styles from './RateForm.module.css'
 import { set } from 'react-hook-form'
+import axios from 'axios'
+import { API_URL } from '../../services/API'
+import { useToken } from '../../hooks/useToken'
+
 
 export default function RateForm ({ setPerilla }) {
+
+    const { token } = useToken()
+
     const dispatch = useDispatch()
 
     function closeRateClick () {
@@ -47,7 +54,15 @@ export default function RateForm ({ setPerilla }) {
 
     function handleSubmit (e) {
         e.preventDefault();
-        postRating(input);
+
+        console.log(input)
+
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+
+        axios.post(`${API_URL}/api/ratings`, input, config)
+            .then(console.log)
         alert('Thank you for your rate!');
         setInput({
             rate: 0,
@@ -57,8 +72,10 @@ export default function RateForm ({ setPerilla }) {
 
     // console.log(input)
 
+    // console.log(input)
+
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} dark:bg-slate-900`}>
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
 
                 <div>
@@ -77,13 +94,9 @@ export default function RateForm ({ setPerilla }) {
 
                 <div className={styles.inputDiv}>
                     <label className={styles.label}>Review:</label>
-                    <textarea className={styles.input} type='text' value={input.comment} onChange={handleChange} />
+                    <textarea className={`${styles.input} dark:text-black`} type='text' value={input.comment} onChange={handleChange} />
                 </div>
-
-                <button
-                    type='submit'
-                    // disabled={Object.keys(errors).length? true : false} 
-                    onClick={() => resetForm()}>
+                <button type='submit'>
                     Submit rate
                 </button>
 

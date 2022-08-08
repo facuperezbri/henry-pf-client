@@ -4,7 +4,7 @@ import style from './Favourites.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFavorite, removeFavorite, addFavorite, getUser } from '../../redux/actions/index'
 import Modal from 'react-modal'
-// Modal.setAppElement('#root') 
+import Button from '../uiComponents/Button'
 
 const modalStyles = {
     content: {
@@ -17,24 +17,12 @@ const modalStyles = {
     }
 }
 
-export default function Favorites ({ setState, state }) {
+export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
-    const userId = useSelector((state) => state.userData.id)
+    const userId = useSelector((state) => state.userData?.id)
     const dispatch = useDispatch()
-    // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const [selected, setSelected] = useState('')
-    const [favAccs, setFavAccs] = useState([])
-    // const [errors, setErrors] = useState({})
-    const [cvu, setCvu] = useState("")
-
-    // function validation(input){
-    //     let errors = {}
-    //     if(input.cvu || typeof input.cvu !== 'string'){
-    //         errors.cvu = 'Ingrese un cvu/username válido'
-    //     }
-    // }
 
     function handleModel () {
         setIsOpen(true)
@@ -61,75 +49,48 @@ export default function Favorites ({ setState, state }) {
         setFav('')
     }
 
-    function handleSelected (e) {
-        const fav = favourites.find(el => {
-            return el.id === e.target.value
-        })
-        setFavAccs(fav.accounts)
-        setSelected(e.target.value)
+    function deleteFav (e) {
+        dispatch(removeFavorite(e.target.id))
     }
 
-    function deleteFav () {
-        dispatch(removeFavorite(selected))
-        alert("Your contact was removed successfully")
-    }
-
-    const handleCvuChange = e => {
-        setCvu(e.target.value)
-    }
-
-    function handleCvu () {
-        // const fav = favourites.find(e=>{
-        //     return e.id === selected
-        // })
-        setState({
-            ...state, cvuD: cvu
-        })
-    }
-    // console.log(favAccs)
     useEffect(() => {
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
     }, [dispatch])
 
-    // function handleSelect(e){
-    //     e.preventDefault()
-    //     setInput({...input, favourites:[...input.favourites, e.target.value]})
-    // }
-
-    // let favourites = [{id:'998he9dh238947dbh38', friendID:'98e743hfdndkfsdj39787', userID:'sdfadfk394234234435'}]
     return (
-        <div className={style.main}>
+        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
             <h1 className={style.title}>My Friends</h1>
-            <select className={style.select} value={selected} onChange={e => handleSelected(e)}>
+            <div>
+                {favourites.length === 0 && <p>Loading</p>}
+                {favourites.map((f) => {
+                    return (
+                        <div className='flex'>
+                            <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                                {console.log(f.profilepic)}
+                                <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                                <p>{f.username}</p>
+                            </section>
+                            <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                        </div>
 
-                <option selected disabled value="">Favourites</option>
-                {favourites?.map(fav =>
-                    <option value={fav.id} key={fav.id}>
-                        {fav.username}
-                    </option>
-                )
+                    )
                 }
-            </select>
-            <select className={style.select} value={cvu} onChange={handleCvuChange}>
-                <option selected value="">Fav Accounts</option>
-                {favAccs?.map(acc => {
-                    return <option value={acc?.cvu}>{acc?.currencies.name} Acc</option>
-                })}
-            </select>
-            <button onClick={deleteFav} >Delete</button>
-            <button onClick={handleModel}>Add fav</button>
-            <button onClick={handleCvu}>Add cvu</button>
+                )}
+            </div>
+            <Button onClick={handleModel}>Add</Button>
+
             <Modal
                 isOpen={isOpen}
                 style={modalStyles}
                 onRequestClose={closeModel}
             >
-                <button onClick={handleClose}>x</button>
+                <Button onClick={handleClose}>x</Button>
                 <form onSubmit={handleSubmit}>
                     <input value={fav} onChange={handleInput} placeholder='CVU/username' />
-                    <button onSubmit={handleClose} type="submit" >Add</button>
+                    <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
+
 
         </div>
     )

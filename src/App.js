@@ -16,17 +16,18 @@ import Admin from "./pages/Admin/Admin";
 import AuthProvider from "./components/auth/AuthProvider";
 import Charge from "./pages/Charge/Charge";
 
+import ResetPassword from "./components/account/ResetPassword";
+import SendMail from "./components/account/SendMail";
+
 
 function App () {
 
   return (
-    <div className={style.container}>
+    <div className="dark:bg-slate-800 dark:text-red-50">
       <Routes>
         <Route path="/" element={<Landing />} />
-        {/* <Route path="/reset" element={<ResetPassword />} />
-        <Route path="/sendMail" element={<SendMail />} /> */}
-
-        <Route path="/account/login" element={<LoginSignIn />} />
+         <Route path="/reset/:id" element={<ResetPassword />} />
+        <Route path="/account" element={<LoginSignIn />} />
         <Route
           path="/profile"
           element={

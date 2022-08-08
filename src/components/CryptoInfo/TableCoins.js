@@ -1,5 +1,6 @@
 import React from 'react'
-import CoinRow from './CoinRow'
+import { Link } from "react-router-dom"
+import styles from "./TableCoins.module.css"
 
 const TableCoins = ({ coins, search }) => {
 
@@ -11,32 +12,21 @@ const TableCoins = ({ coins, search }) => {
   })
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <td>
-            <h2>Name</h2>
-          </td>
-          <td>
-            <h2>Symbol</h2>
-          </td>
-          <td>
-            <h2>Logo</h2>
-          </td>
-          <td>
-            <h2>price</h2>
-          </td>
-          <td>
-            <h2>variacion</h2>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
+    <div className={styles.divcontainer}>
         {filteredCoins?.map((element) => (   
-          <CoinRow element={element} key={element.name} />
+          <>
+          <Link key={element?.id} to={`/cryptosmarket/${element?.id}`}>
+          <div className={styles.container}>
+            <div>{element?.name}</div>
+            <div>{element?.symbol}</div>
+            <div> <img src={element?.image} alt={element.name} width={50} height={50} /></div>
+            <div>${element?.currentPrice}</div>
+            <div className={ element?.dailyRateChange > 0 ? styles.sucess : styles.danger}>% {element?.dailyRateChange}</div>
+            </div>
+           </Link>
+           </>
         ))}
-      </tbody>
-    </table>
+     </div>
   )
 }
 

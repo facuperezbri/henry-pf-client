@@ -13,6 +13,8 @@ function Charge() {
     const [dataOfCharge, setDataOfCharge] = useState()
     const [clientSecret, setClientSecret] = useState("")
     const [statusCharge, setStatusCharge] = useState("")
+    const [userToCharge, setUserToCharge] = useState()
+
     const navigate = useNavigate()
 
     const handlerCancelCharge = () => {
@@ -46,10 +48,10 @@ function Charge() {
     return (
         <div>
             {
-                !dataOfCharge && <FormOfCharge setDataOfCharge={setDataOfCharge} setClientSecret={setClientSecret} />
+                !dataOfCharge && <FormOfCharge setDataOfCharge={setDataOfCharge} setClientSecret={setClientSecret} setUserToCharge={setUserToCharge} />
             }
             {
-                dataOfCharge && <CardDataOfCharge amount={dataOfCharge?.amount} cvu={dataOfCharge?.cvu} method={dataOfCharge?.chargeMethod} />
+                dataOfCharge && <CardDataOfCharge amount={dataOfCharge?.amount} cvu={dataOfCharge?.cvu} method={dataOfCharge?.chargeMethod} userToCharge={userToCharge} />
 
             }
             {clientSecret && (

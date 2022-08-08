@@ -67,18 +67,18 @@ export default function Nav () {
               <BiCoinStack className={style.icon} /><span className={style.listItem_text}>Cryptos</span>
             </li>
           </Link>
-          <Link to='/settings'>
+          {/* <Link to='/settings'>
             <li className={style.listItem}>
               <IoSettingsOutline className={style.icon} /> <span className={style.listItem_text}>Settings</span>
             </li>
-          </Link>
-          <Link to='/faq'>
+          </Link> */}
+          {/* <Link to='/faq'>
             <li className={style.listItem}>
               <FiHelpCircle className={style.icon} /><span className={style.listItem_text}>F.A.Q</span>
             </li>
-          </Link>
+          </Link> */}
           <li onClick={openRateclick} className={style.listItem}>
-            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate us!</span>
+            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate us</span>
           </li>
           {/* {
             (function show () {

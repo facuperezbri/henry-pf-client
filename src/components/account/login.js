@@ -5,26 +5,30 @@ import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
 import { useToken } from '../../hooks/useToken'
-
+import { useState } from 'react'
 
 import { AiOutlineGoogle } from 'react-icons/ai'
 
+import InputComponent from './../uiComponents/InputComponent'
+import SendMail from './SendMail'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
   const loginResponseHandler = (res) => {
     if (res?.token && res?.isAdmin) {
       setToken(res?.token)
-      navigate('/dashboard/admin')
-      console.log(res.token)
-      return
+      return navigate('/dashboard/admin')
     }
     if (res?.token) {
       setToken(res?.token)
       navigate('/home')
-      console.log(res.token)
     }
+  }
+  const change = (e) => {
+    e.preventDefault()
+    setOpen(!open)
   }
   const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
@@ -35,8 +39,8 @@ const Login = () => {
   const login = () => {
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
-        if (res.message) {
-          alert(res.message)
+        if (res?.error) {
+          alert(res?.error)
         }
         loginResponseHandler(res)
       }).catch(console.error)
@@ -49,23 +53,22 @@ const Login = () => {
       <h2>Already a member<span>?</span></h2>
 
       <div className={formStyles.card}>
-        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
+
+        <button className={`${formStyles.button} ${formStyles.button_google} btn`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
+
         <div className={formStyles.or}>or</div>
+
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
-            {errors.email && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
-            {errors.password && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
-          <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
+
+          <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='email' config={{ required: true, minLength: 8 }} />
+
+          <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
+
+          <button className={`${formStyles.button} ${formStyles.button_submit} btn`} type='submit'>Log in</button>
+          <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
+          {open ? <SendMail /> : null}
         </form>
-
       </div>
-
-
     </div>
   )
 }

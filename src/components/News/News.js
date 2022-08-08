@@ -19,8 +19,7 @@ const News2 = () => {
   const getNews = async ({ pageParam = 1 }) => {
     const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
     const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
-    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey}&pageSize=10&page=${pageParam}`)
-    console.log(info)
+    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
     const data = info.data.articles
     return data
   }
@@ -45,7 +44,12 @@ const News2 = () => {
         </div>
       </div>)
   }
-
+const ss = news.filter(e => {
+  if (!filter) return true
+  const title = e.title.toLowerCase()
+  if(!title.includes(filter.toLowerCase()))return false
+  return title.includes(filter.toLowerCase())
+})
   return (
     <div className={styles.detailContainer}>
       <div className={styles.input}>
@@ -57,19 +61,15 @@ const News2 = () => {
         next={() => fetchNextPage()}>
         <div className={styles.boxContainer}>
           <div className={styles.columns_3_2_1}>
-            {news.filter(e => {
-              if (!filter) return true
-              const title = e.title.toLowerCase()
-              return title.includes(filter.toLowerCase())
-            }).map((news) =>
-              <a href={news.url} target="_blank" rel="noreferrer">
+            {ss.length > 0 ? ss.map((news) =>
+              <a key={news.url} href={news.url} target="_blank" rel="noreferrer">
                 <div className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
                   <h1 className={styles.title}>{news.title}</h1>
                   <p>{news.content}</p>
                 </div>
               </a>
-            )}
+            ):<h1>News not found</h1>}
           </div>
         </div>
       </InfiniteScroll >

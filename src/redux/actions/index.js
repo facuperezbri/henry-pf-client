@@ -19,7 +19,7 @@ export const GET_RATINGS ='GET_RATINGS'
 export const OPEN_RATE ='OPEN_RATE'
 export const CLOSE_RATE ='CLOSE_RATE'
 export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
-
+export const DARK_MODE = 'DARK_MODE '
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -52,7 +52,6 @@ export const changeProfile = (objeto) => {
     const response = await axios.put('http://localhost:4000/api/user/useredit',objeto)
     dispatch({type:CHANGEPROFILE , payload: response.data})
   } 
-  
 }
 
 export const getCategory = () => {
@@ -73,9 +72,10 @@ export const getMovements = (cvu) => {
   return async function (dispatch) {
     try {
       let data = await GET_MOVEMENT_SERVICE(cvu)
+      // console.log(data)
       return dispatch({
         type: GET_MOVEMENT,
-        payload: data
+        payload: data.movements
       })
     } catch (error) {
       console.log(error)
@@ -119,13 +119,14 @@ export function addFavorite(payload) {
 }
 
 export function removeFavorite(id) {
-  console.log(id)
+  // console.log(id)
   return async function(dispatch){
     const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/${id}`)
     return dispatch({type: REMOVE_FAVORITE,
-    payload: id})}}
+    payload: id})
+  }
+}
     
-
 export function getRatings() {
   return async function (dispatch) {
     try {
@@ -138,10 +139,6 @@ export function getRatings() {
       console.error(e)
     }
   }
-}
-
-export function postRating(payload) {
-  return axios.post(`${API_URL}/api/ratings`,payload)
 }
 
 export function openRate() {
@@ -173,6 +170,7 @@ export function getDetailsCrypto(id) {
       }
   }
 }
+
 export function orderCryptoABC(payload) {
   return {
       type: "ORDER_CRYPTO_ABC",
@@ -186,8 +184,6 @@ export function orderCryptoPrice(payload) {
       payload: payload
   }
 }
-
-
 
 export const sendMovement =  (obj)=>{
   return async function(dispatch){
@@ -205,5 +201,11 @@ export const resetCrypto = ()=>{
 export const closeChatBot = ()=>{
   return {
       type: CLOSE_CHATBOT,
+  }
+}
+
+export const darkMode = (info)=>{
+  return  {
+    type: DARK_MODE, payload:info
   }
 }

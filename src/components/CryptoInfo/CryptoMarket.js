@@ -3,7 +3,7 @@ import TableCoins from './TableCoins'
 import { useSelector, useDispatch } from "react-redux";
 import { getCryptos, orderCryptoABC, orderCryptoPrice } from '../../redux/actions/index'
 import styles from './CryptoMarket.module.css'
-
+import loading from '../../assets/spinner/spinner.svg'
 
 const CryptosInfo = () => {
   // const [coin, setCoin] = useState([])
@@ -32,14 +32,18 @@ const CryptosInfo = () => {
     setPrice(e.target.value);
   }
   if(allCryptos?.length === 0){
-    return (<div>..loading</div>)
+    return (<div className={styles.detailContainer}>
+              <div className={styles.loading}> 
+                  <img src={loading} alt="Loading" />
+               </div>
+              </div>)
 }
 
   return (
       <div className={styles.container}>
         <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
         <h1>Crypto markets</h1>
-        <div> <select
+        <div className={styles.containerselect}> <select
             className={styles.select}
             onChange={(e) => handleSortedCryptosTitle(e)}
           >
