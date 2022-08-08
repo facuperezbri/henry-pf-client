@@ -1,4 +1,4 @@
-import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT} from '../actions'
+import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT, DARK_MODE} from '../actions'
 
 
 const initialState = {
@@ -13,7 +13,8 @@ const initialState = {
   favourites: [],
   ratings: [],
   showRate: false,
-  chatBot : false,
+  chatBot :false,
+  darkMod: false,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -121,6 +122,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         chatBot: !state.chatBot
+      }
+    case DARK_MODE:
+      return {
+        ...state,
+        darkMod: action.payload
       }
     default:
             return state

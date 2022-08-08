@@ -30,24 +30,24 @@ export default function Details(){
     }
     return (
             
-        <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <CryptoChart amount={detailCrypto.data2} dates={detailCrypto?.data}/>
-            <>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"center", justifyContent:"center",width:"100%"}}>
+          <CryptoChart amount={detailCrypto.data2} dates={detailCrypto?.data}/>
+            
 
-                <div>
+                <div style={{width:"25rem", display:"flex",flexDirection:"column", alignItems:"center", gap:"1rem"}}>
                     <h1>{detailCrypto.data?.name}</h1>
                     <h1>{detailCrypto.data?.symbol}</h1>
                     
                    <h1>${detailCrypto.data?.market_data.current_price.usd}</h1>
                     <h1>%{detailCrypto.data?.market_data.ath_change_percentage.usd}</h1>
-                     <a href={detailCrypto.data?.links.homepage}>link to {detailCrypto.data?.name}</a>
+                     <span style={{color:"green",fontSize:"1.5rem",fontWeight:"600"}}><a href={detailCrypto.data?.links.homepage}>link to {detailCrypto.data?.name}</a></span>
                 </div> 
                     
               
              <Link to="/cryptosmarket">
                 <button onClick={reset}>Volver</button>
              </Link>
-            </>
+            
             </div>
     )
 

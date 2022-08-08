@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import CanvasJSReact from './canvasjs.react';
+import {useSelector} from 'react-redux'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 export default function CryptoChart({amount, dates}){
+	const darkMode = useSelector(state => state.darkMod)
         // console.log(date)
 		let aux = [
 			{label:"enero", y: 0},
@@ -28,7 +30,7 @@ export default function CryptoChart({amount, dates}){
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
-			theme: "dark2", // "light1", "dark1", "dark2"
+			theme: darkMode ? "light1" : "dark2", // "light1", "dark1", "dark2"
 			title:{
 				text: `Movements of ${dates.name} by month`
 			},
@@ -38,7 +40,7 @@ export default function CryptoChart({amount, dates}){
                 interval: 1
 			},
 			data: [{
-				type: "area",
+				type: "column",
 				
 				toolTipContent: "{x}: {y}",
 				dataPoints: aut
@@ -46,7 +48,8 @@ export default function CryptoChart({amount, dates}){
 		}
 		return (
 		// <div style={{display: "flex", width:"50rem",marginLeft:"15rem"}}>
-		<div>
+		// <div style={{width:"60%" , display:"inline-block",zIndex:"1"}}>
+		<div className='w-1/2 inline-block z-10'>
 			<CanvasJSChart options = {options}
 				/* onRef={ref => this.chart = ref} */
 			/>
