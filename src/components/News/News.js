@@ -69,7 +69,7 @@ const ss = news.filter(e => {
                   <p>{news.content}</p>
                 </div>
               </a>
-            ):<h1>News not found</h1>}
+            ):<h1 style={{fontSize:"2rem"}}>No results found</h1>}
           </div>
         </div>
       </InfiniteScroll >

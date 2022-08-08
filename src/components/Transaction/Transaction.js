@@ -10,6 +10,8 @@ import CardText from '../uiComponents/CardText'
 import { useNavigate } from 'react-router-dom'
 import { Input } from 'postcss'
 import Card from '../uiComponents/Card'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
@@ -17,6 +19,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   const dispatch = useDispatch()
   const userData = useSelector(state => state.userData)
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const message = () => toast.success("The transaction was successful")
 
   const navigate = useNavigate()
 
@@ -41,7 +44,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   function onSubmit (data) {
     TRANSFER_MONEY({ ...data, ...state, cvuD: cvuFav || data.cvuD, amount: Number(data.amount) }).then((res) => {
       if (res?.newMovement) {
-        alert('The transaction was successful')
+        message()
         dispatch(getMovements(userData.accounts[0].cvu))
         setCvuFav(null)
         reset()
@@ -55,6 +58,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
 
   return (
     <>
+      <ToastContainer />
       <form class="bg-white w-fullscreen shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900" onSubmit={handleSubmit(onSubmit)}>
         <CardText labeltext='Your CVU' >{userData?.accounts?.[0]?.cvu}</CardText>
         {

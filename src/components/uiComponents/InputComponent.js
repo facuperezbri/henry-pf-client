@@ -10,4 +10,4 @@ const InputComponent = ({ register, errors, type, placeholder, name, config, lab
     )
 }
 
-export default InputComponent
+export default InputComponent;

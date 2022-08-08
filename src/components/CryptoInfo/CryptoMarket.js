@@ -7,7 +7,8 @@ import loading from '../../assets/spinner/spinner.svg'
 
 const CryptosInfo = () => {
   // const [coin, setCoin] = useState([])
-  const allCryptos = useSelector((state) => state.allCryptos);
+  const allCryptos =useSelector((state) => state.allCryptos);
+ 
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('')
@@ -40,28 +41,29 @@ const CryptosInfo = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
-      <h1>Crypto markets</h1>
-      <div className={styles.containerselect}> <select
-        className={`${styles.select} dark:bg-slate-800 w-fit`}
-        onChange={(e) => handleSortedCryptosTitle(e)}
-      >
-        <option value="">Sort alphabetically</option>
-        <option value="Asc">A to Z</option>
-        <option value="Desc">Z to A</option>
-      </select>
-        <select
-          className={`${styles.select} dark:bg-slate-800`}
-          onChange={(e) => handleSortedPrice(e)}
-        >
-          <option value="">Sort Price</option>
-          <option value="Asc">High to low</option>
-          <option value="Desc">Low to high</option>
-        </select></div>
-
-      <TableCoins coins={allCryptos} search={search} />
-    </div>
+      <div className={styles.container}>
+        <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
+        <h1 className={styles.title}>Crypto markets</h1>
+        <div className={styles.containerselect}> <select
+            className={styles.select}
+            onChange={(e) => handleSortedCryptosTitle(e)}
+          >
+            <option value="">Sort Alfabeticamente</option>
+            <option value="Asc">A to Z</option>
+            <option value="Desc">Z to A</option>
+          </select>
+          <select
+            className={styles.select}
+            onChange={(e) => handleSortedPrice(e)}
+          >
+            <option value="">Sort Price</option>
+            <option value="Asc">mayor a menor</option>
+            <option value="Desc">menor a mayor</option>
+          </select></div>
+        <div className={styles.containerCryptos}>
+          <TableCoins coins={allCryptos} search={search}/>
+        </div>
+      </div>
   )
 }
 

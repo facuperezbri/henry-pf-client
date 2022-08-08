@@ -1,38 +1,46 @@
-import { useState } from "react";
 import axios from "axios";
 import styles from "./SendMail.module.css";
+import InputComponent from './../uiComponents/InputComponent'
+import { useForm } from 'react-hook-form'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SendMail = () => {
-  const [email, setEmail] = useState();
+  const { reset, register, handleSubmit, formState: { errors } } = useForm()
+  const sucess = () => toast.success("Check your inbox for reset the password")
+  const failed = () => toast.error("Invalid email")
 
-  const send = async () => {
-    const mail = await axios.post("http://localhost:4000/api/user/sendReset", {
-      email,
-    });
-    const emaildata = mail.data;
-    console.log(emaildata);
-  };
-
-  const handleOnChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    setEmail(e.target.value);
+  const send = (data) => {
+    axios
+      .post("http://localhost:4000/api/user/sendReset", {
+       email: data.email
+      })
+      .then(() => {
+        sucess()
+        reset()
+      })
+      .catch(() => failed());
   };
 
   return (
+     <form onSubmit={handleSubmit(send)}>
     <div className={styles.container}>
-      
-      <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 dark:text-slate-900 border rounded-md py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-        name={"Reset"}
+    <ToastContainer/>
+      <InputComponent
+        register={register}
+        errors={errors}
+        msgerror='This field is required'
+        name='email'
         placeholder="Enter your email for reset"
-        min= {8}
-        onChange={(e) => handleOnChange(e)}
+        type="email"
+        config={{ required: true, minLength: 8 }}
       />
-      <button onClick={send} className={styles.btn}>
+
+      <button type='submit' className={styles.btn}>
         Send
       </button>
     </div>
+    </form>
   );
 };
 
