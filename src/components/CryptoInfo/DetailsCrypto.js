@@ -13,7 +13,7 @@ export default function Details(){
     
     const dispatch = useDispatch()
     const cryptoId = useParams()
-    const detailCrypto = useSelector((state) => state.detailsCrypto) 
+    const detailCrypto =useSelector((state) => state.detailsCrypto) 
    
     
     useEffect(() => {

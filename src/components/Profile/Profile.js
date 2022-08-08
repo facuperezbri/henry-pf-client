@@ -10,6 +10,9 @@ import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
 import { darkMode } from "../../redux/actions/index"
 import CardText from "../uiComponents/CardText";
+import SVGDarkLigth from "../../assets/icons/darkLight";
+
+import UseDarkMode from "../../hooks/useDarkMode";
 
 
 export default function Profile () {
@@ -18,6 +21,9 @@ export default function Profile () {
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
+  // const [darkMode, setDarkMode] = useState(window.localStorage.getItem('dark') === 'true')
+  const { darkMode, changeDarkMode } = UseDarkMode()
+
   const dataProfile = useSelector(state => state.userData)
   //---------------------------------------------------------------------------------------------------
   const handlerShowModal = () => {
@@ -40,23 +46,26 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  const dark = () => {
-    document.documentElement.classList.add('dark')
-    dispatch(darkMode(true))
+  // const handlerDarkMode = () => {
+  //   setDarkMode(!darkMode)
+  //   if (darkMode) {
+  //     document.documentElement.classList.add('dark')
+  //     window.localStorage.setItem('darkmode', darkMode)
+  //   }
+  //   if (!darkMode) {
+  //     document.documentElement.classList.remove('dark')
+  //     window.localStorage.setItem('darkmode', darkMode)
+      
+  //   }
+  // }
 
-  }
-  const white = () => {
-    document.documentElement.classList.remove('dark')
-    dispatch(darkMode(false))
-
-  }
 
 
   return (
     <div className={Style.main}>
 
-      <div className="rounded-full items-center" >
-        <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
+      <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto" >
+        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
       <Card className="w-full">
         <div className="flex flex-col gap-2">
@@ -86,7 +95,6 @@ export default function Profile () {
         </div>
       </Card>
       {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />}
-      {/* {visible && <EditPassword setVisible={setVisible} dataProfile={dataProfile} />} */}
 
       <Modal onClose={handlerShowModal} modal={showModal}>
         <EditPassword />
@@ -99,11 +107,8 @@ export default function Profile () {
         Change password
       </Button>
       <div className='flex gap-6'>
-        <Button onClick={() => dark()}>
-          Dark
-        </Button>
-        <Button onClick={() => white()}>
-          White
+        <Button onClick={changeDarkMode}>
+          <SVGDarkLigth darkmode={darkMode} />
         </Button>
       </div>
 

@@ -8,14 +8,17 @@ const ResetPassword = () => {
      const navigate = useNavigate()
      const email = useParams()
      const resetPws = async () => {
+      console.log(email)
           await axios.put('http://localhost:4000/api/user/reset-password', {
               email: email.id, 
               password: password
-         }).then(() => alert('Reset password sucessfully')).then(setTimeout(() => { navigate('/')}, 2000))
+         }).then(() => alert('Reset password sucessfully')).then(() => setTimeout(() => {
+          navigate('/')}, 3000
+          )).catch(() => {
+          alert('email reset failed')
+        })
      }
-     
-    
-   
+
   return (
     <div><h1>Reset Password</h1><div><input type='text' placeholder='New Password' onChange={(e)=> setPassword(e.target.value)}/><input type='text' placeholder='repeat new Password'/></div><button onClick={resetPws}>Change</button></div>
   )
