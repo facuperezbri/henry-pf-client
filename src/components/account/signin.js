@@ -85,13 +85,13 @@ const SignIn = () => {
               step === 1 &&
               <>
                 {
-                  userGoogle && <button className={formStyles.button} onClick={() => setUserGoogle()}>X</button>
+                  userGoogle && <button className={`${formStyles.button} btn`} onClick={() => setUserGoogle()}>X</button>
                 }
                 {
                   !userGoogle && step === 1 &&
                   <>
                     <div className={formStyles.center}>
-                      <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
+                      <button className={`${formStyles.button} ${formStyles.button_google} btn`} onClick={login}><AiOutlineGoogle size={35} /> Sign up with Google</button>
                     </div>
                     <div className={formStyles.or}>or</div>
                   </>
@@ -114,7 +114,7 @@ const SignIn = () => {
                 <InputComponent register={register} errors={errors} name='passwordVerify' placeholder='Repeat your password' type='password' config={{ required: true, minLength: 8 }} />
 
                 <div className={formStyles.center}>
-                  <button className={formStyles.button} type='submit'>Next</button>
+                  <button className={`${formStyles.button} btn`} type='submit'>Next</button>
                 </div>
               </>
             }
@@ -135,8 +135,8 @@ const SignIn = () => {
                 <InputComponent register={register} errors={errors} name='lastname' placeholder='Your lastname' type='text' config={{ required: true, minLength: 2 }} />
 
                 <div className={formStyles.button_prev_next_container}>
-                  <button className={formStyles.button} type='button' onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
-                  <button className={formStyles.button} type='submit'>Next</button>
+                  <button className={`${formStyles.button} btn`} type='button' onClick={() => setStep((prevStep) => prevStep - 1)}>Previous</button>
+                  <button className={`${formStyles.button} btn`} type='submit'>Next</button>
                 </div>
 
               </>
