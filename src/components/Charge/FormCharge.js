@@ -47,7 +47,7 @@ const FormOfCharge = ({ setDataOfCharge, setClientSecret, CVU }) => {
                     <input type="number" {...register('amount', { required: true, min: MIN_CHARGE, max: MAX_CHARGE })} min={MIN_CHARGE} max={MAX_CHARGE} step="0.01" />
                     {errors.amount && <span>{`The Amount is required and must be between ${MIN_CHARGE} and ${MAX_CHARGE}`}</span>}
                 </label> */}
-                <InputComponent labeltext='Amount' register={register} errors={errors} msgerror={`The Amount is required and must be between ${MIN_CHARGE} and ${MAX_CHARGE}`} name='amount' placeholder='Your password' type='number' config={{ required: true, min: MIN_CHARGE, max: MAX_CHARGE }} min={MIN_CHARGE} max={MAX_CHARGE} step="0.01" />
+                <InputComponent labeltext='Amount' register={register} errors={errors} msgerror={`The Amount is required and must be between ${MIN_CHARGE} and ${MAX_CHARGE}`} name='amount' placeholder='Your amount' type='number' config={{ required: true, min: MIN_CHARGE, max: MAX_CHARGE }} min={MIN_CHARGE} max={MAX_CHARGE} step="0.01" />
 
             </div>
             <div className='grid place-content-center'>
