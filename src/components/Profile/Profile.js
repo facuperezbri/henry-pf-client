@@ -10,6 +10,9 @@ import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
 import { darkMode } from "../../redux/actions/index"
 import CardText from "../uiComponents/CardText";
+import SVGDarkLigth from "../../assets/icons/darkLight";
+
+import UseDarkMode from "../../hooks/useDarkMode";
 
 
 export default function Profile () {
@@ -18,6 +21,9 @@ export default function Profile () {
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
+  // const [darkMode, setDarkMode] = useState(window.localStorage.getItem('dark') === 'true')
+  const { darkMode, changeDarkMode } = UseDarkMode()
+
   const dataProfile = useSelector(state => state.userData)
   //---------------------------------------------------------------------------------------------------
   const handlerShowModal = () => {
@@ -40,16 +46,19 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  const dark = () => {
-    document.documentElement.classList.add('dark')
-    dispatch(darkMode(true))
+  // const handlerDarkMode = () => {
+  //   setDarkMode(!darkMode)
+  //   if (darkMode) {
+  //     document.documentElement.classList.add('dark')
+  //     window.localStorage.setItem('darkmode', darkMode)
+  //   }
+  //   if (!darkMode) {
+  //     document.documentElement.classList.remove('dark')
+  //     window.localStorage.setItem('darkmode', darkMode)
+      
+  //   }
+  // }
 
-  }
-  const white = () => {
-    document.documentElement.classList.remove('dark')
-    dispatch(darkMode(false))
-
-  }
 
 
   return (
@@ -99,11 +108,8 @@ export default function Profile () {
         Change password
       </Button>
       <div className='flex gap-6'>
-        <Button onClick={() => dark()}>
-          Dark
-        </Button>
-        <Button onClick={() => white()}>
-          White
+        <Button onClick={changeDarkMode}>
+          <SVGDarkLigth darkmode={darkMode} />
         </Button>
       </div>
 
