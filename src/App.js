@@ -30,7 +30,7 @@ function App () {
   
 
   return (
-    <div className="dark:bg-slate-800 dark:text-red-50">
+    <div className="dark:bg-slate-800 dark:text-red-50 transition-all duration-500">
       <Routes>
         <Route path="/" element={<Landing />} />
          <Route path="/reset/:id" element={<ResetPassword />} />
