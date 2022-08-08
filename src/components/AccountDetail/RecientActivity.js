@@ -13,7 +13,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
   const [isShowAllMovements, setIsShowAllMovements] = useState(false)
 
-  
+
   const [filterByCategoryName, setFilterByCategoryName] = useState("")
   const handlerClick = (activitie) => {
     openDetails()
@@ -26,7 +26,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
     const categoriesUnique = [...new Set(categoriesRaw)]
     setCategories(categoriesUnique)
     setActivitiesState(activities)
-  },[activities])
+  }, [activities])
 
 
   const handlerSortByDate = () => {
@@ -69,12 +69,12 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
         </CardText>
       </div>
       <span>
-        
+
         <Button onClick={handlerSortByDate}>Order by date {isAcendantByDate ? <span>ASC</span> : <span>DESC</span>}</Button>
 
-        <Button onClick={handlerShowAllMovements}>{ isShowAllMovements ? 'Hide movements' : 'Show all movements' }</Button>
+        <Button onClick={handlerShowAllMovements}>{isShowAllMovements ? 'Hide movements' : 'Show all movements'}</Button>
 
-        <select name="filterCategory" onChange={handlerFilterByCategoryName}>
+        <select className='dark:text-slate-800' name="filterCategory" onChange={handlerFilterByCategoryName}>
           <option selected={true} disabled="disabled">Category...</option>
           <option value="" selected>All</option>
           {categories?.map((CategoryName) => (

@@ -1,4 +1,4 @@
-import style from "./App.module.css";
+import { useEffect } from "react";
 import Landing from "./components/Landing/Landing";
 import { Routes, Route } from "react-router-dom";
 import Cryptos from "./pages/Cryptos/Cryptos";
@@ -18,9 +18,17 @@ import Charge from "./pages/Charge/Charge";
 
 import ResetPassword from "./components/account/ResetPassword";
 
+import UseDarkMode from "./hooks/useDarkMode";
+
 
 
 function App () {
+  const { setDarkMode } = UseDarkMode()
+
+  useEffect(() => {
+    setDarkMode((window.localStorage.getItem('darkmode') === 'true'))
+  }, [])
+  
 
   return (
     <div className="dark:bg-slate-800 dark:text-red-50">
