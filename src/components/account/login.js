@@ -11,7 +11,6 @@ import { AiOutlineGoogle } from 'react-icons/ai'
 
 import InputComponent from './../uiComponents/InputComponent'
 import SendMail from './SendMail'
-import Button from '../uiComponents/Button'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
