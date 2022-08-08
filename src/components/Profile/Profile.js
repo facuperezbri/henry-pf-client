@@ -13,6 +13,7 @@ import CardText from "../uiComponents/CardText";
 import SVGDarkLigth from "../../assets/icons/darkLight";
 
 import UseDarkMode from "../../hooks/useDarkMode";
+import ProfileEpig from "../uiComponents/ProfileEpig";
 
 
 export default function Profile () {
@@ -63,10 +64,11 @@ export default function Profile () {
 
   return (
     <div className={Style.main}>
-
-      <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto" >
+{/* 
+      <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto grid place-content-center" >
         <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
-      </div>
+      </div> */}
+      <ProfileEpig src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       <Card className="w-full">
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">

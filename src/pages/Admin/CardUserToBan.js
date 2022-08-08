@@ -3,6 +3,7 @@ import Button from '../../components/uiComponents/Button'
 import Card from '../../components/uiComponents/Card'
 import CardText from '../../components/uiComponents/CardText'
 import { BAN_USER } from '../../services/BAN_USER'
+import ProfileEpig from '../../components/uiComponents/ProfileEpig'
 
 const CardUserToBan = ({ user, setUsers, users }) => {
     const HandlerBlock = (user) => {
@@ -21,9 +22,11 @@ const CardUserToBan = ({ user, setUsers, users }) => {
     return (
         <Card className='inline-block'>
             <div className='flex flex-col gap-4 justify-center'>
-                <div className='rounded-full w-72 h-72 overflow-hidden mx-auto'>
+                {/* <div className='rounded-full w-72 h-72 overflow-hidden mx-auto grid place-content-center'>
                     <img src={user?.profilepic} className='hover:scale-110 transition-all' alt={user.username} />
-                </div>
+                </div> */}
+                <ProfileEpig src={user?.profilepic} alt={user.username} />
+
                 <div className='flex flex-wrap gap-3'>
                     <CardText>E-mail: {user.email}</CardText>
                     <CardText>Name: {user.name}</CardText>
