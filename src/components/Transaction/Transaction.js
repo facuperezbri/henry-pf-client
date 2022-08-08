@@ -6,7 +6,7 @@ import { TRANSFER_MONEY } from '../../services/TRANSFER_MONEY'
 import Button from '../uiComponents/Button'
 import InputComponent from '../uiComponents/InputComponent'
 import { useForm } from 'react-hook-form'
-import { CardText } from '../Profile/Profile'
+import CardText from '../uiComponents/CardText'
 import { useNavigate } from 'react-router-dom'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']

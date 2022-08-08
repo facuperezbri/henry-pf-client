@@ -8,15 +8,8 @@ import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
+import CardText from "../uiComponents/CardText";
 
-export const CardText = ({ children, onClick, labeltext }) => (
-  <div className='mb-6'>
-    {labeltext && <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{labeltext}</label>}
-    <div onClick={onClick} className="text-slate-700 py-3 px-4 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
-  </div>
-
-
-)
 export default function Profile () {
   const dispatch = useDispatch()
 
@@ -49,8 +42,8 @@ export default function Profile () {
   return (
     <div className={Style.main}>
 
-      <div className="rounded-full items-center" >
-        <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
+      <div className="rounded-full items-center w-72 h-72 overflow-hidden" >
+        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
       <Card className="w-full">
         <div className="flex flex-col gap-2">
