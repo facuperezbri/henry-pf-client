@@ -19,7 +19,7 @@ export const GET_RATINGS ='GET_RATINGS'
 export const OPEN_RATE ='OPEN_RATE'
 export const CLOSE_RATE ='CLOSE_RATE'
 export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
-
+export const DARK_MODE = 'DARK_MODE '
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -202,5 +202,11 @@ export const resetCrypto = ()=>{
 export const closeChatBot = ()=>{
   return {
       type: CLOSE_CHATBOT,
+  }
+}
+
+export const darkMode = (info)=>{
+  return  {
+    type: DARK_MODE, payload:info
   }
 }

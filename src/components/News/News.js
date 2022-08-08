@@ -44,7 +44,12 @@ const News2 = () => {
         </div>
       </div>)
   }
-
+const ss = news.filter(e => {
+  if (!filter) return true
+  const title = e.title.toLowerCase()
+  if(!title.includes(filter.toLowerCase()))return false
+  return title.includes(filter.toLowerCase())
+})
   return (
     <div className={styles.detailContainer}>
       <div className={styles.input}>
@@ -56,11 +61,7 @@ const News2 = () => {
         next={() => fetchNextPage()}>
         <div className={styles.boxContainer}>
           <div className={styles.columns_3_2_1}>
-            {news.filter(e => {
-              if (!filter) return true
-              const title = e.title.toLowerCase()
-              return title.includes(filter.toLowerCase())
-            }).map((news) =>
+            {ss.length > 0 ? ss.map((news) =>
               <a key={news.url} href={news.url} target="_blank" rel="noreferrer">
                 <div className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
@@ -68,7 +69,7 @@ const News2 = () => {
                   <p>{news.content}</p>
                 </div>
               </a>
-            )}
+            ):<h1>News not found</h1>}
           </div>
         </div>
       </InfiniteScroll >

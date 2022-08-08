@@ -10,6 +10,7 @@ import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
+import {darkMode} from "../../redux/actions/index"
 
 export const CardText = ({ children }) => (
   <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
@@ -20,7 +21,7 @@ export default function Profile () {
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
   const [visibleUser, setVisibleUser] = useState(false)
-  const dataProfile = useSelector(state => state.userData)
+  const dataProfile = useSelector(state => state.userData)  
   //---------------------------------------------------------------------------------------------------
   const handlerShowModal = () => {
     setShowModal(!showModal)
@@ -42,7 +43,23 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  console.log(dataProfile)
+  
+  const dark = ()=>{
+    document.documentElement.classList.add('dark')
+    dispatch(darkMode(true))
+
+  }
+  const white = ()=>{
+    document.documentElement.classList.remove('dark')
+    dispatch(darkMode(false))
+
+  }
+
+
+
+
+
+
   return (
     <div className={Style.main}>
 
@@ -90,10 +107,10 @@ export default function Profile () {
         Change password
       </Button>
 
-      <button onClick={() => document.documentElement.classList.add('dark')}>
+      <button onClick={() => dark()}>
         Dark
       </button>
-      <button onClick={() => document.documentElement.classList.remove('dark')}>
+      <button onClick={() => white()}>
         White
       </button>
 
