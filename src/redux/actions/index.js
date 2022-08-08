@@ -3,6 +3,8 @@ import { GET_USER_DATA } from '../../services/GET_USER_DATA'
 import { GET_CATEGORY_SERVICE } from '../../services/GET_CATEGORY_SERVICE'
 import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 import { API_URL } from '../../services/API'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const GENERIC = 'GENERIC'
@@ -158,15 +160,16 @@ export function closeRate() {
 export function getDetailsCrypto(id) {
   return async function(dispatch){
       try{
-          let info = await axios.get(`${API_URL}/api/currency/${id}`)
-          // console.log('entre')
-          return dispatch({
-              type: "GET_DETAILS_CRYPTO",
-              payload: info.data
-          })
+        let info = await axios.get(`${API_URL}/api/currency/${id}`)
+        // console.log('entre')
+        return dispatch({
+          type: "GET_DETAILS_CRYPTO",
+          payload: info.data
+        })
       } catch (e){
+        const message = () => toast.error("Error no carga los detalles")
           console.error(e)
-          alert("Error no carga los detalles")
+          message()
       }
   }
 }

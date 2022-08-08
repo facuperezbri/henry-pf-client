@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFavorite, removeFavorite, addFavorite, getUser } from '../../redux/actions/index'
 import Modal from 'react-modal'
 import Button from '../uiComponents/Button'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const modalStyles = {
     content: {
@@ -23,6 +25,7 @@ export default function Favorites ({ setCvuFav }) {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
+    const favAdd = () => toast.success("You added your new favourite successfully")
 
     function handleModel () {
         setIsOpen(true)
@@ -38,7 +41,7 @@ export default function Favorites ({ setCvuFav }) {
         dispatch(addFavorite({ userId, fav }))
         setIsOpen(false)
         setFav("")
-        alert("You added your new favourite successfully")
+        favAdd()
     }
 
     function handleInput (e) {
@@ -90,6 +93,7 @@ export default function Favorites ({ setCvuFav }) {
                     <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
+                    <ToastContainer />
 
 
         </div>

@@ -8,13 +8,16 @@ import { set } from 'react-hook-form'
 import axios from 'axios'
 import { API_URL } from '../../services/API'
 import { useToken } from '../../hooks/useToken'
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function RateForm ({ setPerilla }) {
 
     const { token } = useToken()
 
     const dispatch = useDispatch()
+
+    const rated = () => toast.success("😁 Thank you for your rate!")
 
     function closeRateClick () {
         // dispatch(closeRate(false))
@@ -63,7 +66,7 @@ export default function RateForm ({ setPerilla }) {
 
         axios.post(`${API_URL}/api/ratings`, input, config)
             .then(console.log)
-        alert('Thank you for your rate!');
+        rated()
         setInput({
             rate: 0,
             comment: undefined,
@@ -76,6 +79,7 @@ export default function RateForm ({ setPerilla }) {
 
     return (
         <div className={`${styles.container} dark:bg-slate-900`}>
+            <ToastContainer />
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
 
                 <div>
