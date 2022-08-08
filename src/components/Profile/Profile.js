@@ -64,8 +64,8 @@ export default function Profile () {
   return (
     <div className={Style.main}>
 
-      <div className="rounded-full items-center" >
-        <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
+      <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto" >
+        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
       <Card className="w-full">
         <div className="flex flex-col gap-2">
@@ -95,7 +95,6 @@ export default function Profile () {
         </div>
       </Card>
       {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />}
-      {/* {visible && <EditPassword setVisible={setVisible} dataProfile={dataProfile} />} */}
 
       <Modal onClose={handlerShowModal} modal={showModal}>
         <EditPassword />
