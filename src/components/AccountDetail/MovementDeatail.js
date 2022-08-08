@@ -6,11 +6,11 @@ import { setFormat } from '../../hooks/setFormatDate'
 import Button from '../uiComponents/Button'
 
 const MovementDeatail = ({ movement, closeDetails }) => {
-    
+
     return (
         <>
-            <div className="fixed w-screen h-screen bg-gray-200 opacity-50 backdrop-blur-lg z-10 inset-0" onClick={closeDetails} />
-            <div className="h-2/3 w-2/3 fixed p-4 bg-gray-200 z-20 bottom-0 rounded-t-md">
+            <div className="fixed w-screen h-screen bg-gray-200 opacity-50 backdrop-blur-lg z-10 inset-0  " onClick={closeDetails} />
+            <div className="h-2/3 w-2/3 fixed p-4 bg-gray-200 z-20 bottom-0 rounded-t-md dark:bg-slate-800">
                 <div className='flex justify-end'>
                     <Button onClick={closeDetails}>Close</Button>
                 </div>
@@ -48,7 +48,7 @@ const MovementDeatail = ({ movement, closeDetails }) => {
 
                     <div className={style.detail}>
                         <span>Date</span>
-                        <span>{setFormat(movement?.date, 'en-EN', 'long' )}</span>
+                        <span>{setFormat(movement?.date, 'en-EN', 'long')}</span>
                     </div>
                 </div>
             </div>
