@@ -17,7 +17,7 @@ import AuthProvider from "./components/auth/AuthProvider";
 import Charge from "./pages/Charge/Charge";
 
 import ResetPassword from "./components/account/ResetPassword";
-import SendMail from "./components/account/SendMail";
+
 
 
 function App () {
