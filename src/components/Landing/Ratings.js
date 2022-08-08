@@ -37,12 +37,12 @@ export default function Ratings() {
     <div>
 
         <ul className={styles.starRate}>
-            {[...Array(qFull)]?.map((e) => 
-            <li>
+            {[...Array(qFull)]?.map((e, i) => 
+            <li key={i}>
                 <img src={full} alt="nope" className={styles.fullStar}/>
             </li>)}
-            {[...Array(qEmpty)]?.map((e) => 
-            <li>
+            {[...Array(qEmpty)]?.map((e, i) => 
+            <li key={i}>
                 <img src={empty} alt="nope" className={styles.emptyStar}/>
             </li>)}
         </ul>
