@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { useToken } from '../../hooks/useToken'
 import { useState } from 'react'
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { AiOutlineGoogle } from 'react-icons/ai'
 
 import InputComponent from './../uiComponents/InputComponent'
@@ -16,6 +17,8 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
+  const failed = (a) => toast.error(a)
+
   const loginResponseHandler = (res) => {
     if (res?.token && res?.isAdmin) {
       setToken(res?.token)
@@ -40,7 +43,7 @@ const Login = () => {
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
         if (res?.error) {
-          alert(res?.error)
+          failed(res?.error)
         }
         loginResponseHandler(res)
       }).catch(console.error)
@@ -52,6 +55,7 @@ const Login = () => {
       <h4 className={formStyles.createStart}>Welcome back.</h4>
       <h2>Already a member<span>?</span></h2>
 
+          <ToastContainer/>
       <div className={formStyles.card}>
 
         <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>

@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { LoginWithGoogle } from '../../firebase_/client'
 import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AiOutlineGoogle } from 'react-icons/ai'
 
@@ -13,7 +15,8 @@ const SignIn = () => {
   const [userGoogle, setUserGoogle] = useState()
 
   const [step, setStep] = useState(1)
-
+  const warning = (a) => toast.warning(a)
+  
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const login = () => {
@@ -24,7 +27,7 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     if (data?.password !== data?.passwordVerify) {
-      return alert('Passwords must be the same')
+      return warning('Passwords must be the same')
     }
     if (data && step !== 3) {
       setStep((prevStep) => prevStep + 1)
@@ -40,12 +43,12 @@ const SignIn = () => {
       }
       SIGN_IN(dataTosend).then(res => {
         if (res?.message) {
-          return alert(res?.message)
+          return warning(res?.message)
         }
 
         if (res?.id) {
           reset()
-          return alert(`The user ${res?.username} is registered. Wait for the validation of your account.`)
+          return warning(`The user ${res?.username} is registered. Wait for the validation of your account.`)
         }
 
       }).catch(console.error)
@@ -74,6 +77,8 @@ const SignIn = () => {
       <h4 className={formStyles.createStart}>Start for free.</h4>
       <h2>Create your account<span>.</span></h2>
       <div>
+    <ToastContainer/>
+
         <div className={formStyles.steps_index}>
           <div style={{ backgroundColor: step >= 1 && '#FF5F6D3F' }}></div>
           <div style={{ backgroundColor: step >= 2 && '#FF5F6D7F' }}></div>
