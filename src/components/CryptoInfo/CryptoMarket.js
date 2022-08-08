@@ -7,7 +7,8 @@ import loading from '../../assets/spinner/spinner.svg'
 
 const CryptosInfo = () => {
   // const [coin, setCoin] = useState([])
-  const allCryptos = useSelector((state) => state.allCryptos);
+  const allCryptos =useSelector((state) => state.allCryptos);
+ 
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('')
@@ -42,7 +43,7 @@ const CryptosInfo = () => {
   return (
       <div className={styles.container}>
         <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
-        <h1>Crypto markets</h1>
+        <h1 className={styles.title}>Crypto markets</h1>
         <div className={styles.containerselect}> <select
             className={styles.select}
             onChange={(e) => handleSortedCryptosTitle(e)}
@@ -59,8 +60,9 @@ const CryptosInfo = () => {
             <option value="Asc">mayor a menor</option>
             <option value="Desc">menor a mayor</option>
           </select></div>
-        
-        <TableCoins coins={allCryptos} search={search}/>
+        <div className={styles.containerCryptos}>
+          <TableCoins coins={allCryptos} search={search}/>
+        </div>
       </div>
   )
 }
