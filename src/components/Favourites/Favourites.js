@@ -58,13 +58,15 @@ export default function Favorites ({ setCvuFav }) {
     }, [dispatch])
 
     return (
-        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4">
+        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
             <h1 className={style.title}>My Friends</h1>
             <div>
+                {favourites.length === 0 && <p>Loading</p>}
                 {favourites.map((f) => {
                     return (
                         <div className='flex'>
                             <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                                {console.log(f.profilepic)}
                                 <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
                                 <p>{f.username}</p>
                             </section>
@@ -88,6 +90,7 @@ export default function Favorites ({ setCvuFav }) {
                     <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
+
 
         </div>
     )

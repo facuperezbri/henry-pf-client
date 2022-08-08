@@ -12,7 +12,7 @@ import { useToken } from '../../hooks/useToken'
 
 export default function RateForm ({ setPerilla }) {
 
-    const {token} = useToken()
+    const { token } = useToken()
 
     const dispatch = useDispatch()
 
@@ -52,17 +52,17 @@ export default function RateForm ({ setPerilla }) {
         })
     }
 
-        function handleSubmit (e) {
+    function handleSubmit (e) {
         e.preventDefault();
 
         console.log(input)
 
         const config = {
-        headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` }
         };
 
         axios.post(`${API_URL}/api/ratings`, input, config)
-        .then(console.log)
+            .then(console.log)
         alert('Thank you for your rate!');
         setInput({
             rate: 0,
@@ -75,7 +75,7 @@ export default function RateForm ({ setPerilla }) {
     // console.log(input)
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} dark:bg-slate-900`}>
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
 
                 <div>
@@ -94,14 +94,9 @@ export default function RateForm ({ setPerilla }) {
 
                 <div className={styles.inputDiv}>
                     <label className={styles.label}>Review:</label>
-                    <textarea className={styles.input} type='text' value={input.comment} onChange={handleChange} />
+                    <textarea className={`${styles.input} dark:text-black`} type='text' value={input.comment} onChange={handleChange} />
                 </div>
-
-                <button
-                    type='submit'
-                    // disabled={Object.keys(errors).length? true : false} 
-                    // onClick={() => resetForm()}
-                    >
+                <button type='submit'>
                     Submit rate
                 </button>
 

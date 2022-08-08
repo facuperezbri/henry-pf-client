@@ -3,7 +3,7 @@ import styles from './RecientActivity.module.css'
 import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
 import Button from '../uiComponents/Button'
-import { CardText } from '../Profile/Profile'
+import CardText from '../uiComponents/CardText'
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
   // eslint-disable-next-line no-use-before-define

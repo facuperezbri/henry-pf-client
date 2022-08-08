@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
-import pen from '../../assets/icons/pen.svg'
 import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
@@ -11,10 +9,9 @@ import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
 import {darkMode} from "../../redux/actions/index"
+import CardText from "../uiComponents/CardText";
 
-export const CardText = ({ children }) => (
-  <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
-)
+
 export default function Profile () {
   const dispatch = useDispatch()
 
@@ -43,7 +40,6 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  
   const dark = ()=>{
     document.documentElement.classList.add('dark')
     dispatch(darkMode(true))
@@ -56,15 +52,11 @@ export default function Profile () {
   }
 
 
-
-
-
-
   return (
     <div className={Style.main}>
 
-      <div className="rounded-full items-center" >
-        <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
+      <div className="rounded-full items-center w-72 h-72 overflow-hidden" >
+        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
       <Card className="w-full">
         <div className="flex flex-col gap-2">
@@ -73,7 +65,7 @@ export default function Profile () {
               <span>
                 {dataProfile?.name}
               </span>
-            </CardText>   
+            </CardText>
 
             <CardText>
               <span>
@@ -106,13 +98,14 @@ export default function Profile () {
       <Button onClick={handlerShowModal}>
         Change password
       </Button>
-
-      <button onClick={() => dark()}>
-        Dark
-      </button>
-      <button onClick={() => white()}>
-        White
-      </button>
+      <div className='flex gap-6'>
+        <Button onClick={() => dark()}>
+          Dark
+        </Button>
+        <Button onClick={() =>white()}>
+          White
+        </Button>
+      </div>
 
     </div>
   );

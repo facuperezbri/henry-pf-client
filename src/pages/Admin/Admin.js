@@ -1,36 +1,19 @@
-import { useEffect, useState, lazy, Suspense } from 'react'
-import { GET_USERS } from '../../services/GET_USERS'
-import { useNavigate } from 'react-router-dom'
-import { useToken } from '../../hooks/useToken'
-import styles from './Admin.module.css'
+import UsersToApprove from './UsersToAprove'
+import { Link } from 'react-router-dom'
 import BanSection from './BanSection'
-const CardUser = lazy(() => import('./CardUser'))
-const Admin = () => {
-    const [newUsers, setNewUsers] = useState([])
-    const { setToken } = useToken()
-    const navigate = useNavigate()
-    useEffect(() => {
-        GET_USERS().then((res) => {
-            if (res?.error) {
-                navigate('/account/login')
-                setToken('')
-                return
-            }
-            setNewUsers(res)
-        }).catch(console.error)
-    }, [])
+import Button from '../../components/uiComponents/Button'
 
+const Admin = () => {
   return (
-    <div>
+    <div className='min-h-screen flex justify-center py-8'>
+      <div className='flex flex-col max-w-screen-2xl'>
+     
+      <Link to="/home">
+        <Button>Go home</Button>
+      </Link>
+
       <BanSection />
-      <div className={styles.columns_3}>
-        {
-          newUsers?.map(({ id, lastname, dni, username, name, imgURL, imgURLRev }) => (
-            <Suspense fallback={<div>Loading</div>} key={id}>
-                  <CardUser id={id} dni={dni} imgURL={imgURL} imgURLRev={imgURLRev} lastname={lastname} name={name} username={username} users={newUsers} setUsers={setNewUsers} />
-              </Suspense>
-          ))
-        }
+      <UsersToApprove />
       </div>
     </div>
   )
