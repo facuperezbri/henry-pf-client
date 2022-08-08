@@ -6,6 +6,7 @@ import { setFormat } from '../../hooks/setFormatDate'
 import Button from '../uiComponents/Button'
 
 const MovementDeatail = ({ movement, closeDetails }) => {
+    
     return (
         <>
             <div className="fixed w-screen h-screen bg-gray-200 opacity-50 backdrop-blur-lg z-10 inset-0" onClick={closeDetails} />

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
-import pen from '../../assets/icons/pen.svg'
 import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
@@ -9,9 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
+import Card from "../uiComponents/Card";
 
-export const CardText = ({ children }) => (
-  <div className="text-slate-700 p-2 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+export const CardText = ({ children, onClick, labeltext }) => (
+  <div className='mb-6'>
+    {labeltext && <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{labeltext}</label>}
+    <div onClick={onClick} className="text-slate-700 py-3 px-4 bg-slate-300 w-full rounded-md hover:bg-slate-400 transition-all text-center"><span>{children}</span></div>
+  </div>
+
+
 )
 export default function Profile () {
   const dispatch = useDispatch()
@@ -41,39 +45,40 @@ export default function Profile () {
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  console.log(dataProfile)
+
   return (
     <div className={Style.main}>
 
       <div className="rounded-full items-center" >
         <img className={Style.img} src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div>
+      <Card className="w-full">
+        <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <CardText>
+              <span>
+                {dataProfile?.name}
+              </span>
+            </CardText>
 
-      <div className="bg-slate-100 p-4 w-full rounded-b-md shadow-xl my-4 rounded-md flex flex-col gap-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <CardText>
+              <span>
+                {dataProfile?.lastname}
+              </span>
+            </CardText>
+          </div>
           <CardText>
             <span>
-              {dataProfile?.name}
+              {dataProfile?.username}
             </span>
           </CardText>
-
           <CardText>
             <span>
-              {dataProfile?.lastname}
+              {dataProfile?.email}
             </span>
           </CardText>
         </div>
-        <CardText>
-          <span>
-            {dataProfile?.username}
-          </span>
-        </CardText>
-        <CardText>
-          <span>
-            {dataProfile?.email}
-          </span>
-        </CardText>
-      </div>
+      </Card>
       {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />}
       {/* {visible && <EditPassword setVisible={setVisible} dataProfile={dataProfile} />} */}
 
@@ -87,10 +92,15 @@ export default function Profile () {
       <Button onClick={handlerShowModal}>
         Change password
       </Button>
+      <div className='flex gap-6'>
+        <Button onClick={() => document.documentElement.classList.add('dark')}>
+          Dark
+        </Button>
+        <Button onClick={() => document.documentElement.classList.remove('dark')}>
+          White
+        </Button>
+      </div>
 
-      <button onClick={() => document.documentElement.classList.add('dark')}>
-        Dark
-      </button>
 
     </div>
   );

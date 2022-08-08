@@ -38,7 +38,8 @@ export default function CryptoChart({amount, dates}){
                 interval: 1
 			},
 			data: [{
-				type: "column",
+				type: "area",
+				
 				toolTipContent: "{x}: {y}",
 				dataPoints: aut
 			}]

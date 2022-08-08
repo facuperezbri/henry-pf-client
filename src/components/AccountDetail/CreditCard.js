@@ -16,7 +16,7 @@ const CreditCard = ({ balance, number, name, lastname }) => {
     money: balance,
     moneyCifrado: "$$$"
   })
-
+// console.log("informacion sensible",infoSensity)
   const [interruptor, setInterruptor] = useState(true)
 
   //--------------------------------------FUNCTIONS-------------------------------------------------------------
@@ -35,7 +35,7 @@ const CreditCard = ({ balance, number, name, lastname }) => {
         <span className={styles.number}>{interruptor ? infoSensity.targetNumberCifrado : infoSensity.targetNumber}</span>
         <div className={styles.balance_name_container}>
           <span className={styles.name}>{`${name} ${lastname}`.toLocaleUpperCase()}</span>
-          <span className={styles.balance}>${interruptor ? infoSensity.moneyCifrado : infoSensity.money}</span>
+          <span className={styles.balance}>${interruptor ? infoSensity.moneyCifrado : balance}</span>
         </div>
       </div>
     </div>

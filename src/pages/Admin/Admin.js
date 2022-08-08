@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { GET_USERS } from '../../services/GET_USERS'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useToken } from '../../hooks/useToken'
 import styles from './Admin.module.css'
 import BanSection from './BanSection'
@@ -32,6 +32,9 @@ const Admin = () => {
           ))
         }
       </div>
+      <Link to="/home">
+        <button>Home</button>
+      </Link>
     </div>
   )
 }

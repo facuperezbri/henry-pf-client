@@ -52,7 +52,6 @@ export const changeProfile = (objeto) => {
     const response = await axios.put('http://localhost:4000/api/user/useredit',objeto)
     dispatch({type:CHANGEPROFILE , payload: response.data})
   } 
-  
 }
 
 export const getCategory = () => {
@@ -120,13 +119,14 @@ export function addFavorite(payload) {
 }
 
 export function removeFavorite(id) {
-  console.log(id)
+  // console.log(id)
   return async function(dispatch){
     const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/${id}`)
     return dispatch({type: REMOVE_FAVORITE,
-    payload: id})}}
+    payload: id})
+  }
+}
     
-
 export function getRatings() {
   return async function (dispatch) {
     try {
@@ -170,6 +170,7 @@ export function getDetailsCrypto(id) {
       }
   }
 }
+
 export function orderCryptoABC(payload) {
   return {
       type: "ORDER_CRYPTO_ABC",
@@ -183,8 +184,6 @@ export function orderCryptoPrice(payload) {
       payload: payload
   }
 }
-
-
 
 export const sendMovement =  (obj)=>{
   return async function(dispatch){

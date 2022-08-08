@@ -21,20 +21,8 @@ export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
     const userId = useSelector((state) => state.userData?.id)
     const dispatch = useDispatch()
-    // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const [selected, setSelected] = useState('')
-    const [favAccs, setFavAccs] = useState([])
-    // const [errors, setErrors] = useState({})
-    const [cvu, setCvu] = useState("")
-
-    // function validation(input){
-    //     let errors = {}
-    //     if(input.cvu || typeof input.cvu !== 'string'){
-    //         errors.cvu = 'Ingrese un cvu/username válido'
-    //     }
-    // }
 
     function handleModel () {
         setIsOpen(true)
@@ -61,27 +49,8 @@ export default function Favorites ({ setCvuFav }) {
         setFav('')
     }
 
-    function handleSelected (e) {
-        const fav = favourites.find(el => {
-            return el.id === e.target.value
-        })
-        setFavAccs(fav.accounts)
-        setSelected(e.target.value)
-    }
-
-    function deleteFav () {
-        dispatch(removeFavorite(selected))
-        alert("Your contact was removed successfully")
-    }
-
-    const handleCvuChange = e => {
-        setCvu(e.target.value)
-    }
-
-    function handleCvu () {
-        // setState({
-        //     ...state, cvuD: cvu
-        // })
+    function deleteFav (e) {
+        dispatch(removeFavorite(e.target.id))
     }
 
     useEffect(() => {
@@ -89,36 +58,27 @@ export default function Favorites ({ setCvuFav }) {
     }, [dispatch])
 
     return (
-        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4">
+        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
             <h1 className={style.title}>My Friends</h1>
-            <select className={style.select} value={selected} onChange={e => handleSelected(e)}>
-                <option selected disabled value="">Favourites</option>
-                {favourites?.map(fav =>
-                    <option value={fav.id} key={fav.id}>
-                        {fav.username}
-                    </option>)
-                }
-            </select>
-            <select className={style.select} value={cvu} onChange={handleCvuChange}>
-                <option selected value="">Fav Accounts</option>
-                {favAccs?.map(acc => {
-                    return <option value={acc?.cvu}>{acc?.currencies?.name} Acc</option>
-                })}
-            </select>
             <div>
+                {favourites.length === 0 && <p>Loading</p>}
                 {favourites.map((f) => {
                     return (
-                        <section style={{ cursor: 'pointer' }} onClick={() => setCvuFav(f.accounts[0].cvu)} className='flex'>
-                            <img className='rounded-full w-12' src={f.profilepic} alt={f.username} />
-                            <p>{f.username}</p>
-                        </section>
+                        <div className='flex'>
+                            <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                                {console.log(f.profilepic)}
+                                <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                                <p>{f.username}</p>
+                            </section>
+                            <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                        </div>
+
                     )
                 }
                 )}
             </div>
             <Button onClick={handleModel}>Add</Button>
-            <Button onClick={deleteFav} >Delete</Button>
-            <Button onClick={handleCvu}>Add CVU</Button>
+
             <Modal
                 isOpen={isOpen}
                 style={modalStyles}
@@ -130,6 +90,7 @@ export default function Favorites ({ setCvuFav }) {
                     <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
+
 
         </div>
     )
