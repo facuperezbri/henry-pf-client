@@ -5,6 +5,7 @@ import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 import { API_URL } from '../../services/API'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useToken } from '../../hooks/useToken'
 
 
 export const GENERIC = 'GENERIC'
@@ -105,9 +106,15 @@ export const getCryptos = () => {
   }
 }
 
-export function getFavorite(id) {
+
+export function getFavorite() {
+  const token = window.localStorage.getItem('token')
   return async function(dispatch){
-    await axios.get(`${API_URL}/api/favourites/${id}`).then((fav)=>{
+    await axios.get(`${API_URL}/api/favourites/`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((fav)=>{
       // console.log(fav.data)
       return dispatch({
       type: GET_FAVORITE,
@@ -116,9 +123,18 @@ export function getFavorite(id) {
   }
 }
 
-export function addFavorite(payload) {
+export function addFavorite(username) {
+  const token = window.localStorage.getItem('token')
+  console.log(username, token)
   return async function(dispatch){
-    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/createFavourites`,{id: payload.userId, cvu: payload.fav, username: payload.fav})
+    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/addFavorite`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        username
+      }
+    })
     return dispatch({ type: POST_FAVORITE,
       payload: favouriteCreated.data
       })
@@ -126,9 +142,17 @@ export function addFavorite(payload) {
 }
 
 export function removeFavorite(id) {
-  // console.log(id)
+  const token = window.localStorage.getItem('token')
+
   return async function(dispatch){
-    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/${id}`)
+    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/removeFavorite`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        friendID: id
+      }
+    })
     return dispatch({type: REMOVE_FAVORITE,
     payload: id})
   }

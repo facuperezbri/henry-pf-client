@@ -86,11 +86,13 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  color: black;
 }
 
 .input input {
   width: 16rem;
   height: 2rem;
+  padding: 1rem;
   border-radius: 1rem;
 
 }
