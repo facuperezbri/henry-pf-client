@@ -58,9 +58,6 @@ export default function AccountDetail () {
           name={usData?.name}
           lastname={usData?.lastname} />
 
-        {/* <BalanceChart /> */}
-          <PieGraph movements={usData?.accounts[0]?.movements} />
-
       <div>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity
@@ -69,6 +66,9 @@ export default function AccountDetail () {
             openDetails={openDetails} />
         </Suspense>
       </div>
+      
+        {/* <BalanceChart /> */}
+          <PieGraph movements={usData?.accounts[0]?.movements} />
 
       <div>
         <CategoryExpense activities={usData?.accounts[0]?.movements} />
