@@ -10,6 +10,7 @@ import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiCoinStack } from 'react-icons/bi'
+import {RiTeamLine} from 'react-icons/ri'
 import RateForm from './RateForm'
 import { openRate } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -78,6 +79,11 @@ export default function Nav () {
         </ul>
       </div>
       <ul className={style.itemsNav}>
+      <Link to="/aboutus">
+          <li className={style.listItem}>
+            <RiTeamLine className={style.icon} /> <span className={style.listItem_text}>About us</span>
+          </li>
+        </Link>
         <Link to="/">
           <li onClick={() => logOut()} className={style.listItem}>
             <MdExitToApp className={style.icon} /> <span className={style.listItem_text}>Log out</span>
