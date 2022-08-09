@@ -42,7 +42,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
     }, [])
 
    
-  console.log(userData, state);
+  // console.log(userData, state);
 
   function onSubmit (data) {
     setIsTransferLoading(true)
