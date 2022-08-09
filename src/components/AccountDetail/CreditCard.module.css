@@ -58,7 +58,8 @@
 }
 
 .balance {
-    font-size: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 @media (max-width: 668px) {

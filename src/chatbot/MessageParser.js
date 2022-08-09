@@ -6,7 +6,7 @@ const MessageParser = ({ children, actions }) => {
     if(message.toLowerCase().includes('hello')){
         return actions.handleHola();
     }
-    if(message.includes('balance')){
+    if(message.toLowerCase().includes('balance')){
       return actions.handleSaldo();
     }
     if(message.toLowerCase().includes('transactions')){
