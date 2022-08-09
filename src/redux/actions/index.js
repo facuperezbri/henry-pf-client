@@ -23,6 +23,11 @@ export const OPEN_RATE ='OPEN_RATE'
 export const CLOSE_RATE ='CLOSE_RATE'
 export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
 export const DARK_MODE = 'DARK_MODE '
+export const ORDER_CRYPTO_ABC = 'ORDER_CRYPTO_ABC'
+export const GET_DETAILS_CRYPTO = 'GET_DETAILS_CRYPTO'
+export const ORDER_CRYPTO_PRICE = 'ORDER_CRYPTO_PRICE'
+export const RESET_CRYPTO = 'RESET_CRYPTO'
+export const GET_CRYPTO = 'GET_CRYPTO'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -92,7 +97,7 @@ export const getCryptos = () => {
       let info = await axios.get(`${API_URL}/api/currency/crypto`)
       // console.log(info.data)
       return dispatch({
-        type: 'GET_CRYPTO',
+        type: GET_CRYPTO,
         payload: info.data
       })
     } catch (e) {
@@ -187,7 +192,7 @@ export function getDetailsCrypto(id) {
         let info = await axios.get(`${API_URL}/api/currency/${id}`)
         // console.log('entre')
         return dispatch({
-          type: "GET_DETAILS_CRYPTO",
+          type: GET_DETAILS_CRYPTO,
           payload: info.data
         })
       } catch (e){
@@ -200,14 +205,14 @@ export function getDetailsCrypto(id) {
 
 export function orderCryptoABC(payload) {
   return {
-      type: "ORDER_CRYPTO_ABC",
+      type: ORDER_CRYPTO_ABC,
       payload: payload
   }
 }
 
 export function orderCryptoPrice(payload) {
   return {
-      type: "ORDER_CRYPTO_PRICE",
+      type: ORDER_CRYPTO_PRICE,
       payload: payload
   }
 }
@@ -222,7 +227,7 @@ export const sendMovement =  (obj)=>{
 
 export const resetCrypto = ()=>{
   return {
-    type: "RESET_CRYPTO",
+    type: RESET_CRYPTO,
   }  
 }
 export const closeChatBot = ()=>{

@@ -1,4 +1,4 @@
-import { CLOSE_RATE, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT, DARK_MODE} from '../actions'
+import { CLOSE_RATE, ORDER_CRYPTO_ABC, GET_CRYPTO, GET_DETAILS_CRYPTO, ORDER_CRYPTO_PRICE, RESET_CRYPTO, OPEN_RATE, GET_RATINGS, GET_CATEGORY, GET_MOVEMENT, GET_USER ,POST_MOVEMENT,GET_FAVORITE,REMOVE_FAVORITE,POST_FAVORITE,CLOSE_CHATBOT, DARK_MODE} from '../actions'
 
 
 const initialState = {
@@ -49,12 +49,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         showRate: action.payload
       }
-    case 'GET_CRYPTO':
+    case GET_CRYPTO:
       return {
         ...state,
         allCryptos: action.payload
       }
-    case "ORDER_CRYPTO_ABC":
+    case ORDER_CRYPTO_ABC:
 
         const sortedCryptosABC = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
             if(a.name.toLowerCase() > b.name.toLowerCase()){
@@ -77,12 +77,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           allCryptos: sortedCryptosABC
     }
-    case "GET_DETAILS_CRYPTO":
+    case GET_DETAILS_CRYPTO:
             return {
                 ...state,
                 detailsCrypto: action.payload
           }
-    case "ORDER_CRYPTO_PRICE":
+    case ORDER_CRYPTO_PRICE:
         const sortedCryptosPrice = action.payload === "Asc" ? state.allCryptos.sort((a, b) => {
           return parseFloat(b.currentPrice) - parseFloat(a.currentPrice)
         }) : state.allCryptos.sort((a, b) => {
@@ -114,7 +114,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourites: action.payload
       }
-      case 'RESET_CRYPTO':
+      case RESET_CRYPTO:
       return {
         ...state,
         detailsCrypto: []}

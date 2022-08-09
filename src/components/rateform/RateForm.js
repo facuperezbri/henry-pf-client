@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { closeRate } from '../../redux/actions'
 import empty from '../../assets/img/estrellaVacia.png'
 import full from '../../assets/img/estrellaLlena.png'
 import styles from './RateForm.module.css'
@@ -15,15 +13,9 @@ export default function RateForm ({ setPerilla }) {
 
     const { token } = useToken()
 
-    const dispatch = useDispatch()
-
     const rated = () => toast.success("😁 Thank you for your rate!")
-
-    function closeRateClick () {
-        // dispatch(closeRate(false))
-        // return console.log("form rate se cerro con exito")
-        setPerilla(false)
-    }
+    const error = () => toast.info("Already rate this app!")
+    
 
     const [input, setInput] = useState({
         rate: 0,
@@ -64,9 +56,8 @@ export default function RateForm ({ setPerilla }) {
             headers: { Authorization: `Bearer ${token}` }
         };
 
-        axios.post(`${API_URL}/api/ratings`, input, config)
-            .then(console.log)
-        rated()
+        axios.post(`${API_URL}/api/ratings`, input, config).then(() => rated()).catch(() => error())
+        
         setInput({
             rate: 0,
             comment: undefined,
@@ -100,14 +91,12 @@ export default function RateForm ({ setPerilla }) {
                     <label className={styles.label}>Review:</label>
                     <textarea className={`${styles.input} dark:text-black`} type='text' value={input.comment} onChange={handleChange} />
                 </div>
+                <div  className={styles.label2}>
                 <button type='submit'>
                     Submit rate
                 </button>
-
+                </div>
             </form>
-
-            <button className={styles.botonCerrar} onClick={closeRateClick}>Close</button>
-
         </div>
     )
 }
