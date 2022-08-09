@@ -48,17 +48,22 @@ export default function AccountDetail () {
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
+
       <div className={style.infoContainer}>
         <CreditCard
           balance={usData?.accounts[0]?.balance || 0}
           number={usData?.accounts[0]?.cvu}
           name={usData?.name}
           lastname={usData?.lastname} />
-        <CategoryExpense activities={usData?.accounts[0]?.movements} />
+      </div>
+      
+      <div>
         {/* <BalanceChart /> */}
-        <div className='w-full max-h-72 grid place-content-center'>
           <PieGraph movements={usData?.accounts[0]?.movements} />
-        </div>
+      </div>
+
+      <div>
+        <CategoryExpense activities={usData?.accounts[0]?.movements} />
       </div>
 
       <div className={style.recentActivity}>

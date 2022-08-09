@@ -74,7 +74,7 @@ export default function CategoryExpense ({ activities }) { // los movimientos, c
                                 <div>{xxx.name}</div>
                             </li>
                         )) :
-                        catWithExpenses.slice(0,5).map((xxx, i) => (
+                        catWithExpenses.slice(0,4).map((xxx, i) => (
                             <li key={i}>
                                 {xxx.icon}
                                 <div>{xxx.sum}</div>
