@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCryptos, orderCryptoABC, orderCryptoPrice } from '../../redux/actions/index'
 import styles from './CryptoMarket.module.css'
 import loading from '../../assets/spinner/spinner.svg'
+import Card from "../uiComponents/Card";
+
 
 const CryptosInfo = () => {
   // const [coin, setCoin] = useState([])
@@ -42,6 +44,9 @@ const CryptosInfo = () => {
 
   return (
       <div className={styles.container}>
+        <Card>
+          
+      <div className={styles.containerInputs}>
         <input type="text" placeholder='Find cryptos' className={styles.input} onChange={(e) => { setSearch(e.target.value) }}></input>
         <h1 className={styles.title}>Crypto markets</h1>
         <div className={styles.containerselect}> <select
@@ -60,6 +65,8 @@ const CryptosInfo = () => {
             <option value="Asc">mayor a menor</option>
             <option value="Desc">menor a mayor</option>
           </select></div>
+      </div>
+        </Card>
         <div className={styles.containerCryptos}>
           <TableCoins coins={allCryptos} search={search}/>
         </div>

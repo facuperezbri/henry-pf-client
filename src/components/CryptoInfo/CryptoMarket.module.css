@@ -3,14 +3,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
 }
 
 .input {
-    height: 50px;
-    width: 450px;
+    height: 30px;
+    width: auto;
+    display: inline;
     padding-left: 10px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 1rem;
 }
 
 .select {
@@ -19,13 +24,15 @@
     border-radius: 5px;
     align-items: center;
     text-align: center;
-
+    color: black;
+    width: 8rem;
 }
 
 .containerselect {
     display: flex;
     gap: 20px;
     margin-top: 10px;
+    
 }
 .detailContainer {
     display: flex;
@@ -46,4 +53,11 @@
   }
   .title{
     font-size: 2rem;
+  }
+  .containerInputs{
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
   }
