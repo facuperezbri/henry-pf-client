@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
 
+@font-face {
+  font-family: "kredit";
+  src: url('./assets/fonts/kredit.ttf');
+}
+
 :root {
   --main-bg: linear-gradient(180deg, #222222 0%, #3A495D 100%);
   --background-color-nav: #F7F7F9;
@@ -72,7 +77,6 @@ a {
   z-index: 1;
   overflow: hidden;
 }
-
 
 .btn:hover {
   color: #FF5F6D

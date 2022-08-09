@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom'
 
 import Typewriter from 'typewriter-effect';
 
-import { MdSecurity } from "react-icons/md"
+import { MdSecurity, MdOutlineContactless } from "react-icons/md"
 import { AiOutlineShopping } from "react-icons/ai"
 import { GiTwoCoins } from 'react-icons/gi'
+
 import Ratings from './Ratings';
 
 export default function Landing () {
@@ -29,9 +30,13 @@ export default function Landing () {
         </div>
         <div className={style.credit_card_container}>
           <div className={style.credit_card}>
-            <span className={style.title}>w.</span>
+            <div className='flex'>
+              <span className={style.title}>w.</span>
+              <MdOutlineContactless />
+            </div>
             <span className={style.number}>4503 4456 0000 1234</span>
             <div className={style.balance_name_container}>
+              <span className={style.name}>11/28</span>
               <span className={style.name}>JOHN DOE</span>
             </div>
           </div>

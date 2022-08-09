@@ -109,6 +109,9 @@
     justify-content: space-between;
     overflow: hidden;
     transition: .3s;
+    font-family: 'kredit';
+    font-weight: 600;
+
     /* box-shadow: 0 1rem 1.5rem #ff5f6c78; */
 }
 
@@ -139,6 +142,7 @@
 .number {
     font-size: 2rem;
     text-align: center;
+    text-shadow: 0.5px 0.5px 2px black;
 }
 
 .balance_name_container {
@@ -148,6 +152,7 @@
 
 .name {
     font-size: 1rem;
+    text-shadow: 0.5px 0.5px 2px black;
 }
 
 .balance {
