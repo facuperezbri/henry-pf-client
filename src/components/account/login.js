@@ -44,7 +44,7 @@ const Login = () => {
     LOG_IN({ email, password }).then((res) => {
 
       if (res?.error) return loginErrror(res?.error)
-      
+
       loginResponseHandler(res)
     })
       .catch((error) => {
@@ -93,7 +93,7 @@ const Login = () => {
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
           {/* <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button> */}
-          <ButtonWithLoader isLoading={isLoadingLogin} className='w-full'  type='submit'>
+          <ButtonWithLoader isLoading={isLoadingLogin} className='w-full' type='submit'>
             Log in
           </ButtonWithLoader>
         </form>
