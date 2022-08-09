@@ -6,6 +6,7 @@ import { getDetailsCrypto, resetCrypto } from "../../redux/actions/index";
 import CryptoChart from "./CryptoChart"
 import styles from './DetailsCrypto.module.css'
 import loading from '../../assets/spinner/spinner.svg'
+import Boton from '../uiComponents/Button'
 
 // import styles from "../details/details.module.css"
 
@@ -45,7 +46,9 @@ export default function Details () {
 
 
             <Link to="/cryptosmarket">
+                <Boton>
                 <button onClick={reset}>Volver</button>
+                </Boton>
             </Link>
 
         </div>

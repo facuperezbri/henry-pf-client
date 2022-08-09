@@ -10,34 +10,32 @@ import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiCoinStack } from 'react-icons/bi'
+
+ import { useDispatch, useSelector } from 'react-redux'
+
 import {RiTeamLine} from 'react-icons/ri'
-import RateForm from './RateForm'
-import { openRate } from '../../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+
 
 
 export default function Nav () {
 
-  const dispatch = useDispatch()
-  const showRate = useSelector(state => state.showRate)
-  const movements = useSelector(state => state.movements)
+   const movements = useSelector(state => state.userData)
 
-  const [perilla, setPerilla] = useState(false)
 
-  useEffect(() => {
-    if (movements.movements?.length === 1) {
-      setPerilla(true)
-    }
-  }, [])
+  //  useEffect(() => {
+  //    if (movements.movements?.length === 1) {
+  //      setPerilla(true)
+  //    }
+  //  }, [])
 
   function logOut () {
     window.localStorage.setItem("token", "")
   }
-  function openRateclick () {
-    // dispatch(openRate(true))
-    setPerilla(!perilla)
-    // alert("entrando")
-  }
+  // function openRateclick () {
+  //   // dispatch(openRate(true))
+  //   setPerilla(!perilla)
+  //   // alert("entrando")
+  // }
   return (
     <nav className={style.header}>
       <div>
@@ -68,13 +66,12 @@ export default function Nav () {
               <BiCoinStack className={style.icon} /><span className={style.listItem_text}>Cryptos</span>
             </li>
           </Link>
-          <li onClick={openRateclick} className={style.listItem}>
+          { (!movements?.ratings) ?
+          <Link to='/rateform'>
+          <li  className={style.listItem}>
             <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate app</span>
           </li>
-          {
-            perilla ?
-              <RateForm setPerilla={setPerilla} /> :
-              null
+          </Link> : null
           }
         </ul>
       </div>

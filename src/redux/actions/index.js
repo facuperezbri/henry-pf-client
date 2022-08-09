@@ -5,6 +5,7 @@ import { GET_MOVEMENT_SERVICE } from '../../services/GET_MOVEMENTS_SERVICE'
 import { API_URL } from '../../services/API'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useToken } from '../../hooks/useToken'
 
 
 export const GENERIC = 'GENERIC'
@@ -22,6 +23,11 @@ export const OPEN_RATE ='OPEN_RATE'
 export const CLOSE_RATE ='CLOSE_RATE'
 export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
 export const DARK_MODE = 'DARK_MODE '
+export const ORDER_CRYPTO_ABC = 'ORDER_CRYPTO_ABC'
+export const GET_DETAILS_CRYPTO = 'GET_DETAILS_CRYPTO'
+export const ORDER_CRYPTO_PRICE = 'ORDER_CRYPTO_PRICE'
+export const RESET_CRYPTO = 'RESET_CRYPTO'
+export const GET_CRYPTO = 'GET_CRYPTO'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -91,7 +97,7 @@ export const getCryptos = () => {
       let info = await axios.get(`${API_URL}/api/currency/crypto`)
       // console.log(info.data)
       return dispatch({
-        type: 'GET_CRYPTO',
+        type: GET_CRYPTO,
         payload: info.data
       })
     } catch (e) {
@@ -100,9 +106,15 @@ export const getCryptos = () => {
   }
 }
 
-export function getFavorite(id) {
+
+export function getFavorite() {
+  const token = window.localStorage.getItem('token')
   return async function(dispatch){
-    await axios.get(`${API_URL}/api/favourites/${id}`).then((fav)=>{
+    await axios.get(`${API_URL}/api/favourites/`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((fav)=>{
       // console.log(fav.data)
       return dispatch({
       type: GET_FAVORITE,
@@ -111,9 +123,18 @@ export function getFavorite(id) {
   }
 }
 
-export function addFavorite(payload) {
+export function addFavorite(username) {
+  const token = window.localStorage.getItem('token')
+  console.log(username, token)
   return async function(dispatch){
-    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/createFavourites`,{id: payload.userId, cvu: payload.fav, username: payload.fav})
+    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/addFavorite`,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        username
+      }
+    })
     return dispatch({ type: POST_FAVORITE,
       payload: favouriteCreated.data
       })
@@ -121,9 +142,17 @@ export function addFavorite(payload) {
 }
 
 export function removeFavorite(id) {
-  // console.log(id)
+  const token = window.localStorage.getItem('token')
+
   return async function(dispatch){
-    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/${id}`)
+    const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/removeFavorite`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        friendID: id
+      }
+    })
     return dispatch({type: REMOVE_FAVORITE,
     payload: id})
   }
@@ -163,7 +192,7 @@ export function getDetailsCrypto(id) {
         let info = await axios.get(`${API_URL}/api/currency/${id}`)
         // console.log('entre')
         return dispatch({
-          type: "GET_DETAILS_CRYPTO",
+          type: GET_DETAILS_CRYPTO,
           payload: info.data
         })
       } catch (e){
@@ -176,14 +205,14 @@ export function getDetailsCrypto(id) {
 
 export function orderCryptoABC(payload) {
   return {
-      type: "ORDER_CRYPTO_ABC",
+      type: ORDER_CRYPTO_ABC,
       payload: payload
   }
 }
 
 export function orderCryptoPrice(payload) {
   return {
-      type: "ORDER_CRYPTO_PRICE",
+      type: ORDER_CRYPTO_PRICE,
       payload: payload
   }
 }
@@ -198,7 +227,7 @@ export const sendMovement =  (obj)=>{
 
 export const resetCrypto = ()=>{
   return {
-    type: "RESET_CRYPTO",
+    type: RESET_CRYPTO,
   }  
 }
 export const closeChatBot = ()=>{
