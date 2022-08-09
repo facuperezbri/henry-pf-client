@@ -12,8 +12,8 @@ export default function Wallet () {
   return (
     <div className='flex'>
       <Nav />
-      <div className='grid p-10 w-full place-content-center'>
-        <section className='flex gap-5'>
+      <div className='flex justify-center my-auto p-10 w-full'>
+        <section className='flex flex-col w-5/6 xl:flex-row gap-4'>
           <Transaction cvuFav={cvu} setCvuFav={setCvu} />
           <Favorites setCvuFav={setCvu} />
         </section>
