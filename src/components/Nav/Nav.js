@@ -10,7 +10,11 @@ import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiCoinStack } from 'react-icons/bi'
+
  import { useDispatch, useSelector } from 'react-redux'
+
+import {RiTeamLine} from 'react-icons/ri'
+
 
 
 export default function Nav () {
@@ -23,7 +27,6 @@ export default function Nav () {
   //      setPerilla(true)
   //    }
   //  }, [])
-console.log(movements.ratings)
 
   function logOut () {
     window.localStorage.setItem("token", "")
@@ -63,7 +66,7 @@ console.log(movements.ratings)
               <BiCoinStack className={style.icon} /><span className={style.listItem_text}>Cryptos</span>
             </li>
           </Link>
-          { (movements.ratings.length === 0) ?
+          { (!movements?.ratings) ?
           <Link to='/rateform'>
           <li  className={style.listItem}>
             <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate app</span>
@@ -73,6 +76,11 @@ console.log(movements.ratings)
         </ul>
       </div>
       <ul className={style.itemsNav}>
+      <Link to="/aboutus">
+          <li className={style.listItem}>
+            <RiTeamLine className={style.icon} /> <span className={style.listItem_text}>About us</span>
+          </li>
+        </Link>
         <Link to="/">
           <li onClick={() => logOut()} className={style.listItem}>
             <MdExitToApp className={style.icon} /> <span className={style.listItem_text}>Log out</span>

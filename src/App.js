@@ -21,6 +21,7 @@ import Charge from "./pages/Charge/Charge";
 import ResetPassword from "./components/account/ResetPassword";
 
 import UseDarkMode from "./hooks/useDarkMode";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 
 
@@ -85,6 +86,15 @@ function App () {
           element={
             <AuthProvider>
               <Cryptos />
+            </AuthProvider>
+          }
+        />
+        <Route
+          exact
+          path="/aboutus"
+          element={
+            <AuthProvider>
+              <AboutUs />
             </AuthProvider>
           }
         />
