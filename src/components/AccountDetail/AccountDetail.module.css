@@ -7,11 +7,15 @@
 
 .detailContainer h2 {
   font-size: 40px;
+
 }
 
 .infoContainer {
-  display: flex;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 .cardContainer {
@@ -61,8 +65,11 @@
 }
 
 .loading {
-  display: grid;
-  place-content: center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .loading img {

@@ -75,15 +75,14 @@ const Login = () => {
       <h4 className={formStyles.createStart}>Welcome back.</h4>
       <h2>Already a member<span>?</span></h2>
 
-          <ToastContainer/>
+      <ToastContainer />
       <div className={formStyles.card}>
-
-        {/* <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button> */}
         <ButtonWithLoader isLoading={isLoadingLoginWithGoogle} className='w-full' onClick={handlerLoginWithGoogle}>
           <div className='flex gap-4'>
             <AiOutlineGoogle size={35} /><span className='grid place-content-center'>Log in with Google</span>
           </div>
         </ButtonWithLoader>
+
 
         <div className={formStyles.or}>or</div>
 
@@ -98,10 +97,10 @@ const Login = () => {
             Log in
           </ButtonWithLoader>
         </form>
-       
-          <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
-          {open && <SendMail /> }
-        
+
+        <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
+        {open && <SendMail />}
+
       </div>
     </div>
   )
