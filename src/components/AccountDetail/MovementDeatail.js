@@ -16,7 +16,19 @@ const MovementDeatail = ({ movement, closeDetails }) => {
                 </div>
                 <div className={style.details}>
                     <div className={style.amount_container}>
-                        <span className={style.amount}>${movement.amount}</span>
+                        
+                        <span className={style.amount}>
+                            {movement?.operations?.name === "Debit" && `- `}
+                            $ {
+                            movement.amount.toString().length > 6 ?
+                            `${movement.amount.toString().slice(0,movement.amount.toString().length-6)},${movement.amount.toString().slice(movement.amount.toString().length-6,movement.amount.toString().length-3)},${movement.amount.toString().slice(movement.amount.toString().length-3)}`
+                            :
+                            movement.amount.toString().length > 3 ?
+                            `${movement.amount.toString().slice(0,movement.amount.toString().length-3)},${movement.amount.toString().slice(movement.amount.toString().length-3)}`
+                            :
+                            `${movement.amount}`
+                            }
+                        </span>
                     </div>
 
                     <div className={style.detail}>
@@ -24,9 +36,23 @@ const MovementDeatail = ({ movement, closeDetails }) => {
                         <span>{movement?.operations?.name}</span>
                     </div>
 
+                    {
+                    movement?.operations?.name === "Debit" ?
                     <div className={style.detail}>
-                        <span>Receipt</span>
-                        <span>{movement?.receipt?.toString()}</span>
+                        <span>Destiny CVU</span>
+                        <span>{movement?.destiny}</span>
+                    </div>
+                    : null
+                    }
+
+                    <div className={style.detail}>
+                        <span>Date</span>
+                        <span>{setFormat(movement?.date, 'en-EN', 'long')}</span>
+                    </div>
+
+                    <div className={style.detail}>
+                        <span>Currency</span>
+                        <span>{movement?.accounts?.currencies?.name}</span>
                     </div>
 
                     <div className={style.detail}>
@@ -34,22 +60,15 @@ const MovementDeatail = ({ movement, closeDetails }) => {
                         <span>{movement?.categories?.name}</span>
                     </div>
 
+                    {
+                    movement?.comment ?
                     <div className={style.detail}>
-                        <span>Currency</span>
-                        <span>{movement?.accounts?.currencies?.name}</span>
-
+                        <span>Comment</span>
+                        <span>{movement?.comment}</span>
                     </div>
+                    : null
+                    }
 
-                    <div className={style.detail}>
-                        <span>User</span>
-                        <span>{movement?.accounts?.users?.username}</span>
-
-                    </div>
-
-                    <div className={style.detail}>
-                        <span>Date</span>
-                        <span>{setFormat(movement?.date, 'en-EN', 'long')}</span>
-                    </div>
                 </div>
             </div>
         </>
