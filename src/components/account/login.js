@@ -12,12 +12,17 @@ import { AiOutlineGoogle } from 'react-icons/ai'
 
 import InputComponent from './../uiComponents/InputComponent'
 import SendMail from './SendMail'
+import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
+import useNotification from '../uiComponents/useNotification'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const { error: loginErrror } = useNotification()
   const [open, setOpen] = useState(false)
-  const failed = (a) => toast.error(a)
+  const [isLoadingLoginWithGoogle, setIsLoadingLoginWithGoogle] = useState(false)
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false)
+
 
   const loginResponseHandler = (res) => {
     if (res?.token && res?.isAdmin) {
@@ -35,20 +40,35 @@ const Login = () => {
   }
   const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
+    setIsLoadingLogin(true)
     LOG_IN({ email, password }).then((res) => {
+
+      if (res?.error) return loginErrror(res?.error)
+      
       loginResponseHandler(res)
-    }).catch(console.error)
+    })
+      .catch((error) => {
+        console.error(error)
+        loginErrror()
+      })
+      .finally(() => setIsLoadingLogin(false))
   }
-  const login = () => {
+
+  const handlerLoginWithGoogle = () => {
+    setIsLoadingLoginWithGoogle(true)
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
-        if (res?.error) {
-          failed(res?.error)
-        }
+        if (res?.error) return loginErrror(res?.error)
         loginResponseHandler(res)
-      }).catch(console.error)
+      }).catch((error) => {
+        console.error(error)
+        loginErrror()
+      }).finally(() => setIsLoadingLoginWithGoogle(false))
 
-    }).catch(console.error)
+    }).catch((error) => {
+      console.error(error)
+      loginErrror()
+    }).finally(() => setIsLoadingLoginWithGoogle(false))
   }
   return (
     <div className={formStyles.mainContainer}>
@@ -57,8 +77,12 @@ const Login = () => {
 
       <ToastContainer />
       <div className={formStyles.card}>
+        <ButtonWithLoader isLoading={isLoadingLoginWithGoogle} className='w-full' onClick={handlerLoginWithGoogle}>
+          <div className='flex gap-4'>
+            <AiOutlineGoogle size={35} /><span className='grid place-content-center'>Log in with Google</span>
+          </div>
+        </ButtonWithLoader>
 
-        <button className={`${formStyles.button} ${formStyles.button_google} btn`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
 
         <div className={formStyles.or}>or</div>
 
@@ -68,7 +92,10 @@ const Login = () => {
 
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
-          <button className={`${formStyles.button} ${formStyles.button_submit} btn`} type='submit'>Log in</button>
+          {/* <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button> */}
+          <ButtonWithLoader isLoading={isLoadingLogin} className='w-full'  type='submit'>
+            Log in
+          </ButtonWithLoader>
         </form>
 
         <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
