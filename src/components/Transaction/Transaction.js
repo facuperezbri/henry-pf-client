@@ -35,7 +35,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
 
       r => {
         console.log(r);
-        // setState({ ...state, cvuMain: r.payload.accounts[0].cvu })
+        setState({ ...state, cvuMain: r.payload.accounts[0].cvu })
       })
   }, [])
 
