@@ -45,28 +45,23 @@ export default function AccountDetail () {
         </div>
       </div>)
   }
+
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
 
-      <div className={style.infoContainer}>
+      <div className='grid grid-cols-1 grid-rows-2 gap-4 place-items-center xl:grid-cols-2'>
+
         <CreditCard
           balance={usData?.accounts[0]?.balance || 0}
           number={usData?.accounts[0]?.cvu}
           name={usData?.name}
           lastname={usData?.lastname} />
-      </div>
-      
-      <div>
+
         {/* <BalanceChart /> */}
           <PieGraph movements={usData?.accounts[0]?.movements} />
-      </div>
 
       <div>
-        <CategoryExpense activities={usData?.accounts[0]?.movements} />
-      </div>
-
-      <div className={style.recentActivity}>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity
             activities={usData?.accounts[0]?.movements}
@@ -75,6 +70,14 @@ export default function AccountDetail () {
         </Suspense>
       </div>
 
+      <div>
+        <CategoryExpense activities={usData?.accounts[0]?.movements} />
+      </div>
+
+      </div>
+      
+      <div>
+
       {
         showMovementDetails &&
         <MovementDeatail
@@ -82,6 +85,7 @@ export default function AccountDetail () {
           closeDetails={closeDetails} />
       }
 
+      </div>
 
     </div>
   )
