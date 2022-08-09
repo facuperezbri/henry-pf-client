@@ -7,6 +7,7 @@ import Modal from 'react-modal'
 import Button from '../uiComponents/Button'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Card from '../uiComponents/Card'
 
 const modalStyles = {
     content: {
@@ -61,7 +62,7 @@ export default function Favorites ({ setCvuFav }) {
     }, [dispatch])
 
     return (
-        <div class="bg-white w-10/12 shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
+        <Card className='basis-1/2'>
             <h1 className={style.title}>My Friends</h1>
             <div>
                 {favourites.length === 0 && <p>Loading</p>}
@@ -93,9 +94,9 @@ export default function Favorites ({ setCvuFav }) {
                     <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
-                    <ToastContainer />
+            <ToastContainer />
 
 
-        </div>
+        </Card>
     )
 }
