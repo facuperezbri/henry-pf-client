@@ -8,6 +8,8 @@ import Button from '../uiComponents/Button'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Card from '../uiComponents/Card'
+import { useToken } from '../../hooks/useToken'
+import { ADD_FAVORITE } from '../../services/ADD_FAVORITE'
 
 const modalStyles = {
     content: {
@@ -22,6 +24,7 @@ const modalStyles = {
 
 export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
+    const { token } = useToken()
     const userId = useSelector((state) => state.userData?.id)
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
@@ -39,10 +42,15 @@ export default function Favorites ({ setCvuFav }) {
 
     function handleSubmit (e) {
         e.preventDefault()
-        dispatch(addFavorite({ userId, fav }))
+        console.log(fav)
+        // dispatch(addFavorite(fav))
+        ADD_FAVORITE(fav).then((res) => {
+            favAdd()
+            console.log(res)
+            dispatch(getFavorite())
+        }).catch(console.error)
         setIsOpen(false)
         setFav("")
-        favAdd()
     }
 
     function handleInput (e) {
@@ -58,17 +66,19 @@ export default function Favorites ({ setCvuFav }) {
     }
 
     useEffect(() => {
-        dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
+        dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite()))
     }, [dispatch])
+
+    console.log({favourites})
 
     return (
         <Card className='basis-1/2'>
             <h1 className={style.title}>My Friends</h1>
             <div>
-                {favourites.length === 0 && <p>Loading</p>}
+                {/* {favourites.length === 0 && <p></p>} */}
                 {favourites.map((f) => {
                     return (
-                        <div className='flex'>
+                        <div className='flex gap-4'>
                             <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
                                 {console.log(f.profilepic)}
                                 <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
@@ -90,7 +100,7 @@ export default function Favorites ({ setCvuFav }) {
             >
                 <Button onClick={handleClose}>x</Button>
                 <form onSubmit={handleSubmit}>
-                    <input value={fav} onChange={handleInput} placeholder='CVU/username' />
+                    <input value={fav} onChange={handleInput} placeholder='username' />
                     <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
