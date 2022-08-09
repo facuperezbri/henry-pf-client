@@ -12,14 +12,19 @@ import { Input } from 'postcss'
 import Card from '../uiComponents/Card'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
+import useNotification from '../uiComponents/useNotification'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
 export default function Transaction ({ cvuFav, setCvuFav }) {
   const dispatch = useDispatch()
+  const { error: transferError, success: transferSuccess } = useNotification()
+  const [isTransferLoading, setIsTransferLoading] = useState(false)
+
   const userData = useSelector(state => state.userData)
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
-  const message = () => toast.success("The transaction was successful")
+  // const message = () => toast.success("The transaction was successful")
 
   const navigate = useNavigate()
   const [state, setState] = useState({
@@ -40,30 +45,34 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
     }, [])
 
    
-  console.log(userData, state);
+  // console.log(userData, state);
 
   function onSubmit (data) {
+    setIsTransferLoading(true)
     TRANSFER_MONEY({ ...data, ...state, cvuD: cvuFav || data.cvuD, amount: Number(data.amount) }).then((res) => {
-      if (res?.newMovement) {
-        message()
-        dispatch(getMovements(userData.accounts[0].cvu))
-        setCvuFav(null)
-        reset()
+      if (res?.msg) {
+        return transferError(res?.msg)
       }
-    }).catch(console.error)
+      transferSuccess("The transaction was successful")
+      dispatch(getMovements(userData.accounts[0].cvu))
+      setCvuFav(null)
+      reset()
+    }).catch((error) => {
+      transferError()
+      console.error(error)
+    }).finally(() => setIsTransferLoading(false))
   }
 
   function cleanFav () {
     setCvuFav(null)
   }
-  if (!userData?.accounts) {
-    return <div>Loading...</div>
-  }
 
   return (
     <>
+      <Card className='basis-1/2'>
       <ToastContainer />
-      <form class="bg-white w-fullscreen shadow-xl rounded-b-md px-8 pt-6 pb-8 mb-4 dark:bg-slate-900" onSubmit={handleSubmit(onSubmit)}>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         <CardText labeltext='Your CVU' >{userData?.accounts?.[0]?.cvu}</CardText>
         {
           cvuFav && <CardText onClick={() => cleanFav()} labeltext='Destiny CVU' >{cvuFav}</CardText>
@@ -83,12 +92,16 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
         </select>
         <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
         <div className='grid place-items-center gap-6'>
-          <Button type='submit'>Send your transference</Button>
-          <Button onClick={() => navigate('/charge')}>
+          {/* <Button type='submit'>Send your transference</Button> */}
+          <ButtonWithLoader type='submit' isLoading={isTransferLoading} className='w-64'>
+            Send your transference
+          </ButtonWithLoader>
+          <Button onClick={() => navigate('/charge')} className='w-full'>
             Charge Account
           </Button>
         </div>
       </form>
+      </Card>
       <div>
 
       </div>

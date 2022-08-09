@@ -7,6 +7,9 @@ import Button from '../uiComponents/Button'
 
 const MovementDeatail = ({ movement, closeDetails }) => {
 
+const filterOfComment = movement.accounts.movements.find(e=> e.amount === movement.amount)
+
+
     return (
         <>
             <div className="fixed w-screen h-screen bg-gray-200 opacity-50 backdrop-blur-lg z-10 inset-0  " onClick={closeDetails} />
@@ -49,6 +52,10 @@ const MovementDeatail = ({ movement, closeDetails }) => {
                     <div className={style.detail}>
                         <span>Date</span>
                         <span>{setFormat(movement?.date, 'en-EN', 'long')}</span>
+                    </div>
+                    <div className={style.detail}>
+                        <span>Comment</span>
+                        <span>{filterOfComment.comment}</span>
                     </div>
                 </div>
             </div>

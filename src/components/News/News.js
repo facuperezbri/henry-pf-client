@@ -51,8 +51,8 @@ const ss = news.filter(e => {
   // const redes = new RegExp(inputRef.current.value, "gi")
   if (!filter) return true
   const title = e.title.toLowerCase()
-  if(!title.includes(title.toLowerCase()))return false
-  return title.includes(title.toLowerCase())
+  if(!title.includes(filter.toLowerCase()))return false
+  return title.includes(filter.toLowerCase())
 })
   return (
     <div className={styles.detailContainer}>
