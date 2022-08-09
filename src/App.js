@@ -12,6 +12,8 @@ import Favorites from "./components/Favourites/Favourites";
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
+import RateForm from "./pages/RateForm/RateForm";
+
 
 import AuthProvider from "./components/auth/AuthProvider";
 import Charge from "./pages/Charge/Charge";
@@ -48,6 +50,14 @@ function App () {
           element={
             <AuthProvider>
               <Home />
+            </AuthProvider>
+          }
+        />
+          <Route
+          path="/rateform"
+          element={
+            <AuthProvider>
+              <RateForm />
             </AuthProvider>
           }
         />
