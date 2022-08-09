@@ -66,24 +66,13 @@ export default function CategoryExpense ({ activities }) { // los movimientos, c
             <section >
                 <ul className='flex flex-wrap gap-28 w-full justify-center items-center'>
                     {   
-                    // catWithExpenses.length <= 4 
-                    // ?
                         catWithExpenses.map((xxx, i) => (
                             <li className='grid place-items-center' key={i}>
                                 {xxx.icon}
-                                <p> $ {xxx.sum}</p>
+                                <p className='font-bold rounded-lg bg-red-400 my-1 px-1.5'> $ {xxx.sum.toString().slice(0,xxx.sum.toString().length-3)},{xxx.sum.toString().slice(xxx.sum.toString().length-3)}</p>
                                 <p>{xxx.name}</p>
                             </li>
                         )) 
-                        
-                    // :
-                    // catWithExpenses.slice(0,4).map((xxx, i) => (
-                    //     <li key={i}>
-                    //         {xxx.icon}
-                    //         <div>{xxx.sum}</div>
-                    //         <div>{xxx.name}</div>
-                    //     </li>
-                    // ))
                     }
                 </ul>
             </section>
