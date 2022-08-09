@@ -19,7 +19,7 @@ export default function Home () {
   
 
 
-
+console.log(windowChatBot)
 
   return (
     <div className={style.container}>
@@ -27,12 +27,13 @@ export default function Home () {
       <AccountDetail />
       <div  className={style.bot}>
         {!windowChatBot?<img className={style.img} onClick={sendBotchangeState} src= "https://w7.pngwing.com/pngs/34/887/png-transparent-online-chat-computer-icons-livechat-conversation-others-logo-online-chat-conversation.png"/>
-        :  <Chatbot
+        : <div className={style.chat}> <Chatbot
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
         disableScrollToBottom={false}
       />
+      </div>
       }    
        </div>
     </div>

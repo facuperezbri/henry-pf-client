@@ -13,7 +13,7 @@ export default function FlasCard({question,answer,incrementIndex}) {
 
             </div>
             {showAnswer && (
-                <button style={{padding:"4px",borderRadius:"8px"}} onClick={incrementIndex}>
+                <button style={{padding:"4px",borderRadius:"8px", backgroundColor: "black"}} onClick={incrementIndex}>
                     next question
                 </button>
             )}

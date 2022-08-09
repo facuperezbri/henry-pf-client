@@ -34,9 +34,14 @@ export default function Ratings() {
     }
 
   return (
-    <div>
+    <div className={styles.container}>
+
+        <div className={styles.carr}>
+            <Slideshow ratings={ratings}/>
+        </div>
 
         <ul className={styles.starRate}>
+            <label className={styles.label}>Our users rate us with: </label>
             {[...Array(qFull)]?.map((e, i) => 
             <li key={i}>
                 <img src={full} alt="nope" className={styles.fullStar}/>
@@ -46,10 +51,6 @@ export default function Ratings() {
                 <img src={empty} alt="nope" className={styles.emptyStar}/>
             </li>)}
         </ul>
-
-        <div className={styles.carr}>
-            <Slideshow ratings={ratings}/>
-        </div>
 
     </div>
   )

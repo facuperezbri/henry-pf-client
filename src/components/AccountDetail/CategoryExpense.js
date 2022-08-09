@@ -14,16 +14,16 @@ import {TbCheck} from 'react-icons/tb'
 
 export default function CategoryExpense ({ activities }) { // los movimientos, con su categoria y monto
 
-    const charge = <TbBatteryCharging/>
-    const entertainment = <TbMusic/>
-    const groceries = <TbShoppingCart/>
-    const selfcare = <TbPlant2/>
-    const services = <TbTool/>
-    const shopping = <BiShoppingBag/>
-    const subscriptions = <TbTicket/>
-    const transport = <TbCar/>
-    const travels = <TbPlane/>
-    const other = <TbCheck/>
+    const charge = <TbBatteryCharging size={60}/>
+    const entertainment = <TbMusic size={60}/>
+    const groceries = <TbShoppingCart size={60}/>
+    const selfcare = <TbPlant2 size={60}/>
+    const services = <TbTool size={60}/>
+    const shopping = <BiShoppingBag size={60}/>
+    const subscriptions = <TbTicket size={60}/>
+    const transport = <TbCar size={60}/>
+    const travels = <TbPlane size={60}/>
+    const other = <TbCheck size={60}/>
 
     let categoriesSum = [
         { name: "Charge", sum: 0, icon: charge },
@@ -63,27 +63,29 @@ export default function CategoryExpense ({ activities }) { // los movimientos, c
     })
 
     return (
-        <div>
-            <div className={style.categoriesContainer}>
-                <ul className={style.listContainer}>
-                    {   catWithExpenses.length <= 4 ?
+            <section >
+                <ul className='flex flex-wrap gap-28 w-full justify-center items-center'>
+                    {   
+                    // catWithExpenses.length <= 4 
+                    // ?
                         catWithExpenses.map((xxx, i) => (
-                            <li key={i}>
+                            <li className='grid place-items-center' key={i}>
                                 {xxx.icon}
-                                <div>{xxx.sum}</div>
-                                <div>{xxx.name}</div>
+                                <p> $ {xxx.sum}</p>
+                                <p>{xxx.name}</p>
                             </li>
-                        )) :
-                        catWithExpenses.slice(0,5).map((xxx, i) => (
-                            <li key={i}>
-                                {xxx.icon}
-                                <div>{xxx.sum}</div>
-                                <div>{xxx.name}</div>
-                            </li>
-                        ))
+                        )) 
+                        
+                    // :
+                    // catWithExpenses.slice(0,4).map((xxx, i) => (
+                    //     <li key={i}>
+                    //         {xxx.icon}
+                    //         <div>{xxx.sum}</div>
+                    //         <div>{xxx.name}</div>
+                    //     </li>
+                    // ))
                     }
                 </ul>
-            </div>
-        </div>
+            </section>
     )
 }

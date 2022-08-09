@@ -55,10 +55,10 @@ const Login = () => {
       <h4 className={formStyles.createStart}>Welcome back.</h4>
       <h2>Already a member<span>?</span></h2>
 
-          <ToastContainer/>
+      <ToastContainer />
       <div className={formStyles.card}>
 
-        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
+        <button className={`${formStyles.button} ${formStyles.button_google} btn`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
 
         <div className={formStyles.or}>or</div>
 
@@ -68,12 +68,12 @@ const Login = () => {
 
           <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
 
-          <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
+          <button className={`${formStyles.button} ${formStyles.button_submit} btn`} type='submit'>Log in</button>
         </form>
-       
-          <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
-          {open && <SendMail /> }
-        
+
+        <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
+        {open && <SendMail />}
+
       </div>
     </div>
   )

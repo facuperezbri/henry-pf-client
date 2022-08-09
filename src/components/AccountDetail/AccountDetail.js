@@ -45,26 +45,20 @@ export default function AccountDetail () {
         </div>
       </div>)
   }
+
   return (
     <div className={style.detailContainer}>
       <h2 className={style.title}>My card</h2>
-      <select>
-        <option selected={true}>{usData.accounts[0].cvu}</option>
-      </select>
-      <div className={style.infoContainer}>
-        <CreditCard 
-        balance={usData?.accounts[0]?.balance || 0} 
-        number={usData?.accounts[0]?.cvu} 
-        name={usData?.name} 
-        lastname={usData?.lastname} />
-        <CategoryExpense activities={usData?.accounts[0]?.movements}/>
-        {/* <BalanceChart /> */}
-        <div className='w-full max-h-72 grid place-content-center'>
-          <PieGraph movements={usData?.accounts[0]?.movements} />
-        </div>
-      </div>
 
-      <div className={style.recentActivity}>
+      <div className='grid grid-cols-1 grid-rows-2 gap-4 place-items-center xl:grid-cols-2'>
+
+        <CreditCard
+          balance={usData?.accounts[0]?.balance || 0}
+          number={usData?.accounts[0]?.cvu}
+          name={usData?.name}
+          lastname={usData?.lastname} />
+
+      <div>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity
             activities={usData?.accounts[0]?.movements}
@@ -72,6 +66,17 @@ export default function AccountDetail () {
             openDetails={openDetails} />
         </Suspense>
       </div>
+      
+        {/* <BalanceChart /> */}
+          <PieGraph movements={usData?.accounts[0]?.movements} />
+
+      <div>
+        <CategoryExpense activities={usData?.accounts[0]?.movements} />
+      </div>
+
+      </div>
+      
+      <div>
 
       {
         showMovementDetails &&
@@ -80,6 +85,7 @@ export default function AccountDetail () {
           closeDetails={closeDetails} />
       }
 
+      </div>
 
     </div>
   )
