@@ -50,22 +50,22 @@ export default function AccountDetail () {
       <h2 className={style.title}>My card</h2>
 
       <div className={style.infoContainer}>
-        <CreditCard 
-        balance={usData?.accounts[0]?.balance || 0} 
-        number={usData?.accounts[0]?.cvu} 
-        name={usData?.name} 
-        lastname={usData?.lastname} />
+        <CreditCard
+          balance={usData?.accounts[0]?.balance || 0}
+          number={usData?.accounts[0]?.cvu}
+          name={usData?.name}
+          lastname={usData?.lastname} />
       </div>
-
+      
       <div>
-        <CategoryExpense activities={usData?.accounts[0]?.movements}/>
-      </div>
-
-      <div className='w-full max-h-72 grid place-content-center'>
         {/* <BalanceChart /> */}
           <PieGraph movements={usData?.accounts[0]?.movements} />
       </div>
-      
+
+      <div>
+        <CategoryExpense activities={usData?.accounts[0]?.movements} />
+      </div>
+
       <div className={style.recentActivity}>
         <Suspense fallback={<div>Loading</div>}>
           <RecientActivity
