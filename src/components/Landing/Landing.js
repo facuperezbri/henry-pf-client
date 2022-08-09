@@ -45,6 +45,13 @@ export default function Landing () {
 
         </div> */}
       </main >
+
+
+      <div>
+        <Ratings />
+      </div>
+
+
       <div className={style.offerContainer}>
         <h2>What do we offer?</h2>
         <ul className={style.offersListContainer}>
@@ -70,9 +77,6 @@ export default function Landing () {
             </div>
           </li>
         </ul>
-      </div>
-      <div>
-        <Ratings />
       </div>
     </div >
   )
