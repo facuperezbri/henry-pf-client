@@ -19,7 +19,8 @@ const News2 = () => {
   const getNews = async ({ pageParam = 1 }) => {
     const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
     const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
-    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
+    const apiKey3 = "3dcb7b18d0b84b06a7b12c75f0633083"
+    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey3}&pageSize=10&page=${pageParam}`)
     const data = info.data.articles
     return data
   }

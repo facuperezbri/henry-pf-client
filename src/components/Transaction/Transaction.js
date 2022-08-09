@@ -22,24 +22,25 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   const message = () => toast.success("The transaction was successful")
 
   const navigate = useNavigate()
-
-
   const [state, setState] = useState({
     currency: "Pesos",
     operation: "Debit",
     cvuMain: userData?.accounts?.[0]?.cvu,
   })
 
+  
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(
-
       r => {
+
         console.log(r);
+
         setState({ ...state, cvuMain: r.payload.accounts[0].cvu })
       })
-  }, [])
+    }, [])
 
-  console.log(userData);
+   
+  console.log(userData, state);
 
   function onSubmit (data) {
     TRANSFER_MONEY({ ...data, ...state, cvuD: cvuFav || data.cvuD, amount: Number(data.amount) }).then((res) => {
@@ -54,6 +55,9 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
 
   function cleanFav () {
     setCvuFav(null)
+  }
+  if (!userData?.accounts) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -79,7 +83,7 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
         </select>
         <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
         <div className='grid place-items-center gap-6'>
-          {userData?.accounts?.[0]?.cvu && <Button type='submit'>Send your transference</Button>}
+          <Button type='submit'>Send your transference</Button>
           <Button onClick={() => navigate('/charge')}>
             Charge Account
           </Button>
