@@ -56,7 +56,7 @@ export default function Profile () {
   //   if (!darkMode) {
   //     document.documentElement.classList.remove('dark')
   //     window.localStorage.setItem('darkmode', darkMode)
-      
+
   //   }
   // }
 
@@ -64,7 +64,7 @@ export default function Profile () {
 
   return (
     <div className={Style.main}>
-{/* 
+      {/* 
       <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto grid place-content-center" >
         <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       </div> */}
@@ -72,24 +72,24 @@ export default function Profile () {
       <Card className="w-full">
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <CardText>
+            <CardText labeltext='First name'>
               <span>
                 {dataProfile?.name}
               </span>
             </CardText>
 
-            <CardText>
+            <CardText labeltext='Last name'>
               <span>
                 {dataProfile?.lastname}
               </span>
             </CardText>
           </div>
-          <CardText>
+          <CardText labeltext='Username'>
             <span>
               {dataProfile?.username}
             </span>
           </CardText>
-          <CardText>
+          <CardText labeltext='Email'>
             <span>
               {dataProfile?.email}
             </span>
