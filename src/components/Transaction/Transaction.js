@@ -13,7 +13,7 @@ import Card from '../uiComponents/Card'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
-import useNotification from '../uiComponents/useNotification'
+import useNotification from '../../hooks/useNotification'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
