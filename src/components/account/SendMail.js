@@ -4,6 +4,7 @@ import InputComponent from './../uiComponents/InputComponent'
 import { useForm } from 'react-hook-form'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Button from '../uiComponents/Button'
 
 const SendMail = () => {
   const { reset, register, handleSubmit, formState: { errors } } = useForm()
@@ -13,7 +14,7 @@ const SendMail = () => {
   const send = (data) => {
     axios
       .post("http://localhost:4000/api/user/sendReset", {
-       email: data.email
+        email: data.email
       })
       .then(() => {
         sucess()
@@ -23,23 +24,23 @@ const SendMail = () => {
   };
 
   return (
-     <form onSubmit={handleSubmit(send)}>
-    <div className={styles.container}>
-    <ToastContainer/>
-      <InputComponent
-        register={register}
-        errors={errors}
-        msgerror='This field is required'
-        name='email'
-        placeholder="Enter your email for reset"
-        type="email"
-        config={{ required: true, minLength: 8 }}
-      />
+    <form onSubmit={handleSubmit(send)}>
+      <div className={styles.container}>
+        <ToastContainer />
+        <InputComponent
+          register={register}
+          errors={errors}
+          msgerror='This field is required'
+          name='email'
+          placeholder="Enter your email for reset"
+          type="email"
+          config={{ required: true, minLength: 8 }}
+        />
 
-      <button type='submit' className={styles.btn}>
-        Send
-      </button>
-    </div>
+        <Button type='submit' className={styles.btn}>
+          Send
+        </Button>
+      </div>
     </form>
   );
 };

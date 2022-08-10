@@ -14,12 +14,12 @@ const TableCoins = ({ coins, search }) => {
 
   return (
     <div className={styles.divcontainer}>
-      
-        
-      
-        {filteredCoins.length === 0 ?<h1 style={{fontSize:"2rem", fontWeight:"700"}}>crypto not found</h1>: filteredCoins?.map((element) => (   
-          <>
-          <Link key={element?.id} to={`/cryptosmarket/${element?.id}`}>
+
+
+
+      {filteredCoins.length === 0 ? <h1 style={{ fontSize: "2rem", fontWeight: "700" }}>crypto not found</h1> : filteredCoins?.map((element) => (
+
+        <Link key={element?.id} to={`/cryptosmarket/${element?.id}`}>
           <Card>
             <div className={styles.container}>
               <div className={styles.name}>{element?.name}</div>
@@ -29,10 +29,9 @@ const TableCoins = ({ coins, search }) => {
               <div className={ element?.dailyRateChange > 0 ? styles.sucess : styles.danger}>% {Math.round((element?.dailyRateChange + Number.EPSILON)*100)/100}</div>
             </div>
           </Card>
-           </Link>
-           </>
-        ))}
-     </div>
+        </Link>
+      ))}
+    </div>
   )
 }
 
