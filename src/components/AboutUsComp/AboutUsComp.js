@@ -1,6 +1,6 @@
 import React from 'react'
-import { RiGithubLine } from 'react-icons/ri'
-import { RiLinkedinBoxLine } from 'react-icons/ri'
+import { RiGithubLine, RiLinkedinBoxLine } from 'react-icons/ri'
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa'
 import Card from "../uiComponents/Card";
 import CardText from "../uiComponents/CardText";
 import agusPic from '../../assets/img/TeamPics/Agus.jpeg'
@@ -28,8 +28,8 @@ export default function AboutUsComp () {
 
     return (
         <section className='flex flex-col justify-center items-center mx-auto my-auto p-5'>
-            <h1 className='mb-10 text-4xl bg-red-400 p-5 rounded-3xl'>Meet the team!</h1>
-            <ul className='grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-10'>
+            <h1 className='text-5xl mb-8 font-bold'>Meet the team!</h1>
+            <ul className='grid grid-cols-1 xl:grid-cols-2 gap-x-24 gap-y-10'>
                 {
                     team.map((member, i) => (
                         <li className='flex' key={i}>
@@ -48,9 +48,9 @@ export default function AboutUsComp () {
                                                 </span>
                                             </div>
                                         </CardText>
-                                        <div className='flex w-40 flex-wrap items-center justify-center'>
-                                            <a href={member.github} target='_blank'><RiGithubLine size={40} /></a>
-                                            <a href={member.linkedin} target='_blank'><RiLinkedinBoxLine size={40} /></a>
+                                        <div className='flex w-40 flex-wrap items-center justify-center gap-3 '>
+                                            <a href={member.github} target='_blank'><FaGithub size={40} className='hover:scale-110 duration-300' /></a>
+                                            <a href={member.linkedin} target='_blank'><FaLinkedinIn size={40} className='hover:scale-110 duration-300' /></a>
                                         </div>
                                     </div>
                                     <p>{member.description}</p>

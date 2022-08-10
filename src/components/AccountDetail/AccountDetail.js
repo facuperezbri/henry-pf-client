@@ -54,63 +54,63 @@ export default function AccountDetail () {
         {
           usData?.accounts[0]?.balance.toString().length > 6 ?
 
-          <CreditCard
-          balance={`
-          ${usData?.accounts[0]?.balance.toString().slice(0,usData?.accounts[0]?.balance.toString().length-6)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length-6,usData?.accounts[0]?.balance.toString().length-3)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length-3)}` || 0}
+            <CreditCard
+              balance={`
+          ${usData?.accounts[0]?.balance.toString().slice(0, usData?.accounts[0]?.balance.toString().length - 6)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length - 6, usData?.accounts[0]?.balance.toString().length - 3)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length - 3)}` || 0}
 
-          number={usData?.accounts[0]?.cvu}
-          name={usData?.name}
-          lastname={usData?.lastname} />
+              number={usData?.accounts[0]?.cvu}
+              name={usData?.name}
+              lastname={usData?.lastname} />
 
-          :
+            :
 
-          usData?.accounts[0]?.balance.toString().length > 3 ?
+            usData?.accounts[0]?.balance.toString().length > 3 ?
 
-          <CreditCard
-          balance={`
-          ${usData?.accounts[0]?.balance.toString().slice(0,usData?.accounts[0]?.balance.toString().length-3)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length-3)}` || 0}
+              <CreditCard
+                balance={`
+          ${usData?.accounts[0]?.balance.toString().slice(0, usData?.accounts[0]?.balance.toString().length - 3)},${usData?.accounts[0]?.balance.toString().slice(usData?.accounts[0]?.balance.toString().length - 3)}` || 0}
 
-          number={usData?.accounts[0]?.cvu}
-          name={usData?.name}
-          lastname={usData?.lastname} />
+                number={usData?.accounts[0]?.cvu}
+                name={usData?.name}
+                lastname={usData?.lastname} />
 
-          :
+              :
 
-          <CreditCard
-          balance={usData?.accounts[0]?.balance|| 0}
+              <CreditCard
+                balance={usData?.accounts[0]?.balance || 0}
 
-          number={usData?.accounts[0]?.cvu}
-          name={usData?.name}
-          lastname={usData?.lastname} />
+                number={usData?.accounts[0]?.cvu}
+                name={usData?.name}
+                lastname={usData?.lastname} />
 
-          }
+        }
 
-      <div>
-        <Suspense fallback={<div>Loading</div>}>
-          <RecientActivity
-            activities={usData?.accounts[0]?.movements}
-            setMovement={setMovement}
-            openDetails={openDetails} />
-        </Suspense>
-      </div>
-      
+        <div>
+          <Suspense fallback={<div>Loading</div>}>
+            <RecientActivity
+              activities={usData?.accounts[0]?.movements}
+              setMovement={setMovement}
+              openDetails={openDetails} />
+          </Suspense>
+        </div>
+
         {/* <BalanceChart /> */}
-          <PieGraph movements={usData?.accounts[0]?.movements} />
+        <PieGraph movements={usData?.accounts[0]?.movements} />
 
-      <div>
-        <CategoryExpense activities={usData?.accounts[0]?.movements} />
+        <div>
+          <CategoryExpense activities={usData?.accounts[0]?.movements} />
+        </div>
+
       </div>
 
-      </div>
-      
-      <div>
+      <div className='w-full'>
 
-      {
-        showMovementDetails &&
-        <MovementDeatail
-          movement={movement}
-          closeDetails={closeDetails} />
-      }
+        {
+          showMovementDetails &&
+          <MovementDeatail
+            movement={movement}
+            closeDetails={closeDetails} />
+        }
 
       </div>
 

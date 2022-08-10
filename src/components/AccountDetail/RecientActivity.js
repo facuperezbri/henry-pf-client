@@ -4,8 +4,8 @@ import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
 import Button from '../uiComponents/Button'
 import CardText from '../uiComponents/CardText'
-import {AiOutlineArrowUp} from 'react-icons/ai'
-import {AiOutlineArrowDown} from 'react-icons/ai'
+import { AiOutlineArrowUp } from 'react-icons/ai'
+import { AiOutlineArrowDown } from 'react-icons/ai'
 
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
@@ -73,7 +73,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
       </div>
       <span className='flex flex-row'>
 
-        <Button className='flex justify-center items-center' onClick={handlerSortByDate}>Date {isAcendantByDate ? <AiOutlineArrowUp/> : <AiOutlineArrowDown/>}</Button>
+        <Button className='flex justify-center items-center' onClick={handlerSortByDate}>Date {isAcendantByDate ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />}</Button>
 
         <Button onClick={handlerShowAllMovements}>{isShowAllMovements ? 'Hide' : 'Show all'}</Button>
 
@@ -94,14 +94,13 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
               <span>{setFormat(activitie?.date, 'en-EN', 'long')}</span>
             </div>
             <span className={styles.amount}> {activitie?.operations?.name === "Debit" && `- `}{`$ 
-              ${
-              activitie?.amount.toString().length > 6 ?
-              `${activitie?.amount.toString().slice(0,activitie?.amount.toString().length-6)},${activitie?.amount.toString().slice(activitie?.amount.toString().length-6,activitie?.amount.toString().length-3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length-3)}`
-              :
-              activitie?.amount.toString().length > 3 ?
-              `${activitie?.amount.toString().slice(0,activitie?.amount.toString().length-3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length-3)}`
-              :
-              `${activitie?.amount}`
+              ${activitie?.amount.toString().length > 6 ?
+                `${activitie?.amount.toString().slice(0, activitie?.amount.toString().length - 6)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 6, activitie?.amount.toString().length - 3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 3)}`
+                :
+                activitie?.amount.toString().length > 3 ?
+                  `${activitie?.amount.toString().slice(0, activitie?.amount.toString().length - 3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 3)}`
+                  :
+                  `${activitie?.amount}`
               }`}
             </span>
           </div>
