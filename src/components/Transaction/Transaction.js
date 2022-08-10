@@ -37,6 +37,9 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(
       r => {
+
+        console.log(r);
+
         setState({ ...state, cvuMain: r.payload.accounts[0].cvu })
       })
   }, [])

@@ -22,8 +22,9 @@ export default function AboutUsComp () {
         { index: 3, name: 'Facundo', lastname: 'Pérez Brizuela', github: 'https://github.com/facuperezbri', linkedin: 'https://www.linkedin.com/in/facuperezbri/', photo: facuPic, description: 'Descripción de Facu' },
         { index: 4, name: 'Franco', lastname: 'Maciel', github: 'https://github.com/FrM-bot', linkedin: 'https://www.linkedin.com/in/franco-maciel', photo: francoDPic, description: 'Descripción de FrancoDamian' },
         { index: 5, name: 'Franco', lastname: 'Meinardo', github: 'https://github.com/francomei', linkedin: 'https://www.linkedin.com/in/franco-meinardo/', photo: francoMPic, description: 'Descripción de FrancoMei' },
-        { index: 6, name: 'Mateo', lastname: 'Capdevila Ontivero', github: 'https://github.com/mateocpd', linkedin: 'https://www.linkedin.com/in/mateocapdevila', photo: mateoPic, description: 'Descripción de Mateo' },
+        { index: 6, name: 'Mateo', lastname: 'Capdevila Ontivero', github: 'https://github.com/mateocpd', linkedin: 'https://www.linkedin.com/in/mateocapdevila', photo: mateoPic, description: 'Hola, mi nombre es Mateo y soy Full Stack Developer, Estudiante de Ingeniería en Sistemas.' },
         { index: 7, name: 'Matías', lastname: 'Britez', github: 'https://github.com/mattbritez7', linkedin: 'https://www.linkedin.com/in/matias-britezdev/', photo: matiPic, description: 'Hi im matt! 21 years old, frontend enginner web' }
+
     ]
 
     return (
