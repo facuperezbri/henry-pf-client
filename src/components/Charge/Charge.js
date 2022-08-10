@@ -10,11 +10,14 @@ import CardDataOfCharge from "./CardDataOfCharge"
 import FormOfCharge from "./FormCharge";
 import CardText from "../uiComponents/CardText";
 import UseDarkMode from "../../hooks/useDarkMode";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
 function Charge() {
     const { darkMode } = UseDarkMode()
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const info = (a) => toast.info(a);
 
     const dataProfile = useSelector(state => state.userData)
 
@@ -27,7 +30,7 @@ function Charge() {
 
     const handlerCancelCharge = () => {
         CANCEL_PAYMENT_INTENT(dataOfCharge.paymentIntentID).then((res) => {
-            alert(res.message)
+            info(res.message)
             setDataOfCharge()
             setClientSecret('')
         }).then(console.error)
@@ -62,6 +65,7 @@ function Charge() {
 
     return (
         <div className="w-full flex justify-center gap-4 py-4">
+            <ToastContainer/>
             <div className="flex flex-col gap-4">
 
                 <CardDataOfCharge amount={dataOfCharge?.amount} cvu={dataOfCharge?.cvu} method={dataOfCharge?.chargeMethod} dataProfile={dataProfile} />
