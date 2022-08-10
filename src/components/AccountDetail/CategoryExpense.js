@@ -69,8 +69,19 @@ export default function CategoryExpense ({ activities }) { // los movimientos, c
                         catWithExpenses.map((xxx, i) => (
                             <li className='grid place-items-center' key={i}>
                                 {xxx.icon}
-                                <p className='font-bold rounded-lg bg-red-400 my-1 px-1.5'> $ {xxx.sum.toString().slice(0,xxx.sum.toString().length-3)},{xxx.sum.toString().slice(xxx.sum.toString().length-3)}</p>
-                                <p>{xxx.name}</p>
+                                <p className='font-bold rounded-lg px-2 bg-red-400'> $ 
+                                {
+                                xxx.sum.toString().length > 6 ?
+                                `${xxx.sum.toString().slice(0,xxx.sum.toString().length-6)},${xxx.sum.toString().slice(xxx.sum.toString().length-6,xxx.sum.toString().length-3)},${xxx.sum.toString().slice(xxx.sum.toString().length-3)}`
+                                :
+                                xxx.sum.toString().length > 3 ?
+                                `${xxx.sum.toString().slice(0,xxx.sum.toString().length-3)},${xxx.sum.toString().slice(xxx.sum.toString().length-3)}`
+                                :
+                                `${xxx.sum}`
+                                }
+                                </p>
+                                <p>{xxx.name}</p> 
+
                             </li>
                         )) 
                     }

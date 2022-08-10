@@ -10,6 +10,7 @@ import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiCoinStack } from 'react-icons/bi'
+import {MdOutlineAdminPanelSettings} from 'react-icons/md'
 
  import { useDispatch, useSelector } from 'react-redux'
 
@@ -20,7 +21,6 @@ import {RiTeamLine} from 'react-icons/ri'
 export default function Nav () {
 
    const movements = useSelector(state => state.userData)
-
 
   //  useEffect(() => {
   //    if (movements.movements?.length === 1) {
@@ -41,6 +41,13 @@ export default function Nav () {
       <div>
         <h3 className={style.title}>wallet.</h3>
         <ul className={style.itemsNav}>
+          { movements?.isAdmin &&
+            <Link to='/dashboard/admin'>
+              <li className={style.listItem}>
+                <MdOutlineAdminPanelSettings className={style.icon} /> <span className={style.listItem_text}>Admin</span>
+              </li>
+            </Link>
+          }
           <Link to='/profile'>
             <li className={style.listItem}>
               <CgProfile className={style.icon} /> <span className={style.listItem_text}>Profile</span>

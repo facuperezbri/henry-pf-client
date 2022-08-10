@@ -53,6 +53,14 @@
     padding: 1rem;
 }
 
+.negAmount {
+    background-color: var(--background-color-landing);
+    color: var(--red-color);
+    border-radius: 50rem;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
 .details {
     display: flex;
     flex-direction: column;

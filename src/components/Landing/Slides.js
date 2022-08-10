@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import styles from './Slides.module.css'
 
 
-export default function Slideshow({ratings}) {
-    console.log("eee",ratings)
+export default function Slideshow ({ ratings }) {
 
     const [show, setShow] = useState(ratings[0]?.comment)
-    const [view,SetView] = useState(ratings)
+    const [view, SetView] = useState(ratings)
     const [next, setNext] = useState(0)
     // function onClickPrev () {
     //     for (let i=ratings?.length; i>=0; i--) {
@@ -18,18 +17,18 @@ export default function Slideshow({ratings}) {
     //         }
     //     }
     // }
-    setTimeout(function(){
-        for (let i=0; i<=ratings?.length; i++) {
-                    if (i === ratings?.length - 1) {
-                        return setShow(ratings[0]?.comment)
-                    }
-                    if (ratings[i]?.comment === show) {
-                        return setShow(ratings[i+1]?.comment)
-                    }
-                }
+    setTimeout(function () {
+        for (let i = 0; i <= ratings?.length; i++) {
+            if (i === ratings?.length - 1) {
+                return setShow(ratings[0]?.comment)
+            }
+            if (ratings[i]?.comment === show) {
+                return setShow(ratings[i + 1]?.comment)
+            }
+        }
 
     }, 4000);
-    
+
 
     // function onClickNext () {
     //     for (let i=0; i<=ratings?.length; i++) {
@@ -41,7 +40,7 @@ export default function Slideshow({ratings}) {
     //         }
     //     }
     // }
-    
+
 
     return (
         <div className={styles.slide}>
