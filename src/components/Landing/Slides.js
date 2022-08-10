@@ -9,7 +9,7 @@ export default function Slideshow ({ ratings }) {
     const [show, setShow] = useState({
         comment: FilterRateTreeStar[0]?.comment,
         rate: FilterRateTreeStar[0]?.rate,
-        users: FilterRateTreeStar[0]?.users.profilepic
+        users: FilterRateTreeStar[0]?.users?.profilepic
     })
     const [star, setStar] = useState([])
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function Slideshow ({ ratings }) {
                     ...show,
                     comment: FilterRateTreeStar[0]?.comment,
                     rate: FilterRateTreeStar[0]?.rate,
-                    users: FilterRateTreeStar[0]?.users.profilepic,
+                    users: FilterRateTreeStar[0]?.users?.profilepic,
                 })
             }
             if (FilterRateTreeStar[i]?.comment === show.comment) {
@@ -37,7 +37,7 @@ export default function Slideshow ({ ratings }) {
                     ...show,
                     comment: FilterRateTreeStar[i + 1]?.comment,
                     rate: FilterRateTreeStar[i + 1]?.rate,
-                    users: FilterRateTreeStar[i + 1]?.users.profilepic,
+                    users: FilterRateTreeStar[i + 1]?.users?.profilepic,
                 })
             }
         }

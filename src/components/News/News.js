@@ -20,9 +20,11 @@ const News2 = () => {
   }
   //---------------------------------------------------------------------------------------------------------------
   const getNews = async ({ pageParam = 1 }) => {
+
     const info = await axios.get(`${process.env.REACT_APP_API_URL}/api/currency/news/${pageParam}`)
     const data = info.data
     console.log(info)
+
     return data
   }
 
@@ -57,9 +59,9 @@ const News2 = () => {
   })
   return (
     <div className={styles.detailContainer}>
-        <h1 className='text-5xl mb-8 font-bold flex justify-center'>Financial News</h1>
-        <h6 className='flex justify-center'>Get the latest news about</h6>
-        <h6 className='flex justify-center'>international finances and economy.</h6>
+      <h1 className='text-5xl mb-8 font-bold flex justify-center'>Financial News</h1>
+      <h6 className='flex justify-center'>Get the latest news about</h6>
+      <h6 className='flex justify-center'>international finances and economy.</h6>
 
       <div className={styles.input}>
         <input style={{ color: "black", border: "solid 1px black" }} value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
