@@ -13,6 +13,7 @@ export const ADD_FAVORITE = async (username) => {
             body: JSON.stringify({ username })
         })
         const resJson = await res.json()
+        console.log({resJson})
         return resJson
     } catch (error) {
         console.error(error)

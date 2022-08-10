@@ -9,7 +9,7 @@ const Admin = () => {
     <div className='min-h-screen flex'>
       <Nav />
 
-      <div className='flex flex-col max-w-screen-2xl m-auto'>
+      <div className='flex flex-col w-full max-w-screen-2xl py-8 px-8'>
      
       <Link to="/home">
         <Button>Go home</Button>
