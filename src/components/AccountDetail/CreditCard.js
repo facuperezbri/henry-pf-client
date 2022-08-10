@@ -3,8 +3,7 @@ import styles from './CreditCard.module.css'
 
 
 const CreditCard = ({ balance, number, name, lastname }) => {
-  // console.log(number, balance)
-  //--------------------------------------HOCKS-----------------------------------------------------------------
+  //--------------------------------------HOOKS-----------------------------------------------------------------
   const [infoSensity, setInfoSensity] = useState({
     targetNumber: number,
     targetNumberCifrado: String(number).split("").map((e, i) => {
@@ -16,7 +15,6 @@ const CreditCard = ({ balance, number, name, lastname }) => {
     money: balance,
     moneyCifrado: "$$$"
   })
-// console.log("informacion sensible",infoSensity)
   const [interruptor, setInterruptor] = useState(true)
 
   //--------------------------------------FUNCTIONS-------------------------------------------------------------
