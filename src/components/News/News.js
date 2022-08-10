@@ -55,7 +55,6 @@ const News2 = () => {
   return (
     <div className={styles.detailContainer}>
       <div className={styles.input}>
-
         <input style={{ color:"black", border:"solid 1px black"}} value={filter}  onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
       <InfiniteScroll

@@ -7,11 +7,14 @@ import {
 } from "@stripe/react-stripe-js";
 import { CHARGE_ACCOUNT } from '../../services/CHARGE_ACCOUNT';
 import Card from '../uiComponents/Card';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function CheckoutForm({ handlerCancelCharge, dataOfCharge, CVU }) {
   const stripe = useStripe();
   const elements = useElements();
-
+  
+  const info = (a) => toast.success(a);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,11 +76,11 @@ export default function CheckoutForm({ handlerCancelCharge, dataOfCharge, CVU })
     }
 
     setIsLoading(false);
-    alert(res?.msg)
+    info(res?.msg)
   };
   return (
     <Card>
-
+      <ToastContainer />
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement className='dark:text-primary-white mb-6' />
       <button disabled={isLoading || !stripe || !elements} id="submit" className={styles.button_stripe}>

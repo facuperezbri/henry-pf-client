@@ -5,14 +5,18 @@ import { ACEPT_USER } from '../../services/ACEPT_USER'
 import { REJECT_USER } from '../../services/REJECT_USER'
 import styles from './CardUser.module.css'
 import Button from '../../components/uiComponents/Button'
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const CardUser = ({ id, name, lastname, username, dni, imgURL, imgURLRev, users, setUsers, showImage }) => {
+    const info = (a) => toast.info(a);
+
     const handlerAcept = (username, id) => {
         if (window.confirm(`Seguro que quieres aceptar al usuario ${username}?`)) {
             ACEPT_USER(id).then(res => {
                 const newList = users.filter((user) => user.id !== id)
                 setUsers(newList)
-                alert(res?.message)
+                info(res?.message)
             }).catch(console.error)
         }
     }
@@ -21,7 +25,7 @@ const CardUser = ({ id, name, lastname, username, dni, imgURL, imgURLRev, users,
             REJECT_USER(id).then(res => {
                 const newList = users.filter((user) => user.id !== id)
                 setUsers(newList)
-                alert(res?.message)
+                info(res?.message)
             }).catch(console.error)
         }
     }

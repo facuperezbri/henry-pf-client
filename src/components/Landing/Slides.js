@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './Slides.module.css'
 import {AiFillStar } from "react-icons/ai"
 
-
 export default function Slideshow({ratings}) {
     // console.log("eee",ratings)
 
