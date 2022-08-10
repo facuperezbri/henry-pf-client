@@ -12,9 +12,9 @@ import CardText from "../uiComponents/CardText";
 import UseDarkMode from "../../hooks/useDarkMode";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
-function Charge() {
+function Charge () {
     const { darkMode } = UseDarkMode()
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const dataProfile = useSelector(state => state.userData)
 
@@ -33,7 +33,7 @@ function Charge() {
         }).then(console.error)
     }
     useEffect(() => {
-    
+
         !dataProfile?.accounts && dispatch(getUser((window.localStorage.getItem("token"))))
         const status = new URLSearchParams(window.location.search).get(
             "redirect_status"
@@ -43,7 +43,7 @@ function Charge() {
 
 
     const appearance = {
-        theme: darkMode ? 'night' :  'minimal',
+        theme: darkMode ? 'night' : 'minimal',
     };
     const options = {
         clientSecret,
@@ -55,7 +55,6 @@ function Charge() {
         setStatusCharge('')
     }
 
-    // console.log(dataProfile.accounts[0].cvu)
     if (!dataProfile?.accounts) {
         return <div>Loading...</div>
     }

@@ -26,6 +26,7 @@
 
 .activitie:hover {
     background-color: aliceblue;
+    color: var(--background-color-landing);
 }
 
 .btn {

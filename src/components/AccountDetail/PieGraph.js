@@ -8,7 +8,6 @@ export function PieGraph ({ movements }) {
   //   const usData = useSelector(state => state.userData)
   const [dataPoints, setDataPoints] = useState([])
 
-  console.log(movements)
 
   useEffect(() => {
 

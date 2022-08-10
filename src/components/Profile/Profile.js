@@ -14,7 +14,7 @@ import { DELETE_ACCOUNT } from "../../services/DELETE_ACCOUNT";
 import UseDarkMode from "../../hooks/useDarkMode";
 import ProfileEpig from "../uiComponents/ProfileEpig";
 import { useToken } from "../../hooks/useToken";
-import useNotification from "../uiComponents/useNotification";
+import useNotification from "../../hooks/useNotification";
 import ButtonWithLoader from "../uiComponents/ButtonWithLoader";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +29,8 @@ export default function Profile () {
   const { error, success } = useNotification()
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
+  const [showModalDeletAccount, setShowModalDeletAccount] = useState(false)
+
   const [isLoadingRemove, setIsLoadingRemove] = useState(false)
 
   const [visibleUser, setVisibleUser] = useState(false)
@@ -56,10 +58,13 @@ export default function Profile () {
         setToken('')
         navigate('/')
       }
-      console.log(res?.message)
     }).catch((_error) => {
       error()
     }).finally(() => setIsLoadingRemove(false))
+  }
+
+  const handlerShowModalForDeleteAccount = () => {
+    setShowModalDeletAccount(!showModalDeletAccount)
   }
 
   return (
@@ -111,7 +116,23 @@ export default function Profile () {
         </Button>
       </div>
 
-      <ButtonWithLoader isLoading={isLoadingRemove} className='mt-44' onClick={handlerDeleteAccount}>Remove Account</ButtonWithLoader>
+
+      <Modal onClose={handlerShowModalForDeleteAccount} modal={showModalDeletAccount}>
+          <div className="my-4">
+            <CardText>
+              <span className="text-xl">
+                You want to delete your account? You will not be able to use again.
+              </span>
+            </CardText>
+            <div className="flex justify-between mt-8">
+              <Button onClick={handlerShowModalForDeleteAccount}>Cancel</Button>
+              <ButtonWithLoader isLoading={isLoadingRemove} onClick={handlerDeleteAccount}>Confirm</ButtonWithLoader>
+            </div>
+          </div>
+      </Modal>
+      
+
+      <Button className='mt-44' onClick={handlerShowModalForDeleteAccount}>Remove Account</Button>
 
     </div>
   );

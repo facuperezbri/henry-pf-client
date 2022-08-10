@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React, { useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -12,7 +12,6 @@ const News2 = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get("filter") ?? ""
   const inputRef = useRef()
-   console.log(filter)
 
   const handleFilter = (e) => {
     setSearchParams({ filter: e.target.value })
@@ -46,17 +45,17 @@ const News2 = () => {
         </div>
       </div>)
   }
-const ss = news.filter(e => {
-  // const redes = new RegExp(inputRef.current.value, "gi")
-  if (!filter) return true
-  const title = e.title.toLowerCase()
-  if(!title.includes(filter.toLowerCase()))return false
-  return title.includes(filter.toLowerCase())
-})
+  const ss = news.filter(e => {
+    // const redes = new RegExp(inputRef.current.value, "gi")
+    if (!filter) return true
+    const title = e.title.toLowerCase()
+    if (!title.includes(filter.toLowerCase())) return false
+    return title.includes(filter.toLowerCase())
+  })
   return (
     <div className={styles.detailContainer}>
       <div className={styles.input}>
-        <input value={filter}  onChange={handleFilter} type="text" placeholder="Search News" />
+        <input value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
       <InfiniteScroll
         dataLength={news.length}
@@ -72,7 +71,7 @@ const ss = news.filter(e => {
                   <p>{news.content}</p>
                 </div>
               </a>
-            ):<h1 style={{fontSize:"2rem"}}>No results found</h1>}
+            ) : <h1 style={{ fontSize: "2rem" }}>No results found</h1>}
           </div>
         </div>
       </InfiniteScroll >
