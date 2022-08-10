@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import style from './Favourites.module.css'
 // import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFavorite, removeFavorite, addFavorite, getUser } from '../../redux/actions/index'
+import { getFavorite, removeFavorite, getUser } from '../../redux/actions/index'
 import Modal from 'react-modal'
 import Button from '../uiComponents/Button'
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Card from '../uiComponents/Card'
-import { useToken } from '../../hooks/useToken'
+import useNotification from '../../hooks/useNotification'
 import { ADD_FAVORITE } from '../../services/ADD_FAVORITE'
 
 const modalStyles = {
@@ -24,12 +24,11 @@ const modalStyles = {
 
 export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
-    const { token } = useToken()
-    const userId = useSelector((state) => state.userData?.id)
+    const { error, success } = useNotification()
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const favAdd = () => toast.success("You added your new favourite successfully")
+    // const favAdd = () => toast.success("You added your new favourite successfully")
 
     function handleModel () {
         setIsOpen(true)
@@ -43,9 +42,17 @@ export default function Favorites ({ setCvuFav }) {
     function handleSubmit (e) {
         e.preventDefault()
         ADD_FAVORITE(fav).then((res) => {
-            favAdd()
-            dispatch(getFavorite())
-        }).catch(console.error)
+            if (res?.message) {
+                return error(res?.message)
+            }
+            if (res?.success) {
+                dispatch(getFavorite())
+                success(res?.success)
+            }
+        }).catch((error) => {
+            error()
+            console.error(error)
+        })
         setIsOpen(false)
         setFav("")
     }
