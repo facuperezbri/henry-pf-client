@@ -85,7 +85,7 @@ export default function AccountDetail () {
 
         }
 
-        <div>
+        <div className='w-full'>
           <Suspense fallback={<div>Loading</div>}>
             <RecientActivity
               activities={usData?.accounts[0]?.movements}
