@@ -11,6 +11,7 @@ import francoDPic from '../../assets/img/TeamPics/FrancoD.jpeg'
 import francoMPic from '../../assets/img/TeamPics/FrancoM.jpeg'
 import mateoPic from '../../assets/img/TeamPics/Mateo.jpeg'
 import matiPic from '../../assets/img/TeamPics/Mati.jpeg'
+import Button from '../uiComponents/Button';
 
 
 export default function AboutUsComp () {
@@ -20,7 +21,7 @@ export default function AboutUsComp () {
         { index: 1, name: 'Alberto', lastname: 'Díaz Lugo', github: 'https://github.com/andresDiazLugo', linkedin: 'https://www.linkedin.com/in/alberto-andres-diaz-lugo-91b0a0239', photo: alberPic, description: 'Descripción de Alber' },
         { index: 2, name: 'Diego Alonso', lastname: 'Gutierrez', github: 'https://github.com/DiegoAlonsoG', linkedin: 'https://www.linkedin.com/in/diegoalonsogm/', photo: diegoPic, description: 'Descripción de Diego' },
         { index: 3, name: 'Facundo', lastname: 'Pérez Brizuela', github: 'https://github.com/facuperezbri', linkedin: 'https://www.linkedin.com/in/facuperezbri/', photo: facuPic, description: 'Descripción de Facu' },
-        { index: 4, name: 'Franco', lastname: 'Maciel', github: 'https://github.com/FrM-bot', linkedin: 'https://www.linkedin.com/in/franco-maciel', photo: francoDPic, description: 'Descripción de FrancoDamian' },
+        { index: 4, name: 'Franco', lastname: 'Maciel', github: 'https://github.com/FrM-bot', linkedin: 'https://www.linkedin.com/in/franco-maciel', photo: francoDPic, description: 'Hi, I\'m Franco Damián Maciel and I\'m a full stack web developer.', prtfolio: 'https://frm-bot.xyz' },
         { index: 5, name: 'Franco', lastname: 'Meinardo', github: 'https://github.com/francomei', linkedin: 'https://www.linkedin.com/in/franco-meinardo/', photo: francoMPic, description: 'Descripción de FrancoMei' },
         { index: 6, name: 'Mateo', lastname: 'Capdevila Ontivero', github: 'https://github.com/mateocpd', linkedin: 'https://www.linkedin.com/in/mateocapdevila', photo: mateoPic, description: 'Hola, mi nombre es Mateo y soy Full Stack Developer, Estudiante de Ingeniería en Sistemas.' },
         { index: 7, name: 'Matías', lastname: 'Britez', github: 'https://github.com/mattbritez7', linkedin: 'https://www.linkedin.com/in/matias-britezdev/', photo: matiPic, description: 'Hi im matt! 21 years old, frontend enginner web' }
@@ -55,6 +56,9 @@ export default function AboutUsComp () {
                                         </div>
                                     </div>
                                     <p>{member.description}</p>
+                                    {
+                                        member?.prtfolio && <Button><a href={member?.prtfolio} target="blank" rel="noopener noreferrer">Portfolio</a></Button>
+                                    }
                                 </div>
 
                                 <img className='w-32 h-32 rounded-full' src={member.photo} alt={member.name} />
