@@ -9,7 +9,7 @@ import { useToken } from '../../hooks/useToken'
 
 
 export const GENERIC = 'GENERIC'
-export const DATAPROFILE ='DATAFROFILE'
+export const DATAPROFILE = 'DATAFROFILE'
 export const CHANGEPROFILE = 'CHANGEPROFILE'
 export const GET_USER = 'GET_USER'
 export const GET_CATEGORY = 'GET_CATEGORY'
@@ -17,12 +17,17 @@ export const GET_MOVEMENT = 'GET_MOVEMENT'
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
 export const POST_FAVORITE = 'POST_FAVORITE'
-export const POST_MOVEMENT ='POST_MOVEMENT'
-export const GET_RATINGS ='GET_RATINGS'
-export const OPEN_RATE ='OPEN_RATE'
-export const CLOSE_RATE ='CLOSE_RATE'
-export const CLOSE_CHATBOT ='CLOSE_CHATBOT'
+export const POST_MOVEMENT = 'POST_MOVEMENT'
+export const GET_RATINGS = 'GET_RATINGS'
+export const OPEN_RATE = 'OPEN_RATE'
+export const CLOSE_RATE = 'CLOSE_RATE'
+export const CLOSE_CHATBOT = 'CLOSE_CHATBOT'
 export const DARK_MODE = 'DARK_MODE '
+export const ORDER_CRYPTO_ABC = 'ORDER_CRYPTO_ABC'
+export const GET_DETAILS_CRYPTO = 'GET_DETAILS_CRYPTO'
+export const ORDER_CRYPTO_PRICE = 'ORDER_CRYPTO_PRICE'
+export const RESET_CRYPTO = 'RESET_CRYPTO'
+export const GET_CRYPTO = 'GET_CRYPTO'
 
 export const getUser = (token) => {
   return async function (dispatch) {
@@ -38,23 +43,23 @@ export const getUser = (token) => {
   }
 }
 
-export const dataProfile = (toquen)=>{//esto es temporal necesita mandar un json como body al server para traer el perfil del user
+export const dataProfile = (toquen) => {//esto es temporal necesita mandar un json como body al server para traer el perfil del user
   let config = {
-    headers:{
-      Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhOWE1MjhkMS01MjQxLTQ5MGItYjRlNS00MGIyYjI3MDE3ZTAiLCJpYXQiOjE2NTg0MzIwOTQsImV4cCI6MTY1ODQzNTY5NH0.ZMvXvrrWccGz2RBCp_cyMPESlpECy92a1qRgTd7hApI"
+    headers: {
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhOWE1MjhkMS01MjQxLTQ5MGItYjRlNS00MGIyYjI3MDE3ZTAiLCJpYXQiOjE2NTg0MzIwOTQsImV4cCI6MTY1ODQzNTY5NH0.ZMvXvrrWccGz2RBCp_cyMPESlpECy92a1qRgTd7hApI"
     }
   }
-  return async function(dispatch){
-      const response = await axios.get('http://localhost:4000/api/user',config)
-      dispatch({type: DATAPROFILE, payload: response.data})
-    };
+  return async function (dispatch) {
+    const response = await axios.get('http://localhost:4000/api/user', config)
+    dispatch({ type: DATAPROFILE, payload: response.data })
+  };
 }
 
 export const changeProfile = (objeto) => {
-  return async function(dispatch){
-    const response = await axios.put('http://localhost:4000/api/user/useredit',objeto)
-    dispatch({type:CHANGEPROFILE , payload: response.data})
-  } 
+  return async function (dispatch) {
+    const response = await axios.put('http://localhost:4000/api/user/useredit', objeto)
+    dispatch({ type: CHANGEPROFILE, payload: response.data })
+  }
 }
 
 export const getCategory = () => {
@@ -75,7 +80,6 @@ export const getMovements = (cvu) => {
   return async function (dispatch) {
     try {
       let data = await GET_MOVEMENT_SERVICE(cvu)
-      // console.log(data)
       return dispatch({
         type: GET_MOVEMENT,
         payload: data.movements
@@ -90,9 +94,8 @@ export const getCryptos = () => {
   return async function (dispatch) {
     try {
       let info = await axios.get(`${API_URL}/api/currency/crypto`)
-      // console.log(info.data)
       return dispatch({
-        type: 'GET_CRYPTO',
+        type: GET_CRYPTO,
         payload: info.data
       })
     } catch (e) {
@@ -102,27 +105,26 @@ export const getCryptos = () => {
 }
 
 
-export function getFavorite() {
+export function getFavorite () {
   const token = window.localStorage.getItem('token')
-  return async function(dispatch){
-    await axios.get(`${API_URL}/api/favourites/`,{
+  return async function (dispatch) {
+    await axios.get(`${API_URL}/api/favourites/`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    }).then((fav)=>{
-      // console.log(fav.data)
+    }).then((fav) => {
       return dispatch({
-      type: GET_FAVORITE,
-      payload: fav.data
-    })}).catch((error)=>{console.log(error)})
+        type: GET_FAVORITE,
+        payload: fav.data
+      })
+    }).catch((error) => { console.log(error) })
   }
 }
 
-export function addFavorite(username) {
+export function addFavorite (username) {
   const token = window.localStorage.getItem('token')
-  console.log(username, token)
-  return async function(dispatch){
-    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/addFavorite`,{
+  return async function (dispatch) {
+    const favouriteCreated = await axios.post(`${API_URL}/api/favourites/addFavorite`, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -130,16 +132,17 @@ export function addFavorite(username) {
         username
       }
     })
-    return dispatch({ type: POST_FAVORITE,
+    return dispatch({
+      type: POST_FAVORITE,
       payload: favouriteCreated.data
-      })
+    })
   }
 }
 
-export function removeFavorite(id) {
+export function removeFavorite (id) {
   const token = window.localStorage.getItem('token')
 
-  return async function(dispatch){
+  return async function (dispatch) {
     const favouriteRemoved = await axios.delete(`${API_URL}/api/favourites/removeFavorite`, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -148,12 +151,14 @@ export function removeFavorite(id) {
         friendID: id
       }
     })
-    return dispatch({type: REMOVE_FAVORITE,
-    payload: id})
+    return dispatch({
+      type: REMOVE_FAVORITE,
+      payload: id
+    })
   }
 }
-    
-export function getRatings() {
+
+export function getRatings () {
   return async function (dispatch) {
     try {
       let ratings = await axios.get(`${API_URL}/api/ratings`)
@@ -167,72 +172,71 @@ export function getRatings() {
   }
 }
 
-export function openRate() {
+export function openRate () {
   return {
     type: OPEN_RATE,
     payload: true
   }
 }
 
-export function closeRate() {
+export function closeRate () {
   return {
     type: CLOSE_RATE,
     payload: false
   }
 }
 
-export function getDetailsCrypto(id) {
-  return async function(dispatch){
-      try{
-        let info = await axios.get(`${API_URL}/api/currency/${id}`)
-        // console.log('entre')
-        return dispatch({
-          type: "GET_DETAILS_CRYPTO",
-          payload: info.data
-        })
-      } catch (e){
-        const message = () => toast.error("Error no carga los detalles")
-          console.error(e)
-          message()
-      }
+export function getDetailsCrypto (id) {
+  return async function (dispatch) {
+    try {
+      let info = await axios.get(`${API_URL}/api/currency/${id}`)
+      return dispatch({
+        type: GET_DETAILS_CRYPTO,
+        payload: info.data
+      })
+    } catch (e) {
+      const message = () => toast.error("Error no carga los detalles")
+      console.error(e)
+      message()
+    }
   }
 }
 
-export function orderCryptoABC(payload) {
+export function orderCryptoABC (payload) {
   return {
-      type: "ORDER_CRYPTO_ABC",
-      payload: payload
+    type: ORDER_CRYPTO_ABC,
+    payload: payload
   }
 }
 
-export function orderCryptoPrice(payload) {
+export function orderCryptoPrice (payload) {
   return {
-      type: "ORDER_CRYPTO_PRICE",
-      payload: payload
+    type: ORDER_CRYPTO_PRICE,
+    payload: payload
   }
 }
 
-export const sendMovement =  (obj)=>{
-  return async function(dispatch){
-      const response = await axios.post(`${API_URL}/api/movement/make_a_movement`,obj)
-      return dispatch({type:POST_MOVEMENT, payload:response.data})
-  }   
+export const sendMovement = (obj) => {
+  return async function (dispatch) {
+    const response = await axios.post(`${API_URL}/api/movement/make_a_movement`, obj)
+    return dispatch({ type: POST_MOVEMENT, payload: response.data })
+  }
 
 }
 
-export const resetCrypto = ()=>{
+export const resetCrypto = () => {
   return {
-    type: "RESET_CRYPTO",
-  }  
+    type: RESET_CRYPTO,
+  }
 }
-export const closeChatBot = ()=>{
+export const closeChatBot = () => {
   return {
-      type: CLOSE_CHATBOT,
+    type: CLOSE_CHATBOT,
   }
 }
 
-export const darkMode = (info)=>{
-  return  {
-    type: DARK_MODE, payload:info
+export const darkMode = (info) => {
+  return {
+    type: DARK_MODE, payload: info
   }
 }

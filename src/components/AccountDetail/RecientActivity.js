@@ -4,6 +4,9 @@ import { setFormat } from '../../hooks/setFormatDate'
 // import { useDispatch } from 'react-redux'
 import Button from '../uiComponents/Button'
 import CardText from '../uiComponents/CardText'
+import { AiOutlineArrowUp } from 'react-icons/ai'
+import { AiOutlineArrowDown } from 'react-icons/ai'
+
 
 const RecientActivity = ({ activities, setMovement, openDetails }) => {
   // eslint-disable-next-line no-use-before-define
@@ -60,7 +63,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 relative'>
       <div className='mt-4'>
         <CardText>
           <span>
@@ -68,22 +71,19 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
           </span>
         </CardText>
       </div>
-      <span>
+      <span className='flex flex-row'>
 
-        <Button onClick={handlerSortByDate}>Order by date {isAcendantByDate ? <span>ASC</span> : <span>DESC</span>}</Button>
+        <Button className='flex justify-center items-center' onClick={handlerSortByDate}>Date {isAcendantByDate ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />}</Button>
 
-        <Button onClick={handlerShowAllMovements}>{isShowAllMovements ? 'Hide movements' : 'Show all movements'}</Button>
+        <Button onClick={handlerShowAllMovements}>{isShowAllMovements ? 'Hide' : 'Show all'}</Button>
 
         <select className='dark:text-slate-800' name="filterCategory" onChange={handlerFilterByCategoryName}>
           <option selected={true} disabled="disabled">Category...</option>
-          <option value="" selected>All</option>
+          <option selected defaultValue='All'>All</option>
           {categories?.map((CategoryName) => (
             <option key={CategoryName} value={CategoryName}>{CategoryName}</option>
           ))}
         </select>
-
-
-
       </span>
 
       {
@@ -93,7 +93,16 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
               <span>{activitie?.categories?.name}</span>
               <span>{setFormat(activitie?.date, 'en-EN', 'long')}</span>
             </div>
-            <span className={styles.amount}> {`$${activitie?.amount}`}</span>
+            <span className={styles.amount}> {activitie?.operations?.name === "Debit" && `- `}{`$ 
+              ${activitie?.amount.toString().length > 6 ?
+                `${activitie?.amount.toString().slice(0, activitie?.amount.toString().length - 6)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 6, activitie?.amount.toString().length - 3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 3)}`
+                :
+                activitie?.amount.toString().length > 3 ?
+                  `${activitie?.amount.toString().slice(0, activitie?.amount.toString().length - 3)},${activitie?.amount.toString().slice(activitie?.amount.toString().length - 3)}`
+                  :
+                  `${activitie?.amount}`
+              }`}
+            </span>
           </div>
         )).slice(0, isShowAllMovements ? activitiesState.length : 3)
       }

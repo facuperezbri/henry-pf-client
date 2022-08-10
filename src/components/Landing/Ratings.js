@@ -12,6 +12,8 @@ export default function Ratings() {
     let ratings = useSelector(state => state.ratings)
     const dispatch = useDispatch()
     
+    console.log("sdasda",ratings)
+    
     useEffect(()=>{
         dispatch(getRatings())
     },[])

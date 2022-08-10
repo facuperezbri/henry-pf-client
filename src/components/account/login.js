@@ -13,7 +13,7 @@ import { AiOutlineGoogle } from 'react-icons/ai'
 import InputComponent from './../uiComponents/InputComponent'
 import SendMail from './SendMail'
 import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
-import useNotification from '../uiComponents/useNotification'
+import useNotification from '../../hooks/useNotification'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()

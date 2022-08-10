@@ -42,11 +42,8 @@ export default function Favorites ({ setCvuFav }) {
 
     function handleSubmit (e) {
         e.preventDefault()
-        console.log(fav)
-        // dispatch(addFavorite(fav))
         ADD_FAVORITE(fav).then((res) => {
             favAdd()
-            console.log(res)
             dispatch(getFavorite())
         }).catch(console.error)
         setIsOpen(false)
@@ -69,26 +66,20 @@ export default function Favorites ({ setCvuFav }) {
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite()))
     }, [dispatch])
 
-    console.log({favourites})
 
     return (
         <Card className='basis-1/2'>
             <h1 className={style.title}>My Friends</h1>
             <div>
                 {/* {favourites.length === 0 && <p></p>} */}
-                {favourites.map((f) => {
-                    return (
-                        <div className='flex gap-4'>
-                            <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
-                                {console.log(f.profilepic)}
-                                <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
-                                <p>{f.username}</p>
-                            </section>
-                            <Button onClick={deleteFav} id={f.id} >Delete</Button>
-                        </div>
-
-                    )
-                }
+                {favourites.map((f) =>
+                    <div key={f.username} className='flex gap-4'>
+                        <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                            <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                            <p>{f.username}</p>
+                        </section>
+                        <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                    </div>
                 )}
             </div>
             <Button onClick={handleModel}>Add</Button>
