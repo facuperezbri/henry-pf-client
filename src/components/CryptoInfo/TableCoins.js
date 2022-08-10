@@ -10,6 +10,7 @@ const TableCoins = ({ coins, search }) => {
       coin?.symbol?.toLowerCase().includes(search.toLowerCase())
     )
   })
+   
 
   return (
     <div className={styles.divcontainer}>
@@ -25,7 +26,7 @@ const TableCoins = ({ coins, search }) => {
               <div className={styles.name}>{element?.symbol}</div>
               <div className={styles.img}> <img src={element?.image} alt={element.name} width={50} height={50} /></div>
               <div className={styles.price}>${element?.currentPrice}</div>
-              <div className={ element?.dailyRateChange > 0 ? styles.sucess : styles.danger}>% {element?.dailyRateChange}</div>
+              <div className={ element?.dailyRateChange > 0 ? styles.sucess : styles.danger}>% {Math.round((element?.dailyRateChange + Number.EPSILON)*100)/100}</div>
             </div>
           </Card>
            </Link>

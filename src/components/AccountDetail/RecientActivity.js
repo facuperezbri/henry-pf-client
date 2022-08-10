@@ -60,7 +60,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 relative'>
       <div className='mt-4'>
         <CardText>
           <span>
