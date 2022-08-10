@@ -56,7 +56,6 @@ export default function Profile () {
         setToken('')
         navigate('/')
       }
-      console.log(res?.message)
     }).catch((_error) => {
       error()
     }).finally(() => setIsLoadingRemove(false))

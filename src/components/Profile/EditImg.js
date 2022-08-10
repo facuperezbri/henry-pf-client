@@ -13,7 +13,6 @@ export default function EditImg ({ dataProfile, handlerCloseModalImg }) {
   const dispatch = useDispatch()
   const { token } = useToken()
   const { register, handleSubmit, formState: { errors } } = useForm()
-  // console.log(setVisibleImg)
 
   const onSubmit = (data) => {
     UPDATE_PROFILE_IMAGE(data.image[0], dataProfile?.profilepicID).then((res) => {

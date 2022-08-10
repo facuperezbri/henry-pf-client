@@ -4,7 +4,7 @@ import CardText from '../uiComponents/CardText';
 import ProfileEpig from '../uiComponents/ProfileEpig';
 
 const CardDataOfCharge = ({ amount, method, dataProfile }) => {
-    console.log(dataProfile.accounts[0].cvu)
+
     return (
         <div>
             <ProfileEpig src={dataProfile?.profilepic} alt={dataProfile?.username} />
@@ -12,17 +12,17 @@ const CardDataOfCharge = ({ amount, method, dataProfile }) => {
             <Card>
                 <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
 
-                <CardText>DNI: {dataProfile?.dni}</CardText>
-                <CardText>Name: {dataProfile?.name}</CardText>
-                <CardText>Lastname: {dataProfile?.lastname}</CardText>
-                <CardText>Username: {dataProfile?.username}</CardText>
-                <CardText>CVU: {dataProfile?.accounts[0].cvu}</CardText>
-                {
-                    amount && <CardText>Amount: ${amount}</CardText>
-                }
-                {
-                    method && <CardText>Method: {method}</CardText>
-                }
+                    <CardText>DNI: {dataProfile?.dni}</CardText>
+                    <CardText>Name: {dataProfile?.name}</CardText>
+                    <CardText>Lastname: {dataProfile?.lastname}</CardText>
+                    <CardText>Username: {dataProfile?.username}</CardText>
+                    <CardText>CVU: {dataProfile?.accounts[0].cvu}</CardText>
+                    {
+                        amount && <CardText>Amount: ${amount}</CardText>
+                    }
+                    {
+                        method && <CardText>Method: {method}</CardText>
+                    }
 
                 </div>
             </Card>

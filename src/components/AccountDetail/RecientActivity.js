@@ -79,7 +79,7 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
         <select className='dark:text-slate-800' name="filterCategory" onChange={handlerFilterByCategoryName}>
           <option selected={true} disabled="disabled">Category...</option>
-          <option value="" selected>All</option>
+          <option selected defaultValue='All'>All</option>
           {categories?.map((CategoryName) => (
             <option key={CategoryName} value={CategoryName}>{CategoryName}</option>
           ))}

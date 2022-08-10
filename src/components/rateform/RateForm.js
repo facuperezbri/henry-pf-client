@@ -15,7 +15,7 @@ export default function RateForm ({ setPerilla }) {
 
     const rated = () => toast.success("😁 Thank you for your rate!")
     const error = () => toast.info("Already rate this app!")
-    
+
 
     const [input, setInput] = useState({
         rate: 0,
@@ -50,23 +50,17 @@ export default function RateForm ({ setPerilla }) {
     function handleSubmit (e) {
         e.preventDefault();
 
-        console.log(input)
-
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
 
         axios.post(`${API_URL}/api/ratings`, input, config).then(() => rated()).catch(() => error())
-        
+
         setInput({
             rate: 0,
             comment: undefined,
         })
     }
-
-    // console.log(input)
-
-    // console.log(input)
 
     return (
         <div className={`${styles.container} dark:bg-slate-900`}>
@@ -91,10 +85,10 @@ export default function RateForm ({ setPerilla }) {
                     <label className={styles.label}>Review:</label>
                     <textarea className={`${styles.input} dark:text-black`} type='text' value={input.comment} onChange={handleChange} />
                 </div>
-                <div  className={styles.label2}>
-                <button type='submit'>
-                    Submit rate
-                </button>
+                <div className={styles.label2}>
+                    <button type='submit'>
+                        Submit rate
+                    </button>
                 </div>
             </form>
         </div>

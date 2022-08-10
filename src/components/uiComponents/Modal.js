@@ -7,7 +7,7 @@ const Modal = ({ children, onClose, modal }) => {
   return modal && (
     <>
       <div className="fixed grid place-content-center w-screen h-screen inset-0 z-20 backdrop-blur-sm bg-slate-100/30" id={idToclose} onClick={(e) => e.target.id === idToclose && onClose()}>
-        <div className='' onClick={() => console.log('mo')}>
+        <div className=''>
           <Card>
             <>
               <div className='flex justify-end mb-4'>
