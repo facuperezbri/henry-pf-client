@@ -54,6 +54,10 @@ const News2 = () => {
   })
   return (
     <div className={styles.detailContainer}>
+        <h1 className='text-5xl mb-8 font-bold flex justify-center'>Financial News</h1>
+        <h6 className='flex justify-center'>Get the latest news about</h6>
+        <h6 className='flex justify-center'>international finances and economy.</h6>
+
       <div className={styles.input}>
         <input style={{ color:"black", border:"solid 1px black"}} value={filter}  onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
