@@ -5,6 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSearchParams } from 'react-router-dom'
 import styles from './News.module.css'
 
+import Card from '../uiComponents/Card'
+
 import loading from '../../assets/spinner/spinner.svg'
 
 const News2 = () => {
@@ -56,7 +58,7 @@ const News2 = () => {
   return (
     <div className={styles.detailContainer}>
       <div className={styles.input}>
-        <input style={{ color:"black", border:"solid 1px black"}} value={filter}  onChange={handleFilter} type="text" placeholder="Search News" />
+        <input style={{ color: "black", border: "solid 1px black" }} value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
       <InfiniteScroll
         dataLength={news.length}
@@ -66,11 +68,11 @@ const News2 = () => {
           <div className={styles.columns_3_2_1}>
             {ss.length > 0 ? ss.map((news) =>
               <a key={news.url} href={news.url} target="_blank" rel="noreferrer">
-                <div className={styles.card_news} key={news.title}>
+                <Card className={styles.card_news} key={news.title}>
                   <img className={styles.img_new} src={news.urlToImage} alt={news.urlToImage} width={200} />
                   <h1 className={styles.title}>{news.title}</h1>
                   <p>{news.content}</p>
-                </div>
+                </Card>
               </a>
             ) : <h1 style={{ fontSize: "2rem" }}>No results found</h1>}
           </div>
