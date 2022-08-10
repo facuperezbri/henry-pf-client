@@ -26,6 +26,8 @@
     text-align: center;
     color: black;
     width: 8rem;
+    border: 1px solid gray;
+    margin: 1rem;
 }
 
 .containerselect {
