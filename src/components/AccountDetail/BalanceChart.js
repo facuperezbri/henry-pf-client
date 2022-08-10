@@ -192,7 +192,6 @@ export default function LineChart () {
     }
   }
   auxData()
-  // console.log(aux)
 
   const onSelectMonth = function (e) {
     setMonth(Number(e.target.value))

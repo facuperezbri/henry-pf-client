@@ -8,19 +8,31 @@ import { getUser } from '../../redux/actions';
 import Button from "../uiComponents/Button";
 import Modal from "../uiComponents/Modal";
 import Card from "../uiComponents/Card";
-import { darkMode } from "../../redux/actions/index"
 import CardText from "../uiComponents/CardText";
 import SVGDarkLigth from "../../assets/icons/darkLight";
-
+import { DELETE_ACCOUNT } from "../../services/DELETE_ACCOUNT";
 import UseDarkMode from "../../hooks/useDarkMode";
 import ProfileEpig from "../uiComponents/ProfileEpig";
+import { useToken } from "../../hooks/useToken";
+import useNotification from "../../hooks/useNotification";
+import ButtonWithLoader from "../uiComponents/ButtonWithLoader";
+import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Profile () {
   const dispatch = useDispatch()
+  const { setToken } = useToken()
 
+  const navigate = useNavigate()
+
+  const { error, success } = useNotification()
   const [showModal, setShowModal] = useState(false)
   const [showModalImg, setShowModalImg] = useState(false)
+  const [showModalDeletAccount, setShowModalDeletAccount] = useState(false)
+
+  const [isLoadingRemove, setIsLoadingRemove] = useState(false)
+
   const [visibleUser, setVisibleUser] = useState(false)
   // const [darkMode, setDarkMode] = useState(window.localStorage.getItem('dark') === 'true')
   const { darkMode, changeDarkMode } = UseDarkMode()
@@ -33,41 +45,31 @@ export default function Profile () {
   const handlerShowModalImg = () => {
     setShowModalImg(!showModalImg)
   }
-  // const interruptorImg = () => {
-  //   if (visibleImg) setVisibleImg(false)
-  //   if (!visibleImg) setVisibleImg(true)
-  // }
-  // const interruptorUser = () => {
-  //   if (visibleUser) setVisibleUser(false)
-  //   if (!visibleUser) setVisibleUser(true)
-  // }
-
-  //---------------------------------------------------------------------------------------------------
 
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
   }, [dispatch])
-  // const handlerDarkMode = () => {
-  //   setDarkMode(!darkMode)
-  //   if (darkMode) {
-  //     document.documentElement.classList.add('dark')
-  //     window.localStorage.setItem('darkmode', darkMode)
-  //   }
-  //   if (!darkMode) {
-  //     document.documentElement.classList.remove('dark')
-  //     window.localStorage.setItem('darkmode', darkMode)
-      
-  //   }
-  // }
 
+  const handlerDeleteAccount = () => {
+    setIsLoadingRemove(true)
+    DELETE_ACCOUNT().then(res => {
+      if (res?.message) {
+        success(res?.message)
+        setToken('')
+        navigate('/')
+      }
+    }).catch((_error) => {
+      error()
+    }).finally(() => setIsLoadingRemove(false))
+  }
 
+  const handlerShowModalForDeleteAccount = () => {
+    setShowModalDeletAccount(!showModalDeletAccount)
+  }
 
   return (
     <div className={Style.main}>
-{/* 
-      <div className="rounded-full items-center w-40 h-40 md:w-72 md:h-72 overflow-hidden mb-4 mx-auto grid place-content-center" >
-        <img src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
-      </div> */}
+      <ToastContainer />
       <ProfileEpig src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
       <Card className="w-full">
         <div className="flex flex-col gap-2">
@@ -113,6 +115,24 @@ export default function Profile () {
           <SVGDarkLigth darkmode={darkMode} />
         </Button>
       </div>
+
+
+      <Modal onClose={handlerShowModalForDeleteAccount} modal={showModalDeletAccount}>
+          <div className="my-4">
+            <CardText>
+              <span className="text-xl">
+                You want to delete your account? You will not be able to use again.
+              </span>
+            </CardText>
+            <div className="flex justify-between mt-8">
+              <Button onClick={handlerShowModalForDeleteAccount}>Cancel</Button>
+              <ButtonWithLoader isLoading={isLoadingRemove} onClick={handlerDeleteAccount}>Confirm</ButtonWithLoader>
+            </div>
+          </div>
+      </Modal>
+      
+
+      <Button className='mt-44' onClick={handlerShowModalForDeleteAccount}>Remove Account</Button>
 
     </div>
   );
