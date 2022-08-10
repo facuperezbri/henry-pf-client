@@ -63,15 +63,15 @@ const RecientActivity = ({ activities, setMovement, openDetails }) => {
 
 
   return (
-    <div className='flex flex-col gap-2 relative'>
-      <div className='mt-4'>
+    <div className='flex flex-col gap-2 relative max-h-96 overflow-hidden overflow-y-scroll'>
+      <div className='sticky top-0 z-30'>
         <CardText>
           <span>
             Movements
           </span>
         </CardText>
       </div>
-      <span className='flex flex-row'>
+      <span className='flex flex-row gap-4'>
 
         <Button className='flex justify-center items-center' onClick={handlerSortByDate}>Date {isAcendantByDate ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />}</Button>
 
