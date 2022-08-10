@@ -1,101 +1,138 @@
 import React, { useEffect, useState } from "react";
 import Style from "./Profile.module.css";
-import { GET_USER_DATA } from "../../services/GET_USER_DATA";
-import pen from '../../assets/icons/pen.svg'
 import EditUser from "./EditUser"
 import EditImg from "./EditImg"
 import EditPassword from "./EditPassword"
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../redux/actions';
+import Button from "../uiComponents/Button";
+import Modal from "../uiComponents/Modal";
+import Card from "../uiComponents/Card";
+import CardText from "../uiComponents/CardText";
+import SVGDarkLigth from "../../assets/icons/darkLight";
+import { DELETE_ACCOUNT } from "../../services/DELETE_ACCOUNT";
+import UseDarkMode from "../../hooks/useDarkMode";
+import ProfileEpig from "../uiComponents/ProfileEpig";
+import { useToken } from "../../hooks/useToken";
+import useNotification from "../../hooks/useNotification";
+import ButtonWithLoader from "../uiComponents/ButtonWithLoader";
+import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+
 export default function Profile () {
   const dispatch = useDispatch()
+  const { setToken } = useToken()
 
-  const [visible, setVisible] = useState(false)
-  const [visibleImg, setVisibleImg] = useState(false)
+  const navigate = useNavigate()
+
+  const { error, success } = useNotification()
+  const [showModal, setShowModal] = useState(false)
+  const [showModalImg, setShowModalImg] = useState(false)
+  const [showModalDeletAccount, setShowModalDeletAccount] = useState(false)
+
+  const [isLoadingRemove, setIsLoadingRemove] = useState(false)
+
   const [visibleUser, setVisibleUser] = useState(false)
+  // const [darkMode, setDarkMode] = useState(window.localStorage.getItem('dark') === 'true')
+  const { darkMode, changeDarkMode } = UseDarkMode()
+
   const dataProfile = useSelector(state => state.userData)
   //---------------------------------------------------------------------------------------------------
-  const interruptor = () => {
-    setVisible(!visible)
+  const handlerShowModal = () => {
+    setShowModal(!showModal)
   }
-  const interruptorImg = () => {
-    if (visibleImg) setVisibleImg(false)
-    if (!visibleImg) setVisibleImg(true)
+  const handlerShowModalImg = () => {
+    setShowModalImg(!showModalImg)
   }
-  const interruptorUser = () => {
-    if (visibleUser) setVisibleUser(false)
-    if (!visibleUser) setVisibleUser(true)
-  }
-
-  //---------------------------------------------------------------------------------------------------
-
-
 
   useEffect(() => {
     dispatch(getUser((window.localStorage.getItem("token"))))
-  }, [visibleImg, visibleUser, visible])
+  }, [dispatch])
+
+  const handlerDeleteAccount = () => {
+    setIsLoadingRemove(true)
+    DELETE_ACCOUNT().then(res => {
+      if (res?.message) {
+        success(res?.message)
+        setToken('')
+        navigate('/')
+      }
+    }).catch((_error) => {
+      error()
+    }).finally(() => setIsLoadingRemove(false))
+  }
+
+  const handlerShowModalForDeleteAccount = () => {
+    setShowModalDeletAccount(!showModalDeletAccount)
+  }
 
   return (
     <div className={Style.main}>
+      <ToastContainer />
+      <ProfileEpig src={dataProfile?.profilepic} alt={dataProfile.username} onClick={handlerShowModalImg} />
+      <Card className="w-full">
+        <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <CardText>
+              <span>
+                {dataProfile?.name}
+              </span>
+            </CardText>
 
-      <div className={Style.container}>
-        <img className={Style.img} src={dataProfile.profilepic} />
-        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
-        {visibleImg ? <EditImg setVisibleImg={setVisibleImg} dataProfile={dataProfile} /> : null}
-        {/* <img className={Style.img} src={dataProfile.profilepic} alt={"Profile"} />
-        <div className={Style.btnImg} onClick={interruptorImg}><img src={pen} alt="pen edit" className={Style.pen} /></div>
-        {visibleImg ? <EditProfile dataInput={dataInput} dataProfile={dataProfile} /> : null} */}
+            <CardText>
+              <span>
+                {dataProfile?.lastname}
+              </span>
+            </CardText>
+          </div>
+          <CardText>
+            <span>
+              {dataProfile?.username}
+            </span>
+          </CardText>
+          <CardText>
+            <span>
+              {dataProfile?.email}
+            </span>
+          </CardText>
+        </div>
+      </Card>
+      {visibleUser && <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} />}
+
+      <Modal onClose={handlerShowModal} modal={showModal}>
+        <EditPassword />
+      </Modal>
+      <Modal onClose={handlerShowModalImg} modal={showModalImg}>
+        <EditImg handlerCloseModalImg={() => setShowModalImg(false)} dataProfile={dataProfile} />
+      </Modal>
+
+      <Button onClick={handlerShowModal}>
+        Change password
+      </Button>
+      <div className='flex gap-6'>
+        <Button onClick={changeDarkMode}>
+          <SVGDarkLigth darkmode={darkMode} />
+        </Button>
       </div>
 
-      <div className={Style.containerDetail}>
-        <div className={Style.containerName}>
-          <div>
-            <label>
-              First name
-              <input type="text" value={dataProfile.name} readonly className={Style.input} disabled />
-            </label>
-          </div>
-          <div>
-            <label>
-              Last name
-              <input
-                type="text"
-                value={dataProfile.lastname}
-                readonly
-                className={Style.input}
-                disabled
-              />
-            </label>
-          </div>
-        </div>
-        <div> <label>
-          Email
-          <input
-            type="text"
-            value={dataProfile.email}
-            readonly
-            className={Style.input}
-            disabled
-          />
-        </label>
-        </div>
-        <div className={Style.user}> <label>
-          Username
-          <input
-            type="text"
-            value={dataProfile.username}
-            readonly
-            className={Style.input}
-            disabled
-          />
-        </label>
-          <div className={Style.btnUserImg} onClick={interruptorUser}><img src={pen} alt="pen edit" className={Style.pen} /></div>
-        </div>
 
-      </div>
-      {visibleUser ? <EditUser setVisibleUser={setVisibleUser} dataProfile={dataProfile} /> : null}
-      {visible ? <EditPassword setVisible={setVisible} dataProfile={dataProfile} /> : null}
-      <div className={Style.btn} onClick={interruptor}>Change password</div>
+      <Modal onClose={handlerShowModalForDeleteAccount} modal={showModalDeletAccount}>
+          <div className="my-4">
+            <CardText>
+              <span className="text-xl">
+                You want to delete your account? You will not be able to use again.
+              </span>
+            </CardText>
+            <div className="flex justify-between mt-8">
+              <Button onClick={handlerShowModalForDeleteAccount}>Cancel</Button>
+              <ButtonWithLoader isLoading={isLoadingRemove} onClick={handlerDeleteAccount}>Confirm</ButtonWithLoader>
+            </div>
+          </div>
+      </Modal>
+      
+
+      <Button className='mt-44' onClick={handlerShowModalForDeleteAccount}>Remove Account</Button>
 
     </div>
   );

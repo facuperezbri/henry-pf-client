@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import style from './EditUser.module.css'
 import axios from "axios"
 import { useToken } from '../../hooks/useToken'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const validate = (input)=>{
   let errors = {}
@@ -22,6 +24,8 @@ const [putUserm,setPutUser] = useState({
 })
 const { token } = useToken();
 const [error, setError] = useState({})
+const message = () => toast.success("Data uploaded successfully")
+
 //------------------------------------------------Hoocks-------------------------------------------------------------------------------
 
 //-----------------------------------------------Functions----------------------------------------------------------------------------- 
@@ -40,7 +44,7 @@ const sendPutUser = async()=>{
   const element = document.querySelector("#sss")
   element.innerHTML=""
     setVisibleUser(false) 
-    alert("data uploaded successfully")
+    message()
 }
 const cancelX=()=>{
   setVisibleUser(false)
@@ -49,6 +53,7 @@ const cancelX=()=>{
 //_---------------------------------------------------------------------------------------------------------------------------------------
   return (
     <div className={style.container}> 
+      <ToastContainer />
       <div className={style.containerX}>
         <div onClick={cancelX} className={style.X}>X</div> 
       </div> 

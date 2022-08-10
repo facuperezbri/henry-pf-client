@@ -10,38 +10,44 @@ import { BsWallet2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiCoinStack } from 'react-icons/bi'
-import RateForm from './RateForm'
-import { openRate } from '../../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import {MdOutlineAdminPanelSettings} from 'react-icons/md'
+
+ import { useDispatch, useSelector } from 'react-redux'
+
+import {RiTeamLine} from 'react-icons/ri'
+
 
 
 export default function Nav () {
 
-  const dispatch = useDispatch()
-  const showRate = useSelector(state => state.showRate)
-  const movements = useSelector(state => state.movements)
+   const movements = useSelector(state => state.userData)
 
-  const [perilla, setPerilla] = useState(false)
-
-  useEffect(() => {
-    if (movements.movements?.length === 1) {
-      setPerilla(true)
-    }
-  }, [])
+  //  useEffect(() => {
+  //    if (movements.movements?.length === 1) {
+  //      setPerilla(true)
+  //    }
+  //  }, [])
 
   function logOut () {
     window.localStorage.setItem("token", "")
   }
-  function openRateclick () {
-    // dispatch(openRate(true))
-    setPerilla(!perilla)
-    // alert("entrando")
-  }
+  // function openRateclick () {
+  //   // dispatch(openRate(true))
+  //   setPerilla(!perilla)
+  //   // alert("entrando")
+  // }
   return (
     <nav className={style.header}>
       <div>
         <h3 className={style.title}>wallet.</h3>
         <ul className={style.itemsNav}>
+          { movements?.isAdmin &&
+            <Link to='/dashboard/admin'>
+              <li className={style.listItem}>
+                <MdOutlineAdminPanelSettings className={style.icon} /> <span className={style.listItem_text}>Admin</span>
+              </li>
+            </Link>
+          }
           <Link to='/profile'>
             <li className={style.listItem}>
               <CgProfile className={style.icon} /> <span className={style.listItem_text}>Profile</span>
@@ -67,34 +73,21 @@ export default function Nav () {
               <BiCoinStack className={style.icon} /><span className={style.listItem_text}>Cryptos</span>
             </li>
           </Link>
-          <Link to='/settings'>
-            <li className={style.listItem}>
-              <IoSettingsOutline className={style.icon} /> <span className={style.listItem_text}>Settings</span>
-            </li>
-          </Link>
-          <Link to='/faq'>
-            <li className={style.listItem}>
-              <FiHelpCircle className={style.icon} /><span className={style.listItem_text}>F.A.Q</span>
-            </li>
-          </Link>
-          <li onClick={openRateclick} className={style.listItem}>
-            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate us!</span>
+          { (!movements?.ratings) ?
+          <Link to='/rateform'>
+          <li  className={style.listItem}>
+            <AiOutlineStar className={style.icon} /><span className={style.listItem_text}>Rate app</span>
           </li>
-          {/* {
-            (function show () {
-            if ( movements.movements?.length === 25 || showRate ) {
-              dispatch(openRate(true))
-              return <RateForm/>
-            }})()
-          } */}
-          {
-            perilla ?
-              <RateForm setPerilla={setPerilla} /> :
-              null
+          </Link> : null
           }
         </ul>
       </div>
       <ul className={style.itemsNav}>
+      <Link to="/aboutus">
+          <li className={style.listItem}>
+            <RiTeamLine className={style.icon} /> <span className={style.listItem_text}>About us</span>
+          </li>
+        </Link>
         <Link to="/">
           <li onClick={() => logOut()} className={style.listItem}>
             <MdExitToApp className={style.icon} /> <span className={style.listItem_text}>Log out</span>

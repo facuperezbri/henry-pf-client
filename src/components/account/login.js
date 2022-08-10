@@ -5,67 +5,103 @@ import { LoginWithGoogle } from '../../firebase_/client'
 import { useNavigate } from 'react-router-dom'
 
 import { useToken } from '../../hooks/useToken'
-
-
+import { useState } from 'react'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { AiOutlineGoogle } from 'react-icons/ai'
 
+import InputComponent from './../uiComponents/InputComponent'
+import SendMail from './SendMail'
+import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
+import useNotification from '../../hooks/useNotification'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+  const { error: loginErrror } = useNotification()
+  const [open, setOpen] = useState(false)
+  const [isLoadingLoginWithGoogle, setIsLoadingLoginWithGoogle] = useState(false)
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false)
+
+
   const loginResponseHandler = (res) => {
     if (res?.token && res?.isAdmin) {
       setToken(res?.token)
-      navigate('/dashboard/admin')
-      console.log(res.token)
-      return
+      return navigate('/dashboard/admin')
     }
     if (res?.token) {
       setToken(res?.token)
       navigate('/home')
-      console.log(res.token)
     }
+  }
+  const change = (e) => {
+    e.preventDefault()
+    setOpen(!open)
   }
   const { setToken } = useToken()
   const onSubmit = async ({ email, password }) => {
+    setIsLoadingLogin(true)
     LOG_IN({ email, password }).then((res) => {
+
+      if (res?.error) return loginErrror(res?.error)
+      
       loginResponseHandler(res)
-    }).catch(console.error)
+    })
+      .catch((error) => {
+        console.error(error)
+        loginErrror()
+      })
+      .finally(() => setIsLoadingLogin(false))
   }
-  const login = () => {
+
+  const handlerLoginWithGoogle = () => {
+    setIsLoadingLoginWithGoogle(true)
     LoginWithGoogle().then(({ user }) => {
       LOG_IN({ googleID: user.uid }).then((res) => {
-        if (res.message) {
-          alert(res.message)
-        }
+        if (res?.error) return loginErrror(res?.error)
         loginResponseHandler(res)
-      }).catch(console.error)
+      }).catch((error) => {
+        console.error(error)
+        loginErrror()
+      }).finally(() => setIsLoadingLoginWithGoogle(false))
 
-    }).catch(console.error)
+    }).catch((error) => {
+      console.error(error)
+      loginErrror()
+    }).finally(() => setIsLoadingLoginWithGoogle(false))
   }
   return (
     <div className={formStyles.mainContainer}>
       <h4 className={formStyles.createStart}>Welcome back.</h4>
       <h2>Already a member<span>?</span></h2>
 
+      <ToastContainer />
       <div className={formStyles.card}>
-        <button className={`${formStyles.button} ${formStyles.button_google}`} onClick={login}><AiOutlineGoogle size={35} /> Log in with Google</button>
+        <ButtonWithLoader isLoading={isLoadingLoginWithGoogle} className='w-full' onClick={handlerLoginWithGoogle}>
+          <div className='flex gap-4'>
+            <AiOutlineGoogle size={35} /><span className='grid place-content-center'>Log in with Google</span>
+          </div>
+        </ButtonWithLoader>
+
+
         <div className={formStyles.or}>or</div>
+
         <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='email' {...register('email', { required: true, minLength: 8 })} />
-            {errors.email && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
-          <div className={formStyles.input_container}>
-            <input className={formStyles.input_text} defaultValue="" placeholder='password' {...register('password', { required: true, minLength: 8 })} />
-            {errors.password && <span className={formStyles.input_error}>This field is required.</span>}
-          </div>
-          <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button>
+
+          <InputComponent register={register} errors={errors} name='email' placeholder='Your email' type='email' config={{ required: true, minLength: 8 }} />
+
+          <InputComponent register={register} errors={errors} name='password' placeholder='Your password' type='password' config={{ required: true, minLength: 8 }} />
+
+          {/* <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Log in</button> */}
+          <ButtonWithLoader isLoading={isLoadingLogin} className='w-full'  type='submit'>
+            Log in
+          </ButtonWithLoader>
         </form>
 
+        <p onClick={(e) => change(e)} className={formStyles.a}>Did you forget your password? get it back</p>
+        {open && <SendMail />}
+
       </div>
-
-
     </div>
   )
 }

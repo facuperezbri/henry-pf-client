@@ -9,21 +9,17 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function LineChart () {
 
-  const [month, setMonth] = useState(7)
+  const [month, setMonth] = useState(8)
   const [year, setYear] = useState(2022)
 
   const movements = useSelector(state => state.movements)
 
-  const procData = movements.movements?.map((data) => {
+  const procData = movements?.map((data) => {
     return {
       date: data.date.slice(0, 10),
       balance: data.balance
     }
   })
-
-  // useEffect(() => {
-  //   auxData()
-  // },[aux])
 
   var aux = []
   const startBalance = 0
@@ -43,6 +39,88 @@ export default function LineChart () {
     monthDays = 30
   }
 
+  let finalBalancePerMonth = [
+    {
+      index: 0, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year - 1}`).length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year - 1}`)[0].balance :
+          0
+    },
+    {
+      index: 1, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "01").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "01")[0].balance :
+          0
+    },
+    {
+      index: 2, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "02").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "02")[0].balance :
+          0
+    },
+    {
+      index: 3, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "03").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "03")[0].balance :
+          0
+    },
+    {
+      index: 4, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "04").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "04")[0].balance :
+          0
+    },
+    {
+      index: 5, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "05").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "05")[0].balance :
+          0
+    },
+    {
+      index: 6, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "06").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "06")[0].balance :
+          0
+    },
+    {
+      index: 7, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "07").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "07")[0].balance :
+          0
+    },
+    {
+      index: 8, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "08").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "08")[0].balance :
+          0
+    },
+    {
+      index: 9, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "09").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "09")[0].balance :
+          0
+    },
+    {
+      index: 10, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "10").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "10")[0].balance :
+          0
+    },
+    {
+      index: 11, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "11").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "11")[0].balance :
+          0
+    },
+    {
+      index: 12, balance:
+        procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "12").length ?
+          procData.filter((abc) => abc.date.slice(0, 4) === `${year}` && abc.date.slice(5, 7) === "12")[0].balance :
+          0
+    },
+
+  ]
+
   let auxData = function () {
     if (movements.movements?.length === 0) {
       for (let i = 1; i <= monthDays; i++) {
@@ -51,26 +129,14 @@ export default function LineChart () {
       return aux
     }
     if (singleDigitMonth.includes(month)) {
-      // console.log(month)
-      // console.log("entré al 2do")
       for (let i = 1; i <= monthDays; i++) {
-        // console.log("entre al for")
         if (i === 1) {
           let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5, 7) === `0${month}` && elem.date?.slice(8) === `01`)
-          // let previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+1].balance
-          // while (!previousBalance) {
-          //   let searching = 2
-          //   previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+searching].balance
-          //   searching++
-          // }
           if (movesOfTheDay?.length > 0) {
-            // console.log("entré a la vaina")
             aux.push({ x: i, y: movesOfTheDay[0].balance })
           } else {
-            // console.log("entre al false")
-            aux.push({ x: i, y: 0 })
+            aux.push({ x: i, y: finalBalancePerMonth[month - 1].balance })
           }
-          // console.log(aux)
         }
         if (i > 1 && i <= 9) {
           let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5, 7) === `0${month}` && elem.date?.slice(8) === `0${i}`)
@@ -91,23 +157,16 @@ export default function LineChart () {
           }
         }
       }
-      // console.log(aux)
       return aux
     }
     else {
       for (let i = 1; i <= monthDays; i++) {
         if (i === 1) {
           let movesOfTheDay = procData?.filter((elem) => elem.date?.slice(5, 7) === `${month}` && elem.date?.slice(8) === `0${i}`)
-          // let previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+1].balance
-          // while (!previousBalance) {
-          //   let searching = 2
-          //   previousBalance = procData[procData?.indexOf(movesOfTheDay[movesOfTheDay?.length-1])+searching].balance
-          //   searching++
-          // }
           if (movesOfTheDay?.length > 0) {
             aux.push({ x: i, y: movesOfTheDay[0].balance })
           } else {
-            aux.push({ x: i, y: 0 })
+            aux.push({ x: i, y: finalBalancePerMonth[month - 1].balance })
           }
         }
         if (i > 1 && i <= 9) {
@@ -132,13 +191,10 @@ export default function LineChart () {
       return aux
     }
   }
-
   auxData()
 
   const onSelectMonth = function (e) {
-    // console.log(e.target.value)
     setMonth(Number(e.target.value))
-    // return auxData(Number(e.target.value))
   }
 
   const options = {

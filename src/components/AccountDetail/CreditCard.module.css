@@ -29,7 +29,6 @@
     width: 100%;
     left: 0;
     top: 0;
-    z-index: 0;
     color: rgb(249 249 249 / 10%);
     background: linear-gradient(135deg, currentColor 25%, transparent 25%) -100px 0,
         linear-gradient(225deg, currentColor 25%, transparent 25%) -100px 0,
@@ -46,7 +45,6 @@
 .number {
     font-size: 2rem;
     text-align: center;
-    font-family: 'ocr_a_std';
 }
 
 .balance_name_container {
@@ -56,12 +54,11 @@
 
 .name {
     font-size: 1rem;
-    font-family: 'ocr_a_std';
 }
 
 .balance {
-    font-size: 1rem;
-    font-family: 'ocr_a_std';
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 @media (max-width: 668px) {

@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react'
 import style from './Favourites.module.css'
 // import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFavorite, removeFavorite, addFavorite, getUser } from '../../redux/actions/index'
+import { getFavorite, removeFavorite, getUser } from '../../redux/actions/index'
 import Modal from 'react-modal'
-// Modal.setAppElement('#root') 
+import Button from '../uiComponents/Button'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Card from '../uiComponents/Card'
+import useNotification from '../../hooks/useNotification'
+import { ADD_FAVORITE } from '../../services/ADD_FAVORITE'
 
 const modalStyles = {
     content: {
@@ -17,24 +22,13 @@ const modalStyles = {
     }
 }
 
-export default function Favorites ({ setState, state }) {
+export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
-    const userId = useSelector((state) => state.userData.id)
+    const { error, success } = useNotification()
     const dispatch = useDispatch()
-    // const [input,setInput] = useState({favourites:[]})
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const [selected, setSelected] = useState('')
-    const [favAccs, setFavAccs] = useState([])
-    // const [errors, setErrors] = useState({})
-    const [cvu, setCvu] = useState("")
-
-    // function validation(input){
-    //     let errors = {}
-    //     if(input.cvu || typeof input.cvu !== 'string'){
-    //         errors.cvu = 'Ingrese un cvu/username válido'
-    //     }
-    // }
+    // const favAdd = () => toast.success("You added your new favourite successfully")
 
     function handleModel () {
         setIsOpen(true)
@@ -47,10 +41,20 @@ export default function Favorites ({ setState, state }) {
 
     function handleSubmit (e) {
         e.preventDefault()
-        dispatch(addFavorite({ userId, fav }))
+        ADD_FAVORITE(fav).then((res) => {
+            if (res?.message) {
+                return error(res?.message)
+            }
+            if (res?.success) {
+                dispatch(getFavorite())
+                success(res?.success)
+            }
+        }).catch((error) => {
+            error()
+            console.error(error)
+        })
         setIsOpen(false)
         setFav("")
-        alert("You added your new favourite successfully")
     }
 
     function handleInput (e) {
@@ -61,76 +65,46 @@ export default function Favorites ({ setState, state }) {
         setFav('')
     }
 
-    function handleSelected (e) {
-        const fav = favourites.find(el => {
-            return el.id === e.target.value
-        })
-        setFavAccs(fav.accounts)
-        setSelected(e.target.value)
+    function deleteFav (e) {
+        dispatch(removeFavorite(e.target.id))
     }
 
-    function deleteFav () {
-        dispatch(removeFavorite(selected))
-        alert("Your contact was removed successfully")
-    }
-
-    const handleCvuChange = e => {
-        setCvu(e.target.value)
-    }
-
-    function handleCvu () {
-        // const fav = favourites.find(e=>{
-        //     return e.id === selected
-        // })
-        setState({
-            ...state, cvuD: cvu
-        })
-    }
-    // console.log(favAccs)
     useEffect(() => {
-        dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite(r.payload.id)))
+        dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite()))
     }, [dispatch])
 
-    // function handleSelect(e){
-    //     e.preventDefault()
-    //     setInput({...input, favourites:[...input.favourites, e.target.value]})
-    // }
 
-    // let favourites = [{id:'998he9dh238947dbh38', friendID:'98e743hfdndkfsdj39787', userID:'sdfadfk394234234435'}]
     return (
-        <div className={style.main}>
+        <Card className='basis-1/2'>
             <h1 className={style.title}>My Friends</h1>
-            <select className={style.select} value={selected} onChange={e => handleSelected(e)}>
+            <div>
+                {/* {favourites.length === 0 && <p></p>} */}
+                {favourites.map((f) =>
+                    <div key={f.username} className='flex gap-4'>
+                        <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                            <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                            <p>{f.username}</p>
+                        </section>
+                        <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                    </div>
+                )}
+            </div>
+            <Button onClick={handleModel}>Add</Button>
 
-                <option selected disabled value="">Favourites</option>
-                {favourites?.map(fav =>
-                    <option value={fav.id} key={fav.id}>
-                        {fav.username}
-                    </option>
-                )
-                }
-            </select>
-            <select className={style.select} value={cvu} onChange={handleCvuChange}>
-                <option selected value="">Fav Accounts</option>
-                {favAccs?.map(acc => {
-                    return <option value={acc?.cvu}>{acc?.currencies.name} Acc</option>
-                })}
-            </select>
-            <button onClick={deleteFav} >Delete</button>
-            <button onClick={handleModel}>Add fav</button>
-            <button onClick={handleCvu}>Add cvu</button>
             <Modal
                 isOpen={isOpen}
                 style={modalStyles}
                 onRequestClose={closeModel}
             >
-                <button onClick={handleClose}>x</button>
+                <Button onClick={handleClose}>x</Button>
                 <form onSubmit={handleSubmit}>
-                    <input value={fav} onChange={handleInput} placeholder='CVU/username' />
-                    <button onSubmit={handleClose} type="submit" >Add</button>
+                    <input value={fav} onChange={handleInput} placeholder='username' />
+                    <Button onSubmit={handleClose} type="submit">Add</Button>
                 </form>
             </Modal>
+            <ToastContainer />
 
-        </div>
+
+        </Card>
     )
 }

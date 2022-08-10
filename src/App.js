@@ -1,4 +1,4 @@
-import style from "./App.module.css";
+import { useEffect } from "react";
 import Landing from "./components/Landing/Landing";
 import { Routes, Route } from "react-router-dom";
 import Cryptos from "./pages/Cryptos/Cryptos";
@@ -12,21 +12,33 @@ import Favorites from "./components/Favourites/Favourites";
 import CryptoDetails from "./pages/CryptosDetails/CryptosDetails";
 import LoginSignIn from './pages/LoginSignin/LoginSignIn';
 import Admin from "./pages/Admin/Admin";
+import RateForm from "./pages/RateForm/RateForm";
+
 
 import AuthProvider from "./components/auth/AuthProvider";
 import Charge from "./pages/Charge/Charge";
 
+import ResetPassword from "./components/account/ResetPassword";
+
+import UseDarkMode from "./hooks/useDarkMode";
+import AboutUs from "./pages/AboutUs/AboutUs";
+
+
 
 function App () {
+  const { setDarkMode } = UseDarkMode()
+
+  useEffect(() => {
+    setDarkMode((window.localStorage.getItem('darkmode') === 'true'))
+  }, [])
+  
 
   return (
-    <div className={style.container}>
+    <div className="dark:bg-slate-800 dark:text-red-50 transition-all duration-500">
       <Routes>
         <Route path="/" element={<Landing />} />
-        {/* <Route path="/reset" element={<ResetPassword />} />
-        <Route path="/sendMail" element={<SendMail />} /> */}
-
-        <Route path="/account/login" element={<LoginSignIn />} />
+         <Route path="/reset/:id" element={<ResetPassword />} />
+        <Route path="/account" element={<LoginSignIn />} />
         <Route
           path="/profile"
           element={
@@ -39,6 +51,14 @@ function App () {
           element={
             <AuthProvider>
               <Home />
+            </AuthProvider>
+          }
+        />
+          <Route
+          path="/rateform"
+          element={
+            <AuthProvider>
+              <RateForm />
             </AuthProvider>
           }
         />
@@ -66,6 +86,15 @@ function App () {
           element={
             <AuthProvider>
               <Cryptos />
+            </AuthProvider>
+          }
+        />
+        <Route
+          exact
+          path="/aboutus"
+          element={
+            <AuthProvider>
+              <AboutUs />
             </AuthProvider>
           }
         />

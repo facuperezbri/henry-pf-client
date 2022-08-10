@@ -89,7 +89,7 @@ const config = {
     },
     chatButton: {
         backgroundColor:'#0077b6',
-    }
+    },
   },
   customComponents: {
     // Replaces the default header

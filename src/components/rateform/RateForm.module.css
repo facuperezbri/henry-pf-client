@@ -6,35 +6,49 @@
     top: 35%;
     left: 44%;
     border-radius: 10px;
-    z-index: 100;
+    z-index: 9999999999999999 !important;
+    
 }
-
+.label2 {
+    display: flex;
+    justify-content : center;
+    align-items: center;
+}
 .stars {
     display: flex;
     flex-direction: row;
     margin: 10px;
+    z-index: 9999999999999999 !important;
+
 }
 
 .fullStar {
     margin: 5px;
     height: 30px;
     width: 30px;
+    z-index: 9999999999999999 !important;
+
 }
 
 .emptyStar {
     margin: 5px;
     height: 30px;
     width: 30px;
+    z-index: 9999999999999999 !important;
+
 }
 
 .inputDiv {
     display: flex;
     flex-direction: column;
+    z-index: 9999999999999999 !important;
+
 }
 
 .label {
     display: flex;
     justify-content: center;
+    z-index: 9999999999999999 !important;
 }
 
 .input {
@@ -45,10 +59,13 @@
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     font-weight: 500;
+    z-index: 9999999999999999 !important;
 
     background: #f9fafc;
 }
 
 .botonCerrar {
     margin: 20px;
+    z-index: 9999999999999999 !important;
+
 }

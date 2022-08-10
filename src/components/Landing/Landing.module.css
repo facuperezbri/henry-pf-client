@@ -15,21 +15,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 70vh;
+    height: 60vh;
 }
 
 .main h1 {
     font-size: 4rem;
+    font-weight: bold;
     width: 80%;
     display: inline;
 }
 
 .main h1 span {
     color: #FF5F6D;
+    font-weight: bold;
 }
 
 .main h3 {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1.5rem;
     margin: 1rem 0;
 }
@@ -107,7 +109,6 @@
     justify-content: space-between;
     overflow: hidden;
     transition: .3s;
-    font-family: 'ocr_a_std';
     /* box-shadow: 0 1rem 1.5rem #ff5f6c78; */
 }
 

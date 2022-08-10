@@ -1,94 +1,91 @@
-import React, { useEffect } from 'react'
-import transport from '../../assets/icons/transport.svg'
-import shopping from '../../assets/icons/shopping.svg'
-import subscriptions from '../../assets/icons/subscriptions.svg'
-import groceries from '../../assets/icons/groceries.svg'
+import React from 'react'
 import style from './CategoryExpense.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCategory } from '../../redux/actions'
+import {TbBatteryCharging} from 'react-icons/tb'
+import {TbMusic} from 'react-icons/tb'
+import {TbShoppingCart} from 'react-icons/tb'
+import {TbPlant2} from 'react-icons/tb'
+import {TbTool} from 'react-icons/tb'
+import {BiShoppingBag} from 'react-icons/bi'
+import {TbTicket} from 'react-icons/tb'
+import {TbCar} from 'react-icons/tb'
+import {TbPlane} from 'react-icons/tb'
+import {TbCheck} from 'react-icons/tb'
 
 
-export default function CategoryExpense({activities}) { // los movimientos, con su categoria y monto
+export default function CategoryExpense ({ activities }) { // los movimientos, con su categoria y monto
 
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getCategory())
-    }, [])
-    const categories = useSelector(state => state.categories)
-    console.log(categories)
+    const charge = <TbBatteryCharging size={60}/>
+    const entertainment = <TbMusic size={60}/>
+    const groceries = <TbShoppingCart size={60}/>
+    const selfcare = <TbPlant2 size={60}/>
+    const services = <TbTool size={60}/>
+    const shopping = <BiShoppingBag size={60}/>
+    const subscriptions = <TbTicket size={60}/>
+    const transport = <TbCar size={60}/>
+    const travels = <TbPlane size={60}/>
+    const other = <TbCheck size={60}/>
 
-    let sumPorCat = 0
-    let totalByCat = []
+    let categoriesSum = [
+        { name: "Charge", sum: 0, icon: charge },
+        { name: "Entertainment", sum: 0, icon: entertainment },
+        { name: "Groceries", sum: 0, icon: groceries },
+        { name: "Selfcare", sum: 0, icon: selfcare },
+        { name: "Services", sum: 0, icon: services },
+        { name: "Shopping", sum: 0, icon: shopping },
+        { name: "Subscriptions", sum: 0, icon: subscriptions },
+        { name: "Transport", sum: 0, icon: transport },
+        { name: "Travels", sum: 0, icon: travels },
+        { name: "Other", sum: 0, icon: other }
+    ]
 
-    for (let i=0; i<categories?.length; i++) {
-        for (let j=0; j<activities?.length; j++) {
-            if (categories[i] === activities[j].categories?.name) {
-                sumPorCat = activities[j].amount
+    let provSum = 0
+
+    for (let i = 0; i < categoriesSum.length; i++) {
+        for (let j = 0; j < activities?.length; j++) {
+            if (activities?.[j].categories?.name === categoriesSum[i].name && activities?.[j].operations.name === "Debit") {
+                provSum += activities?.[j].amount
             }
         }
-        // console.log(sumPorCat)
-        if (sumPorCat === 0) {
-            totalByCat.push(0)
-        }
-        totalByCat.push(sumPorCat)
-        sumPorCat = 0
+        categoriesSum[i].sum = provSum
+        provSum = 0
     }
 
-  return (
-    <div>
+    let catWithExpenses = categoriesSum.filter((abc) => abc.sum !== 0)
 
-        <div className={style.categoriesContainer}>
-          <ul className={style.listContainer}>
+    catWithExpenses = catWithExpenses.sort((a, b) => {
+        if (a.sum < b.sum) {
+            return 1;
+        }
+        if (a.sum > b.sum) {
+            return -1;
+        }
+        return 0
+    })
 
-            {/* {
-            <li>
-                {
-                    categories?.map((xxx) => (
-                        <div>
-                            <img src={xxx.name} alt={`${xxx.name}`}/>
-                        </div>
-                    ))
-                }
-                {
-                    totalByCat?.map((yyy) => (
-                        <div>
-                            <p>{yyy}</p>
-                        </div>
-                    ))  
-                }
-            </li>
-            } */}
+    return (
+            <section >
+                <ul className='flex flex-wrap gap-28 w-full justify-center items-center'>
+                    {   
+                        catWithExpenses.map((xxx, i) => (
+                            <li className='grid place-items-center' key={i}>
+                                {xxx.icon}
+                                <p className='font-bold rounded-lg px-2 bg-red-400'> $ 
+                                {
+                                xxx.sum.toString().length > 6 ?
+                                `${xxx.sum.toString().slice(0,xxx.sum.toString().length-6)},${xxx.sum.toString().slice(xxx.sum.toString().length-6,xxx.sum.toString().length-3)},${xxx.sum.toString().slice(xxx.sum.toString().length-3)}`
+                                :
+                                xxx.sum.toString().length > 3 ?
+                                `${xxx.sum.toString().slice(0,xxx.sum.toString().length-3)},${xxx.sum.toString().slice(xxx.sum.toString().length-3)}`
+                                :
+                                `${xxx.sum}`
+                                }
+                                </p>
+                                <p>{xxx.name}</p> 
 
-
-
-
-            <li><img src={transport} alt="Transport icon" />
-              <div>
-                <h4>Transport</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={shopping} alt="Shopping icon" />
-              <div>
-                <h4>Shopping</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={subscriptions} alt="Subscriptions icon" />
-              <div>
-                <h4>Subscriptions</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-            <li><img src={groceries} alt="Groceries icon" />
-              <div>
-                <h4>Groceries</h4>
-                <p>$182,95</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-    </div>
-  )
+                            </li>
+                        )) 
+                    }
+                </ul>
+            </section>
+    )
 }

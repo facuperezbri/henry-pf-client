@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
 export default function FlasCard({question,answer,incrementIndex}) {
     const [showAnswer,setShowAnswer] = useState(false);
 
@@ -14,7 +14,7 @@ export default function FlasCard({question,answer,incrementIndex}) {
             </div>
             {showAnswer && (
                 <button style={{padding:"4px",borderRadius:"8px"}} onClick={incrementIndex}>
-                    next question
+                    <BsFillArrowRightCircleFill style={{width:"2rem",height:"2rem"}}/>
                 </button>
             )}
     </div>

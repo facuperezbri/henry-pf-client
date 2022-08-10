@@ -23,7 +23,7 @@ export default function Landing () {
             }}
           />your <span>wallet.</span></h1>
           <h3>The definitive wallet.</h3>
-          <NavLink to="/account/login">
+          <NavLink to="/account">
             <button className={style.btn}>Let's go</button>
           </NavLink>
         </div>
@@ -40,6 +40,13 @@ export default function Landing () {
 
         </div> */}
       </main >
+
+
+      <div>
+        <Ratings />
+      </div>
+
+
       <div className={style.offerContainer}>
         <h2>What do we offer?</h2>
         <ul className={style.offersListContainer}>
@@ -66,9 +73,6 @@ export default function Landing () {
           </li>
         </ul>
       </div>
-      {/* <div>
-        <Ratings />
-      </div> */}
     </div >
   )
 }

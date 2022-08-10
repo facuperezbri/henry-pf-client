@@ -1,3 +1,74 @@
 .slide {
-    background-color: brown;
+    background-color: white;
+    color: black;
+    -webkit-box-shadow: 9px 12px 13px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 9px 12px 13px 2px rgba(0,0,0,0.75);
+    box-shadow: 9px 12px 13px 2px rgba(0,0,0,0.75);
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: animation 3.99s ease infinite;
 }
+.img{
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+
+}
+.star{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+.profile{
+    display: flex;
+    gap: 1rem;
+}
+    .slide {
+        -webkit-animation-name: zoomInDown;
+        animation-name: zoomInDown;
+        -webkit-animation-duration: 4.5s;
+        animation-duration: 4.5s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        }
+        @-webkit-keyframes zoomInDown {
+        0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -300px, 0);
+        transform: scale3d(.1, .1, .1) translate3d(0, -300px, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        }
+        60% {
+        opacity: 1;
+        -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+        transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        }
+        }
+        @keyframes zoomInDown {
+        0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -300px, 0);
+        transform: scale3d(.1, .1, .1) translate3d(0, -300px, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        }
+        60% {
+        opacity: 1;
+        -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+        transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        }
+        } 

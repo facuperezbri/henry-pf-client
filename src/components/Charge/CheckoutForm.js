@@ -6,11 +6,15 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { CHARGE_ACCOUNT } from '../../services/CHARGE_ACCOUNT';
+import Card from '../uiComponents/Card';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
-export default function CheckoutForm({ handlerCancelCharge, dataOfCharge }) {
+export default function CheckoutForm({ handlerCancelCharge, dataOfCharge, CVU }) {
   const stripe = useStripe();
   const elements = useElements();
-
+  
+  const info = (a) => toast.success(a);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,7 +59,7 @@ export default function CheckoutForm({ handlerCancelCharge, dataOfCharge }) {
     }
 
     setIsLoading(true);
-    const res = await CHARGE_ACCOUNT({ amount: dataOfCharge.amount, chargeMethod: dataOfCharge.chargeMethod, cvu: dataOfCharge.cvu })
+    const res = await CHARGE_ACCOUNT({ amount: dataOfCharge.amount, chargeMethod: dataOfCharge.chargeMethod, cvu: CVU })
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -72,13 +76,13 @@ export default function CheckoutForm({ handlerCancelCharge, dataOfCharge }) {
     }
 
     setIsLoading(false);
-    alert(res?.msg)
+    info(res?.msg)
   };
   return (
-    <div className={styles.form}>
-
+    <Card>
+      <ToastContainer />
     <form id="payment-form" onSubmit={handleSubmit}>
-      <PaymentElement className={styles.payment_element} />
+      <PaymentElement className='dark:text-primary-white mb-6' />
       <button disabled={isLoading || !stripe || !elements} id="submit" className={styles.button_stripe}>
         <span id="button-text">
           {isLoading ? <div className={styles.spinner} id="spinner"></div> : "Confirm"}
@@ -88,6 +92,6 @@ export default function CheckoutForm({ handlerCancelCharge, dataOfCharge }) {
     </form>
       <button onClick={handlerCancelCharge} className={styles.button_stripe_cancel}>Cancel</button>
       {message && <div className={styles.payment_message} >{message}</div>}
-    </div>
+    </Card>
   );
 }
