@@ -48,7 +48,8 @@ export default function AccountDetail () {
 
   return (
     <div className={style.detailContainer}>
-      <h2 className={style.title}>My card</h2>
+        <h1 className='text-5xl mb-8 font-bold flex justify-start'>My card</h1>
+        <h6 className='flex justify-start'>Get to review your expenses and latest movements!</h6>
 
       <div className='grid grid-cols-1 grid-rows-2 gap-4 place-items-center xl:grid-cols-2'>
         {
