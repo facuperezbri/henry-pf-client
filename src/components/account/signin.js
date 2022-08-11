@@ -5,7 +5,7 @@ import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ButtonWithLoader from '../../components/uiComponents/ButtonWithLoader'
 import { AiOutlineGoogle } from 'react-icons/ai'
 
 import InputComponent from './../uiComponents/InputComponent'
@@ -13,10 +13,10 @@ import InputComponent from './../uiComponents/InputComponent'
 
 const SignIn = () => {
   const [userGoogle, setUserGoogle] = useState()
-
+  const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
   const warning = (a) => toast.warning(a)
-  
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const login = () => {
@@ -34,6 +34,7 @@ const SignIn = () => {
     }
 
     if (step === 3) {
+      setLoading(true)
       const dataTosend = {
         ...data,
         email: userGoogle?.email || data?.email,
@@ -51,7 +52,7 @@ const SignIn = () => {
           return warning(`The user ${res?.username} is registered. Wait for the validation of your account.`)
         }
 
-      }).catch(console.error)
+      }).catch(console.error).finally(() => {setLoading(false)})
     }
   }
 
@@ -77,7 +78,7 @@ const SignIn = () => {
       <h4 className={formStyles.createStart}>Start for free.</h4>
       <h2>Create your account<span>.</span></h2>
       <div>
-    <ToastContainer/>
+        <ToastContainer />
 
         <div className={formStyles.steps_index}>
           <div style={{ backgroundColor: step >= 1 && '#FF5F6D3F' }}></div>
@@ -155,7 +156,7 @@ const SignIn = () => {
                   {errors.photoDNIFront && <span className={formStyles.input_error}>This field is required</span>}
                 </div> */}
                 <InputComponent register={register} errors={errors} name='DNI' placeholder='Your DNI' type='text' config={{ required: true, minLength: 7, maxLength: 9, IsNumber: true }} />
-                <InputComponent register={register} errors={errors} name='photoDNIFront' placeholder='Your DNI photo' type='file' config={{ required: true }} />
+                <InputComponent labeltext='Please attach a front image of your ID' register={register} errors={errors} name='photoDNIFront' placeholder='Your DNI photo' type='file' config={{ required: true }} />
 
                 {/* <div id='preview_img_photoDNIFront' className={formStyles.image_preview}>
                 </div> */}
@@ -164,7 +165,7 @@ const SignIn = () => {
                   <input type="file" name='file-1' onInput={onInputFileOne} className={formStyles.input_file} {...register('photoDNIReverse', { required: true })} />
                   {errors.photoDNIReverse && <span className={formStyles.input_error}>This field is required</span>}
                 </div> */}
-                <InputComponent register={register} errors={errors} name='photoDNIReverse' placeholder='Your DNI' type='file' config={{ required: true }} />
+                <InputComponent labeltext='Please attach a back image of your ID' register={register} errors={errors} name='photoDNIReverse' placeholder='Your DNI' type='file' config={{ required: true }} />
 
                 {/* <div id='preview_img_photoDNIReverse' className={formStyles.image_preview}>
                 </div> */}
@@ -174,7 +175,7 @@ const SignIn = () => {
                 </div>
 
                 <div className={formStyles.center}>
-                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Create your wallet.</button>
+                  <ButtonWithLoader type='submit' isLoading={loading} className='w-full'>Create your wallet.</ButtonWithLoader>
                 </div>
               </>
             }
