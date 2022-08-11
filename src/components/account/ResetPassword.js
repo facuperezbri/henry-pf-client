@@ -12,7 +12,6 @@ const ResetPassword = () => {
   const failed = () => toast.error("Email reset failed");
 
   const resetPws = async () => {
-    console.log(email);
     await axios
       .put("http://localhost:4000/api/user/reset-password", {
         email: email.id,

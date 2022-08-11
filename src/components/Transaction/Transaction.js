@@ -13,7 +13,7 @@ import Card from '../uiComponents/Card'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import ButtonWithLoader from '../uiComponents/ButtonWithLoader'
-import useNotification from '../uiComponents/useNotification'
+import useNotification from '../../hooks/useNotification'
 
 const categoryArray = ['Other', 'Groceries', 'Selfcare', 'Services', 'Shopping', 'Subscriptions', 'Transport', 'Travels']
 
@@ -33,16 +33,18 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
     cvuMain: userData?.accounts?.[0]?.cvu,
   })
 
-  
+
   useEffect(() => {
     dispatch(getUser(window.localStorage.getItem('token'))).then(
       r => {
+
+        console.log(r);
+
         setState({ ...state, cvuMain: r.payload.accounts[0].cvu })
       })
-    }, [])
+  }, [])
 
-   
-  // console.log(userData, state);
+
 
   function onSubmit (data) {
     setIsTransferLoading(true)
@@ -67,37 +69,37 @@ export default function Transaction ({ cvuFav, setCvuFav }) {
   return (
     <>
       <Card className='basis-1/2'>
-      <ToastContainer />
+        <ToastContainer />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <CardText labeltext='Your CVU' >{userData?.accounts?.[0]?.cvu}</CardText>
-        {
-          cvuFav && <CardText onClick={() => cleanFav()} labeltext='Destiny CVU' >{cvuFav}</CardText>
-        }
-
-        {
-          !cvuFav && <InputComponent labeltext='Destiny CVU' errors={errors} register={register} msgerror="This field is required and must have a length of at least 8 characters." placeholder='Where do yo want to transfer to?' type='number' name='cvuD' min={0} config={{ required: true, minLength: 8 }} />
-        }
-        <InputComponent labeltext='Amount' errors={errors} register={register} msgerror="This field is required." placeholder='How much do you want to send?' type='number' name='amount' min={0} config={{ required: true, min: 1 }} />
-        <label className="flex flex-wrap w-full uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='category'>Category</label>
-        <select className="flex flex-wrap mb-6 w-full border rounded-md dark:text-slate-800" name="category" {...register("category", { require: true })}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <CardText labeltext='Your CVU' >{userData?.accounts?.[0]?.cvu}</CardText>
           {
-            categoryArray?.map(categoryName => (
-              <option value={categoryName}>{categoryName}</option>
-            ))
+            cvuFav && <CardText onClick={() => cleanFav()} labeltext='Destiny CVU' >{cvuFav}</CardText>
           }
-        </select>
-        <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
-        <div className='grid place-items-center gap-6'>
-          {/* <Button type='submit'>Send your transference</Button> */}
-          <ButtonWithLoader type='submit' isLoading={isTransferLoading} className='w-64'>
-            Send your transference
-          </ButtonWithLoader>
-          <Button onClick={() => navigate('/charge')} className='w-full'>
-            Charge Account
-          </Button>
-        </div>
-      </form>
+
+          {
+            !cvuFav && <InputComponent labeltext='Destiny CVU' errors={errors} register={register} msgerror="This field is required and must have a length of at least 8 characters." placeholder='Where do yo want to transfer to?' type='number' name='cvuD' min={0} config={{ required: true, minLength: 8 }} />
+          }
+          <InputComponent labeltext='Amount' errors={errors} register={register} msgerror="This field is required." placeholder='How much do you want to send?' type='number' name='amount' min={0} config={{ required: true, min: 1 }} />
+          <label className="flex flex-wrap w-full uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='category'>Category</label>
+          <select className="flex flex-wrap mb-6 w-full border rounded-md dark:text-slate-800" name="category" {...register("category", { require: true })}>
+            {
+              categoryArray?.map(categoryName => (
+                <option key={categoryName} value={categoryName}>{categoryName}</option>
+              ))
+            }
+          </select>
+          <InputComponent labeltext='Comment' errors={errors} register={register} msgerror="This field is required" placeholder='Do you want to commment your transaction?' type='text' name='comment' config={{ required: false }} />
+          <div className='grid place-items-center gap-6'>
+            {/* <Button type='submit'>Send your transference</Button> */}
+            <ButtonWithLoader type='submit' isLoading={isTransferLoading} className='w-64'>
+              Send your transference
+            </ButtonWithLoader>
+            <Button onClick={() => navigate('/charge')} className='w-full'>
+              Charge Account
+            </Button>
+          </div>
+        </form>
       </Card>
       <div>
 

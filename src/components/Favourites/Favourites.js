@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import style from './Favourites.module.css'
 // import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFavorite, removeFavorite, addFavorite, getUser } from '../../redux/actions/index'
+import { getFavorite, removeFavorite, getUser } from '../../redux/actions/index'
 import Modal from 'react-modal'
 import Button from '../uiComponents/Button'
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import Card from '../uiComponents/Card'
-import { useToken } from '../../hooks/useToken'
+import useNotification from '../../hooks/useNotification'
 import { ADD_FAVORITE } from '../../services/ADD_FAVORITE'
 
 const modalStyles = {
@@ -24,12 +24,11 @@ const modalStyles = {
 
 export default function Favorites ({ setCvuFav }) {
     const favourites = useSelector((state) => state.favourites)
-    const { token } = useToken()
-    const userId = useSelector((state) => state.userData?.id)
+    const { error, success } = useNotification()
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
     const [fav, setFav] = useState('')
-    const favAdd = () => toast.success("You added your new favourite successfully")
+    // const favAdd = () => toast.success("You added your new favourite successfully")
 
     function handleModel () {
         setIsOpen(true)
@@ -42,13 +41,18 @@ export default function Favorites ({ setCvuFav }) {
 
     function handleSubmit (e) {
         e.preventDefault()
-        console.log(fav)
-        // dispatch(addFavorite(fav))
         ADD_FAVORITE(fav).then((res) => {
-            favAdd()
-            console.log(res)
-            dispatch(getFavorite())
-        }).catch(console.error)
+            if (res?.message) {
+                return error(res?.message)
+            }
+            if (res?.success) {
+                dispatch(getFavorite())
+                success(res?.success)
+            }
+        }).catch((error) => {
+            error()
+            console.error(error)
+        })
         setIsOpen(false)
         setFav("")
     }
@@ -69,26 +73,20 @@ export default function Favorites ({ setCvuFav }) {
         dispatch(getUser(window.localStorage.getItem('token'))).then(r => dispatch(getFavorite()))
     }, [dispatch])
 
-    console.log({favourites})
 
     return (
         <Card className='basis-1/2'>
             <h1 className={style.title}>My Friends</h1>
             <div>
                 {/* {favourites.length === 0 && <p></p>} */}
-                {favourites.map((f) => {
-                    return (
-                        <div className='flex gap-4'>
-                            <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
-                                {console.log(f.profilepic)}
-                                <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
-                                <p>{f.username}</p>
-                            </section>
-                            <Button onClick={deleteFav} id={f.id} >Delete</Button>
-                        </div>
-
-                    )
-                }
+                {favourites.map((f) =>
+                    <div key={f.username} className='flex gap-4'>
+                        <section className='flex cursor-pointer mb-8 items-center' onClick={() => setCvuFav(f.accounts[0].cvu)}>
+                            <img className='rounded-full w-16 h-16 mr-6' src={f.profilepic} alt={f.username} />
+                            <p>{f.username}</p>
+                        </section>
+                        <Button onClick={deleteFav} id={f.id} >Delete</Button>
+                    </div>
                 )}
             </div>
             <Button onClick={handleModel}>Add</Button>

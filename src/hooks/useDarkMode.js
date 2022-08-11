@@ -4,7 +4,6 @@ const UseDarkMode = () => {
     const [darkMode, setDarkMode] = useState(window.localStorage.getItem('darkmode') === 'true')
 
     useEffect(() => {
-        // console.log(typeof window.localStorage.getItem('darkmode'))
         if (darkMode) {
             document.documentElement.classList.add('dark')
             window.localStorage.setItem('darkmode', darkMode)

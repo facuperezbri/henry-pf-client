@@ -50,7 +50,7 @@
   padding: .5rem;
   border-radius: .5rem;
   transition: .3s;
-  height: 25rem;
+  height: fit-content;
 }
 
 .img_new {
@@ -60,6 +60,7 @@
 
 .title {
   font-size: 1rem;
+  font-weight: bold;
   white-space: no-wrap;
   overflow: hidden;
   position: relative;
@@ -78,8 +79,9 @@
 
 .card_news:hover {
   background-color: var(--background-color-nav);
-  transform: scale(1.05);
+  transform: scale(1.02);
   cursor: pointer;
+  color: var(--background-color-landing);
 }
 
 .input {
