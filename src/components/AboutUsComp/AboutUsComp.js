@@ -17,13 +17,13 @@ import Button from '../uiComponents/Button';
 export default function AboutUsComp () {
 
     const team = [
-        { index: 0, name: 'Agustín', lastname: 'Vázquez', github: 'https://github.com/Agutricolor', linkedin: 'https://www.linkedin.com/in/agustin-v%C3%A1zquez-a939771b0/', photo: agusPic, description: 'Descripción de Agus' },
+        { index: 0, name: 'Agustín', lastname: 'Vázquez', github: 'https://github.com/Agutricolor', linkedin: 'https://www.linkedin.com/in/agustin-v%C3%A1zquez-a939771b0/', photo: agusPic, description: "I'm a Fullstack Web Developer, focused on backend and solving problems." },
         { index: 1, name: 'Alberto', lastname: 'Díaz Lugo', github: 'https://github.com/andresDiazLugo', linkedin: 'https://www.linkedin.com/in/alberto-andres-diaz-lugo-91b0a0239', photo: alberPic, description: 'Descripción de Alber' },
         { index: 2, name: 'Diego Alonso', lastname: 'Gutierrez', github: 'https://github.com/DiegoAlonsoG', linkedin: 'https://www.linkedin.com/in/diegoalonsogm/', photo: diegoPic, description: "Junior developer with background in Supply Chain, Finances and Processes Management. Passionate for knowledge and dynamic processes." },
-        { index: 3, name: 'Facundo', lastname: 'Pérez Brizuela', github: 'https://github.com/facuperezbri', linkedin: 'https://www.linkedin.com/in/facuperezbri/', photo: facuPic, description: 'Frontend developer with a background in Business Administration. Currently living in Mendoza, Argentina. ' },
-        { index: 4, name: 'Franco', lastname: 'Maciel', github: 'https://github.com/FrM-bot', linkedin: 'https://www.linkedin.com/in/franco-maciel', photo: francoDPic, description: 'Hi, I\'m Franco Damián Maciel and I\'m a full stack web developer.', prtfolio: 'https://frm-bot.xyz' },
-        { index: 5, name: 'Franco', lastname: 'Meinardo', github: 'https://github.com/francomei', linkedin: 'https://www.linkedin.com/in/franco-meinardo/', photo: francoMPic, description: 'Descripción de FrancoMei' },
-        { index: 6, name: 'Mateo', lastname: 'Capdevila Ontivero', github: 'https://github.com/mateocpd', linkedin: 'https://www.linkedin.com/in/mateocapdevila', photo: mateoPic, description: 'Hola, mi nombre es Mateo y soy Full Stack Developer, Estudiante de Ingeniería en Sistemas.' },
+        { index: 3, name: 'Facundo', lastname: 'Pérez Brizuela', github: 'https://github.com/facuperezbri', linkedin: 'https://www.linkedin.com/in/facuperezbri/', photo: facuPic, description: "Hi! My name is Facu and I'm a Full Stack developer, specialized in Frontend with a background in Business Administration." },
+        { index: 4, name: 'Franco', lastname: 'Maciel', github: 'https://github.com/FrM-bot', linkedin: 'https://www.linkedin.com/in/franco-maciel', photo: francoDPic, description: 'Hi, I\'m Franco Damián Maciel and I\'m a full stack web developer.' },
+        { index: 5, name: 'Franco', lastname: 'Meinardo', github: 'https://github.com/francomei', linkedin: 'https://www.linkedin.com/in/franco-meinardo/', photo: francoMPic, description: "Hi, I'm Franco. I 'm 19 year old Full stack developer." },
+        { index: 6, name: 'Mateo', lastname: 'Capdevila Ontivero', github: 'https://github.com/mateocpd', linkedin: 'https://www.linkedin.com/in/mateocapdevila', photo: mateoPic, description: "Hi, my name is Mateo and I'm a Full Stack developer. Currently studying Systems Engineering." },
         { index: 7, name: 'Matías', lastname: 'Britez', github: 'https://github.com/mattbritez7', linkedin: 'https://www.linkedin.com/in/matias-britezdev/', photo: matiPic, description: 'Hi im matt! 21 years old, frontend enginner web' }
 
     ]
