@@ -28,7 +28,7 @@ export default function Ratings () {
 
     if (!ratings[0]?.rate) {
         return (
-            <div> Loading... </div>
+            <div className='mx-auto'> Loading... </div>
         )
     }
 
