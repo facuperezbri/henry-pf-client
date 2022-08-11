@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react'
+import React, {  useState } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useSearchParams } from 'react-router-dom'
+
 import styles from './News.module.css'
 
 import Card from '../uiComponents/Card'
@@ -11,20 +11,15 @@ import loading from '../../assets/spinner/spinner.svg'
 
 const News2 = () => {
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const filter = searchParams.get("filter") ?? ""
-  const inputRef = useRef()
+  
 
-  const handleFilter = (e) => {
-    setSearchParams({ filter: e.target.value })
-  }
+  const [search, setSearch] = useState('')
+
   //---------------------------------------------------------------------------------------------------------------
   const getNews = async ({ pageParam = 1 }) => {
-
     const info = await axios.get(`${process.env.REACT_APP_API_URL}/api/currency/news/${pageParam}`)
     const data = info.data
     console.log(info)
-
     return data
   }
 
@@ -42,21 +37,24 @@ const News2 = () => {
 
   const news = data?.pages.reduce((prevNews, pages) => prevNews.concat(pages)) ?? []
 
-  if (isLoading) {
+  
+  
+  const ss = news?.filter((e) => {
     return (
-      <div className={styles.detailContainer}>
-        <div className={styles.loading} >
-          <img src={loading} alt="Loading" />
-        </div>
-      </div>)
-  }
-  const ss = news.filter(e => {
-    // const redes = new RegExp(inputRef.current.value, "gi")
-    if (!filter) return true
-    const title = e.title.toLowerCase()
-    if (!title.includes(filter.toLowerCase())) return false
-    return title.includes(filter.toLowerCase())
-  })
+      e?.title?.toLowerCase().includes(search.toLowerCase()) ||
+      e?.author?.toLowerCase().includes(search.toLowerCase()) 
+      )
+    })
+    
+    if (isLoading) {
+      return (
+        <div className={styles.detailContainer}>
+          <div className={styles.loading} >
+            <img src={loading} alt="Loading" />
+          </div>
+        </div>)
+    }
+ 
   return (
     <div className={styles.detailContainer}>
       <h1 className='text-5xl mb-8 font-bold flex justify-center'>Financial News</h1>
@@ -64,7 +62,7 @@ const News2 = () => {
       <h6 className='flex justify-center'>international finances and economy.</h6>
 
       <div className={styles.input}>
-        <input style={{ color: "black", border: "solid 1px black" }} value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
+        <input style={{ color: "black", border: "solid 1px black" }} onChange={(e) => { setSearch(e.target.value) }} type="text" placeholder="Search News" />
       </div>
       <InfiniteScroll
         dataLength={news.length}
