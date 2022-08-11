@@ -5,7 +5,7 @@ import { SIGN_IN } from '../../services/SIGN_IN'
 import formStyles from './form.module.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import ButtonWithLoader from '../../components/uiComponents/ButtonWithLoader'
 import { AiOutlineGoogle } from 'react-icons/ai'
 
 import InputComponent from './../uiComponents/InputComponent'
@@ -13,7 +13,7 @@ import InputComponent from './../uiComponents/InputComponent'
 
 const SignIn = () => {
   const [userGoogle, setUserGoogle] = useState()
-
+  const [loading, setLoading] = useState(false)
   const [step, setStep] = useState(1)
   const warning = (a) => toast.warning(a)
 
@@ -34,6 +34,7 @@ const SignIn = () => {
     }
 
     if (step === 3) {
+      setLoading(true)
       const dataTosend = {
         ...data,
         email: userGoogle?.email || data?.email,
@@ -51,7 +52,7 @@ const SignIn = () => {
           return warning(`The user ${res?.username} is registered. Wait for the validation of your account.`)
         }
 
-      }).catch(console.error)
+      }).catch(console.error).finally(() => {setLoading(false)})
     }
   }
 
@@ -174,7 +175,7 @@ const SignIn = () => {
                 </div>
 
                 <div className={formStyles.center}>
-                  <button className={`${formStyles.button} ${formStyles.button_submit}`} type='submit'>Create your wallet.</button>
+                  <ButtonWithLoader type='submit' isLoading={loading} className='w-full'>Create your wallet.</ButtonWithLoader>
                 </div>
               </>
             }
