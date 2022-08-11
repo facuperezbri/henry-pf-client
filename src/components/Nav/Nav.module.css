@@ -4,6 +4,7 @@
     width: 10vw;
     min-width: 200px;
     height: 100vh;
+    max-height: 100vh;
     border-bottom-right-radius: 1rem;
     border-top-right-radius: 1rem;
     display: flex;
@@ -68,6 +69,7 @@
         width: 7vh;
         padding: .5rem .5rem .5rem 0rem;
     }
+
 }
 
 .icon {
