@@ -16,7 +16,7 @@ const SignIn = () => {
 
   const [step, setStep] = useState(1)
   const warning = (a) => toast.warning(a)
-  
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const login = () => {
@@ -77,7 +77,7 @@ const SignIn = () => {
       <h4 className={formStyles.createStart}>Start for free.</h4>
       <h2>Create your account<span>.</span></h2>
       <div>
-    <ToastContainer/>
+        <ToastContainer />
 
         <div className={formStyles.steps_index}>
           <div style={{ backgroundColor: step >= 1 && '#FF5F6D3F' }}></div>
@@ -155,7 +155,7 @@ const SignIn = () => {
                   {errors.photoDNIFront && <span className={formStyles.input_error}>This field is required</span>}
                 </div> */}
                 <InputComponent register={register} errors={errors} name='DNI' placeholder='Your DNI' type='text' config={{ required: true, minLength: 7, maxLength: 9, IsNumber: true }} />
-                <InputComponent register={register} errors={errors} name='photoDNIFront' placeholder='Your DNI photo' type='file' config={{ required: true }} />
+                <InputComponent labeltext='Please attach a front image of your ID' register={register} errors={errors} name='photoDNIFront' placeholder='Your DNI photo' type='file' config={{ required: true }} />
 
                 {/* <div id='preview_img_photoDNIFront' className={formStyles.image_preview}>
                 </div> */}
@@ -164,7 +164,7 @@ const SignIn = () => {
                   <input type="file" name='file-1' onInput={onInputFileOne} className={formStyles.input_file} {...register('photoDNIReverse', { required: true })} />
                   {errors.photoDNIReverse && <span className={formStyles.input_error}>This field is required</span>}
                 </div> */}
-                <InputComponent register={register} errors={errors} name='photoDNIReverse' placeholder='Your DNI' type='file' config={{ required: true }} />
+                <InputComponent labeltext='Please attach a back image of your ID' register={register} errors={errors} name='photoDNIReverse' placeholder='Your DNI' type='file' config={{ required: true }} />
 
                 {/* <div id='preview_img_photoDNIReverse' className={formStyles.image_preview}>
                 </div> */}
