@@ -37,7 +37,7 @@ const News2 = () => {
 
   const news = data?.pages.reduce((prevNews, pages) => prevNews.concat(pages)) ?? []
 
-  
+  //sdfsfdssdffdsdfdfsdffrefrfdsdfsfdgfdfg
   
   const ss = news?.filter((e) => {
     return (
