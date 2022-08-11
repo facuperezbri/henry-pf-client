@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroll-component'
@@ -14,17 +14,17 @@ const News2 = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const filter = searchParams.get("filter") ?? ""
   const inputRef = useRef()
-  console.log(filter)
 
   const handleFilter = (e) => {
     setSearchParams({ filter: e.target.value })
   }
   //---------------------------------------------------------------------------------------------------------------
   const getNews = async ({ pageParam = 1 }) => {
-    const apiKey = "66b54c0b1d0444a48de1291d57f5e137"
-    const apiKey2 = "353f956d5ff749b18c24aed1332b0b8d"
-    const info = await axios.get(`https://newsapi.org/v2/everything?domains=wsj.com&apiKey=${apiKey2}&pageSize=10&page=${pageParam}`)
-    const data = info.data.articles
+
+    const info = await axios.get(`${process.env.REACT_APP_API_URL}/api/currency/news/${pageParam}`)
+    const data = info.data
+    console.log(info)
+
     return data
   }
 
@@ -64,7 +64,7 @@ const News2 = () => {
       <h6 className='flex justify-center'>international finances and economy.</h6>
 
       <div className={styles.input}>
-        <input value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
+        <input style={{ color: "black", border: "solid 1px black" }} value={filter} onChange={handleFilter} type="text" placeholder="Search News" />
       </div>
       <InfiniteScroll
         dataLength={news.length}
